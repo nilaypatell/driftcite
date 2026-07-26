@@ -1,0 +1,180 @@
+provider: anthropic
+spec_version: 1
+updated: 2026-07-26
+sources:
+  - https://platform.claude.com/docs/en/about-claude/models/overview.md
+  - https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+# A file must contain one of these before non-model artifacts count. A bare
+# "output_format" in unrelated code is not Anthropic drift.
+context:
+  file_markers:
+    - anthropic
+    - "claude-"
+    - ANTHROPIC_API_KEY
+
+artifacts:
+  # ---- retired models: these return 404 today ----
+  - id: anthropic/model_id/claude-3-opus-20240229
+    kind: model_id
+    match:
+      literals: ["claude-3-opus-20240229"]
+    status: retired
+    retires_on: 2026-01-05
+    replacement: claude-opus-4-8
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-3-7-sonnet-20250219
+    kind: model_id
+    match:
+      literals: ["claude-3-7-sonnet-20250219"]
+    status: retired
+    retires_on: 2026-02-19
+    replacement: claude-sonnet-5
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-3-5-haiku-20241022
+    kind: model_id
+    match:
+      literals: ["claude-3-5-haiku-20241022"]
+    status: retired
+    retires_on: 2026-02-19
+    replacement: claude-haiku-4-5
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-3-5-sonnet-20241022
+    kind: model_id
+    match:
+      literals: ["claude-3-5-sonnet-20241022"]
+    status: retired
+    retires_on: 2025-10-28
+    replacement: claude-sonnet-5
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-3-5-sonnet-20240620
+    kind: model_id
+    match:
+      literals: ["claude-3-5-sonnet-20240620"]
+    status: retired
+    retires_on: 2025-10-28
+    replacement: claude-sonnet-5
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-3-sonnet-20240229
+    kind: model_id
+    match:
+      literals: ["claude-3-sonnet-20240229"]
+    status: retired
+    retires_on: 2025-07-21
+    replacement: claude-sonnet-5
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  # ---- deprecated models: still work, dated ----
+  - id: anthropic/model_id/claude-3-haiku-20240307
+    kind: model_id
+    match:
+      literals: ["claude-3-haiku-20240307"]
+    status: deprecated
+    retires_on: 2026-04-19
+    replacement: claude-haiku-4-5
+    severity: warning
+    note: Deprecated, retires 2026-04-19.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/overview.md
+
+  - id: anthropic/model_id/claude-opus-4-1-20250805
+    kind: model_id
+    match:
+      literals: ["claude-opus-4-1-20250805", "claude-opus-4-1"]
+    status: deprecated
+    retires_on: 2026-08-05
+    replacement: claude-opus-5
+    severity: warning
+    note: Deprecated, retires 2026-08-05.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/overview.md
+
+  - id: anthropic/model_id/claude-opus-4-20250514
+    kind: model_id
+    match:
+      literals: ["claude-opus-4-20250514", "claude-opus-4-0"]
+    status: deprecated
+    retires_on: 2026-06-15
+    replacement: claude-opus-5
+    severity: warning
+    note: Deprecated, retires 2026-06-15.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/model_id/claude-sonnet-4-20250514
+    kind: model_id
+    match:
+      literals: ["claude-sonnet-4-20250514", "claude-sonnet-4-0"]
+    status: deprecated
+    retires_on: 2026-06-15
+    replacement: claude-sonnet-5
+    severity: warning
+    note: Deprecated, retires 2026-06-15.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  # ---- request parameters removed on current models ----
+  - id: anthropic/request_param/budget_tokens
+    kind: request_param
+    match:
+      literals: ["budget_tokens"]
+    status: removed
+    replacement: 'thinking: {type: "adaptive"} plus output_config.effort'
+    severity: breaking
+    note: Rejected with 400 on Opus 5, Opus 4.8/4.7, Sonnet 5, Fable 5.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/request_param/output_format
+    kind: request_param
+    match:
+      literals: ["output_format"]
+    status: deprecated
+    replacement: output_config.format
+    severity: warning
+    note: Top-level output_format is deprecated API-wide.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  # ---- tool types renamed ----
+  - id: anthropic/tool_type/text_editor_20250124
+    kind: tool_type
+    match:
+      literals: ["text_editor_20250124", "str_replace_editor"]
+    status: removed
+    replacement: text_editor_20250728 with name str_replace_based_edit_tool
+    severity: breaking
+    note: Both type and name changed. Updating only one returns 400.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  # ---- beta headers that went GA (dead weight, not breaking) ----
+  - id: anthropic/sdk_symbol/effort-2025-11-24
+    kind: sdk_symbol
+    match:
+      literals: ["effort-2025-11-24"]
+    status: removed
+    replacement: none, effort is GA
+    severity: info
+    note: Beta header no longer needed. Safe to delete.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/sdk_symbol/interleaved-thinking-2025-05-14
+    kind: sdk_symbol
+    match:
+      literals: ["interleaved-thinking-2025-05-14"]
+    status: removed
+    replacement: none, adaptive thinking enables this automatically
+    severity: info
+    note: Beta header no longer needed when using adaptive thinking.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
