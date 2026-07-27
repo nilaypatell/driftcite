@@ -17,5 +17,11 @@ if git diff --staged --quiet; then
 else
   git -c user.name="driftcite clock" -c user.email="77018379+nilaypatell@users.noreply.github.com" \
     commit -m "chore(feed): $(date -u +%Y-%m-%d) provider sweep (local clock)"
+
+  # Never push a commit whose identity would credit the wrong account.
+  if ! ./scripts/check_identity.sh HEAD~1..HEAD; then
+    echo "refusing to push: unexpected commit identity"
+    exit 1
+  fi
   git push origin main
 fi

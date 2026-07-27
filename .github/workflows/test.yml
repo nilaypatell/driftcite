@@ -24,6 +24,10 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Commit identity
+        if: matrix.os == 'ubuntu-latest'
+        run: ./scripts/check_identity.sh origin/main..HEAD || true
+
       - name: Scanner tests
         run: node test/run.mjs
 
@@ -43,6 +47,9 @@ jobs:
           python-version: "3.11"
 
       - run: pip install --quiet pyyaml
+
+      - name: Every recommended replacement must exist
+        run: python3 scripts/verify_replacements.py
 
       - name: The feed must be in sync with the manifests
         run: |

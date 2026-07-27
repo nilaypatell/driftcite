@@ -1,0 +1,10 @@
+# Every path needs an owner's review before it can merge.
+# Manifests especially: a wrong fact here is reported to every user of the
+# feed, so provider data is reviewed like code, not waved through.
+*                     @nilaypatell
+/manifests/           @nilaypatell
+/feed/                @nilaypatell
+/providers.yaml       @nilaypatell
+/bin/                 @nilaypatell
+/scanner/             @nilaypatell
+/.github/workflows/   @nilaypatell
