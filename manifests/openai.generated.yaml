@@ -1,0 +1,63 @@
+provider: openai
+spec_version: 1
+generated_from:
+  repo: openai/openai-openapi
+  from: 1.3.0
+  to: 2.0.0
+  from_api_version: 1.3.0
+  to_api_version: 2.0.0
+source_license: MIT
+source_notice: https://github.com/openai/openai-openapi/blob/main/LICENSE
+sources:
+- https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0
+context:
+  file_markers:
+  - openai
+  - OPENAI_API_KEY
+  - gpt-
+artifacts:
+- id: openai/endpoint//engines
+  kind: endpoint
+  match:
+    literals:
+    - /engines
+  status: removed
+  severity: breaking
+  note: GET /engines existed in 1.3.0 and is gone in 2.0.0.
+  evidence: https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0
+- id: openai/endpoint//engines/{engine_id}
+  kind: endpoint
+  match:
+    literals:
+    - /engines/{engine_id}
+  status: removed
+  severity: breaking
+  note: GET /engines/{engine_id} existed in 1.3.0 and is gone in 2.0.0.
+  evidence: https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0
+- id: openai/endpoint//answers
+  kind: endpoint
+  match:
+    literals:
+    - /answers
+  status: removed
+  severity: breaking
+  note: POST /answers existed in 1.3.0 and is gone in 2.0.0.
+  evidence: https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0
+- id: openai/endpoint//classifications
+  kind: endpoint
+  match:
+    literals:
+    - /classifications
+  status: removed
+  severity: breaking
+  note: POST /classifications existed in 1.3.0 and is gone in 2.0.0.
+  evidence: https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0
+- id: openai/endpoint//engines/{engine_id}/search
+  kind: endpoint
+  match:
+    literals:
+    - /engines/{engine_id}/search
+  status: removed
+  severity: breaking
+  note: POST /engines/{engine_id}/search existed in 1.3.0 and is gone in 2.0.0.
+  evidence: https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0

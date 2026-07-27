@@ -1,0 +1,9 @@
+scanner/
+spec/
+manifests/
+test/
+docs/
+.github/
+.cache/
+ARCHITECTURE.md
+action.yml

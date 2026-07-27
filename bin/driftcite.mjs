@@ -1,0 +1,381 @@
+#!/usr/bin/env node
+/**
+ * driftcite: find the API calls in your code that already stopped working.
+ *
+ * Zero dependencies, by design. This runs on a stranger's machine and reads
+ * their source, so it should be auditable in one sitting and pull nothing in.
+ *
+ * Nothing is sent anywhere. The only network calls are fetching the public
+ * feed (skippable with --offline) and asking npm and PyPI whether a version
+ * you already have installed was deprecated by its own maintainer.
+ */
+
+import { readFile, readdir, stat } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const BUNDLED_FEED = path.join(HERE, "..", "feed", "feed.json");
+const FEED_URL =
+  "https://raw.githubusercontent.com/nilaypatell/driftcite/main/feed/feed.json";
+
+const SKIP_DIRS = new Set([
+  ".git", "node_modules", ".next", "dist", "build", "__pycache__", ".venv",
+  "venv", ".mypy_cache", ".pytest_cache", "coverage", ".turbo", "vendor",
+  ".vercel", "out", ".cache", ".idea", "target",
+]);
+
+const SCAN_EXTS = new Set([
+  ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".go", ".rb", ".java",
+  ".kt", ".cs", ".php", ".rs", ".sh", ".yaml", ".yml", ".json", ".toml", ".env",
+]);
+
+const MAX_BYTES = 2_000_000;
+const SEVERITY_ORDER = { breaking: 0, warning: 1, info: 2 };
+const SOON_DAYS = 90;
+
+/**
+ * Substring matching is wrong and produced three false positives for every
+ * true one on the first real codebase. The parameter "refund" sits inside
+ * "refunded" and inside a sentence about refunds; a retired enum value like
+ * "hosted" is an ordinary English word. Each kind only counts in the shape it
+ * actually takes when sent to a provider.
+ */
+const MATCH_SHAPES = {
+  enum_value: ["quoted"],
+  request_param: ["quoted", "key"],
+  endpoint: ["quoted", "word"],
+  model_id: ["quoted", "word"],
+  tool_type: ["quoted", "word"],
+  sdk_symbol: ["quoted", "word"],
+};
+const DEFAULT_SHAPES = ["quoted", "word"];
+const CONTEXT_REQUIRED = new Set([
+  "request_param", "sdk_symbol", "tool_type", "endpoint", "enum_value",
+]);
+
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+function matcher(literal, kind) {
+  const lit = esc(literal);
+  const parts = [];
+  for (const shape of MATCH_SHAPES[kind] || DEFAULT_SHAPES) {
+    if (shape === "quoted") parts.push(`['"\`]${lit}['"\`]`);
+    else if (shape === "key") parts.push(`(?<![\\w.])${lit}\\s*[:=]`);
+    else if (shape === "word") parts.push(`(?<![\\w./-])${lit}(?![\\w.-])`);
+  }
+  return new RegExp(parts.join("|"));
+}
+
+/**
+ * A manifest states a retirement date and then time passes. "Deprecated,
+ * retires 2026-06-15" is simply retired once that date is behind us, and one
+ * retiring next week is not a footnote. Severity is computed against today,
+ * never frozen at authoring time.
+ */
+function applyDeadline(art, today = new Date()) {
+  let severity = art.severity || "info";
+  const status = art.status || "unknown";
+  if (!art.retires_on) return { severity, status, daysLeft: null };
+  const when = new Date(`${art.retires_on}T00:00:00Z`);
+  if (Number.isNaN(when.getTime())) return { severity, status, daysLeft: null };
+  const utcToday = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+  const days = Math.round((when.getTime() - utcToday) / 86_400_000);
+  if (days < 0) return { severity: "breaking", status: "retired", daysLeft: days };
+  if (days <= SOON_DAYS && severity !== "breaking") {
+    return { severity: "breaking", status, daysLeft: days };
+  }
+  return { severity, status, daysLeft: days };
+}
+
+function deadlinePhrase(f) {
+  if (f.daysLeft === null || f.daysLeft === undefined) {
+    return f.retires_on ? ` (retires ${f.retires_on})` : "";
+  }
+  if (f.daysLeft < 0) return ` (DIED ${Math.abs(f.daysLeft)} days ago, ${f.retires_on})`;
+  if (f.daysLeft === 0) return ` (DIES TODAY, ${f.retires_on})`;
+  return ` (breaks in ${f.daysLeft} days, ${f.retires_on})`;
+}
+
+const urgency = (f) => [
+  SEVERITY_ORDER[f.severity] ?? 3,
+  f.daysLeft === null || f.daysLeft === undefined ? 1 : 0,
+  f.daysLeft ?? 0,
+];
+
+function cmp(a, b) {
+  const [x, y] = [urgency(a), urgency(b)];
+  for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i];
+  return a.file === b.file ? a.line - b.line : a.file < b.file ? -1 : 1;
+}
+
+async function loadFeed({ offline }) {
+  if (!offline) {
+    try {
+      const res = await fetch(FEED_URL, { signal: AbortSignal.timeout(15_000) });
+      if (res.ok) return { feed: await res.json(), source: "live" };
+    } catch {
+      /* fall through to the bundled copy */
+    }
+  }
+  if (existsSync(BUNDLED_FEED)) {
+    return { feed: JSON.parse(await readFile(BUNDLED_FEED, "utf8")), source: "bundled" };
+  }
+  throw new Error("no feed available");
+}
+
+async function* walk(dir) {
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch {
+    return;
+  }
+  for (const e of entries) {
+    const full = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      if (SKIP_DIRS.has(e.name) || e.name.startsWith(".")) continue;
+      yield* walk(full);
+    } else if (e.isFile() && SCAN_EXTS.has(path.extname(e.name).toLowerCase())) {
+      yield full;
+    }
+  }
+}
+
+async function scanRepo(root, artifacts) {
+  // Longest literal first so a specific id wins over a prefix of itself.
+  const index = [];
+  for (const art of artifacts) {
+    for (const lit of art.match?.literals || []) index.push({ lit, art });
+  }
+  index.sort((a, b) => b.lit.length - a.lit.length);
+
+  const findings = [];
+  for await (const file of walk(root)) {
+    let text;
+    try {
+      if ((await stat(file)).size > MAX_BYTES) continue;
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const lowered = text.toLowerCase();
+    let lines = null;
+
+    for (const { lit, art } of index) {
+      if (!text.includes(lit)) continue;
+      if (CONTEXT_REQUIRED.has(art.kind)) {
+        const markers = art.file_markers || [];
+        if (markers.length && !markers.some((m) => lowered.includes(m.toLowerCase()))) continue;
+      }
+      const re = matcher(lit, art.kind);
+      if (!re.test(text)) continue;
+      if (lines === null) lines = text.split(/\r?\n/);
+
+      for (let i = 0; i < lines.length; i++) {
+        if (!re.test(lines[i])) continue;
+        const { severity, status, daysLeft } = applyDeadline(art);
+        findings.push({
+          file: path.relative(root, file),
+          line: i + 1,
+          artifact: art.id,
+          severity, status, daysLeft,
+          retires_on: art.retires_on ?? null,
+          note: art.note || "",
+          replacement: art.replacement ?? null,
+          evidence: art.evidence ?? null,
+          excerpt: lines[i].trim().slice(0, 160),
+        });
+      }
+    }
+  }
+
+  const seen = new Set();
+  return findings.filter((f) => {
+    const key = `${f.file}:${f.line}:${f.artifact}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+// ---------------------------------------------------------------- registries
+
+async function npmDeps(root) {
+  const found = new Map();
+  for await (const file of walk(root)) {
+    if (path.basename(file) !== "package-lock.json") continue;
+    let data;
+    try {
+      data = JSON.parse(await readFile(file, "utf8"));
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    for (const [p, meta] of Object.entries(data.packages || {})) {
+      if (!p.startsWith("node_modules/")) continue;
+      const name = p.split("node_modules/").pop();
+      if (name && meta?.version) found.set(`${name}@${meta.version}`, rel);
+    }
+    const walkV1 = (deps) => {
+      for (const [name, meta] of Object.entries(deps || {})) {
+        if (meta?.version) found.set(`${name}@${meta.version}`, rel);
+        walkV1(meta?.dependencies);
+      }
+    };
+    walkV1(data.dependencies);
+  }
+  return found;
+}
+
+async function checkNpm(name) {
+  try {
+    const res = await fetch(`https://registry.npmjs.org/${name.replace("/", "%2f")}`, {
+      headers: { accept: "application/vnd.npm.install-v1+json" },
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (!res.ok) return {};
+    const doc = await res.json();
+    const out = {};
+    for (const [v, meta] of Object.entries(doc.versions || {})) {
+      if (meta?.deprecated) out[v] = String(meta.deprecated).trim();
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+async function scanRegistry(root) {
+  const deps = await npmDeps(root);
+  const names = [...new Set([...deps.keys()].map((k) => k.slice(0, k.lastIndexOf("@"))))];
+  const flagged = [];
+  const CONC = 16;
+  for (let i = 0; i < names.length; i += CONC) {
+    const batch = names.slice(i, i + CONC);
+    const results = await Promise.all(batch.map((n) => checkNpm(n).then((r) => [n, r])));
+    for (const [name, versions] of results) {
+      for (const [key, source] of deps) {
+        const at = key.lastIndexOf("@");
+        if (key.slice(0, at) !== name) continue;
+        const version = key.slice(at + 1);
+        if (versions[version]) {
+          flagged.push({ name, version, source, message: versions[version] });
+        }
+      }
+    }
+  }
+  return { flagged, checked: deps.size };
+}
+
+// -------------------------------------------------------------------- report
+
+const BOLD = "[1m", DIM = "[2m", RED = "[31m",
+      YEL = "[33m", OFF = "[0m";
+const color = process.stdout.isTTY && !process.env.NO_COLOR;
+const c = (code, s) => (color ? code + s + OFF : s);
+
+function report(findings, registry, root, feedSource) {
+  const breaking = findings.filter((f) => f.severity === "breaking").length;
+
+  console.log();
+  console.log(c(BOLD, root));
+  console.log(
+    c(DIM, `feed: ${feedSource} | ${registry.checked.toLocaleString()} dependencies resolved`)
+  );
+  console.log();
+
+  if (!findings.length && !registry.flagged.length) {
+    console.log("No drift found.");
+    console.log();
+    return 0;
+  }
+
+  if (findings.length) {
+    console.log(c(BOLD, `${findings.length} provider findings (${breaking} breaking)`));
+    let current = null;
+    for (const f of [...findings].sort(cmp)) {
+      if (f.artifact !== current) {
+        current = f.artifact;
+        const tag = f.severity === "breaking" ? c(RED, "[BREAKING]") : c(YEL, "[WARNING]");
+        console.log(`\n${tag} ${f.artifact} -- ${f.status}${deadlinePhrase(f)}`);
+        if (f.note) console.log(`  ${f.note}`);
+        if (f.replacement) console.log(`  use instead: ${f.replacement}`);
+        if (f.evidence) console.log(c(DIM, `  evidence: ${f.evidence}`));
+      }
+      console.log(`    ${f.file}:${f.line}  ${c(DIM, f.excerpt)}`);
+    }
+    console.log();
+  }
+
+  if (registry.flagged.length) {
+    const groups = new Map();
+    for (const f of registry.flagged) {
+      const key = f.message;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(f);
+    }
+    console.log(
+      c(BOLD, `${registry.flagged.length} dependencies on a maintainer-flagged version`)
+    );
+    for (const [message, items] of [...groups].sort((a, b) => b[1].length - a[1].length)) {
+      const pkgs = [...new Set(items.map((i) => i.name))].sort();
+      const head = items.length === 1
+        ? `${items[0].name}@${items[0].version}`
+        : `${pkgs.length} packages`;
+      console.log(`\n  ${head}`);
+      console.log(`    "${message.slice(0, 170)}"`);
+      if (items.length > 1) {
+        const more = pkgs.length > 5 ? `, +${pkgs.length - 5} more` : "";
+        console.log(c(DIM, `    ${pkgs.slice(0, 5).join(", ")}${more}`));
+      }
+    }
+    console.log();
+  }
+
+  return breaking ? 1 : 0;
+}
+
+// ---------------------------------------------------------------------- main
+
+async function main() {
+  const argv = process.argv.slice(2);
+  if (argv.includes("-h") || argv.includes("--help")) {
+    console.log(`driftcite: find the API calls in your code that already stopped working.
+
+  npx driftcite [path]        scan a directory (default: .)
+  npx driftcite . --offline   use the bundled feed, no network at all
+  npx driftcite . --json      machine-readable output
+  npx driftcite . --no-deps   skip the npm registry check
+
+Exits 1 if anything breaking was found, so it drops into CI unchanged.
+Your source code is never sent anywhere.`);
+    return 0;
+  }
+
+  const root = path.resolve(argv.find((a) => !a.startsWith("-")) || ".");
+  const offline = argv.includes("--offline");
+  const asJson = argv.includes("--json");
+  const noDeps = argv.includes("--no-deps");
+
+  const { feed, source } = await loadFeed({ offline });
+  const findings = await scanRepo(root, feed.artifacts);
+  const registry = noDeps || offline
+    ? { flagged: [], checked: 0 }
+    : await scanRegistry(root);
+
+  if (asJson) {
+    console.log(JSON.stringify({ root, feed: source, findings, registry }, null, 2));
+    return findings.some((f) => f.severity === "breaking") ? 1 : 0;
+  }
+  return report(findings, registry, root, source);
+}
+
+main().then(
+  (code) => process.exit(code),
+  (err) => {
+    console.error(`driftcite: ${err.message}`);
+    process.exit(2);
+  }
+);

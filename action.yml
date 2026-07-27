@@ -1,0 +1,80 @@
+name: driftcite
+description: Fail the build when your code calls an API that already stopped working.
+author: driftcite
+
+branding:
+  icon: alert-triangle
+  color: red
+
+inputs:
+  path:
+    description: Directory to scan.
+    required: false
+    default: "."
+  fail-on-breaking:
+    description: Fail the job when breaking drift is found.
+    required: false
+    default: "true"
+  check-dependencies:
+    description: Also check whether installed versions were deprecated by their maintainer.
+    required: false
+    default: "true"
+  offline:
+    description: Use the bundled feed instead of fetching the live one.
+    required: false
+    default: "false"
+
+outputs:
+  findings:
+    description: JSON array of findings.
+    value: ${{ steps.scan.outputs.findings }}
+  breaking-count:
+    description: Number of breaking findings.
+    value: ${{ steps.scan.outputs.breaking-count }}
+
+runs:
+  using: composite
+  steps:
+    - id: scan
+      shell: bash
+      run: |
+        args="${{ inputs.path }}"
+        [ "${{ inputs.check-dependencies }}" = "true" ] || args="$args --no-deps"
+        [ "${{ inputs.offline }}" = "false" ] || args="$args --offline"
+
+        # Human-readable in the log, machine-readable for downstream steps.
+        set +e
+        npx --yes driftcite@latest $args
+        code=$?
+        npx --yes driftcite@latest $args --json > /tmp/driftcite.json 2>/dev/null
+        set -e
+
+        breaking=$(node -e "
+          const f=require('/tmp/driftcite.json').findings||[];
+          console.log(f.filter(x=>x.severity==='breaking').length);
+        " 2>/dev/null || echo 0)
+
+        {
+          echo "breaking-count=$breaking"
+          echo "findings<<DRIFTCITE_EOF"
+          node -e "console.log(JSON.stringify(require('/tmp/driftcite.json').findings||[]))" 2>/dev/null || echo "[]"
+          echo "DRIFTCITE_EOF"
+        } >> "$GITHUB_OUTPUT"
+
+        if [ "$breaking" -gt 0 ]; then
+          echo "### driftcite: $breaking breaking finding(s)" >> "$GITHUB_STEP_SUMMARY"
+          node -e "
+            const f=require('/tmp/driftcite.json').findings||[];
+            for (const x of f.filter(y=>y.severity==='breaking')) {
+              console.log('- \`'+x.file+':'+x.line+'\` '+x.artifact+' ('+x.status+')');
+              if (x.evidence) console.log('  - evidence: '+x.evidence);
+            }
+          " >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+        else
+          echo "### driftcite: no breaking drift" >> "$GITHUB_STEP_SUMMARY"
+        fi
+
+        if [ "${{ inputs.fail-on-breaking }}" = "true" ] && [ "$breaking" -gt 0 ]; then
+          exit 1
+        fi
+        exit 0

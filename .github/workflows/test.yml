@@ -1,0 +1,37 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scanner tests
+        run: node test/run.mjs
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
+      - name: The feed must be in sync with the manifests
+        run: |
+          python3 scanner/build_feed.py
+          if ! git diff --quiet feed/; then
+            echo "feed/feed.json is stale. Run: python3 scanner/build_feed.py"
+            git diff --stat feed/
+            exit 1
+          fi
+
+      - name: Scan this repository with itself
+        run: node bin/driftcite.mjs . --no-deps

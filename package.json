@@ -1,0 +1,41 @@
+{
+  "name": "driftcite",
+  "version": "0.1.0",
+  "description": "Find the API calls in your code that already stopped working. Every fact cites the provider who published it.",
+  "type": "module",
+  "bin": {
+    "driftcite": "bin/driftcite.mjs"
+  },
+  "files": [
+    "bin/",
+    "feed/",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/run.mjs"
+  },
+  "keywords": [
+    "api",
+    "deprecation",
+    "breaking-changes",
+    "openapi",
+    "dependencies",
+    "drift",
+    "sunset",
+    "devtools"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilaypatell/driftcite.git"
+  },
+  "homepage": "https://github.com/nilaypatell/driftcite#readme",
+  "bugs": {
+    "url": "https://github.com/nilaypatell/driftcite/issues"
+  }
+}

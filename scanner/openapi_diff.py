@@ -34,6 +34,16 @@ PROVIDERS = {
         "path": "descriptions/api.github.com/api.github.com.json",
         "markers": ["github", "octokit", "GITHUB_TOKEN"],
     },
+    "openai": {
+        "repo": "openai/openai-openapi",
+        "path": "openapi.json",
+        "markers": ["openai", "OPENAI_API_KEY", "gpt-"],
+    },
+    "cloudflare": {
+        "repo": "cloudflare/api-schemas",
+        "path": "openapi.json",
+        "markers": ["cloudflare", "CLOUDFLARE_API", "CF_API"],
+    },
 }
 
 RAW = "https://raw.githubusercontent.com/{repo}/{ref}/{path}"
@@ -81,17 +91,57 @@ def source_license(repo):
     return spdx, data.get("html_url")
 
 
+class SpecUnavailable(Exception):
+    """A provider moved, renamed, or had not yet published its spec at this ref.
+
+    Raised rather than crashing, because the daily poller must survive one
+    provider reorganising its repository without losing every other provider's
+    run for the day.
+    """
+
+
+def _parse(raw, path):
+    if path.endswith((".yaml", ".yml")):
+        import yaml
+        try:
+            from yaml import CSafeLoader as Loader  # much faster on 3MB specs
+        except ImportError:
+            from yaml import SafeLoader as Loader
+        return yaml.load(raw, Loader=Loader)
+    return json.loads(raw)
+
+
 def load_spec(provider, ref):
     cfg = PROVIDERS[provider]
     os.makedirs(CACHE, exist_ok=True)
-    local = os.path.join(CACHE, f"{provider}-{ref.replace('/', '_')}.json")
-    if not os.path.exists(local):
-        url = RAW.format(repo=cfg["repo"], ref=ref, path=cfg["path"])
-        req = urllib.request.Request(url, headers={"User-Agent": "driftcite"})
-        with urllib.request.urlopen(req, timeout=180) as resp, open(local, "wb") as fh:
-            fh.write(resp.read())
-    with open(local) as fh:
-        return json.load(fh)
+
+    # Providers rename openapi.json to openapi.yaml and back over the years,
+    # so try the configured path first and then the sibling extension.
+    candidates = [cfg["path"]]
+    base, ext = os.path.splitext(cfg["path"])
+    for alt in (".json", ".yaml", ".yml"):
+        if alt != ext:
+            candidates.append(base + alt)
+
+    errors = []
+    for candidate in candidates:
+        safe = f"{provider}-{ref.replace('/', '_')}-{os.path.basename(candidate)}"
+        local = os.path.join(CACHE, safe)
+        if not os.path.exists(local):
+            url = RAW.format(repo=cfg["repo"], ref=ref, path=candidate)
+            req = urllib.request.Request(url, headers={"User-Agent": "driftcite"})
+            try:
+                with urllib.request.urlopen(req, timeout=180) as resp:
+                    body = resp.read()
+            except Exception as exc:
+                errors.append(f"{candidate}: {exc}")
+                continue
+            with open(local, "wb") as fh:
+                fh.write(body)
+        with open(local, encoding="utf-8") as fh:
+            return _parse(fh.read(), candidate)
+
+    raise SpecUnavailable(f"{provider}@{ref}: " + "; ".join(errors))
 
 
 # ------------------------------------------------------------------ extraction
