@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/badges-dark.svg">
-  <img alt="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 8 providers · 135 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -211,7 +211,7 @@ Kinds other than model IDs also require the file to reference that provider at a
 
 </div>
 
-A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 125 since then has produced **zero** new findings across nine real repositories. Coverage is worthless if it arrives with noise.
+A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 135 since then has produced **zero** new findings across nine real repositories. Coverage is worthless if it arrives with noise.
 
 <br>
 
@@ -223,6 +223,8 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 | **GitHub** | `github/rest-api-description` | 46 |
 | **Cloudflare** | `cloudflare/api-schemas` | 42 |
 | **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
+| **Google** | Gemini changelog · curated | 8 |
+| **Groq** | deprecations page · curated | 2 |
 | Twilio · DigitalOcean · Box | tracked, currently no drift | 0 |
 | **npm · PyPI** | every package, no per-provider work | live |
 

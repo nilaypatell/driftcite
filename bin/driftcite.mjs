@@ -107,6 +107,10 @@ const urgency = (f) => [
 function cmp(a, b) {
   const [x, y] = [urgency(a), urgency(b)];
   for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i];
+  // Artifact before file, so every occurrence of one artifact stays contiguous
+  // and its heading is printed once rather than again for each file it appears
+  // in. A retired model used in five files is one problem, not five.
+  if (a.artifact !== b.artifact) return a.artifact < b.artifact ? -1 : 1;
   return a.file === b.file ? a.line - b.line : a.file < b.file ? -1 : 1;
 }
 

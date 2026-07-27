@@ -84,7 +84,7 @@ def report(results):
         if r["provider_findings"]:
             print("\n  PROVIDER DRIFT")
             current = None
-            for f in sorted(r["provider_findings"], key=lambda f: scan.urgency(f) + (f["file"], f["line"])):
+            for f in sorted(r["provider_findings"], key=lambda f: scan.urgency(f) + (f["artifact"], f["file"], f["line"])):
                 if f["artifact"] != current:
                     current = f["artifact"]
                     print(f"\n  [{f['severity'].upper()}] {f['artifact']} -- "

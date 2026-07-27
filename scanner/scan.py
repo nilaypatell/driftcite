@@ -245,7 +245,7 @@ def report(findings, root):
         print(f"No drift found in {root}")
         return 0
 
-    findings.sort(key=lambda f: urgency(f) + (f["file"], f["line"]))
+    findings.sort(key=lambda f: urgency(f) + (f["artifact"], f["file"], f["line"]))
 
     counts = {}
     for f in findings:

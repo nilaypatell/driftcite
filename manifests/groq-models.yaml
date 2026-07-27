@@ -1,0 +1,40 @@
+provider: groq
+spec_version: 1
+updated: 2026-07-26
+sources:
+  - https://console.groq.com/docs/deprecations
+
+# Groq announces deprecations by email and on the deprecations page, with a
+# transition period before "requests to deprecated model IDs will return
+# errors". The page names the migration target but does not publish a shutdown
+# date for these, so no retires_on is recorded rather than one being invented.
+context:
+  file_markers:
+    - groq
+    - GROQ_API_KEY
+    - api.groq.com
+
+artifacts:
+  - id: groq/model_id/llama-3.1-8b-instant
+    kind: model_id
+    match:
+      literals: ["llama-3.1-8b-instant"]
+    status: deprecated
+    replacement: openai/gpt-oss-20b
+    severity: warning
+    note: >-
+      Deprecated for free and developer tiers. Requests will return errors at
+      end of life. No shutdown date published.
+    evidence: https://console.groq.com/docs/deprecations
+
+  - id: groq/model_id/llama-3.3-70b-versatile
+    kind: model_id
+    match:
+      literals: ["llama-3.3-70b-versatile"]
+    status: deprecated
+    replacement: openai/gpt-oss-120b
+    severity: warning
+    note: >-
+      Deprecated for free and developer tiers. Requests will return errors at
+      end of life. No shutdown date published.
+    evidence: https://console.groq.com/docs/deprecations
