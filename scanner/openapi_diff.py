@@ -20,31 +20,21 @@ import os
 import sys
 import urllib.request
 
-CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".cache", "specs")
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+CACHE = os.path.join(ROOT, ".cache", "specs")
+PROVIDERS_FILE = os.path.join(ROOT, "providers.yaml")
 
-# Where each provider publishes its spec, and how to build an evidence link.
-PROVIDERS = {
-    "stripe": {
-        "repo": "stripe/openapi",
-        "path": "openapi/spec3.json",
-        "markers": ["stripe", "STRIPE_SECRET", "STRIPE_API"],
-    },
-    "github": {
-        "repo": "github/rest-api-description",
-        "path": "descriptions/api.github.com/api.github.com.json",
-        "markers": ["github", "octokit", "GITHUB_TOKEN"],
-    },
-    "openai": {
-        "repo": "openai/openai-openapi",
-        "path": "openapi.json",
-        "markers": ["openai", "OPENAI_API_KEY", "gpt-"],
-    },
-    "cloudflare": {
-        "repo": "cloudflare/api-schemas",
-        "path": "openapi.json",
-        "markers": ["cloudflare", "CLOUDFLARE_API", "CF_API"],
-    },
-}
+
+def load_providers(path=PROVIDERS_FILE):
+    """Providers live in config, not code, so adding one is a data change that
+    anyone can send as a pull request."""
+    import yaml
+    with open(path) as fh:
+        doc = yaml.safe_load(fh) or {}
+    return doc.get("providers") or {}
+
+
+PROVIDERS = load_providers()
 
 RAW = "https://raw.githubusercontent.com/{repo}/{ref}/{path}"
 COMPARE = "https://github.com/{repo}/compare/{a}...{b}"

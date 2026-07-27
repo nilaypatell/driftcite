@@ -125,7 +125,8 @@ async function loadFeed({ offline }) {
   throw new Error("no feed available");
 }
 
-async function* walk(dir) {
+/** Every file worth opening, before any filtering by purpose. */
+async function* walkAll(dir) {
   let entries;
   try {
     entries = await readdir(dir, { withFileTypes: true });
@@ -136,10 +137,28 @@ async function* walk(dir) {
     const full = path.join(dir, e.name);
     if (e.isDirectory()) {
       if (SKIP_DIRS.has(e.name) || e.name.startsWith(".")) continue;
-      yield* walk(full);
-    } else if (e.isFile() && SCAN_EXTS.has(path.extname(e.name).toLowerCase())) {
+      yield* walkAll(full);
+    } else if (e.isFile()) {
       yield full;
     }
+  }
+}
+
+/** Source files, for drift scanning. */
+async function* walk(dir) {
+  for await (const file of walkAll(dir)) {
+    if (SCAN_EXTS.has(path.extname(file).toLowerCase())) yield file;
+  }
+}
+
+/**
+ * Dependency manifests, matched by filename rather than extension.
+ * requirements.txt is a .txt file and must never be swept into the source
+ * scan, but it is exactly where the pinned Python versions live.
+ */
+async function* walkManifests(dir, pattern) {
+  for await (const file of walkAll(dir)) {
+    if (pattern.test(path.basename(file))) yield file;
   }
 }
 
@@ -365,8 +384,7 @@ function reportFixes(edits, unfixable, wrote) {
 
 async function npmDeps(root) {
   const found = new Map();
-  for await (const file of walk(root)) {
-    if (path.basename(file) !== "package-lock.json") continue;
+  for await (const file of walkManifests(root, /^package-lock\.json$/)) {
     let data;
     try {
       data = JSON.parse(await readFile(file, "utf8"));
@@ -408,26 +426,83 @@ async function checkNpm(name) {
   }
 }
 
-async function scanRegistry(root) {
-  const deps = await npmDeps(root);
+/**
+ * Pinned Python requirements. Only `name==version` is read: a `>=` line does
+ * not say which version is actually running, and guessing would produce
+ * findings about a version the user may not have.
+ */
+async function pypiDeps(root) {
+  const found = new Map();
+  const PINNED = /^\s*([A-Za-z0-9._-]+)\s*==\s*([A-Za-z0-9._+!-]+)/;
+  for await (const file of walkManifests(root, /^requirements(-.+)?\.txt$/)) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    for (const line of text.split(/\r?\n/)) {
+      const t = line.trimStart();
+      if (!t || t.startsWith("#") || t.startsWith("-")) continue;
+      const m = PINNED.exec(line);
+      if (m) found.set(`${m[1]}@${m[2]}`, rel);
+    }
+  }
+  return found;
+}
+
+async function checkPypi(name) {
+  try {
+    const res = await fetch(`https://pypi.org/pypi/${encodeURIComponent(name)}/json`, {
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (!res.ok) return {};
+    const doc = await res.json();
+    const out = {};
+    for (const [v, files] of Object.entries(doc.releases || {})) {
+      const first = Array.isArray(files) ? files[0] : null;
+      if (first?.yanked) {
+        out[v] = (first.yanked_reason || "").trim() || "yanked, no reason given";
+      }
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+async function resolveFlagged(deps, check, ecosystem) {
   const names = [...new Set([...deps.keys()].map((k) => k.slice(0, k.lastIndexOf("@"))))];
   const flagged = [];
   const CONC = 16;
   for (let i = 0; i < names.length; i += CONC) {
     const batch = names.slice(i, i + CONC);
-    const results = await Promise.all(batch.map((n) => checkNpm(n).then((r) => [n, r])));
+    const results = await Promise.all(batch.map((n) => check(n).then((r) => [n, r])));
     for (const [name, versions] of results) {
       for (const [key, source] of deps) {
         const at = key.lastIndexOf("@");
         if (key.slice(0, at) !== name) continue;
         const version = key.slice(at + 1);
         if (versions[version]) {
-          flagged.push({ name, version, source, message: versions[version] });
+          flagged.push({ ecosystem, name, version, source, message: versions[version] });
         }
       }
     }
   }
-  return { flagged, checked: deps.size };
+  return flagged;
+}
+
+async function scanRegistry(root) {
+  const [npm, pypi] = await Promise.all([npmDeps(root), pypiDeps(root)]);
+  const [npmFlagged, pypiFlagged] = await Promise.all([
+    resolveFlagged(npm, checkNpm, "npm"),
+    resolveFlagged(pypi, checkPypi, "pypi"),
+  ]);
+  return {
+    flagged: [...npmFlagged, ...pypiFlagged],
+    checked: npm.size + pypi.size,
+  };
 }
 
 // -------------------------------------------------------------------- report

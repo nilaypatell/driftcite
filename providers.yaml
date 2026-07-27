@@ -1,0 +1,55 @@
+# Every provider driftcite tracks.
+#
+# Adding one is a change to this file, not to code. If a provider publishes a
+# versioned OpenAPI spec in a public git repository, four lines here is the
+# whole integration, and a pull request adding one is welcome.
+#
+#   repo     the public git repository holding the spec
+#   path     path to the spec inside it (.json or .yaml; the other is tried too)
+#   markers  strings that must appear somewhere in a file before non-model
+#            artifacts from this provider count as findings there. Without this
+#            a retired parameter named "refund" would flag every codebase that
+#            has ever mentioned a refund.
+#
+# markers matter more than they look. They are the difference between a tool
+# people leave switched on and one they mute in a week.
+
+providers:
+  stripe:
+    repo: stripe/openapi
+    path: openapi/spec3.json
+    markers: [stripe, STRIPE_SECRET, STRIPE_API]
+
+  github:
+    repo: github/rest-api-description
+    path: descriptions/api.github.com/api.github.com.json
+    markers: [github, octokit, GITHUB_TOKEN]
+
+  openai:
+    repo: openai/openai-openapi
+    path: openapi.json
+    markers: [openai, OPENAI_API_KEY, "gpt-"]
+
+  cloudflare:
+    repo: cloudflare/api-schemas
+    path: openapi.json
+    markers: [cloudflare, CLOUDFLARE_API, CF_API]
+
+  twilio:
+    repo: twilio/twilio-oai
+    path: spec/json/twilio_api_v2010.json
+    markers: [twilio, TWILIO_ACCOUNT_SID, TWILIO_AUTH]
+
+  digitalocean:
+    repo: digitalocean/openapi
+    path: specification/DigitalOcean-public.v2.yaml
+    markers: [digitalocean, DIGITALOCEAN_TOKEN, "api.digitalocean.com"]
+
+  box:
+    repo: box/box-openapi
+    path: openapi.json
+    markers: [box, BOX_CLIENT_ID, "api.box.com"]
+
+# Providers with no machine-readable spec are curated by hand in
+# manifests/<name>.yaml instead. Anthropic is the current example: model
+# retirement dates are published as prose in documentation, never as a spec.
