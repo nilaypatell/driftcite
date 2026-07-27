@@ -1,0 +1,10 @@
+driftcite
+Copyright 2026 driftcite contributors
+
+This product includes software developed by the driftcite project.
+
+The scanner, manifest schema, and specification diff generator in this
+repository are licensed under the Apache License, Version 2.0. See LICENSE.
+
+The published drift manifests under manifests/ are licensed separately.
+See manifests/LICENSE.md.

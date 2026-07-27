@@ -39,7 +39,7 @@ COMMITS_API = "https://api.github.com/repos/{repo}/commits?path={path}&per_page=
 
 def http_json(url):
     req = urllib.request.Request(url, headers={
-        "User-Agent": "apidrift-refresh",
+        "User-Agent": "driftcite-refresh",
         "Accept": "application/vnd.github+json",
     })
     token = os.environ.get("GITHUB_TOKEN")

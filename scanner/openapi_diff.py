@@ -46,7 +46,7 @@ def load_spec(provider, ref):
     local = os.path.join(CACHE, f"{provider}-{ref.replace('/', '_')}.json")
     if not os.path.exists(local):
         url = RAW.format(repo=cfg["repo"], ref=ref, path=cfg["path"])
-        req = urllib.request.Request(url, headers={"User-Agent": "apidrift"})
+        req = urllib.request.Request(url, headers={"User-Agent": "driftcite"})
         with urllib.request.urlopen(req, timeout=180) as resp, open(local, "wb") as fh:
             fh.write(resp.read())
     with open(local) as fh:

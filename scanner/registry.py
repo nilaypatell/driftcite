@@ -26,7 +26,7 @@ NPM_REGISTRY = "https://registry.npmjs.org/{}"
 NPM_ACCEPT = "application/vnd.npm.install-v1+json"
 PYPI_REGISTRY = "https://pypi.org/pypi/{}/json"
 
-CACHE_DIR = os.path.expanduser("~/.cache/apidrift")
+CACHE_DIR = os.path.expanduser("~/.cache/driftcite")
 SKIP_DIRS = {".git", "node_modules", ".next", "dist", "build", "__pycache__",
              ".venv", "venv", ".turbo", "vendor", ".vercel", "out", ".cache"}
 TIMEOUT = 20
@@ -152,7 +152,7 @@ def fetch(url, accept=None):
                 return json.load(fh)
         except (OSError, json.JSONDecodeError):
             pass
-    req = urllib.request.Request(url, headers={"User-Agent": "apidrift"})
+    req = urllib.request.Request(url, headers={"User-Agent": "driftcite"})
     if accept:
         req.add_header("Accept", accept)
     try:

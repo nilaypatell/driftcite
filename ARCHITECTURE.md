@@ -1,4 +1,4 @@
-# apidrift: how it works and why it survives
+# driftcite: how it works and why it survives
 
 Every number in this document was verified against a live endpoint on
 2026-07-26, not estimated.
@@ -100,7 +100,7 @@ Three levels, each a superset of the last:
 
 **1. Look, no install.**
 
-    npx apidrift .
+    npx driftcite .
 
 Runs locally. Nothing leaves the machine. No account, no signup, no upload.
 This matters beyond privacy: Show HN's own guidelines require that people can
