@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="756" height="34" viewBox="0 0 756 34" role="img" aria-label="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+">
+  <defs>
+    <style>
+      .chip  { font-family: 'Hanken Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1px; }
+      .value { fill: #002288; }
+      .label { fill: #5C6470; }
+    </style>
+  </defs>
+
+  <!-- Apache 2.0 -->
+  <g transform="translate(0,0)">
+    <rect x="0" y="0" width="104" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <circle cx="18" cy="17" r="3" fill="#002288"/>
+    <text class="chip value" x="30" y="21.5">Apache 2.0</text>
+  </g>
+
+  <!-- 6 providers -->
+  <g transform="translate(114,0)">
+    <rect x="0" y="0" width="106" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <text class="chip value" x="16" y="21.5">6</text>
+    <text class="chip label" x="27" y="21.5">providers</text>
+  </g>
+
+  <!-- 125 artifacts -->
+  <g transform="translate(230,0)">
+    <rect x="0" y="0" width="118" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <text class="chip value" x="16" y="21.5">125</text>
+    <text class="chip label" x="41" y="21.5">artifacts</text>
+  </g>
+
+  <!-- zero dependencies -->
+  <g transform="translate(358,0)">
+    <rect x="0" y="0" width="140" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <text class="chip value" x="16" y="21.5">zero</text>
+    <text class="chip label" x="47" y="21.5">dependencies</text>
+  </g>
+
+  <!-- 22 tests passing -->
+  <g transform="translate(508,0)">
+    <rect x="0" y="0" width="146" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <circle cx="18" cy="17" r="3" fill="#28A745"/>
+    <text class="chip value" x="30" y="21.5">22</text>
+    <text class="chip label" x="49" y="21.5">tests passing</text>
+  </g>
+
+  <!-- Node 18+ -->
+  <g transform="translate(664,0)">
+    <rect x="0" y="0" width="92" height="34" rx="17" fill="#FFFFFF" stroke="#EFE8DF"/>
+    <text class="chip label" x="16" y="21.5">Node</text>
+    <text class="chip value" x="53" y="21.5">18+</text>
+  </g>
+</svg>

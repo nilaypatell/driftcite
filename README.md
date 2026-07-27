@@ -7,11 +7,10 @@
 
 <br>
 
-<a href="LICENSE"><img alt="Scanner: Apache 2.0" src="https://img.shields.io/badge/scanner-Apache_2.0-002288?style=flat-square&labelColor=0F1419"></a>
-<a href="feed/feed.json"><img alt="Feed" src="https://img.shields.io/badge/feed-6_providers_·_125_artifacts-002288?style=flat-square&labelColor=0F1419"></a>
-<a href="package.json"><img alt="Dependencies: zero" src="https://img.shields.io/badge/dependencies-zero-002288?style=flat-square&labelColor=0F1419"></a>
-<a href="test/run.mjs"><img alt="Tests: 22 passing" src="https://img.shields.io/badge/tests-22_passing-002288?style=flat-square&labelColor=0F1419"></a>
-<a href="package.json"><img alt="Node 18+" src="https://img.shields.io/badge/node-≥18-002288?style=flat-square&labelColor=0F1419"></a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/badges-dark.svg">
+  <img alt="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="756">
+</picture>
 
 <br><br>
 
@@ -229,12 +228,9 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 
-<details>
-<summary><b>Adding a provider</b></summary>
+### Adding a provider
 
-<br>
-
-Providers live in [`providers.yaml`](providers.yaml), not in code, so adding one is a data change:
+Providers live in [`providers.yaml`](providers.yaml), not in code, so adding one is a data change rather than a patch:
 
 ```yaml
   stripe:
@@ -245,11 +241,7 @@ Providers live in [`providers.yaml`](providers.yaml), not in code, so adding one
 
 `markers` matter more than they look. They are what stops a retired parameter named `refund` from flagging every codebase that has ever mentioned a refund.
 
-Providers that publish no machine-readable spec are curated by hand in `manifests/<name>.yaml`, because model retirements are usually published as prose and never as a spec.
-
-Pull requests welcome.
-
-</details>
+Full guide in **[CONTRIBUTING.md](CONTRIBUTING.md)**. Pull requests welcome.
 
 <br>
 
@@ -265,8 +257,12 @@ Every fact is public and free to read. You can vendor the whole thing. The hard 
 
 | Component | License |
 |:--|:--|
-| Scanner · differ · manifest schema | **Apache 2.0** — use it anywhere, including in a competing product |
+| Scanner · differ · manifest schema | **Apache 2.0** — embed it, fork it, ship it inside your own tooling |
 | Published manifests | **[Data license](manifests/LICENSE.md)** — free to use, redistribute and research; not for repackaging as a competing feed |
+
+This split is deliberate. The scanner is permissive because we want it embedded
+everywhere, including in other people's pipelines. The work that has to be
+redone every single day is the feed, so that is where the one restriction sits.
 
 The underlying facts are not ours and never could be, which is exactly why every artifact cites the provider who published it.
 
