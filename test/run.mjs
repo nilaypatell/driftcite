@@ -192,6 +192,111 @@ function runFix(files, write) {
   check("explains what needs a human", /need a human/.test(r.out));
 }
 
+
+console.log("\nlockfile parsing");
+
+function runList(files) {
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-deps-"));
+  for (const [name, body] of Object.entries(files)) {
+    const full = path.join(dir, name);
+    mkdirSync(path.dirname(full), { recursive: true });
+    writeFileSync(full, body);
+  }
+  let out = "";
+  try {
+    out = execFileSync("node", [CLI, dir, "--list-deps"], { encoding: "utf8" });
+  } catch (err) {
+    out = err.stdout || "";
+  }
+  rmSync(dir, { recursive: true, force: true });
+  return out.trim().split("\n").filter(Boolean);
+}
+
+{
+  const lines = runList({
+    "package-lock.json": JSON.stringify({
+      lockfileVersion: 3,
+      packages: { "": {}, "node_modules/lodash": { version: "4.17.21" } },
+    }),
+  });
+  check("reads package-lock v3", lines.includes("npm lodash 4.17.21 package-lock.json"));
+}
+
+{
+  const body = [
+    "lockfileVersion: '9.0'", "",
+    "packages:", "",
+    "  lodash@4.17.21:",
+    "    resolution: {integrity: sha512-x}", "",
+    "  '@babel/core@7.24.0':",
+    "    resolution: {integrity: sha512-y}", "",
+  ].join("\n");
+  const lines = runList({ "pnpm-lock.yaml": body });
+  check("reads pnpm-lock v9", lines.includes("npm lodash 4.17.21 pnpm-lock.yaml"));
+  check("reads scoped pnpm entries", lines.includes("npm @babel/core 7.24.0 pnpm-lock.yaml"));
+}
+
+{
+  const body = [
+    "lockfileVersion: 6.0", "",
+    "packages:", "",
+    "  /lodash@4.17.21:",
+    "    resolution: {integrity: x}", "",
+    "  /@types/node@20.1.0(patch_hash=abc):",
+    "    resolution: {integrity: y}", "",
+  ].join("\n");
+  const lines = runList({ "pnpm-lock.yaml": body });
+  check("reads pnpm-lock v6 with peer suffixes",
+    lines.includes("npm @types/node 20.1.0 pnpm-lock.yaml"));
+}
+
+{
+  const body = [
+    "# yarn lockfile v1", "",
+    "lodash@^4.17.0:",
+    '  version "4.17.21"',
+    '  resolved "https://registry.example/lodash"', "",
+    '"@babel/core@^7.0.0", "@babel/core@^7.2.0":',
+    '  version "7.24.0"', "",
+  ].join("\n");
+  const lines = runList({ "yarn.lock": body });
+  check("reads classic yarn.lock", lines.includes("npm lodash 4.17.21 yarn.lock"));
+  check("reads multi-selector scoped yarn entries",
+    lines.includes("npm @babel/core 7.24.0 yarn.lock"));
+}
+
+{
+  const body = [
+    "__metadata:",
+    "  version: 8", "",
+    '"lodash@npm:^4.17.21":',
+    "  version: 4.17.21",
+    '  resolution: "lodash@npm:4.17.21"', "",
+  ].join("\n");
+  const lines = runList({ "yarn.lock": body });
+  check("reads yarn berry lockfiles", lines.includes("npm lodash 4.17.21 yarn.lock"));
+  check("berry metadata block adds nothing", !lines.some((l) => l.includes("__metadata")));
+}
+
+{
+  const lines = runList({ "requirements.txt": "requests[socks]==2.31.0\n" });
+  check("reads pinned requirements with extras",
+    lines.includes("pypi requests 2.31.0 requirements.txt"));
+}
+
+{
+  const lines = runList({ "poetry.lock": "content", "package.json": "{}" });
+  check("says when a lockfile format is not read",
+    lines.some((l) => l.startsWith("note: poetry.lock")));
+  check("says when package.json has no lockfile",
+    lines.some((l) => l.includes("no lockfile resolved")));
+}
+
+{
+  const out = execFileSync("node", [CLI, "--version"], { encoding: "utf8" }).trim();
+  check("prints its version", /^\d+\.\d+\.\d+$/.test(out), `got: ${out}`);
+}
+
 console.log("\nreporting");
 check(
   "a clean repository yields no findings",

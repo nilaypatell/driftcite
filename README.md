@@ -1,15 +1,15 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/banner-dark.svg">
-  <img alt="driftcite — find the API calls in your code that already stopped working" src=".github/banner-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/banner-dark.svg">
+  <img alt="driftcite: find the API calls in your code that already stopped working" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/banner-light.svg" width="100%">
 </picture>
 
 <br>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/badges-dark.svg">
-  <img alt="Apache 2.0 · 8 providers · 135 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="931">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
+  <img alt="Apache 2.0 · 10 providers · 135 artifacts · zero dependencies · 34 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -119,6 +119,8 @@ python3 scanner/openapi_diff.py \
 
 npm carries a per-version `deprecated` string, PyPI carries `yanked_reason`. Written by the maintainer, public, and unseen after install time.
 
+Lockfiles read: `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock` (classic and berry), pinned `requirements.txt`. A format it cannot read yet is named in the output instead of silently skipped.
+
 ```console
 urllib3@1.25
   "Broken release"
@@ -219,14 +221,18 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
-| **Stripe** | `stripe/openapi` · 2,345 tagged releases | 14 |
 | **GitHub** | `github/rest-api-description` | 46 |
 | **Cloudflare** | `cloudflare/api-schemas` | 42 |
 | **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
-| **Google** | Gemini changelog · curated | 8 |
-| **Groq** | deprecations page · curated | 2 |
+| **Stripe** | `stripe/openapi` · 2,345 tagged releases | 10 |
+| **Google** | Gemini changelog, curated | 8 |
+| **Groq** | deprecations page, curated | 2 |
+| Other model providers | curated retirement pages | 15 |
 | Twilio · DigitalOcean · Box | tracked, currently no drift | 0 |
 | **npm · PyPI** | every package, no per-provider work | live |
+
+Ten providers under daily watch, 135 artifacts, every one carrying the
+provider's own evidence URL.
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 
@@ -259,8 +265,8 @@ Every fact is public and free to read. You can vendor the whole thing. The hard 
 
 | Component | License |
 |:--|:--|
-| Scanner · differ · manifest schema | **Apache 2.0** — embed it, fork it, ship it inside your own tooling |
-| Published manifests | **[Data license](manifests/LICENSE.md)** — free to use, redistribute and research; not for repackaging as a competing feed |
+| Scanner · differ · manifest schema | **Apache 2.0**. Embed it, fork it, ship it inside your own tooling |
+| Published manifests | **[Data license](manifests/LICENSE.md)**. Free to use, redistribute and research; not for repackaging as a competing feed |
 
 This split is deliberate. The scanner is permissive because we want it embedded
 everywhere, including in other people's pipelines. The work that has to be
@@ -272,8 +278,8 @@ The underlying facts are not ours and never could be, which is exactly why every
 
 ## Documentation
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** — the moat, polling cadence against real API limits, hosting costs, pricing
-- **[spec/MANIFEST.md](spec/MANIFEST.md)** — the drift manifest format
+- **[ARCHITECTURE.md](ARCHITECTURE.md)**: the moat, polling cadence against real API limits, hosting costs, pricing
+- **[spec/MANIFEST.md](spec/MANIFEST.md)**: the drift manifest format
 
 <br>
 

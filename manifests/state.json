@@ -1,5 +1,10 @@
 {
   "providers": {
+    "box": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "f28eec5d49b9"
+    },
     "cloudflare": {
       "first_seen": "2026-07-26",
       "last_change": "2026-07-26",

@@ -38,15 +38,20 @@ runs:
     - id: scan
       shell: bash
       run: |
+        # The CLI ships inside this action, so nothing is fetched from npm.
+        # An action that installed itself from a registry at run time would
+        # break the moment the registry hiccuped, and would not be auditable.
+        cli="$GITHUB_ACTION_PATH/bin/driftcite.mjs"
+
         args="${{ inputs.path }}"
         [ "${{ inputs.check-dependencies }}" = "true" ] || args="$args --no-deps"
         [ "${{ inputs.offline }}" = "false" ] || args="$args --offline"
 
         # Human-readable in the log, machine-readable for downstream steps.
         set +e
-        npx --yes driftcite@latest $args
+        node "$cli" $args
         code=$?
-        npx --yes driftcite@latest $args --json > /tmp/driftcite.json 2>/dev/null
+        node "$cli" $args --json > /tmp/driftcite.json 2>/dev/null
         set -e
 
         breaking=$(node -e "

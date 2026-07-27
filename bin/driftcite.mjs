@@ -386,9 +386,43 @@ function reportFixes(edits, unfixable, wrote) {
 
 // ---------------------------------------------------------------- registries
 
-async function npmDeps(root) {
+const DEP_MANIFESTS = {
+  npmLock: /^package-lock\.json$/,
+  pnpmLock: /^pnpm-lock\.yaml$/,
+  yarnLock: /^yarn\.lock$/,
+  reqs: /^requirements(-.+)?\.txt$/,
+  pkgJson: /^package\.json$/,
+};
+
+// Formats we recognise but do not read yet. Saying so beats silence: a
+// scanner that quietly skips your lockfile looks clean when it is blind.
+const UNSUPPORTED_MANIFESTS = [
+  [/^poetry\.lock$/, "poetry.lock is not read yet; export a pinned requirements.txt for coverage"],
+  [/^uv\.lock$/, "uv.lock is not read yet; export a pinned requirements.txt for coverage"],
+  [/^Pipfile\.lock$/, "Pipfile.lock is not read yet"],
+  [/^Gemfile\.lock$/, "Gemfile.lock (RubyGems) is not read yet"],
+  [/^Cargo\.lock$/, "Cargo.lock (crates.io) is not read yet"],
+  [/^go\.sum$/, "go.sum (Go modules) is not read yet"],
+];
+
+async function collectDepFiles(root) {
+  const files = { npmLock: [], pnpmLock: [], yarnLock: [], reqs: [], pkgJson: [] };
+  const notes = new Set();
+  for await (const file of walkAll(root)) {
+    const base = path.basename(file);
+    for (const [bucket, pattern] of Object.entries(DEP_MANIFESTS)) {
+      if (pattern.test(base)) files[bucket].push(file);
+    }
+    for (const [pattern, note] of UNSUPPORTED_MANIFESTS) {
+      if (pattern.test(base)) notes.add(note);
+    }
+  }
+  return { files, notes: [...notes] };
+}
+
+async function npmDeps(paths, root) {
   const found = new Map();
-  for await (const file of walkManifests(root, /^package-lock\.json$/)) {
+  for (const file of paths) {
     let data;
     try {
       data = JSON.parse(await readFile(file, "utf8"));
@@ -396,11 +430,13 @@ async function npmDeps(root) {
       continue;
     }
     const rel = path.relative(root, file);
+    // lockfile v2/v3
     for (const [p, meta] of Object.entries(data.packages || {})) {
       if (!p.startsWith("node_modules/")) continue;
       const name = p.split("node_modules/").pop();
       if (name && meta?.version) found.set(`${name}@${meta.version}`, rel);
     }
+    // lockfile v1
     const walkV1 = (deps) => {
       for (const [name, meta] of Object.entries(deps || {})) {
         if (meta?.version) found.set(`${name}@${meta.version}`, rel);
@@ -408,6 +444,123 @@ async function npmDeps(root) {
       }
     };
     walkV1(data.dependencies);
+  }
+  return found;
+}
+
+/**
+ * One pnpm-lock key, in any of the shapes pnpm has shipped:
+ *   v5: /@scope/name/1.2.3_peerhash   v6: /@scope/name@1.2.3(peer@x)
+ *   v9: '@scope/name@1.2.3'           or   name@1.2.3
+ */
+function parsePnpmKey(raw) {
+  let key = raw.trim();
+  if (key.endsWith(":")) key = key.slice(0, -1);
+  key = key.replace(/^['"]|['"]$/g, "").replace(/\([^)]*\)/g, "");
+  if (key.startsWith("/")) key = key.slice(1);
+  if (!key) return null;
+  let name, version;
+  const at = key.lastIndexOf("@");
+  if (at > 0) {
+    name = key.slice(0, at);
+    version = key.slice(at + 1);
+  } else {
+    const slash = key.lastIndexOf("/");
+    if (slash <= 0) return null;
+    name = key.slice(0, slash);
+    version = key.slice(slash + 1);
+  }
+  version = version.split("_")[0];
+  if (!/^\d/.test(version)) return null;
+  if (!/^(@[\w.-]+\/)?[\w.-]+$/.test(name)) return null;
+  return { name, version };
+}
+
+async function pnpmDeps(paths, root) {
+  const found = new Map();
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    let inPackages = false;
+    for (const line of text.split(/\r?\n/)) {
+      if (/^\S/.test(line)) {
+        inPackages = line.startsWith("packages:");
+        continue;
+      }
+      if (!inPackages) continue;
+      const m = /^ {2}(\S.*):\s*$/.exec(line);
+      if (!m) continue;
+      const parsed = parsePnpmKey(m[1]);
+      if (parsed) found.set(`${parsed.name}@${parsed.version}`, rel);
+    }
+  }
+  return found;
+}
+
+async function yarnDeps(paths, root) {
+  const found = new Map();
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    // Classic yarn: `name@range, name@range:` then `  version "1.2.3"`.
+    // Berry: `"name@npm:range":` then `  version: 1.2.3`.
+    // Same shape both times: selectors on one line, resolved version below,
+    // so one parser covers both eras.
+    let pending = [];
+    for (const line of text.split(/\r?\n/)) {
+      if (!line.trim() || line.trimStart().startsWith("#")) continue;
+      if (/^\S/.test(line) && line.trimEnd().endsWith(":")) {
+        pending = [];
+        for (let sel of line.trimEnd().slice(0, -1).split(",")) {
+          sel = sel.trim().replace(/^['"]|['"]$/g, "");
+          const at = sel.indexOf("@", 1); // skip a leading @scope
+          if (at <= 0) continue;
+          pending.push(sel.slice(0, at));
+        }
+        continue;
+      }
+      const vm = /^\s+version:?\s+"?([^\s"]+)"?\s*$/.exec(line);
+      if (vm && pending.length) {
+        for (const name of pending) found.set(`${name}@${vm[1]}`, rel);
+        pending = [];
+      }
+    }
+  }
+  return found;
+}
+
+/**
+ * Pinned Python requirements. Only `name==version` is read: a `>=` line does
+ * not say which version is actually running, and guessing would produce
+ * findings about a version the user may not have.
+ */
+async function pypiDeps(paths, root) {
+  const found = new Map();
+  const PINNED = /^\s*([A-Za-z0-9._-]+)\s*(?:\[[^\]]*\])?\s*==\s*([A-Za-z0-9._+!-]+)/;
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    for (const line of text.split(/\r?\n/)) {
+      const t = line.trimStart();
+      if (!t || t.startsWith("#") || t.startsWith("-")) continue;
+      const m = PINNED.exec(line);
+      if (m) found.set(`${m[1]}@${m[2]}`, rel);
+    }
   }
   return found;
 }
@@ -428,32 +581,6 @@ async function checkNpm(name) {
   } catch {
     return {};
   }
-}
-
-/**
- * Pinned Python requirements. Only `name==version` is read: a `>=` line does
- * not say which version is actually running, and guessing would produce
- * findings about a version the user may not have.
- */
-async function pypiDeps(root) {
-  const found = new Map();
-  const PINNED = /^\s*([A-Za-z0-9._-]+)\s*==\s*([A-Za-z0-9._+!-]+)/;
-  for await (const file of walkManifests(root, /^requirements(-.+)?\.txt$/)) {
-    let text;
-    try {
-      text = await readFile(file, "utf8");
-    } catch {
-      continue;
-    }
-    const rel = path.relative(root, file);
-    for (const line of text.split(/\r?\n/)) {
-      const t = line.trimStart();
-      if (!t || t.startsWith("#") || t.startsWith("-")) continue;
-      const m = PINNED.exec(line);
-      if (m) found.set(`${m[1]}@${m[2]}`, rel);
-    }
-  }
-  return found;
 }
 
 async function checkPypi(name) {
@@ -497,16 +624,25 @@ async function resolveFlagged(deps, check, ecosystem) {
   return flagged;
 }
 
-async function scanRegistry(root) {
-  const [npm, pypi] = await Promise.all([npmDeps(root), pypiDeps(root)]);
+async function scanRegistry(root, { collectOnly = false } = {}) {
+  const { files, notes } = await collectDepFiles(root);
+  const js = new Map([
+    ...(await npmDeps(files.npmLock, root)),
+    ...(await pnpmDeps(files.pnpmLock, root)),
+    ...(await yarnDeps(files.yarnLock, root)),
+  ]);
+  const pypi = await pypiDeps(files.reqs, root);
+  if (!js.size && files.pkgJson.length) {
+    notes.push(
+      "package.json found but no lockfile resolved; commit package-lock.json, pnpm-lock.yaml or yarn.lock so exact versions can be checked"
+    );
+  }
+  if (collectOnly) return { js, pypi, notes };
   const [npmFlagged, pypiFlagged] = await Promise.all([
-    resolveFlagged(npm, checkNpm, "npm"),
+    resolveFlagged(js, checkNpm, "npm"),
     resolveFlagged(pypi, checkPypi, "pypi"),
   ]);
-  return {
-    flagged: [...npmFlagged, ...pypiFlagged],
-    checked: npm.size + pypi.size,
-  };
+  return { flagged: [...npmFlagged, ...pypiFlagged], checked: js.size + pypi.size, notes };
 }
 
 // -------------------------------------------------------------------- report
@@ -525,6 +661,11 @@ function report(findings, registry, root, feedSource) {
     c(DIM, `feed: ${feedSource} | ${registry.checked.toLocaleString()} dependencies resolved`)
   );
   console.log();
+
+  if (registry.notes?.length) {
+    for (const n of registry.notes) console.log(c(DIM, `note: ${n}`));
+    console.log();
+  }
 
   if (!findings.length && !registry.flagged.length) {
     console.log("No drift found.");
@@ -587,12 +728,24 @@ async function main() {
   npx driftcite [path]        scan a directory (default: .)
   npx driftcite . --offline   use the bundled feed, no network at all
   npx driftcite . --json      machine-readable output
-  npx driftcite . --no-deps   skip the npm registry check
+  npx driftcite . --no-deps   skip the registry checks
   npx driftcite . --fix       show the swaps the provider named
   npx driftcite . --fix --write   apply them
+  npx driftcite . --list-deps every dependency version resolved, no network
+  npx driftcite --version     print the version
+
+Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
+berry), and pinned requirements.txt. Formats it cannot read yet are named in
+the output instead of silently skipped.
 
 Exits 1 if anything breaking was found, so it drops into CI unchanged.
 Your source code is never sent anywhere.`);
+    return 0;
+  }
+
+  if (argv.includes("--version") || argv.includes("-v")) {
+    const pkg = JSON.parse(await readFile(path.join(HERE, "..", "package.json"), "utf8"));
+    console.log(pkg.version);
     return 0;
   }
 
@@ -603,10 +756,24 @@ Your source code is never sent anywhere.`);
   const fix = argv.includes("--fix");
   const write = argv.includes("--write");
 
+  if (argv.includes("--list-deps")) {
+    // Parse every dependency manifest and print what resolved, no network.
+    // Exists so the lockfile parsers are testable without touching a registry.
+    const { js, pypi, notes } = await scanRegistry(root, { collectOnly: true });
+    for (const [ecosystem, deps] of [["npm", js], ["pypi", pypi]]) {
+      for (const [key, source] of deps) {
+        const at = key.lastIndexOf("@");
+        console.log(`${ecosystem} ${key.slice(0, at)} ${key.slice(at + 1)} ${source}`);
+      }
+    }
+    for (const n of notes) console.log(`note: ${n}`);
+    return 0;
+  }
+
   const { feed, source } = await loadFeed({ offline });
   const findings = await scanRepo(root, feed.artifacts);
   const registry = noDeps || offline
-    ? { flagged: [], checked: 0 }
+    ? { flagged: [], checked: 0, notes: [] }
     : await scanRegistry(root);
 
   if (asJson) {

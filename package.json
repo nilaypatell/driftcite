@@ -1,6 +1,6 @@
 {
   "name": "driftcite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Find the API calls in your code that already stopped working. Every fact cites the provider who published it.",
   "type": "module",
   "bin": {

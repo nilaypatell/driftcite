@@ -4,7 +4,9 @@
  "providers": [
   {
    "provider": "anthropic",
-   "manifest": "anthropic.yaml",
+   "manifests": [
+    "anthropic.yaml"
+   ],
    "source_license": null,
    "source_notice": null,
    "sources": [
@@ -15,7 +17,9 @@
   },
   {
    "provider": "cloudflare",
-   "manifest": "cloudflare.generated.yaml",
+   "manifests": [
+    "cloudflare.generated.yaml"
+   ],
    "source_license": null,
    "source_notice": null,
    "sources": [
@@ -25,7 +29,9 @@
   },
   {
    "provider": "github",
-   "manifest": "github.generated.yaml",
+   "manifests": [
+    "github.generated.yaml"
+   ],
    "source_license": "MIT",
    "source_notice": "https://github.com/github/rest-api-description/blob/main/LICENSE.md",
    "sources": [
@@ -35,7 +41,9 @@
   },
   {
    "provider": "google",
-   "manifest": "google-models.yaml",
+   "manifests": [
+    "google-models.yaml"
+   ],
    "source_license": null,
    "source_notice": null,
    "sources": [
@@ -45,7 +53,9 @@
   },
   {
    "provider": "groq",
-   "manifest": "groq-models.yaml",
+   "manifests": [
+    "groq-models.yaml"
+   ],
    "source_license": null,
    "source_notice": null,
    "sources": [
@@ -55,27 +65,23 @@
   },
   {
    "provider": "openai",
-   "manifest": "openai-models.yaml",
-   "source_license": null,
-   "source_notice": null,
-   "sources": [
-    "https://developers.openai.com/api/docs/deprecations"
+   "manifests": [
+    "openai-models.yaml",
+    "openai.generated.yaml"
    ],
-   "artifact_count": 7
-  },
-  {
-   "provider": "openai",
-   "manifest": "openai.generated.yaml",
    "source_license": null,
    "source_notice": null,
    "sources": [
+    "https://developers.openai.com/api/docs/deprecations",
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
    ],
-   "artifact_count": 5
+   "artifact_count": 12
   },
   {
    "provider": "stripe",
-   "manifest": "stripe.generated.yaml",
+   "manifests": [
+    "stripe.generated.yaml"
+   ],
    "source_license": "MIT",
    "source_notice": "https://github.com/stripe/openapi/blob/master/LICENSE",
    "sources": [

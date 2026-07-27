@@ -21,7 +21,10 @@ OUT = os.path.join(ROOT, "feed", "feed.json")
 
 
 def build():
-    providers = []
+    # One entry per provider. A provider can have several manifest files (a
+    # generated spec diff plus a curated model list), and counting files as
+    # providers overstated coverage.
+    providers = {}
     artifacts = []
 
     for name in sorted(os.listdir(MANIFEST_DIR)):
@@ -33,31 +36,36 @@ def build():
             continue
 
         provider = doc["provider"]
-        providers.append({
+        entry = providers.setdefault(provider, {
             "provider": provider,
-            "manifest": name,
-            "source_license": doc.get("source_license"),
-            "source_notice": doc.get("source_notice"),
-            "sources": doc.get("sources", []),
-            "artifact_count": len(doc.get("artifacts") or []),
+            "manifests": [],
+            "source_license": None,
+            "source_notice": None,
+            "sources": [],
+            "artifact_count": 0,
         })
+        entry["manifests"].append(name)
+        entry["source_license"] = entry["source_license"] or doc.get("source_license")
+        entry["source_notice"] = entry["source_notice"] or doc.get("source_notice")
+        entry["sources"] = list(dict.fromkeys(entry["sources"] + (doc.get("sources") or [])))
+        entry["artifact_count"] += len(doc.get("artifacts") or [])
         markers = (doc.get("context") or {}).get("file_markers") or []
         for art in doc.get("artifacts") or []:
             if art.get("status") == "active":
                 continue
-            entry = dict(art)
-            entry["provider"] = provider
-            entry["file_markers"] = markers
+            record = dict(art)
+            record["provider"] = provider
+            record["file_markers"] = markers
             # Dates round-trip through YAML as date objects.
             for key in ("retires_on", "announced_on"):
-                if entry.get(key) is not None:
-                    entry[key] = str(entry[key])
-            artifacts.append(entry)
+                if record.get(key) is not None:
+                    record[key] = str(record[key])
+            artifacts.append(record)
 
     feed = {
         "feed_version": 1,
         "generated_on": datetime.date.today().isoformat(),
-        "providers": providers,
+        "providers": sorted(providers.values(), key=lambda p: p["provider"]),
         "artifacts": artifacts,
     }
 

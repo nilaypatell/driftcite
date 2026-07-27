@@ -45,12 +45,13 @@ def sweep(roots):
         for path in scan.walk(root):
             provider.extend(scan.scan_file(path, index, root))
         provider = scan.dedupe(provider)
-        deps, n_npm, n_pypi = registry.scan(root)
+        deps, n_npm, n_pypi, notes = registry.scan(root)
         results.append({
             "repo": os.path.basename(root),
             "path": root,
             "provider_findings": provider,
             "registry_findings": deps,
+            "registry_notes": notes,
             "deps_checked": {"npm": n_npm, "pypi": n_pypi},
         })
     return results
@@ -94,6 +95,9 @@ def report(results):
                         print(f"      use instead: {f['replacement']}")
                     print(f"      evidence: {f['evidence']}")
                 print(f"        {f['file']}:{f['line']}  {f['excerpt'][:100]}")
+
+        for note in r.get("registry_notes", []):
+            print(f"    note: {note}")
 
         if r["registry_findings"]:
             groups = {}

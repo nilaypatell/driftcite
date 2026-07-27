@@ -49,6 +49,9 @@ providers:
     repo: box/box-openapi
     path: openapi.json
     markers: [box, BOX_CLIENT_ID, "api.box.com"]
+    # Box's only git tag is legacy-swagger-2.0, years behind main, so following
+    # tags would pin us to a museum piece. Follow the spec's commits instead.
+    track: commits
 
 # Providers whose changes are not in a machine-readable spec are curated by
 # hand in manifests/<name>.yaml instead. Model retirements are the usual case:

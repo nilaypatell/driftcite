@@ -7,7 +7,16 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Windows is in the matrix on purpose: path handling bugs on Windows are
+    # exactly the kind of thing that never shows up on the author's machine.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
 
@@ -17,6 +26,17 @@ jobs:
 
       - name: Scanner tests
         run: node test/run.mjs
+
+      # scanner/ is drift-free by construction, so this proves a clean run
+      # end to end. The repo root is NOT expected to scan clean: the test
+      # fixtures quote retired identifiers on purpose.
+      - name: Smoke scan
+        run: node bin/driftcite.mjs scanner --offline --no-deps
+
+  feed-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
@@ -32,6 +52,3 @@ jobs:
             git diff --stat feed/
             exit 1
           fi
-
-      - name: Scan this repository with itself
-        run: node bin/driftcite.mjs . --no-deps

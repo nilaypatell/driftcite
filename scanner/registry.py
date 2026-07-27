@@ -73,6 +73,117 @@ def npm_deps(root):
     return found
 
 
+PNPM_NAME = re.compile(r"^(@[\w.-]+/)?[\w.-]+$")
+
+# Formats we recognise but do not read yet. Saying so beats silence: a scanner
+# that quietly skips a lockfile looks clean when it is blind.
+UNSUPPORTED_MANIFESTS = [
+    ("poetry.lock", "poetry.lock is not read yet; export a pinned requirements.txt for coverage"),
+    ("uv.lock", "uv.lock is not read yet; export a pinned requirements.txt for coverage"),
+    ("Pipfile.lock", "Pipfile.lock is not read yet"),
+    ("Gemfile.lock", "Gemfile.lock (RubyGems) is not read yet"),
+    ("Cargo.lock", "Cargo.lock (crates.io) is not read yet"),
+    ("go.sum", "go.sum (Go modules) is not read yet"),
+]
+
+
+def parse_pnpm_key(raw):
+    """One pnpm-lock key, in any of the shapes pnpm has shipped:
+    v5 /name/1.2.3_peerhash, v6 /name@1.2.3(peer@x), v9 'name@1.2.3'."""
+    key = raw.strip()
+    if key.endswith(":"):
+        key = key[:-1]
+    key = key.strip("'\"")
+    key = re.sub(r"\([^)]*\)", "", key)
+    if key.startswith("/"):
+        key = key[1:]
+    if not key:
+        return None
+    at = key.rfind("@")
+    if at > 0:
+        name, version = key[:at], key[at + 1:]
+    else:
+        slash = key.rfind("/")
+        if slash <= 0:
+            return None
+        name, version = key[:slash], key[slash + 1:]
+    version = version.split("_")[0]
+    if not version[:1].isdigit():
+        return None
+    if not PNPM_NAME.match(name):
+        return None
+    return name, version
+
+
+def pnpm_deps(root):
+    found = {}
+    for lock in find_files(root, {"pnpm-lock.yaml"}):
+        rel = os.path.relpath(lock, root)
+        try:
+            with open(lock, encoding="utf-8", errors="replace") as fh:
+                lines = fh.read().splitlines()
+        except OSError:
+            continue
+        in_packages = False
+        for line in lines:
+            if line and not line[0].isspace():
+                in_packages = line.startswith("packages:")
+                continue
+            if not in_packages:
+                continue
+            m = re.match(r"^ {2}(\S.*):\s*$", line)
+            if not m:
+                continue
+            parsed = parse_pnpm_key(m.group(1))
+            if parsed:
+                found.setdefault(parsed, rel)
+    return found
+
+
+def yarn_deps(root):
+    """Classic yarn and berry share one shape: selector line, version below."""
+    found = {}
+    version_re = re.compile(r"^\s+version:?\s+\"?([^\s\"]+)\"?\s*$")
+    for lock in find_files(root, {"yarn.lock"}):
+        rel = os.path.relpath(lock, root)
+        try:
+            with open(lock, encoding="utf-8", errors="replace") as fh:
+                lines = fh.read().splitlines()
+        except OSError:
+            continue
+        pending = []
+        for line in lines:
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            if line[:1] not in (" ", "\t") and line.rstrip().endswith(":"):
+                pending = []
+                for sel in line.rstrip()[:-1].split(","):
+                    sel = sel.strip().strip("'\"")
+                    at = sel.find("@", 1)  # skip a leading @scope
+                    if at <= 0:
+                        continue
+                    pending.append(sel[:at])
+                continue
+            m = version_re.match(line)
+            if m and pending:
+                for name in pending:
+                    found.setdefault((name, m.group(1)), rel)
+                pending = []
+    return found
+
+
+def manifest_notes(root, js_resolved):
+    notes = []
+    for fname, note in UNSUPPORTED_MANIFESTS:
+        if find_files(root, {fname}):
+            notes.append(note)
+    if not js_resolved and find_files(root, {"package.json"}):
+        notes.append("package.json found but no lockfile resolved; commit "
+                     "package-lock.json, pnpm-lock.yaml or yarn.lock so exact "
+                     "versions can be checked")
+    return notes
+
+
 def normalize(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
@@ -117,7 +228,7 @@ def pypi_deps(root):
     else is resolved against what is actually installed."""
     installed = installed_python()
     found = {}
-    pinned = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*==\s*([A-Za-z0-9._+!-]+)")
+    pinned = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*(?:\[[^\]]*\])?\s*==\s*([A-Za-z0-9._+!-]+)")
     named = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*(?:\[[^\]]*\])?\s*(?:[<>=!~]|$)")
     for req in find_files(root, {"requirements.txt"}, globs=(r"requirements-.+\.txt",)):
         try:
@@ -194,7 +305,10 @@ def check_pypi(name):
 
 def scan(root):
     npm = npm_deps(root)
+    npm.update(pnpm_deps(root))
+    npm.update(yarn_deps(root))
     pypi = pypi_deps(root)
+    notes = manifest_notes(root, js_resolved=bool(npm))
 
     jobs = [("npm", n) for n in {n for n, _ in npm}] + [("pypi", n) for n in {n for n, _ in pypi}]
     results = {}
@@ -217,11 +331,13 @@ def scan(root):
                     "evidence": (NPM_REGISTRY if ecosystem == "npm" else PYPI_REGISTRY).format(name),
                 })
     findings.sort(key=lambda f: (f["ecosystem"], f["package"]))
-    return findings, len(npm), len(pypi)
+    return findings, len(npm), len(pypi), notes
 
 
-def report(findings, root, n_npm, n_pypi):
+def report(findings, root, n_npm, n_pypi, notes=()):
     total = n_npm + n_pypi
+    for note in notes:
+        print(f"note: {note}")
     if not findings:
         print(f"\n{root}\n{total} pinned dependencies checked ({n_npm} npm, {n_pypi} pypi)")
         print("No deprecated or yanked versions in use.\n")
@@ -267,13 +383,13 @@ def main():
     if not os.path.isdir(root):
         sys.exit(f"not a directory: {root}")
 
-    findings, n_npm, n_pypi = scan(root)
+    findings, n_npm, n_pypi, notes = scan(root)
     if args.json:
         json.dump({"root": root, "checked": {"npm": n_npm, "pypi": n_pypi},
-                   "findings": findings}, sys.stdout, indent=2)
+                   "findings": findings, "notes": notes}, sys.stdout, indent=2)
         print()
         return 0
-    return report(findings, root, n_npm, n_pypi)
+    return report(findings, root, n_npm, n_pypi, notes)
 
 
 if __name__ == "__main__":
