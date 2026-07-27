@@ -1,23 +1,27 @@
 <div align="center">
 
-# driftcite
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/banner-dark.svg">
+  <img alt="driftcite — find the API calls in your code that already stopped working" src=".github/banner-light.svg" width="100%">
+</picture>
 
-**Find the API calls in your code that already stopped working.**
+<br>
 
-Retired endpoints, removed parameters, shut down models. Located in your
-source, dated against today, and every one of them citing the provider who
-published the change.
+<a href="LICENSE"><img alt="Scanner: Apache 2.0" src="https://img.shields.io/badge/scanner-Apache_2.0-002288?style=flat-square&labelColor=0F1419"></a>
+<a href="feed/feed.json"><img alt="Feed" src="https://img.shields.io/badge/feed-6_providers_·_125_artifacts-002288?style=flat-square&labelColor=0F1419"></a>
+<a href="package.json"><img alt="Dependencies: zero" src="https://img.shields.io/badge/dependencies-zero-002288?style=flat-square&labelColor=0F1419"></a>
+<a href="test/run.mjs"><img alt="Tests: 22 passing" src="https://img.shields.io/badge/tests-22_passing-002288?style=flat-square&labelColor=0F1419"></a>
+<a href="package.json"><img alt="Node 18+" src="https://img.shields.io/badge/node-≥18-002288?style=flat-square&labelColor=0F1419"></a>
 
-[![License](https://img.shields.io/badge/scanner-Apache--2.0-blue)](LICENSE)
-[![Feed](https://img.shields.io/badge/feed-6%20providers%20%C2%B7%20125%20artifacts-brightgreen)](feed/feed.json)
-[![Dependencies](https://img.shields.io/badge/dependencies-zero-lightgrey)](package.json)
-[![Node](https://img.shields.io/badge/node-%E2%89%A518-green)](package.json)
+<br><br>
+
+**[Why](#why-this-exists)** · **[Rules](#two-rules)** · **[Checks](#what-it-checks)** · **[Fix](#fixing-it)** · **[CI](#in-ci)** · **[Precision](#precision-is-the-product)** · **[Coverage](#coverage)**
 
 </div>
 
----
+<br>
 
-```
+```console
 $ npx driftcite .
 
 [BREAKING] openai/model_id/text-davinci-003 -- retired (DIED 935 days ago, 2024-01-04)
@@ -40,73 +44,83 @@ $ npx driftcite .
 
 Runs on your machine. Nothing is uploaded. No account.
 
-> **Not on npm yet.** Until it is published, run it from source. Node 18+ and
-> nothing else:
-> ```
+> [!NOTE]
+> **Not on npm yet.** Until it is published, run it from source. Node 18+ and nothing else.
+> ```console
 > git clone https://github.com/nilaypatell/driftcite
 > node driftcite/bin/driftcite.mjs .
 > ```
+
+<br>
 
 ---
 
 ## Why this exists
 
-Your lockfile does not move when a provider removes an endpoint, drops a
-request field, or shuts down a model. Nothing in your dependency tree changes.
-Every dependency tool reads manifests, so every dependency tool is blind to
-this by construction.
+Your lockfile does not move when a provider removes an endpoint, drops a request field, or shuts down a model. Nothing in your dependency tree changes. **Every dependency tool reads manifests, so every dependency tool is blind to this by construction.**
 
-Reading the changelog is not enough either. CircleCI went down for 1h50m in
-March 2022 after an upstream endpoint moved, and their postmortem says it
-better than we could:
+Reading the changelog is not enough either. CircleCI went down for 1h50m in March 2022 after an upstream endpoint moved, and their postmortem says it better than we could:
 
-> We realized during the incident that although we had been notified several
-> times about this change, we had not realized that it would affect us.
+> We realized during the incident that although we had been notified several times about this change, we had not realized that it would affect us.
 
-They were told. Repeatedly. Over two years. Somebody still had to map a prose
-announcement onto their own call sites, and nobody did.
+They were told. Repeatedly. Over two years. Somebody still had to map a prose announcement onto their own call sites, and nobody did.
+
+<br>
 
 ## Two rules
 
-**Every fact cites the provider.** A manifest asserts, the scanner locates, and
-no language model sits anywhere in the detection path. When we say Stripe
-removed `/v1/invoices/upcoming`, the finding links to Stripe's own git compare.
-Verify it in one click. You should not have to trust us.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-**Severity is computed against today.** An entry reading "deprecated, retires
-2026-10-23" is a countdown, not a footnote, and becomes *retired* the moment
-that date passes. Findings sort by how long you have left, so the same tool
-says `breaks in 88 days` before the break and `DIED 935 days ago` after it.
+### Every fact cites the provider
+
+A manifest asserts, the scanner locates, and **no language model sits anywhere in the detection path.**
+
+When we say Stripe removed `/v1/invoices/upcoming`, the finding links to Stripe's own git compare. Verify it in one click.
+
+You should not have to trust us.
+
+</td>
+<td width="50%" valign="top">
+
+### Severity is computed against today
+
+An entry reading *"deprecated, retires 2026-10-23"* is a countdown, not a footnote, and becomes **retired** the moment that date passes.
+
+Findings sort by how long you have left: `breaks in 88 days` before, `DIED 935 days ago` after.
 
 No dependency tool has a field for time remaining.
 
----
+</td>
+</tr>
+</table>
+
+<br>
 
 ## What it checks
 
 <table>
-<tr><td width="50%" valign="top">
+<tr>
+<td width="50%" valign="top">
 
 **Hosted API drift**
 
-Generated by diffing two versions of a provider's own published OpenAPI spec.
-Removed endpoints, dropped request parameters, retired enum values. Nothing
-hand-written, nothing inferred.
+Generated by diffing two versions of a provider's own published OpenAPI spec. Removed endpoints, dropped parameters, retired enum values. Nothing hand-written, nothing inferred.
 
-```
+```console
 python3 scanner/openapi_diff.py \
   --provider stripe --from v1200 --to v2345
 ```
 
-</td><td width="50%" valign="top">
+</td>
+<td width="50%" valign="top">
 
 **Maintainer-flagged versions**
 
-npm carries a per-version `deprecated` string and PyPI carries
-`yanked_reason`. Both written by the maintainer, both public, both unseen after
-install time.
+npm carries a per-version `deprecated` string, PyPI carries `yanked_reason`. Written by the maintainer, public, and unseen after install time.
 
-```
+```console
 urllib3@1.25
   "Broken release"
 
@@ -114,46 +128,46 @@ basic-ftp@4.6.6
   "Security vulnerability fixed in 5.2.1"
 ```
 
-</td></tr>
+</td>
+</tr>
 </table>
 
 Sweep every repository you own at once:
 
-```
+```console
 python3 scanner/sweep.py --parent ~/code --match '*'
 ```
 
----
+<br>
 
 ## Fixing it
 
-```
+```console
 npx driftcite . --fix           # show the swaps
 npx driftcite . --fix --write   # apply them
 ```
 
-```
+```diff
   models.py:8
-    - VISION = "gpt-4-vision-preview"
-    + VISION = "gpt-4o"
-    https://developers.openai.com/api/docs/deprecations
+- VISION = "gpt-4-vision-preview"
++ VISION = "gpt-4o"
+  https://developers.openai.com/api/docs/deprecations
 ```
 
-**There is no model in this path either.** It swaps a string the provider
-retired for the string the provider named, inside the quoting your code already
-uses. When the replacement is prose rather than a drop-in token, it refuses and
-says so:
+**There is no model in this path either.** It swaps a string the provider retired for the string the provider named, inside the quoting your code already uses.
 
+When the replacement is prose rather than a drop-in token, it refuses and says so:
+
+```console
+2 findings need a human
+  stripe/endpoint//v1/invoices/upcoming
+    the provider named no replacement
 ```
-  2 findings need a human
-    stripe/endpoint//v1/invoices/upcoming
-      the provider named no replacement
-```
 
-Comment lines are never edited, only the lines it reported may change, and if
-an edit would touch anything else the file is left alone entirely.
+> [!IMPORTANT]
+> Comment lines are never edited, only the lines it reported may change, and if an edit would touch anything else the file is left alone entirely.
 
----
+<br>
 
 ## In CI
 
@@ -161,11 +175,9 @@ an edit would touch anything else the file is left alone entirely.
 - uses: nilaypatell/driftcite@main
 ```
 
-Fails the build on breaking drift and writes the findings, with evidence links,
-into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`,
-`offline`.
+Fails the build on breaking drift and writes the findings, with evidence links, into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`, `offline`.
 
-## How it runs
+### How it runs
 
 | | Where it runs | What you get |
 |:--|:--|:--|
@@ -173,60 +185,56 @@ into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`,
 | GitHub Action | your CI | the same, every PR, exit 1 on breaking |
 | Hosted watch | our servers | told the moment a provider moves, as a PR |
 
-The first two answer *what is broken now.* The third answers *tell me the
-moment something breaks*, which no local tool can do, because your laptop is
-asleep when the provider ships.
+The first two answer *what is broken now.* The third answers *tell me the moment something breaks*, which no local tool can do, because your laptop is asleep when the provider ships.
 
-**Your source code never reaches us at any tier.** The hosted watch stores only
-the artifact IDs your code matched, a few hundred strings, never files.
+> [!NOTE]
+> **Your source code never reaches us at any tier.** The hosted watch stores only the artifact IDs your code matched, a few hundred strings, never files.
 
----
+<br>
 
 ## Precision is the product
 
-The first version reported **86 findings** on a real 1,200-dependency
-repository and roughly a quarter were real. The parameter `refund` was matching
-inside "refunded" and inside a sentence about refunds. A retired enum value
-like `hosted` is an ordinary English word.
+The first version reported **86 findings** on a real 1,200-dependency repository and roughly a quarter were real. The parameter `refund` was matching inside *"refunded"* and inside a sentence about refunds. A retired enum value like `hosted` is an ordinary English word.
 
-Each artifact kind now matches only in the shape it actually takes when sent to
-a provider:
+Each artifact kind now matches only in the shape it actually takes when sent to a provider:
 
 | Kind | Matches as |
 |:--|:--|
 | `enum_value` | a quoted string literal |
 | `request_param` | a quoted literal or an object key |
-| `model_id`, `endpoint` | a quoted literal or a bounded token |
+| `model_id` · `endpoint` | a quoted literal or a bounded token |
 
-Kinds other than model IDs also require the file to reference that provider at
-all. Comment lines are skipped. Vendored manifests are ignored.
+Kinds other than model IDs also require the file to reference that provider at all. Comment lines are skipped. Vendored manifests are ignored.
 
-**86 findings at ~25% true positives became 5 at 100%.**
+<div align="center">
 
-A tool that is wrong three times out of four gets muted, then deleted. Going
-from 29 artifacts to 125 since then has produced **zero** new findings across
-nine real repositories. Coverage is worthless if it arrives with noise.
+### 86 findings at ~25% true positives → **5 at 100%**
 
----
+</div>
+
+A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 125 since then has produced **zero** new findings across nine real repositories. Coverage is worthless if it arrives with noise.
+
+<br>
 
 ## Coverage
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
-| Stripe | `stripe/openapi`, 2,345 tagged releases | 14 |
-| GitHub | `github/rest-api-description` | 46 |
-| Cloudflare | `cloudflare/api-schemas` | 42 |
-| OpenAI | `openai/openai-openapi` + deprecations page | 12 |
-| Twilio, DigitalOcean, Box | tracked, currently no drift | 0 |
-| npm, PyPI | every package, no per-provider work | live |
+| **Stripe** | `stripe/openapi` · 2,345 tagged releases | 14 |
+| **GitHub** | `github/rest-api-description` | 46 |
+| **Cloudflare** | `cloudflare/api-schemas` | 42 |
+| **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
+| Twilio · DigitalOcean · Box | tracked, currently no drift | 0 |
+| **npm · PyPI** | every package, no per-provider work | live |
 
-The registries are the cheapest coverage in software: one cursor covers every
-npm package and one header covers every PyPI project.
+The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 
-### Adding a provider
+<details>
+<summary><b>Adding a provider</b></summary>
 
-Providers live in [`providers.yaml`](providers.yaml), not in code, so adding
-one is a data change:
+<br>
+
+Providers live in [`providers.yaml`](providers.yaml), not in code, so adding one is a data change:
 
 ```yaml
   stripe:
@@ -235,44 +243,42 @@ one is a data change:
     markers: [stripe, STRIPE_SECRET, STRIPE_API]
 ```
 
-`markers` matter more than they look. They are what stops a retired parameter
-named `refund` from flagging every codebase that has ever mentioned a refund.
+`markers` matter more than they look. They are what stops a retired parameter named `refund` from flagging every codebase that has ever mentioned a refund.
 
-Providers that publish no machine-readable spec are curated by hand in
-`manifests/<name>.yaml`, because model retirements are usually published as
-prose and never as a spec.
+Providers that publish no machine-readable spec are curated by hand in `manifests/<name>.yaml`, because model retirements are usually published as prose and never as a spec.
 
 Pull requests welcome.
 
----
+</details>
+
+<br>
 
 ## The feed
 
-Manifests live in [`manifests/`](manifests/), are regenerated daily by a
-scheduled workflow in this repository, and are committed here in the open. The
-git history is the record of what was observed, and when.
+Manifests live in [`manifests/`](manifests/), are regenerated daily by a scheduled workflow in this repository, and are committed here in the open. **The git history is the record of what was observed, and when.**
 
-Every fact is public and free to read. You can vendor the whole thing. The hard
-part was never obtaining it, it is maintaining it, every day, forever, across
-every provider, because it decays the moment anyone stops.
+Every fact is public and free to read. You can vendor the whole thing. The hard part was never obtaining it, it is maintaining it, every day, forever, across every provider, because it decays the moment anyone stops.
+
+<br>
 
 ## License
 
 | Component | License |
 |:--|:--|
-| Scanner, differ, manifest schema | **Apache 2.0**. Use it anywhere, including in a competing product. |
-| Published manifests | [Data license](manifests/LICENSE.md). Free to use, redistribute and research. Not for repackaging as a competing feed. |
+| Scanner · differ · manifest schema | **Apache 2.0** — use it anywhere, including in a competing product |
+| Published manifests | **[Data license](manifests/LICENSE.md)** — free to use, redistribute and research; not for repackaging as a competing feed |
 
-The underlying facts are not ours and never could be, which is exactly why
-every artifact cites the provider who published it.
+The underlying facts are not ours and never could be, which is exactly why every artifact cites the provider who published it.
+
+<br>
 
 ## Documentation
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** covers the moat, polling cadence
-  against real API limits, hosting costs, and pricing.
-- **[spec/MANIFEST.md](spec/MANIFEST.md)** is the drift manifest format.
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** — the moat, polling cadence against real API limits, hosting costs, pricing
+- **[spec/MANIFEST.md](spec/MANIFEST.md)** — the drift manifest format
+
+<br>
 
 <div align="center">
-<sub>Every number in this README came from a real run against a real
-codebase.</sub>
+<sub>Every number in this README came from a real run against a real codebase.</sub>
 </div>
