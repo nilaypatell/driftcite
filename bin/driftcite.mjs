@@ -110,6 +110,8 @@ function cmp(a, b) {
   // Artifact before file, so every occurrence of one artifact stays contiguous
   // and its heading is printed once rather than again for each file it appears
   // in. A retired model used in five files is one problem, not five.
+  const ca = CONTEXT_RANK[a.context] ?? 9, cb = CONTEXT_RANK[b.context] ?? 9;
+  if (ca !== cb) return ca - cb;
   if (a.artifact !== b.artifact) return a.artifact < b.artifact ? -1 : 1;
   return a.file === b.file ? a.line - b.line : a.file < b.file ? -1 : 1;
 }
@@ -175,6 +177,27 @@ async function* walkManifests(dir, pattern) {
 const COMMENT_START = /^\s*(#|\/\/|\*|<!--|--|;)/;
 const isComment = (line) => COMMENT_START.test(line);
 
+/**
+ * Where a finding lives changes what it means. A retired model id in
+ * production source is a call that fails; the same string in a test fixture,
+ * an example, or documentation is usually deliberate and sometimes must stay
+ * exactly as it is. Reporting both as one number wastes people's attention on
+ * the wrong lines, so context is labelled and source is ranked first.
+ */
+function fileContext(rel) {
+  const p = rel.replace(/\\/g, "/").toLowerCase();
+  if (/(^|\/)(tests?|__tests__|spec|testdata|fixtures?|mocks?)(\/|$)/.test(p) ||
+      /(^|\/)[^/]*[._-](test|spec)\.[a-z]+$/.test(p) ||
+      /(^|\/)(test|spec)_[^/]*\.[a-z]+$/.test(p)) return "test";
+  if (/(^|\/)(examples?|samples?|demos?|cookbook|recipes?|notebooks?)(\/|$)/.test(p) ||
+      /\.ipynb$/.test(p)) return "example";
+  if (/(^|\/)(docs?|documentation|website|site)(\/|$)/.test(p) ||
+      /\.(md|mdx|rst|txt)$/.test(p)) return "doc";
+  return "source";
+}
+
+const CONTEXT_RANK = { source: 0, example: 1, test: 2, doc: 3 };
+
 function isDriftData(text) {
   const head = text.slice(0, 4000);
   if (head.includes('"feed_version"') || head.includes("feed_version:")) return true;
@@ -220,8 +243,10 @@ async function scanRepo(root, artifacts) {
         if (isComment(lines[i])) continue;
         if (!re.test(lines[i])) continue;
         const { severity, status, daysLeft } = applyDeadline(art);
+        const rel = path.relative(root, file);
         findings.push({
-          file: path.relative(root, file),
+          context: fileContext(rel),
+          file: rel,
           line: i + 1,
           artifact: art.id,
           severity, status, daysLeft,
@@ -674,7 +699,13 @@ function report(findings, registry, root, feedSource) {
   }
 
   if (findings.length) {
-    console.log(c(BOLD, `${findings.length} provider findings (${breaking} breaking)`));
+    const inSource = findings.filter((f) => f.context === "source").length;
+    const elsewhere = findings.length - inSource;
+    const where = elsewhere
+      ? `, ${inSource} in source and ${elsewhere} in tests, examples or docs`
+      : "";
+    console.log(c(BOLD,
+      `${findings.length} provider findings (${breaking} breaking${where})`));
     let current = null;
     for (const f of [...findings].sort(cmp)) {
       if (f.artifact !== current) {
@@ -685,7 +716,8 @@ function report(findings, registry, root, feedSource) {
         if (f.replacement) console.log(`  use instead: ${f.replacement}`);
         if (f.evidence) console.log(c(DIM, `  evidence: ${f.evidence}`));
       }
-      console.log(`    ${f.file}:${f.line}  ${c(DIM, f.excerpt)}`);
+      const tag = f.context === "source" ? "" : c(DIM, ` [${f.context}]`);
+      console.log(`    ${f.file}:${f.line}${tag}  ${c(DIM, f.excerpt)}`);
     }
     console.log();
   }

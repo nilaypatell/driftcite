@@ -94,7 +94,8 @@ def report(results):
                     if f.get("replacement"):
                         print(f"      use instead: {f['replacement']}")
                     print(f"      evidence: {f['evidence']}")
-                print(f"        {f['file']}:{f['line']}  {f['excerpt'][:100]}")
+                tag = "" if f.get("context", "source") == "source" else f" [{f['context']}]"
+                print(f"        {f['file']}:{f['line']}{tag}  {f['excerpt'][:100]}")
 
         for note in r.get("registry_notes", []):
             print(f"    note: {note}")

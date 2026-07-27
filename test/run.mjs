@@ -193,6 +193,39 @@ function runFix(files, write) {
 }
 
 
+console.log("\nfinding context");
+
+// Two of the first three candidate repositories for an outreach pull request
+// turned out to have their only findings in test files. A dead model id in a
+// fixture is not a call that fails, and treating them the same wastes the
+// reader's attention on the wrong lines.
+{
+  const cases = {
+    "src/client.js": "source",
+    "lib/providers/google_genai_test.py": "test",
+    "tests/helper.js": "test",
+    "spec/thing_spec.rb": "test",
+    "examples/quickstart.py": "example",
+    // Markdown is not scanned at all, so the doc label is exercised through a
+    // scanned extension that lives under a docs directory.
+    "docs/snippets/config.json": "doc",
+  };
+  for (const [file, want] of Object.entries(cases)) {
+    const found = runOn({ [file]: `const m = 'text-davinci-003';` });
+    const got = found[0]?.context;
+    check(`labels ${file} as ${want}`, got === want, `got ${got}`);
+  }
+}
+
+{
+  const found = runOn({
+    "tests/a.js": `const m = 'text-davinci-003';`,
+    "src/b.js": `const m = 'text-davinci-003';`,
+  });
+  check("ranks production source above test fixtures",
+    found[0]?.context === "source", `first was ${found[0]?.context}`);
+}
+
 console.log("\nlockfile parsing");
 
 function runList(files) {

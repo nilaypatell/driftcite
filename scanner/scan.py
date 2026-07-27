@@ -144,6 +144,29 @@ def is_comment(line):
     return bool(COMMENT_START.match(line))
 
 
+# Where a finding lives changes what it means. A retired model id in
+# production source is a call that fails; the same string in a test fixture or
+# an example is often deliberate. Source is ranked first and the rest labelled.
+TEST_RE = re.compile(r"(^|/)(tests?|__tests__|spec|testdata|fixtures?|mocks?)(/|$)"
+                     r"|(^|/)[^/]*[._-](test|spec)\.[a-z]+$"
+                     r"|(^|/)(test|spec)_[^/]*\.[a-z]+$")
+EXAMPLE_RE = re.compile(r"(^|/)(examples?|samples?|demos?|cookbook|recipes?|notebooks?)(/|$)"
+                        r"|\.ipynb$")
+DOC_RE = re.compile(r"(^|/)(docs?|documentation|website|site)(/|$)|\.(md|mdx|rst|txt)$")
+CONTEXT_RANK = {"source": 0, "example": 1, "test": 2, "doc": 3}
+
+
+def file_context(rel):
+    p = rel.replace("\\", "/").lower()
+    if TEST_RE.search(p):
+        return "test"
+    if EXAMPLE_RE.search(p):
+        return "example"
+    if DOC_RE.search(p):
+        return "doc"
+    return "source"
+
+
 def is_drift_data(text):
     head = text[:4000]
     if '"feed_version"' in head or "feed_version:" in head:
@@ -191,8 +214,10 @@ def scan_file(path, index, root):
                 continue
             claimed.add(lineno)
             severity, status, days_left = apply_deadline(art)
+            rel = os.path.relpath(path, root)
             findings.append({
-                "file": os.path.relpath(path, root),
+                "context": file_context(rel),
+                "file": rel,
                 "line": lineno,
                 "literal": literal,
                 "provider": provider,
@@ -224,10 +249,12 @@ def deadline_phrase(f):
 
 
 def urgency(f):
-    """Most urgent first: breaking before warning, soonest deadline before later,
-    dated before undated."""
+    """Most urgent first: breaking before warning, soonest deadline before
+    later, dated before undated, and production source before test fixtures."""
     days = f.get("days_left")
-    return (SEVERITY_ORDER.get(f["severity"], 3), days is None, days if days is not None else 0)
+    return (SEVERITY_ORDER.get(f["severity"], 3), days is None,
+            days if days is not None else 0,
+            CONTEXT_RANK.get(f.get("context", "source"), 9))
 
 
 def dedupe(findings):
@@ -262,7 +289,8 @@ def report(findings, root):
             if f["replacement"]:
                 print(f"  use instead: {f['replacement']}")
             print(f"  evidence: {f['evidence']}")
-        print(f"    {f['file']}:{f['line']}  {f['excerpt']}")
+        tag = "" if f.get("context", "source") == "source" else f" [{f['context']}]"
+        print(f"    {f['file']}:{f['line']}{tag}  {f['excerpt']}")
     print()
     return 1 if counts.get("breaking") else 0
 
