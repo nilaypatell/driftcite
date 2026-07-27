@@ -8,6 +8,13 @@ npx driftcite .
 
 Runs locally. Nothing leaves your machine. No account.
 
+> Not yet on npm. Until it is published, run it straight from source, which
+> needs nothing but Node 18 or newer:
+>
+> ```
+> git clone https://github.com/nilaypatell/driftcite && node driftcite/bin/driftcite.mjs .
+> ```
+
 ```
 [BREAKING] anthropic/model_id/claude-3-opus-20240229 -- retired (DIED 202 days ago, 2026-01-05)
   Retired. Calls return 404.
@@ -81,6 +88,16 @@ python3 scanner/registry.py .
 ```
 python3 scanner/sweep.py --parent ~/code --match '*'
 ```
+
+## In CI
+
+```yaml
+- uses: nilaypatell/driftcite@main
+```
+
+Fails the build on breaking drift and writes the findings, with evidence links,
+into the job summary. Options: `path`, `fail-on-breaking`, `check-dependencies`,
+`offline`.
 
 ## Precision
 
