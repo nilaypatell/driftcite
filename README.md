@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/badges-dark.svg">
-  <img alt="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="756">
+  <img alt="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+" src=".github/badges-light.svg" width="931">
 </picture>
 
 <br><br>

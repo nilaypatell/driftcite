@@ -1,52 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="756" height="34" viewBox="0 0 756 34" role="img" aria-label="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+">
+<svg xmlns="http://www.w3.org/2000/svg" width="931" height="36" viewBox="0 0 931 36" role="img" aria-label="Apache 2.0 · 6 providers · 125 artifacts · zero dependencies · 22 tests passing · Node 18+">
   <defs>
     <style>
+      /* Each label is one centred run rather than separately positioned words.
+         Hardcoding x per word means guessing the font's metrics, and the guess
+         is what pushed text into the right border last time. text-anchor
+         middle balances the padding whatever the font actually measures. */
       .chip  { font-family: 'Hanken Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1px; }
-      .value { fill: #93A9F0; }
+      .value { fill: #93A9F0; font-weight: 700; }
       .label { fill: #8A93A6; }
+      .dot   { font-size: 9px; }
     </style>
   </defs>
 
-  <!-- Apache 2.0 -->
-  <g transform="translate(0,0)">
-    <rect x="0" y="0" width="104" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <circle cx="18" cy="17" r="3" fill="#93A9F0"/>
-    <text class="chip value" x="30" y="21.5">Apache 2.0</text>
+  <g>
+    <rect x="0" y="0" width="136" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="68" y="22.5">
+      <tspan class="dot" fill="#93A9F0">●</tspan><tspan class="value" dx="7">Apache 2.0</tspan>
+    </text>
   </g>
 
-  <!-- 6 providers -->
-  <g transform="translate(114,0)">
-    <rect x="0" y="0" width="106" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <text class="chip value" x="16" y="21.5">6</text>
-    <text class="chip label" x="27" y="21.5">providers</text>
+  <g>
+    <rect x="148" y="0" width="124" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="210" y="22.5">
+      <tspan class="value">6</tspan><tspan class="label" dx="5">providers</tspan>
+    </text>
   </g>
 
-  <!-- 125 artifacts -->
-  <g transform="translate(230,0)">
-    <rect x="0" y="0" width="118" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <text class="chip value" x="16" y="21.5">125</text>
-    <text class="chip label" x="41" y="21.5">artifacts</text>
+  <g>
+    <rect x="284" y="0" width="145" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="356.5" y="22.5">
+      <tspan class="value">125</tspan><tspan class="label" dx="5">artifacts</tspan>
+    </text>
   </g>
 
-  <!-- zero dependencies -->
-  <g transform="translate(358,0)">
-    <rect x="0" y="0" width="140" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <text class="chip value" x="16" y="21.5">zero</text>
-    <text class="chip label" x="47" y="21.5">dependencies</text>
+  <g>
+    <rect x="441" y="0" width="177" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="529.5" y="22.5">
+      <tspan class="value">zero</tspan><tspan class="label" dx="5">dependencies</tspan>
+    </text>
   </g>
 
-  <!-- 22 tests passing -->
-  <g transform="translate(508,0)">
-    <rect x="0" y="0" width="146" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <circle cx="18" cy="17" r="3" fill="#3FB950"/>
-    <text class="chip value" x="30" y="21.5">22</text>
-    <text class="chip label" x="49" y="21.5">tests passing</text>
+  <g>
+    <rect x="630" y="0" width="183" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="721.5" y="22.5">
+      <tspan class="dot" fill="#3FB950">●</tspan><tspan class="value" dx="7">22</tspan><tspan class="label" dx="5">tests passing</tspan>
+    </text>
   </g>
 
-  <!-- Node 18+ -->
-  <g transform="translate(664,0)">
-    <rect x="0" y="0" width="92" height="34" rx="17" fill="#121829" stroke="#1E2740"/>
-    <text class="chip label" x="16" y="21.5">Node</text>
-    <text class="chip value" x="53" y="21.5">18+</text>
+  <g>
+    <rect x="825" y="0" width="106" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
+    <text class="chip" text-anchor="middle" x="878" y="22.5">
+      <tspan class="label">Node</tspan><tspan class="value" dx="5">18+</tspan>
+    </text>
   </g>
 </svg>
