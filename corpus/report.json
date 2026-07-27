@@ -1,0 +1,104 @@
+{
+ "attempted": 467,
+ "scanned": 449,
+ "failed": 18,
+ "failure_reasons": {
+  "clone_failed": 2,
+  "scan_failed": 16
+ },
+ "repos_with_breaking_drift": 176,
+ "share_with_breaking_drift": 39.2,
+ "total_findings": 3388,
+ "total_breaking": 2932,
+ "median_breaking_when_affected": 7,
+ "worst_repo_breaking_count": 115,
+ "by_provider": {
+  "anthropic": 383,
+  "google": 213,
+  "openai": 123,
+  "groq": 87,
+  "cloudflare": 78,
+  "stripe": 32,
+  "github": 1
+ },
+ "most_common_dead_identifiers": [
+  {
+   "artifact": "google/model_id/gemini-2.0-flash",
+   "repos": 81
+  },
+  {
+   "artifact": "anthropic/model_id/claude-sonnet-4-20250514",
+   "repos": 65
+  },
+  {
+   "artifact": "openai/model_id/gpt-4-turbo",
+   "repos": 57
+  },
+  {
+   "artifact": "groq/model_id/llama-3.3-70b-versatile",
+   "repos": 50
+  },
+  {
+   "artifact": "anthropic/model_id/claude-3-5-sonnet-20241022",
+   "repos": 44
+  },
+  {
+   "artifact": "google/model_id/gemini-1.5-flash",
+   "repos": 41
+  },
+  {
+   "artifact": "google/model_id/gemini-1.5-pro",
+   "repos": 38
+  },
+  {
+   "artifact": "groq/model_id/llama-3.1-8b-instant",
+   "repos": 37
+  },
+  {
+   "artifact": "anthropic/model_id/claude-3-opus-20240229",
+   "repos": 36
+  },
+  {
+   "artifact": "anthropic/model_id/claude-3-5-haiku-20241022",
+   "repos": 32
+  },
+  {
+   "artifact": "anthropic/model_id/claude-3-haiku-20240307",
+   "repos": 32
+  },
+  {
+   "artifact": "anthropic/model_id/claude-opus-4-20250514",
+   "repos": 31
+  },
+  {
+   "artifact": "anthropic/model_id/claude-opus-4-1-20250805",
+   "repos": 28
+  },
+  {
+   "artifact": "anthropic/request_param/budget_tokens",
+   "repos": 28
+  },
+  {
+   "artifact": "anthropic/model_id/claude-3-sonnet-20240229",
+   "repos": 22
+  }
+ ],
+ "by_popularity": {
+  "under 100 stars": {
+   "repos": 321,
+   "share_affected": 37.7
+  },
+  "100 to 1k": {
+   "repos": 88,
+   "share_affected": 39.8
+  },
+  "1k to 10k": {
+   "repos": 34,
+   "share_affected": 44.1
+  },
+  "over 10k": {
+   "repos": 6,
+   "share_affected": 83.3
+  }
+ }
+}

@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .venv/
 .cache/
+# The scan names repositories, and naming a repo as broken without
+# showing up with a fix is a shame list. The aggregate report and the
+# reproducible sample are published; the per-repo results stay local.
+corpus/results.json
