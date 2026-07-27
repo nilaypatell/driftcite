@@ -74,6 +74,24 @@ python3 scanner/build_feed.py
 CI fails if `feed/feed.json` is out of sync with the manifests, so run this
 before pushing when you have touched anything under `manifests/`.
 
+## Licensing of contributions
+
+Code you contribute is under [Apache 2.0](LICENSE), like the rest of the
+scanner.
+
+**Manifest data you contribute is dedicated to the public domain under
+[CC0](https://creativecommons.org/publicdomain/zero/1.0/).** By opening a pull
+request that adds or edits anything under `manifests/`, you place that content
+in the public domain.
+
+This is deliberate and it protects you more than it protects us. The single
+most durable grievance in open source relicensing fights has been companies
+changing the terms on work other people contributed for free. Taking manifest
+data as CC0 means we can never do that to you: your contribution is already
+public domain and stays that way no matter what happens to this project.
+
+GitHub's own Advisory Database uses the same arrangement for the same reason.
+
 ## The two rules that are not up for negotiation
 
 1. **No inference in the detection path.** A manifest asserts the fact and
