@@ -12,6 +12,7 @@ asserts the fact and carries the evidence URL; this only locates it.
 import argparse
 import json
 import os
+import re
 import sys
 
 import yaml
@@ -34,7 +35,39 @@ SEVERITY_ORDER = {"breaking": 0, "warning": 1, "info": 2}
 
 # Kinds that are only meaningful inside a file that already talks to the
 # provider. A bare "output_format" in unrelated code is not drift.
-CONTEXT_REQUIRED_KINDS = {"request_param", "sdk_symbol", "tool_type", "endpoint"}
+CONTEXT_REQUIRED_KINDS = {"request_param", "sdk_symbol", "tool_type", "endpoint", "enum_value"}
+
+# How each kind is allowed to appear before it counts as a real call site.
+# Substring matching is wrong: the parameter "refund" is inside "refunded" and
+# inside a sentence about refunds, and neither is a call to the API. A retired
+# enum value like "hosted" is an ordinary English word. So each kind only
+# matches in the shape it actually takes when sent to a provider.
+#
+#   quoted : a string literal, 'x' or "x" or `x`
+#   key    : an object key or assignment, x: or x =
+#   word   : the bare token with word boundaries
+MATCH_SHAPES = {
+    "enum_value": ("quoted",),
+    "request_param": ("quoted", "key"),
+    "endpoint": ("quoted", "word"),
+    "model_id": ("quoted", "word"),
+    "tool_type": ("quoted", "word"),
+    "sdk_symbol": ("quoted", "word"),
+}
+DEFAULT_SHAPES = ("quoted", "word")
+
+
+def compile_matcher(literal, kind):
+    lit = re.escape(literal)
+    parts = []
+    for shape in MATCH_SHAPES.get(kind, DEFAULT_SHAPES):
+        if shape == "quoted":
+            parts.append(rf"['\"`]{lit}['\"`]")
+        elif shape == "key":
+            parts.append(rf"(?<![\w.]){lit}\s*[:=]")
+        elif shape == "word":
+            parts.append(rf"(?<![\w./-]){lit}(?![\w.-])")
+    return re.compile("|".join(parts))
 
 
 def load_manifests(path=MANIFEST_DIR):
@@ -92,11 +125,14 @@ def scan_file(path, index, root):
         if art["kind"] in CONTEXT_REQUIRED_KINDS:
             if markers and not any(mk.lower() in lowered for mk in markers):
                 continue
+        matcher = compile_matcher(literal, art["kind"])
+        if not matcher.search(text):
+            continue
         if lines is None:
             lines = text.splitlines()
         claimed = set()
         for lineno, line in enumerate(lines, 1):
-            if literal not in line:
+            if not matcher.search(line):
                 continue
             # One hit per line per literal, even if it appears twice.
             if lineno in claimed:

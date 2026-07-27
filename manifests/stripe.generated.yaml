@@ -1,0 +1,154 @@
+provider: stripe
+spec_version: 1
+generated_from:
+  repo: stripe/openapi
+  from: v1200
+  to: v2345
+  from_api_version: '2024-06-20'
+  to_api_version: 2026-06-24.dahlia
+sources:
+- https://github.com/stripe/openapi/compare/v1200...v2345
+context:
+  file_markers:
+  - stripe
+  - STRIPE_SECRET
+  - STRIPE_API
+artifacts:
+- id: stripe/endpoint//v1/invoices/upcoming
+  kind: endpoint
+  match:
+    literals:
+    - /v1/invoices/upcoming
+  status: removed
+  severity: breaking
+  note: GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/endpoint//v1/invoices/upcoming/lines
+  kind: endpoint
+  match:
+    literals:
+    - /v1/invoices/upcoming/lines
+  status: removed
+  severity: breaking
+  note: GET /v1/invoices/upcoming/lines existed in 2024-06-20 and is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/endpoint//v1/subscription_items/{subscription_item}/usage_record_summaries
+  kind: endpoint
+  match:
+    literals:
+    - /v1/subscription_items/{subscription_item}/usage_record_summaries
+  status: removed
+  severity: breaking
+  note: GET /v1/subscription_items/{subscription_item}/usage_record_summaries existed
+    in 2024-06-20 and is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/endpoint//v1/subscription_items/{subscription_item}/usage_records
+  kind: endpoint
+  match:
+    literals:
+    - /v1/subscription_items/{subscription_item}/usage_records
+  status: removed
+  severity: breaking
+  note: POST /v1/subscription_items/{subscription_item}/usage_records existed in 2024-06-20
+    and is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/request_param//v1/credit_notes/preview#refund
+  kind: request_param
+  match:
+    literals:
+    - refund
+  status: removed
+  severity: breaking
+  note: Parameter 'refund' on GET /v1/credit_notes/preview existed in 2024-06-20 and
+    is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/request_param//v1/credit_notes/preview/lines#refund
+  kind: request_param
+  match:
+    literals:
+    - refund
+  status: removed
+  severity: breaking
+  note: Parameter 'refund' on GET /v1/credit_notes/preview/lines existed in 2024-06-20
+    and is gone in 2026-06-24.dahlia.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/embedded
+  kind: enum_value
+  match:
+    literals:
+    - embedded
+  status: removed
+  severity: breaking
+  note: 'Enum value ''embedded'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: components.schemas.checkout.session.properties.ui_mode'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/fastest
+  kind: enum_value
+  match:
+    literals:
+    - fastest
+  status: removed
+  severity: breaking
+  note: 'Enum value ''fastest'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: components.schemas.payment_intent_payment_method_options_us_bank_account.properties.preferred_settlement_speed'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/hosted
+  kind: enum_value
+  match:
+    literals:
+    - hosted
+  status: removed
+  severity: breaking
+  note: 'Enum value ''hosted'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: components.schemas.checkout.session.properties.ui_mode'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/increment
+  kind: enum_value
+  match:
+    literals:
+    - increment
+  status: removed
+  severity: breaking
+  note: 'Enum value ''increment'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: paths./v1/subscription_items/{subscription_item}/usage_records.post.requestBody.content.application/x-www-form-urlencoded.schema.properties.action'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/last_during_period
+  kind: enum_value
+  match:
+    literals:
+    - last_during_period
+  status: removed
+  severity: breaking
+  note: 'Enum value ''last_during_period'' was valid in 2024-06-20 and is gone in
+    2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/last_ever
+  kind: enum_value
+  match:
+    literals:
+    - last_ever
+  status: removed
+  severity: breaking
+  note: 'Enum value ''last_ever'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: components.schemas.plan.properties.aggregate_usage'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/usage_record
+  kind: enum_value
+  match:
+    literals:
+    - usage_record
+  status: removed
+  severity: breaking
+  note: 'Enum value ''usage_record'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
+    Seen at: components.schemas.usage_record.properties.object'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+- id: stripe/enum_value/usage_record_summary
+  kind: enum_value
+  match:
+    literals:
+    - usage_record_summary
+  status: removed
+  severity: breaking
+  note: 'Enum value ''usage_record_summary'' was valid in 2024-06-20 and is gone in
+    2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object'
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345

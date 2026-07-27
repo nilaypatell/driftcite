@@ -43,6 +43,40 @@ CI as-is.
 | stripe | - | not started |
 | clerk | - | not started |
 
+## The category no lockfile tool can see
+
+When a provider drops a field, removes an endpoint, or retires an enum value,
+**nothing moves in your lockfile.** Socket.dev, deps.dev, Dependabot, Renovate
+and npm-deprecated-check all read manifests, so they are blind to this by
+construction, not by oversight. That is the gap.
+
+`scanner/openapi_diff.py` generates manifest artifacts by diffing two versions
+of a provider's own published OpenAPI spec. No hand-authoring, no model in the
+detection path, and the evidence is the provider's own git compare URL.
+
+    python3 scanner/openapi_diff.py --provider stripe --from v1200 --to v2345 \
+        --out manifests/stripe.generated.yaml
+
+Stripe `2024-06-20` to `2026-06-24.dahlia` yields 14 artifacts, including the
+removal of `/v1/invoices/upcoming` and the usage-records API along with its
+`last_during_period` / `last_ever` / `increment` aggregation enums.
+
+Supply is not the constraint. Stripe publishes 2,345 tagged spec releases,
+GitHub pushes continuously, AWS covers 426 services, and APIs.guru aggregates
+2,529 APIs across 108,837 endpoints.
+
+## Matching precision
+
+Substring matching is wrong and the first version proved it: the parameter
+`refund` matched inside "refunded" and inside a sentence about refunds, and a
+retired enum value like `hosted` is an ordinary English word. Each artifact
+kind now only matches in the shape it actually takes when sent to a provider
+(quoted string literal, object key, or bounded token), and non-model kinds also
+require the file to reference that provider at all.
+
+That change took one repo from 86 findings at roughly 25% true positives to
+5 findings at 100%.
+
 ## State of the scanner, honestly
 
 Run against `quickcruit-backend` on 2026-07-26 it returned 8 findings:
