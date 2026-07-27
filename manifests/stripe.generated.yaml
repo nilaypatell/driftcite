@@ -6,6 +6,8 @@ generated_from:
   to: v2345
   from_api_version: '2024-06-20'
   to_api_version: 2026-06-24.dahlia
+source_license: MIT
+source_notice: https://github.com/stripe/openapi/blob/master/LICENSE
 sources:
 - https://github.com/stripe/openapi/compare/v1200...v2345
 context:

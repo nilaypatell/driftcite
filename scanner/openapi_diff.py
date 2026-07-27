@@ -38,6 +38,47 @@ PROVIDERS = {
 
 RAW = "https://raw.githubusercontent.com/{repo}/{ref}/{path}"
 COMPARE = "https://github.com/{repo}/compare/{a}...{b}"
+LICENSE_API = "https://api.github.com/repos/{repo}/license"
+
+
+def _gh_token():
+    """Fall back to the local gh CLI's token. CI sets GITHUB_TOKEN directly;
+    on a developer machine the credential usually lives in gh's keyring, and
+    unauthenticated GitHub is 60 requests an hour, which is not enough."""
+    import shutil
+    import subprocess
+    if not shutil.which("gh"):
+        return None
+    try:
+        out = subprocess.run(["gh", "auth", "token"], capture_output=True,
+                             text=True, timeout=15)
+        return out.stdout.strip() or None
+    except Exception:
+        return None
+
+
+def source_license(repo):
+    """The upstream spec's own license, carried into every manifest we derive.
+
+    Stripe's and GitHub's spec repos are MIT, which permits commercial use and
+    derivation outright. MIT also asks that the notice travel with substantial
+    portions, and whether a derived drift artifact counts as one is genuinely
+    unsettled. Carrying the notice costs nothing and makes the question moot.
+    """
+    req = urllib.request.Request(LICENSE_API.format(repo=repo), headers={
+        "User-Agent": "driftcite",
+        "Accept": "application/vnd.github+json",
+    })
+    token = os.environ.get("GITHUB_TOKEN") or _gh_token()
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.load(resp)
+    except Exception:
+        return None, None
+    spdx = (data.get("license") or {}).get("spdx_id")
+    return spdx, data.get("html_url")
 
 
 def load_spec(provider, ref):
@@ -202,12 +243,16 @@ def main():
 
     if args.out:
         import yaml
+        repo = PROVIDERS[args.provider]["repo"]
+        spdx, license_url = source_license(repo)
         doc = {
             "provider": args.provider,
             "spec_version": 1,
-            "generated_from": {"repo": PROVIDERS[args.provider]["repo"],
+            "generated_from": {"repo": repo,
                                "from": args.ref_a, "to": args.ref_b,
                                "from_api_version": ver_a, "to_api_version": ver_b},
+            "source_license": spdx,
+            "source_notice": license_url,
             "sources": [evidence],
             "context": {"file_markers": PROVIDERS[args.provider]["markers"]},
             "artifacts": artifacts,
