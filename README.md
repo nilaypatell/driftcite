@@ -65,6 +65,27 @@ Supply is not the constraint. Stripe publishes 2,345 tagged spec releases,
 GitHub pushes continuously, AWS covers 426 services, and APIs.guru aggregates
 2,529 APIs across 108,837 endpoints.
 
+## Sweep every repo at once
+
+    python3 scanner/sweep.py --parent ~/Desktop --match 'quickcruit-*'
+
+One command, both sources, one report ranked by urgency. Exits 1 on breaking
+drift, so it drops into CI unchanged.
+
+## Lead time is the product
+
+A manifest states a retirement date and then time passes. An entry saying
+"deprecated, retires 2026-06-15" is simply *retired* once that date is behind
+us, and one retiring next week is not a footnote. Severity is computed against
+today, never frozen at authoring time, and findings sort by how long you have
+left:
+
+    [BREAKING] anthropic/model_id/claude-3-5-sonnet-20241022 -- retired (DIED 271 days ago)
+    [BREAKING] anthropic/model_id/claude-3-opus-20240229    -- retired (DIED 202 days ago)
+
+Dependabot has no field for this. It can only tell you a newer version exists,
+never that the one you are on stopped working seven months ago.
+
 ## Matching precision
 
 Substring matching is wrong and the first version proved it: the parameter

@@ -10,6 +10,7 @@ asserts the fact and carries the evidence URL; this only locates it.
 """
 
 import argparse
+import datetime
 import json
 import os
 import re
@@ -32,6 +33,31 @@ SCAN_EXTS = {
 
 MAX_BYTES = 2_000_000
 SEVERITY_ORDER = {"breaking": 0, "warning": 1, "info": 2}
+
+# A manifest states a retirement date. Time then passes. A "deprecated, retires
+# 2026-06-15" entry is simply retired once that date is behind us, and one
+# retiring next week is not a footnote. Severity is therefore computed against
+# today rather than frozen at authoring time. Lead time is the product.
+SOON_DAYS = 90
+
+
+def apply_deadline(artifact, today=None):
+    """Return (severity, status, days_left) with the clock taken into account."""
+    severity = artifact.get("severity", "info")
+    status = artifact.get("status", "unknown")
+    raw = artifact.get("retires_on")
+    if not raw:
+        return severity, status, None
+    try:
+        when = datetime.date.fromisoformat(str(raw))
+    except ValueError:
+        return severity, status, None
+    days = (when - (today or datetime.date.today())).days
+    if days < 0:
+        return "breaking", "retired", days
+    if days <= SOON_DAYS and severity != "breaking":
+        return "breaking", status, days
+    return severity, status, days
 
 # Kinds that are only meaningful inside a file that already talks to the
 # provider. A bare "output_format" in unrelated code is not drift.
@@ -138,6 +164,7 @@ def scan_file(path, index, root):
             if lineno in claimed:
                 continue
             claimed.add(lineno)
+            severity, status, days_left = apply_deadline(art)
             findings.append({
                 "file": os.path.relpath(path, root),
                 "line": lineno,
@@ -145,8 +172,9 @@ def scan_file(path, index, root):
                 "provider": provider,
                 "artifact": art["id"],
                 "kind": art["kind"],
-                "status": art["status"],
-                "severity": art.get("severity", "info"),
+                "status": status,
+                "severity": severity,
+                "days_left": days_left,
                 "replacement": art.get("replacement"),
                 "retires_on": str(art["retires_on"]) if art.get("retires_on") else None,
                 "note": art.get("note", ""),
@@ -154,6 +182,26 @@ def scan_file(path, index, root):
                 "excerpt": line.strip()[:160],
             })
     return findings
+
+
+def deadline_phrase(f):
+    """Say how long you have, not just what the date is."""
+    days = f.get("days_left")
+    when = f.get("retires_on")
+    if days is None:
+        return f" (retires {when})" if when else ""
+    if days < 0:
+        return f" (DIED {abs(days)} days ago, {when})"
+    if days == 0:
+        return f" (DIES TODAY, {when})"
+    return f" (breaks in {days} days, {when})"
+
+
+def urgency(f):
+    """Most urgent first: breaking before warning, soonest deadline before later,
+    dated before undated."""
+    days = f.get("days_left")
+    return (SEVERITY_ORDER.get(f["severity"], 3), days is None, days if days is not None else 0)
 
 
 def dedupe(findings):
@@ -171,7 +219,7 @@ def report(findings, root):
         print(f"No drift found in {root}")
         return 0
 
-    findings.sort(key=lambda f: (SEVERITY_ORDER.get(f["severity"], 3), f["file"], f["line"]))
+    findings.sort(key=lambda f: urgency(f) + (f["file"], f["line"]))
 
     counts = {}
     for f in findings:
@@ -183,8 +231,7 @@ def report(findings, root):
     for f in findings:
         if f["artifact"] != current:
             current = f["artifact"]
-            when = f" (retires {f['retires_on']})" if f["retires_on"] else ""
-            print(f"[{f['severity'].upper()}] {f['artifact']} -- {f['status']}{when}")
+            print(f"[{f['severity'].upper()}] {f['artifact']} -- {f['status']}{deadline_phrase(f)}")
             print(f"  {f['note']}")
             if f["replacement"]:
                 print(f"  use instead: {f['replacement']}")

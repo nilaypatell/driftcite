@@ -73,22 +73,72 @@ def npm_deps(root):
     return found
 
 
-def pypi_deps(root):
-    """Pinned requirements only (name==version). Unpinned lines are skipped."""
+def normalize(name):
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
+def installed_python():
+    """normalized name -> version, read from installed *.dist-info directories.
+
+    Most real requirements files use >= rather than ==, so the file alone does
+    not say which version is running. The dist-info on disk does.
+    """
+    import site
     found = {}
-    pat = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*==\s*([A-Za-z0-9._+!-]+)")
+    roots = []
+    try:
+        roots.extend(site.getsitepackages())
+    except AttributeError:
+        pass
+    try:
+        roots.append(site.getusersitepackages())
+    except AttributeError:
+        pass
+    for d in roots:
+        if not d or not os.path.isdir(d):
+            continue
+        try:
+            entries = os.listdir(d)
+        except OSError:
+            continue
+        for entry in entries:
+            if not entry.endswith(".dist-info"):
+                continue
+            stem = entry[: -len(".dist-info")]
+            if "-" not in stem:
+                continue
+            name, _, version = stem.rpartition("-")
+            found.setdefault(normalize(name), version)
+    return found
+
+
+def pypi_deps(root):
+    """Requirements of any pin style. `==` is taken at face value; everything
+    else is resolved against what is actually installed."""
+    installed = installed_python()
+    found = {}
+    pinned = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*==\s*([A-Za-z0-9._+!-]+)")
+    named = re.compile(r"^\s*([A-Za-z0-9._-]+)\s*(?:\[[^\]]*\])?\s*(?:[<>=!~]|$)")
     for req in find_files(root, {"requirements.txt"}, globs=(r"requirements-.+\.txt",)):
         try:
             with open(req, encoding="utf-8", errors="replace") as fh:
                 lines = fh.readlines()
         except OSError:
             continue
+        rel = os.path.relpath(req, root)
         for line in lines:
-            if line.lstrip().startswith("#"):
+            stripped = line.lstrip()
+            if not stripped or stripped.startswith(("#", "-")):
                 continue
-            m = pat.match(line)
+            m = pinned.match(line)
             if m:
-                found.setdefault((m.group(1), m.group(2)), os.path.relpath(req, root))
+                found.setdefault((m.group(1), m.group(2)), rel)
+                continue
+            m = named.match(line)
+            if m:
+                version = installed.get(normalize(m.group(1)))
+                if version:
+                    found.setdefault((m.group(1), version), f"{rel} (installed)")
     return found
 
 
