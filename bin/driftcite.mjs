@@ -143,6 +143,21 @@ async function* walk(dir) {
   }
 }
 
+/**
+ * Documentation quotes parameter names constantly, and a comment is never a
+ * call site. Cheap and deliberately conservative: only lines that *begin* with
+ * a comment marker are skipped, so a trailing comment after real code still
+ * gets scanned.
+ */
+const COMMENT_START = /^\s*(#|\/\/|\*|<!--|--|;)/;
+const isComment = (line) => COMMENT_START.test(line);
+
+function isDriftData(text) {
+  const head = text.slice(0, 4000);
+  if (head.includes('"feed_version"') || head.includes("feed_version:")) return true;
+  return /(^|\n)\s*spec_version\s*:/.test(head) && /(^|\n)artifacts\s*:/.test(text.slice(0, 20000));
+}
+
 async function scanRepo(root, artifacts) {
   // Longest literal first so a specific id wins over a prefix of itself.
   const index = [];
@@ -160,6 +175,11 @@ async function scanRepo(root, artifacts) {
     } catch {
       continue;
     }
+    // A drift manifest contains every literal by definition, so scanning one
+    // reports the whole feed as findings. Anyone who vendors the feed into
+    // their repo would hit this, not just us.
+    if (isDriftData(text)) continue;
+
     const lowered = text.toLowerCase();
     let lines = null;
 
@@ -174,6 +194,7 @@ async function scanRepo(root, artifacts) {
       if (lines === null) lines = text.split(/\r?\n/);
 
       for (let i = 0; i < lines.length; i++) {
+        if (isComment(lines[i])) continue;
         if (!re.test(lines[i])) continue;
         const { severity, status, daysLeft } = applyDeadline(art);
         findings.push({

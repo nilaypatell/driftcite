@@ -134,11 +134,35 @@ def walk(root):
                     continue
 
 
+# Documentation quotes parameter names constantly, and a comment is never a
+# call site. Deliberately conservative: only lines that *begin* with a comment
+# marker are skipped, so a trailing comment after real code is still scanned.
+COMMENT_START = re.compile(r"^\s*(#|//|\*|<!--|--|;)")
+
+
+def is_comment(line):
+    return bool(COMMENT_START.match(line))
+
+
+def is_drift_data(text):
+    head = text[:4000]
+    if '"feed_version"' in head or "feed_version:" in head:
+        return True
+    return bool(re.search(r"(^|\n)\s*spec_version\s*:", head)) and \
+        bool(re.search(r"(^|\n)artifacts\s*:", text[:20000]))
+
+
 def scan_file(path, index, root):
     try:
         with open(path, encoding="utf-8", errors="replace") as fh:
             text = fh.read()
     except OSError:
+        return []
+
+    # A drift manifest contains every literal by definition, so scanning one
+    # reports the whole feed back as findings. Anyone who vendors the feed into
+    # their own repository would hit this too, not just this project.
+    if is_drift_data(text):
         return []
 
     lowered = text.lower()
@@ -158,6 +182,8 @@ def scan_file(path, index, root):
             lines = text.splitlines()
         claimed = set()
         for lineno, line in enumerate(lines, 1):
+            if is_comment(line):
+                continue
             if not matcher.search(line):
                 continue
             # One hit per line per literal, even if it appears twice.

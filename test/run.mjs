@@ -87,6 +87,31 @@ check(
   runOn({ "unrelated.js": `const mode = 'hosted';` }).length === 0
 );
 
+// Documentation quotes parameter names constantly. A comment is not a call site.
+check(
+  "does not match a quoted parameter inside a comment",
+  runOn({ "notes.js": `// stripe: a bare "refund" here is documentation, not a call` })
+    .length === 0
+);
+
+// But a trailing comment must not hide the real code on the same line.
+check(
+  "still matches real code that has a trailing comment",
+  runOn({ "app.js": `const m = 'claude-3-opus-20240229'; // legacy` }).length > 0
+);
+
+// A manifest contains every literal by definition, so vendoring the feed into
+// a repository must not report the entire feed back as findings.
+check(
+  "ignores vendored drift manifests",
+  runOn({
+    "vendor/feed.json": JSON.stringify({
+      feed_version: 1,
+      artifacts: [{ id: "x", match: { literals: ["claude-3-opus-20240229"] } }],
+    }),
+  }).length === 0
+);
+
 console.log("\ndeadline arithmetic");
 
 const findings = runOn({ "app.js": `const m = 'claude-3-opus-20240229';` });
