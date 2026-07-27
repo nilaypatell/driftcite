@@ -205,6 +205,25 @@ def enum_inventory(spec):
 
 # ----------------------------------------------------------------------- diff
 
+def distinctive_enum(value):
+    """Is this enum value specific enough to be worth matching in source?
+
+    GitHub's spec retired enum values called "None", "Remove", "Replace" and
+    "number". Those are ordinary words, and emitting them would flag a quoted
+    string in every file that happens to mention GitHub. A retired identifier
+    that is actually worth finding almost always carries a separator or a digit
+    (claude-3-opus-20240229, last_during_period, gpt-4o-mini) or is long enough
+    that it cannot be an English word by accident.
+    """
+    if len(value) < 4:
+        return False
+    if any(ch in value for ch in "-_.:/"):
+        return True
+    if any(ch.isdigit() for ch in value):
+        return True
+    return len(value) >= 12
+
+
 def diff(provider, ref_a, ref_b, min_len=4):
     spec_a, spec_b = load_spec(provider, ref_a), load_spec(provider, ref_b)
     ops_a, ops_b = operations(spec_a), operations(spec_b)
@@ -251,7 +270,7 @@ def diff(provider, ref_a, ref_b, min_len=4):
 
     # Enum values the provider retired. This is the model-ID case.
     for value in sorted(set(inv_a) - set(inv_b)):
-        if len(value) < min_len:
+        if not distinctive_enum(value):
             continue
         where = sorted(inv_a[value])
         # A value used in dozens of places is structural vocabulary, not a

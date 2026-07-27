@@ -9,7 +9,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -125,6 +125,71 @@ check("days elapsed is negative and counted", typeof opus?.daysLeft === "number"
   `got daysLeft=${opus?.daysLeft}`);
 check("every finding carries its evidence url", findings.every((f) => f.evidence),
   "a finding without an evidence URL is exactly what this project exists to avoid");
+
+console.log("\nautomatic fixes");
+
+function runFix(files, write) {
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-fix-"));
+  for (const [name, body] of Object.entries(files)) {
+    const full = path.join(dir, name);
+    mkdirSync(path.dirname(full), { recursive: true });
+    writeFileSync(full, body);
+  }
+  const args = [CLI, dir, "--offline", "--no-deps", "--fix"];
+  if (write) args.push("--write");
+  let out = "";
+  try {
+    out = execFileSync("node", args, { encoding: "utf8" });
+  } catch (err) {
+    out = err.stdout || "";
+  }
+  const result = { out, files: {} };
+  for (const name of Object.keys(files)) {
+    result.files[name] = readFileSync(path.join(dir, name), "utf8");
+  }
+  rmSync(dir, { recursive: true, force: true });
+  return result;
+}
+
+{
+  const r = runFix({ "a.js": `const m = 'claude-3-opus-20240229';` }, true);
+  check("applies the replacement the provider named",
+    r.files["a.js"].includes("claude-opus-4-8"));
+  check("removes the retired literal", !r.files["a.js"].includes("claude-3-opus-20240229"));
+  check("preserves the original quote style",
+    r.files["a.js"].includes("'claude-opus-4-8'"),
+    `got: ${r.files["a.js"].trim()}`);
+}
+
+{
+  const src = `const a = "claude-3-opus-20240229";\n// keep 'claude-3-opus-20240229' here\n`;
+  const r = runFix({ "b.js": src }, true);
+  check("fixes double-quoted code without touching the comment",
+    r.files["b.js"].includes('"claude-opus-4-8"') &&
+    r.files["b.js"].includes("// keep 'claude-3-opus-20240229' here"));
+}
+
+{
+  const src = `const m = 'claude-3-opus-20240229';\nconst untouched = 1;\n`;
+  const r = runFix({ "c.js": src }, true);
+  const lines = r.files["c.js"].split("\n");
+  check("changes only the line it reported", lines[1] === "const untouched = 1;");
+}
+
+{
+  const r = runFix({ "d.js": `const m = 'claude-3-opus-20240229';` }, false);
+  check("dry run leaves the file alone",
+    r.files["d.js"].includes("claude-3-opus-20240229"));
+  check("dry run says how to apply", r.out.includes("--write"));
+}
+
+{
+  // budget_tokens' replacement is prose, not a token, so it must not be swapped.
+  const r = runFix({ "e.js": `// anthropic\nconst o = { budget_tokens: 100 };` }, true);
+  check("refuses to auto-fix when the replacement is prose",
+    r.files["e.js"].includes("budget_tokens"));
+  check("explains what needs a human", /need a human/.test(r.out));
+}
 
 console.log("\nreporting");
 check(

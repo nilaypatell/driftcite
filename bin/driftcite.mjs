@@ -10,7 +10,7 @@
  * you already have installed was deprecated by its own maintainer.
  */
 
-import { readFile, readdir, stat } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -221,6 +221,146 @@ async function scanRepo(root, artifacts) {
   });
 }
 
+// --------------------------------------------------------------------- fixes
+
+/**
+ * A replacement is only applied when it is a drop-in swap of one literal for
+ * another. Manifests carry prose in that field too ("thinking: {type:
+ * adaptive} plus output_config.effort", "none, effort is GA"), and guessing at
+ * prose is how an automated fix breaks somebody's build. Those are reported
+ * and left alone.
+ *
+ * There is no model anywhere in this path. It replaces a string the provider
+ * retired with the string the provider named, inside the exact quoting the
+ * code already used.
+ */
+const FIXABLE_KINDS = new Set(["model_id", "enum_value", "endpoint"]);
+const CLEAN_TOKEN = /^[A-Za-z0-9][A-Za-z0-9._/-]*$/;
+
+function isFixable(art) {
+  if (!FIXABLE_KINDS.has(art.kind)) return false;
+  const r = art.replacement;
+  if (!r || typeof r !== "string") return false;
+  return CLEAN_TOKEN.test(r.trim()) && !/\s/.test(r.trim());
+}
+
+async function planFixes(root, findings, artifactsById) {
+  const targets = new Map();   // file -> [{finding, art}]
+  const unfixable = new Map(); // artifact id -> reason
+
+  for (const f of findings) {
+    const art = artifactsById.get(f.artifact);
+    if (!art) continue;
+    if (!isFixable(art)) {
+      if (!unfixable.has(art.id)) {
+        unfixable.set(art.id, art.replacement
+          ? `replacement is not a drop-in swap: ${String(art.replacement).slice(0, 90)}`
+          : "the provider named no replacement");
+      }
+      continue;
+    }
+    if (!targets.has(f.file)) targets.set(f.file, []);
+    targets.get(f.file).push({ finding: f, art });
+  }
+
+  const edits = [];
+  const writes = [];   // {full, body} decided only after every edit succeeded
+
+  for (const [file, items] of targets) {
+    const full = path.join(root, file);
+    let original;
+    try {
+      original = await readFile(full, "utf8");
+    } catch {
+      continue;
+    }
+
+    // Preserve the file's existing line endings rather than normalising them.
+    const eol = original.includes("\r\n") ? "\r\n" : "\n";
+    const lines = original.split(/\r?\n/);
+    const fileEdits = [];
+
+    for (const { finding, art } of items) {
+      const i = finding.line - 1;
+      if (i < 0 || i >= lines.length) continue;
+      if (isComment(lines[i])) continue;
+
+      const replacement = art.replacement.trim();
+      for (const literal of art.match?.literals || []) {
+        if (literal === replacement) continue;
+        // Swap only inside the quoting the code already uses, so a bare
+        // occurrence in prose or a longer identifier is never touched.
+        const quoted = new RegExp(`(['"\`])${esc(literal)}\\1`, "g");
+        const before = lines[i];
+        const after = before.replace(quoted, `$1${replacement}$1`);
+        if (after === before) continue;
+
+        lines[i] = after;
+        fileEdits.push({
+          file, line: finding.line, from: literal, to: replacement,
+          artifact: art.id, evidence: art.evidence ?? null,
+          before: before.trim(), after: after.trim(),
+        });
+      }
+    }
+
+    if (!fileEdits.length) continue;
+
+    const body = lines.join(eol);
+    // Only the intended lines may differ. If anything else moved, the file is
+    // left untouched rather than half-edited.
+    const originalLines = original.split(/\r?\n/);
+    const newLines = body.split(/\r?\n/);
+    const touched = new Set(fileEdits.map((e) => e.line - 1));
+    let safe = originalLines.length === newLines.length;
+    if (safe) {
+      for (let i = 0; i < originalLines.length; i++) {
+        if (!touched.has(i) && originalLines[i] !== newLines[i]) {
+          safe = false;
+          break;
+        }
+      }
+    }
+    if (!safe) {
+      unfixable.set(file, "edit would have changed lines it did not intend; skipped");
+      continue;
+    }
+
+    edits.push(...fileEdits);
+    writes.push({ full, body });
+  }
+
+  return {
+    edits,
+    writes,
+    unfixable: [...unfixable].map(([artifact, reason]) => ({ artifact, reason })),
+  };
+}
+
+function reportFixes(edits, unfixable, wrote) {
+  if (edits.length) {
+    console.log(
+      c(BOLD, wrote ? `applied ${edits.length} fix(es)` : `${edits.length} fix(es) available`)
+    );
+    for (const e of edits) {
+      console.log(`\n  ${e.file}:${e.line}`);
+      console.log(c(RED, `    - ${e.before}`));
+      console.log(c(GRN, `    + ${e.after}`));
+      if (e.evidence) console.log(c(DIM, `    ${e.evidence}`));
+    }
+    console.log();
+    if (!wrote) console.log(c(DIM, "  run again with --write to apply\n"));
+  }
+  if (unfixable.length) {
+    console.log(c(BOLD, `${unfixable.length} finding(s) need a human`));
+    for (const u of unfixable) {
+      console.log(`  ${u.artifact}`);
+      console.log(c(DIM, `    ${u.reason}`));
+    }
+    console.log();
+  }
+}
+
 // ---------------------------------------------------------------- registries
 
 async function npmDeps(root) {
@@ -293,7 +433,7 @@ async function scanRegistry(root) {
 // -------------------------------------------------------------------- report
 
 const BOLD = "[1m", DIM = "[2m", RED = "[31m",
-      YEL = "[33m", OFF = "[0m";
+      YEL = "[33m", GRN = "[32m", OFF = "[0m";
 const color = process.stdout.isTTY && !process.env.NO_COLOR;
 const c = (code, s) => (color ? code + s + OFF : s);
 
@@ -369,6 +509,8 @@ async function main() {
   npx driftcite . --offline   use the bundled feed, no network at all
   npx driftcite . --json      machine-readable output
   npx driftcite . --no-deps   skip the npm registry check
+  npx driftcite . --fix       show the swaps the provider named
+  npx driftcite . --fix --write   apply them
 
 Exits 1 if anything breaking was found, so it drops into CI unchanged.
 Your source code is never sent anywhere.`);
@@ -379,6 +521,8 @@ Your source code is never sent anywhere.`);
   const offline = argv.includes("--offline");
   const asJson = argv.includes("--json");
   const noDeps = argv.includes("--no-deps");
+  const fix = argv.includes("--fix");
+  const write = argv.includes("--write");
 
   const { feed, source } = await loadFeed({ offline });
   const findings = await scanRepo(root, feed.artifacts);
@@ -390,7 +534,20 @@ Your source code is never sent anywhere.`);
     console.log(JSON.stringify({ root, feed: source, findings, registry }, null, 2));
     return findings.some((f) => f.severity === "breaking") ? 1 : 0;
   }
-  return report(findings, registry, root, source);
+
+  const code = report(findings, registry, root, source);
+
+  if (fix) {
+    const byId = new Map(feed.artifacts.map((a) => [a.id, a]));
+    const plan = await planFixes(root, findings, byId);
+    if (write) {
+      for (const w of plan.writes) await writeFile(w.full, w.body, "utf8");
+    }
+    reportFixes(plan.edits, plan.unfixable, write);
+    if (write && plan.edits.length) return 0;
+  }
+
+  return code;
 }
 
 main().then(

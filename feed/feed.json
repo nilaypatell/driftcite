@@ -14,6 +14,16 @@
    "artifact_count": 15
   },
   {
+   "provider": "github",
+   "manifest": "github.generated.yaml",
+   "source_license": "MIT",
+   "source_notice": "https://github.com/github/rest-api-description/blob/main/LICENSE.md",
+   "sources": [
+    "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0"
+   ],
+   "artifact_count": 46
+  },
+  {
    "provider": "openai",
    "manifest": "openai.generated.yaml",
    "source_license": "MIT",
@@ -31,7 +41,7 @@
    "sources": [
     "https://github.com/stripe/openapi/compare/v1200...v2345"
    ],
-   "artifact_count": 14
+   "artifact_count": 10
   }
  ],
  "artifacts": [
@@ -350,6 +360,880 @@
    ]
   },
   {
+   "id": "github/endpoint//applications/grants/{grant_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/applications/grants/{grant_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations/{authorization_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations/{authorization_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/credential-authorizations/{credential_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/credential-authorizations/{credential_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /orgs/{org}/credential-authorizations/{credential_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/external-groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//reactions/{reaction_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/reactions/{reaction_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /reactions/{reaction_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//applications/grants",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/applications/grants"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /applications/grants existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//applications/grants/{grant_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/applications/grants/{grant_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /authorizations existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations/{authorization_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations/{authorization_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/audit-log",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/audit-log"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/audit-log existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/actions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/actions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/actions existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/packages",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/packages"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/packages existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/shared-storage"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/shared-storage existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/audit-log",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/audit-log"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/audit-log existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/credential-authorizations",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/credential-authorizations"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/credential-authorizations existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/external-group/{group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/external-group/{group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/external-group/{group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/external-groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/external-groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/team-sync/groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/team-sync/groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/team-sync/groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/teams/{team_id}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations/{authorization_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations/{authorization_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/external-groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/teams/{team_id}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /authorizations existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations/clients/{client_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations/clients/{client_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /authorizations/clients/{client_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//authorizations/clients/{client_id}/{fingerprint}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/authorizations/clients/{client_id}/{fingerprint}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /authorizations/clients/{client_id}/{fingerprint} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
    "id": "openai/endpoint//engines",
    "kind": "endpoint",
    "match": {
@@ -550,82 +1434,6 @@
    "status": "removed",
    "severity": "breaking",
    "note": "Parameter 'refund' on GET /v1/credit_notes/preview/lines existed in 2024-06-20 and is gone in 2026-06-24.dahlia.",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/enum_value/embedded",
-   "kind": "enum_value",
-   "match": {
-    "literals": [
-     "embedded"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Enum value 'embedded' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.checkout.session.properties.ui_mode",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/enum_value/fastest",
-   "kind": "enum_value",
-   "match": {
-    "literals": [
-     "fastest"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Enum value 'fastest' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.payment_intent_payment_method_options_us_bank_account.properties.preferred_settlement_speed",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/enum_value/hosted",
-   "kind": "enum_value",
-   "match": {
-    "literals": [
-     "hosted"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Enum value 'hosted' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.checkout.session.properties.ui_mode",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/enum_value/increment",
-   "kind": "enum_value",
-   "match": {
-    "literals": [
-     "increment"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Enum value 'increment' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: paths./v1/subscription_items/{subscription_item}/usage_records.post.requestBody.content.application/x-www-form-urlencoded.schema.properties.action",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [

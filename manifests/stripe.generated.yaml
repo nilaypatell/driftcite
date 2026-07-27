@@ -74,46 +74,6 @@ artifacts:
   note: Parameter 'refund' on GET /v1/credit_notes/preview/lines existed in 2024-06-20
     and is gone in 2026-06-24.dahlia.
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/enum_value/embedded
-  kind: enum_value
-  match:
-    literals:
-    - embedded
-  status: removed
-  severity: breaking
-  note: 'Enum value ''embedded'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: components.schemas.checkout.session.properties.ui_mode'
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/enum_value/fastest
-  kind: enum_value
-  match:
-    literals:
-    - fastest
-  status: removed
-  severity: breaking
-  note: 'Enum value ''fastest'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: components.schemas.payment_intent_payment_method_options_us_bank_account.properties.preferred_settlement_speed'
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/enum_value/hosted
-  kind: enum_value
-  match:
-    literals:
-    - hosted
-  status: removed
-  severity: breaking
-  note: 'Enum value ''hosted'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: components.schemas.checkout.session.properties.ui_mode'
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/enum_value/increment
-  kind: enum_value
-  match:
-    literals:
-    - increment
-  status: removed
-  severity: breaking
-  note: 'Enum value ''increment'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: paths./v1/subscription_items/{subscription_item}/usage_records.post.requestBody.content.application/x-www-form-urlencoded.schema.properties.action'
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
 - id: stripe/enum_value/last_during_period
   kind: enum_value
   match:

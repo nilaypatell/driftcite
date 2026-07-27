@@ -89,6 +89,35 @@ python3 scanner/registry.py .
 python3 scanner/sweep.py --parent ~/code --match '*'
 ```
 
+## Fixing it
+
+```
+npx driftcite . --fix           # show the swaps
+npx driftcite . --fix --write   # apply them
+```
+
+```
+  src/config/ai-providers.js:309
+    - model: 'claude-3-opus-20240229',
+    + model: 'claude-opus-4-8',
+    https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+```
+
+**There is no model in this path either.** It swaps a string the provider
+retired for the string the provider named, inside the quoting your code
+already uses. It refuses when the replacement is prose rather than a drop-in
+token, and says so instead of guessing:
+
+```
+  1 finding needs a human
+    anthropic/request_param/budget_tokens
+      replacement is not a drop-in swap: thinking: {type: "adaptive"} plus output_config.effort
+```
+
+Comment lines are never edited, only the lines it reported are allowed to
+change, and if an edit would have touched anything else the file is left alone
+entirely.
+
 ## In CI
 
 ```yaml
