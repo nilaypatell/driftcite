@@ -44,8 +44,8 @@ jobs:
 
       - name: Commit the day
         run: |
-          git config user.name "driftcite"
-          git config user.email "noreply@users.noreply.github.com"
+          git config user.name "driftcite clock"
+          git config user.email "77018379+nilaypatell@users.noreply.github.com"
           git add manifests/
           if git diff --staged --quiet; then
             echo "nothing to commit"
