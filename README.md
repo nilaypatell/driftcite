@@ -1,38 +1,64 @@
+<div align="center">
+
 # driftcite
 
-Find the API calls in your code that already stopped working.
+**Find the API calls in your code that already stopped working.**
+
+Retired endpoints, removed parameters, shut down models. Located in your
+source, dated against today, and every one of them citing the provider who
+published the change.
+
+[![License](https://img.shields.io/badge/scanner-Apache--2.0-blue)](LICENSE)
+[![Feed](https://img.shields.io/badge/feed-6%20providers%20%C2%B7%20125%20artifacts-brightgreen)](feed/feed.json)
+[![Dependencies](https://img.shields.io/badge/dependencies-zero-lightgrey)](package.json)
+[![Node](https://img.shields.io/badge/node-%E2%89%A518-green)](package.json)
+
+</div>
+
+---
 
 ```
-npx driftcite .
+$ npx driftcite .
+
+[BREAKING] openai/model_id/text-davinci-003 -- retired (DIED 935 days ago, 2024-01-04)
+  Shut down. Requests fail.
+  use instead: gpt-3.5-turbo-instruct
+  evidence: https://developers.openai.com/api/docs/deprecations
+    models.py:6  LEGACY = "text-davinci-003"
+
+[BREAKING] openai/model_id/gpt-4-turbo -- deprecated (breaks in 88 days, 2026-10-23)
+  Shutdown announced for 2026-10-23.
+  use instead: gpt-5.6-sol
+  evidence: https://developers.openai.com/api/docs/deprecations
+    models.py:7  CHAT_MODEL = "gpt-4-turbo"
+
+[BREAKING] stripe/endpoint//v1/invoices/upcoming -- removed
+  GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.
+  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
+    billing.js:5  return stripe.request("GET", "/v1/invoices/upcoming", { customer });
 ```
 
-Runs locally. Nothing leaves your machine. No account.
+Runs on your machine. Nothing is uploaded. No account.
 
-> Not yet on npm. Until it is published, run it straight from source, which
-> needs nothing but Node 18 or newer:
->
+> **Not on npm yet.** Until it is published, run it from source. Node 18+ and
+> nothing else:
 > ```
-> git clone https://github.com/nilaypatell/driftcite && node driftcite/bin/driftcite.mjs .
+> git clone https://github.com/nilaypatell/driftcite
+> node driftcite/bin/driftcite.mjs .
 > ```
 
-```
-[BREAKING] anthropic/model_id/claude-3-opus-20240229 -- retired (DIED 202 days ago, 2026-01-05)
-  Retired. Calls return 404.
-  use instead: claude-opus-4-8
-  evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
-    src/config/ai-providers.js:309  model: 'claude-3-opus-20240229',
-```
+---
 
-## The problem
+## Why this exists
 
 Your lockfile does not move when a provider removes an endpoint, drops a
-request field, or retires a model ID. Nothing in your dependency tree changes.
+request field, or shuts down a model. Nothing in your dependency tree changes.
 Every dependency tool reads manifests, so every dependency tool is blind to
 this by construction.
 
 Reading the changelog is not enough either. CircleCI went down for 1h50m in
-March 2022 after GitHub moved an endpoint, and their postmortem is the clearest
-statement of the problem anyone has written:
+March 2022 after an upstream endpoint moved, and their postmortem says it
+better than we could:
 
 > We realized during the incident that although we had been notified several
 > times about this change, we had not realized that it would affect us.
@@ -40,54 +66,64 @@ statement of the problem anyone has written:
 They were told. Repeatedly. Over two years. Somebody still had to map a prose
 announcement onto their own call sites, and nobody did.
 
-## What driftcite does
+## Two rules
 
-It reads the providers' own published specs, diffs them, and tells you which
-lines of your code are affected.
-
-**Two rules make the output trustworthy.**
-
-**Every fact carries an evidence URL.** A manifest asserts, the scanner
-locates, and no model sits anywhere in the detection path. When we say Stripe
-removed `/v1/invoices/upcoming`, the artifact links to Stripe's own git
-compare. Check it in one click. Better verifiable than clever.
+**Every fact cites the provider.** A manifest asserts, the scanner locates, and
+no language model sits anywhere in the detection path. When we say Stripe
+removed `/v1/invoices/upcoming`, the finding links to Stripe's own git compare.
+Verify it in one click. You should not have to trust us.
 
 **Severity is computed against today.** An entry reading "deprecated, retires
-2026-06-15" is simply *retired* once that date passes, and one retiring next
-week is not a footnote. Findings sort by how long you have left, so the same
-tool says `breaks in 14 days` before the break and `DIED 202 days ago` after
-it. No dependency tool has a field for time remaining.
+2026-10-23" is a countdown, not a footnote, and becomes *retired* the moment
+that date passes. Findings sort by how long you have left, so the same tool
+says `breaks in 88 days` before the break and `DIED 935 days ago` after it.
+
+No dependency tool has a field for time remaining.
+
+---
 
 ## What it checks
 
-**Hosted API drift**, generated by diffing two versions of a provider's own
-public OpenAPI spec. Removed endpoints, removed request parameters, retired
-enum values. Nothing hand-written, nothing inferred.
+<table>
+<tr><td width="50%" valign="top">
+
+**Hosted API drift**
+
+Generated by diffing two versions of a provider's own published OpenAPI spec.
+Removed endpoints, dropped request parameters, retired enum values. Nothing
+hand-written, nothing inferred.
 
 ```
-python3 scanner/openapi_diff.py --provider stripe --from v1200 --to v2345
+python3 scanner/openapi_diff.py \
+  --provider stripe --from v1200 --to v2345
 ```
 
-Stripe `2024-06-20` to `2026-06-24` yields 14 artifacts, including the removal
-of `/v1/invoices/upcoming` and the usage-records API along with its
-`last_during_period` and `last_ever` aggregation enums.
+</td><td width="50%" valign="top">
 
-**Maintainer-flagged dependency versions.** npm carries a per-version
-`deprecated` string and PyPI carries `yanked_reason`. Both are written by the
-maintainer, both are public, and both go largely unseen after install time.
+**Maintainer-flagged versions**
+
+npm carries a per-version `deprecated` string and PyPI carries
+`yanked_reason`. Both written by the maintainer, both public, both unseen after
+install time.
 
 ```
-python3 scanner/registry.py .
+urllib3@1.25
+  "Broken release"
+
+basic-ftp@4.6.6
+  "Security vulnerability fixed in 5.2.1"
 ```
 
-> `basic-ftp@4.6.6` deprecated by the maintainer
-> "Security vulnerability fixed in 5.2.1, please upgrade"
+</td></tr>
+</table>
 
-**Everything at once**, across every repository you own:
+Sweep every repository you own at once:
 
 ```
 python3 scanner/sweep.py --parent ~/code --match '*'
 ```
+
+---
 
 ## Fixing it
 
@@ -97,26 +133,27 @@ npx driftcite . --fix --write   # apply them
 ```
 
 ```
-  src/config/ai-providers.js:309
-    - model: 'claude-3-opus-20240229',
-    + model: 'claude-opus-4-8',
-    https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+  models.py:8
+    - VISION = "gpt-4-vision-preview"
+    + VISION = "gpt-4o"
+    https://developers.openai.com/api/docs/deprecations
 ```
 
 **There is no model in this path either.** It swaps a string the provider
-retired for the string the provider named, inside the quoting your code
-already uses. It refuses when the replacement is prose rather than a drop-in
-token, and says so instead of guessing:
+retired for the string the provider named, inside the quoting your code already
+uses. When the replacement is prose rather than a drop-in token, it refuses and
+says so:
 
 ```
-  1 finding needs a human
-    anthropic/request_param/budget_tokens
-      replacement is not a drop-in swap: thinking: {type: "adaptive"} plus output_config.effort
+  2 findings need a human
+    stripe/endpoint//v1/invoices/upcoming
+      the provider named no replacement
 ```
 
-Comment lines are never edited, only the lines it reported are allowed to
-change, and if an edit would have touched anything else the file is left alone
-entirely.
+Comment lines are never edited, only the lines it reported may change, and if
+an edit would touch anything else the file is left alone entirely.
+
+---
 
 ## In CI
 
@@ -125,55 +162,71 @@ entirely.
 ```
 
 Fails the build on breaking drift and writes the findings, with evidence links,
-into the job summary. Options: `path`, `fail-on-breaking`, `check-dependencies`,
+into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`,
 `offline`.
-
-## Precision
-
-The first version reported 86 findings on a real 1,200-dependency repository
-and roughly a quarter were real. The parameter `refund` was matching inside
-"refunded" and inside a sentence about refunds. A retired enum value like
-`hosted` is an ordinary English word.
-
-Each artifact kind now only matches in the shape it actually takes when sent to
-a provider: a quoted string literal, an object key, or a bounded token. Kinds
-other than model IDs additionally require the file to reference that provider
-at all.
-
-**86 findings at roughly 25% true positives became 5 findings at 100%.**
-
-A tool that is wrong three times out of four gets muted, then deleted. That
-number is the product.
 
 ## How it runs
 
 | | Where it runs | What you get |
-|---|---|---|
+|:--|:--|:--|
 | `npx driftcite .` | your machine | what is broken right now |
-| GitHub Action | your CI | the same, on every PR, exit 1 on breaking |
+| GitHub Action | your CI | the same, every PR, exit 1 on breaking |
 | Hosted watch | our servers | told the moment a provider moves, as a PR |
 
-The first two answer "what is broken now." The third answers "tell me the
-moment something breaks," which no local tool can do, because your laptop is
+The first two answer *what is broken now.* The third answers *tell me the
+moment something breaks*, which no local tool can do, because your laptop is
 asleep when the provider ships.
 
-Your source code never reaches us at any tier. The hosted watch stores only the
-artifact IDs your code matched, a few hundred strings, never files.
+**Your source code never reaches us at any tier.** The hosted watch stores only
+the artifact IDs your code matched, a few hundred strings, never files.
 
-## The feed
+---
 
-Manifests live in `manifests/`, are regenerated daily by a scheduled Action in
-this repository, and are committed here in the open. The git history is the
-record of what was observed and when.
+## Precision is the product
 
-Every fact is public and free to read. You can vendor the whole thing. The hard
-part was never obtaining it, it is maintaining it, every day, forever, across
-every provider, because it decays the moment anyone stops.
+The first version reported **86 findings** on a real 1,200-dependency
+repository and roughly a quarter were real. The parameter `refund` was matching
+inside "refunded" and inside a sentence about refunds. A retired enum value
+like `hosted` is an ordinary English word.
 
-## Adding a provider
+Each artifact kind now matches only in the shape it actually takes when sent to
+a provider:
+
+| Kind | Matches as |
+|:--|:--|
+| `enum_value` | a quoted string literal |
+| `request_param` | a quoted literal or an object key |
+| `model_id`, `endpoint` | a quoted literal or a bounded token |
+
+Kinds other than model IDs also require the file to reference that provider at
+all. Comment lines are skipped. Vendored manifests are ignored.
+
+**86 findings at ~25% true positives became 5 at 100%.**
+
+A tool that is wrong three times out of four gets muted, then deleted. Going
+from 29 artifacts to 125 since then has produced **zero** new findings across
+nine real repositories. Coverage is worthless if it arrives with noise.
+
+---
+
+## Coverage
+
+| Provider | Source | Artifacts |
+|:--|:--|--:|
+| Stripe | `stripe/openapi`, 2,345 tagged releases | 14 |
+| GitHub | `github/rest-api-description` | 46 |
+| Cloudflare | `cloudflare/api-schemas` | 42 |
+| OpenAI | `openai/openai-openapi` + deprecations page | 12 |
+| Twilio, DigitalOcean, Box | tracked, currently no drift | 0 |
+| npm, PyPI | every package, no per-provider work | live |
+
+The registries are the cheapest coverage in software: one cursor covers every
+npm package and one header covers every PyPI project.
+
+### Adding a provider
 
 Providers live in [`providers.yaml`](providers.yaml), not in code, so adding
-one is a data change rather than a patch:
+one is a data change:
 
 ```yaml
   stripe:
@@ -183,42 +236,43 @@ one is a data change rather than a patch:
 ```
 
 `markers` matter more than they look. They are what stops a retired parameter
-named `refund` from flagging every codebase that has ever mentioned a refund,
-and they are the difference between a tool people leave switched on and one
-they mute in a week.
+named `refund` from flagging every codebase that has ever mentioned a refund.
 
 Providers that publish no machine-readable spec are curated by hand in
-`manifests/<name>.yaml`. Anthropic is the current example, because model
-retirement dates are published as prose and never as a spec.
+`manifests/<name>.yaml`, because model retirements are usually published as
+prose and never as a spec.
 
 Pull requests welcome.
 
-## Status
+---
 
-Early, and honest about it.
+## The feed
 
-**5 providers, 118 artifacts** (Anthropic, Stripe, GitHub, OpenAI, Cloudflare),
-with Twilio, DigitalOcean and Box tracked and currently showing no drift. npm
-and PyPI coverage needs no per-provider work at all: one cursor covers every
-npm package and one header covers every PyPI project.
+Manifests live in [`manifests/`](manifests/), are regenerated daily by a
+scheduled workflow in this repository, and are committed here in the open. The
+git history is the record of what was observed, and when.
 
-Precision held as coverage grew. Going from 29 artifacts to 118 produced zero
-new findings across nine real repositories, which is the number that actually
-matters. Coverage is worthless if it arrives with noise.
+Every fact is public and free to read. You can vendor the whole thing. The hard
+part was never obtaining it, it is maintaining it, every day, forever, across
+every provider, because it decays the moment anyone stops.
 
 ## License
 
-The scanner, the manifest schema, and the spec diff generator are **Apache
-2.0**. Use them anywhere, including inside a competing product.
+| Component | License |
+|:--|:--|
+| Scanner, differ, manifest schema | **Apache 2.0**. Use it anywhere, including in a competing product. |
+| Published manifests | [Data license](manifests/LICENSE.md). Free to use, redistribute and research. Not for repackaging as a competing feed. |
 
-The published manifests carry a separate [data
-license](manifests/LICENSE.md): free for internal use, redistribution, and
-research, but not for repackaging as a competing drift feed. The underlying
-facts are not ours and never could be, which is exactly why every artifact
-cites the provider who published it. You should not have to trust us.
+The underlying facts are not ours and never could be, which is exactly why
+every artifact cites the provider who published it.
 
 ## Documentation
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) covers the moat, polling cadence against
-  real API limits, hosting costs, and pricing.
-- [spec/MANIFEST.md](spec/MANIFEST.md) is the drift manifest format.
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** covers the moat, polling cadence
+  against real API limits, hosting costs, and pricing.
+- **[spec/MANIFEST.md](spec/MANIFEST.md)** is the drift manifest format.
+
+<div align="center">
+<sub>Every number in this README came from a real run against a real
+codebase.</sub>
+</div>

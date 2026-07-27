@@ -56,8 +56,8 @@ console.log("\nmatch precision");
 // A retired model ID in a real call site must be found.
 check(
   "finds a retired model id in a string literal",
-  runOn({ "app.js": `const m = 'claude-3-opus-20240229';` })
-    .some((f) => f.artifact === "anthropic/model_id/claude-3-opus-20240229")
+  runOn({ "app.js": `const m = 'text-davinci-003';` })
+    .some((f) => f.artifact === "openai/model_id/text-davinci-003")
 );
 
 // The original false positive: "refund" matched inside "refunded".
@@ -97,7 +97,7 @@ check(
 // But a trailing comment must not hide the real code on the same line.
 check(
   "still matches real code that has a trailing comment",
-  runOn({ "app.js": `const m = 'claude-3-opus-20240229'; // legacy` }).length > 0
+  runOn({ "app.js": `const m = 'text-davinci-003'; // legacy` }).length > 0
 );
 
 // A manifest contains every literal by definition, so vendoring the feed into
@@ -107,15 +107,15 @@ check(
   runOn({
     "vendor/feed.json": JSON.stringify({
       feed_version: 1,
-      artifacts: [{ id: "x", match: { literals: ["claude-3-opus-20240229"] } }],
+      artifacts: [{ id: "x", match: { literals: ["text-davinci-003"] } }],
     }),
   }).length === 0
 );
 
 console.log("\ndeadline arithmetic");
 
-const findings = runOn({ "app.js": `const m = 'claude-3-opus-20240229';` });
-const opus = findings.find((f) => f.artifact.endsWith("claude-3-opus-20240229"));
+const findings = runOn({ "app.js": `const m = 'text-davinci-003';` });
+const opus = findings.find((f) => f.artifact.endsWith("text-davinci-003"));
 
 check("a passed retirement date reports as retired", opus?.status === "retired",
   `got status=${opus?.status}`);
@@ -152,42 +152,43 @@ function runFix(files, write) {
 }
 
 {
-  const r = runFix({ "a.js": `const m = 'claude-3-opus-20240229';` }, true);
+  const r = runFix({ "a.js": `const m = 'text-davinci-003';` }, true);
   check("applies the replacement the provider named",
-    r.files["a.js"].includes("claude-opus-4-8"));
-  check("removes the retired literal", !r.files["a.js"].includes("claude-3-opus-20240229"));
+    r.files["a.js"].includes("gpt-3.5-turbo-instruct"));
+  check("removes the retired literal", !r.files["a.js"].includes("text-davinci-003"));
   check("preserves the original quote style",
-    r.files["a.js"].includes("'claude-opus-4-8'"),
+    r.files["a.js"].includes("'gpt-3.5-turbo-instruct'"),
     `got: ${r.files["a.js"].trim()}`);
 }
 
 {
-  const src = `const a = "claude-3-opus-20240229";\n// keep 'claude-3-opus-20240229' here\n`;
+  const src = `const a = "text-davinci-003";\n// keep 'text-davinci-003' here\n`;
   const r = runFix({ "b.js": src }, true);
   check("fixes double-quoted code without touching the comment",
-    r.files["b.js"].includes('"claude-opus-4-8"') &&
-    r.files["b.js"].includes("// keep 'claude-3-opus-20240229' here"));
+    r.files["b.js"].includes('"gpt-3.5-turbo-instruct"') &&
+    r.files["b.js"].includes("// keep 'text-davinci-003' here"));
 }
 
 {
-  const src = `const m = 'claude-3-opus-20240229';\nconst untouched = 1;\n`;
+  const src = `const m = 'text-davinci-003';\nconst untouched = 1;\n`;
   const r = runFix({ "c.js": src }, true);
   const lines = r.files["c.js"].split("\n");
   check("changes only the line it reported", lines[1] === "const untouched = 1;");
 }
 
 {
-  const r = runFix({ "d.js": `const m = 'claude-3-opus-20240229';` }, false);
+  const r = runFix({ "d.js": `const m = 'text-davinci-003';` }, false);
   check("dry run leaves the file alone",
-    r.files["d.js"].includes("claude-3-opus-20240229"));
+    r.files["d.js"].includes("text-davinci-003"));
   check("dry run says how to apply", r.out.includes("--write"));
 }
 
 {
-  // budget_tokens' replacement is prose, not a token, so it must not be swapped.
-  const r = runFix({ "e.js": `// anthropic\nconst o = { budget_tokens: 100 };` }, true);
-  check("refuses to auto-fix when the replacement is prose",
-    r.files["e.js"].includes("budget_tokens"));
+  // A removed endpoint has no replacement the provider named, so guessing one
+  // is exactly the behaviour that would break somebody's build.
+  const r = runFix({ "e.js": `// stripe\nconst url = "/v1/invoices/upcoming";` }, true);
+  check("leaves a finding alone when no replacement was named",
+    r.files["e.js"].includes("/v1/invoices/upcoming"));
   check("explains what needs a human", /need a human/.test(r.out));
 }
 

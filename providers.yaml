@@ -50,6 +50,6 @@ providers:
     path: openapi.json
     markers: [box, BOX_CLIENT_ID, "api.box.com"]
 
-# Providers with no machine-readable spec are curated by hand in
-# manifests/<name>.yaml instead. Anthropic is the current example: model
-# retirement dates are published as prose in documentation, never as a spec.
+# Providers whose changes are not in a machine-readable spec are curated by
+# hand in manifests/<name>.yaml instead. Model retirements are the usual case:
+# they are published as prose in documentation and never appear in the spec.

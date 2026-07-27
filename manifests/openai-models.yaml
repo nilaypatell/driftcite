@@ -1,0 +1,94 @@
+provider: openai
+spec_version: 1
+updated: 2026-07-26
+sources:
+  - https://developers.openai.com/api/docs/deprecations
+
+# Model retirements are published as prose in documentation, never in the
+# OpenAPI spec, so this file is curated by hand rather than generated. Every
+# entry below is stated on the provider's own deprecations page.
+context:
+  file_markers:
+    - openai
+    - OPENAI_API_KEY
+    - "gpt-"
+
+artifacts:
+  # ---- shut down: these no longer serve requests ----
+  - id: openai/model_id/text-davinci-003
+    kind: model_id
+    match:
+      literals: ["text-davinci-003"]
+    status: retired
+    retires_on: 2024-01-04
+    replacement: gpt-3.5-turbo-instruct
+    severity: breaking
+    note: Shut down. Requests fail.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/model_id/gpt-3.5-turbo-0301
+    kind: model_id
+    match:
+      literals: ["gpt-3.5-turbo-0301"]
+    status: retired
+    retires_on: 2024-09-13
+    replacement: gpt-3.5-turbo
+    severity: breaking
+    note: Shut down. Requests fail.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/model_id/gpt-4-vision-preview
+    kind: model_id
+    match:
+      literals: ["gpt-4-vision-preview"]
+    status: retired
+    retires_on: 2024-12-06
+    replacement: gpt-4o
+    severity: breaking
+    note: Shut down. Requests fail.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  # ---- announced: still serving, with a published shutdown date ----
+  - id: openai/model_id/gpt-3.5-turbo-0125
+    kind: model_id
+    match:
+      literals: ["gpt-3.5-turbo-0125"]
+    status: deprecated
+    retires_on: 2026-10-23
+    replacement: gpt-5.6-terra
+    severity: warning
+    note: Shutdown announced for 2026-10-23.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/model_id/gpt-4-0613
+    kind: model_id
+    match:
+      literals: ["gpt-4-0613"]
+    status: deprecated
+    retires_on: 2026-10-23
+    replacement: gpt-5.6-sol
+    severity: warning
+    note: Shutdown announced for 2026-10-23.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/model_id/gpt-4-turbo
+    kind: model_id
+    match:
+      literals: ["gpt-4-turbo"]
+    status: deprecated
+    retires_on: 2026-10-23
+    replacement: gpt-5.6-sol
+    severity: warning
+    note: Shutdown announced for 2026-10-23.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/model_id/o1-pro
+    kind: model_id
+    match:
+      literals: ["o1-pro"]
+    status: deprecated
+    retires_on: 2026-10-23
+    replacement: gpt-5.6-sol
+    severity: warning
+    note: Shutdown announced for 2026-10-23. The replacement uses reasoning mode.
+    evidence: https://developers.openai.com/api/docs/deprecations

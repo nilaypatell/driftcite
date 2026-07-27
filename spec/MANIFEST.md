@@ -20,7 +20,7 @@ any particular customer's repo.
 ## Format
 
 ```yaml
-provider: <slug>            # anthropic, openai, stripe, clerk
+provider: <slug>            # stripe, openai, github, cloudflare
 spec_version: 1
 updated: <YYYY-MM-DD>
 sources:                    # where each fact can be independently checked
