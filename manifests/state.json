@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "github": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "v2.1.0"
+    },
+    "stripe": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "v2345"
+    }
+  },
+  "updated": "2026-07-26"
+}

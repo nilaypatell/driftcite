@@ -1,0 +1,55 @@
+name: refresh
+
+# The clock. Polls every tracked provider once a day, diffs anything that
+# moved, and commits the result. The manifest history this produces is the
+# asset; the code that produces it is not.
+#
+# Two deliberate details:
+#   - state.json records today's date on every run, so there is always a commit
+#     even on a quiet day. Scheduled workflows on public repos auto-disable
+#     after 60 days without activity, and a daily commit is what keeps this one
+#     alive.
+#   - Everything runs in the open. For a product whose whole claim is "we cite
+#     the provider instead of guessing", a pipeline anyone can audit is the
+#     argument, not decoration.
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
+      - name: Poll providers and diff what moved
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scanner/refresh.py
+
+      - name: Commit the day
+        run: |
+          git config user.name "apidrift"
+          git config user.email "noreply@users.noreply.github.com"
+          git add manifests/
+          if git diff --staged --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "chore(feed): $(date -u +%Y-%m-%d) provider sweep"
+            git push
+          fi
