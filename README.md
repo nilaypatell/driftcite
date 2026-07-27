@@ -170,14 +170,41 @@ Every fact is public and free to read. You can vendor the whole thing. The hard
 part was never obtaining it, it is maintaining it, every day, forever, across
 every provider, because it decays the moment anyone stops.
 
+## Adding a provider
+
+Providers live in [`providers.yaml`](providers.yaml), not in code, so adding
+one is a data change rather than a patch:
+
+```yaml
+  stripe:
+    repo: stripe/openapi
+    path: openapi/spec3.json
+    markers: [stripe, STRIPE_SECRET, STRIPE_API]
+```
+
+`markers` matter more than they look. They are what stops a retired parameter
+named `refund` from flagging every codebase that has ever mentioned a refund,
+and they are the difference between a tool people leave switched on and one
+they mute in a week.
+
+Providers that publish no machine-readable spec are curated by hand in
+`manifests/<name>.yaml`. Anthropic is the current example, because model
+retirement dates are published as prose and never as a spec.
+
+Pull requests welcome.
+
 ## Status
 
-Early, and honest about it. Anthropic and Stripe manifests today, npm and PyPI
-registry coverage, nine repositories swept in testing. The provider list is
-short and growing, and coverage is the current priority.
+Early, and honest about it.
 
-Adding a provider is one config entry in `scanner/openapi_diff.py` if it
-publishes a versioned OpenAPI spec in public git. Pull requests welcome.
+**5 providers, 118 artifacts** (Anthropic, Stripe, GitHub, OpenAI, Cloudflare),
+with Twilio, DigitalOcean and Box tracked and currently showing no drift. npm
+and PyPI coverage needs no per-provider work at all: one cursor covers every
+npm package and one header covers every PyPI project.
+
+Precision held as coverage grew. Going from 29 artifacts to 118 produced zero
+new findings across nine real repositories, which is the number that actually
+matters. Coverage is worthless if it arrives with noise.
 
 ## License
 

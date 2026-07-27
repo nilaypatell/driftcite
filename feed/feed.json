@@ -14,6 +14,16 @@
    "artifact_count": 15
   },
   {
+   "provider": "cloudflare",
+   "manifest": "cloudflare.generated.yaml",
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849"
+   ],
+   "artifact_count": 42
+  },
+  {
    "provider": "github",
    "manifest": "github.generated.yaml",
    "source_license": "MIT",
@@ -26,8 +36,8 @@
   {
    "provider": "openai",
    "manifest": "openai.generated.yaml",
-   "source_license": "MIT",
-   "source_notice": "https://github.com/openai/openai-openapi/blob/main/LICENSE",
+   "source_license": null,
+   "source_notice": null,
    "sources": [
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
    ],
@@ -357,6 +367,804 @@
     "anthropic",
     "claude-",
     "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/cloudforce-one/exemptions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/cloudforce-one/exemptions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/cloudforce-one/exemptions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/quota#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/quota existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#account_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "account_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.create",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "#com.cloudflare.api.account.secrets-store.secret.create"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.create' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.post.x-cfPermissionsRequired",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.delete",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "#com.cloudflare.api.account.secrets-store.secret.delete"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.delete' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores/{store_id}/secrets.delete.x-cfPermissionsRequired",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.list",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "#com.cloudflare.api.account.secrets-store.secret.list"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.list' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
    ]
   },
   {

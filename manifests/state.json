@@ -1,14 +1,34 @@
 {
   "providers": {
+    "cloudflare": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "d3a1cc521849"
+    },
+    "digitalocean": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "7e5b46e1d90a"
+    },
     "github": {
       "first_seen": "2026-07-26",
       "last_change": "2026-07-26",
       "ref": "v2.1.0"
     },
+    "openai": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "2.0.0"
+    },
     "stripe": {
       "first_seen": "2026-07-26",
       "last_change": "2026-07-26",
       "ref": "v2345"
+    },
+    "twilio": {
+      "first_seen": "2026-07-26",
+      "last_change": "2026-07-26",
+      "ref": "2.6.9"
     }
   },
   "updated": "2026-07-26"

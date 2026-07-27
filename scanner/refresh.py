@@ -34,7 +34,9 @@ STATE_PATH = os.path.join(MANIFEST_DIR, "state.json")
 # every provider frequently is affordable.
 ATOM = "https://github.com/{repo}/releases.atom"
 TAGS_API = "https://api.github.com/repos/{repo}/tags?per_page=1"
+TAGS_LIST_API = "https://api.github.com/repos/{repo}/tags?per_page=100"
 COMMITS_API = "https://api.github.com/repos/{repo}/commits?path={path}&per_page=1"
+COMMITS_LIST_API = "https://api.github.com/repos/{repo}/commits?path={path}&per_page=100"
 
 
 def http_json(url):
@@ -66,6 +68,29 @@ def latest_ref(provider):
     return None
 
 
+def historical_ref(provider, back=25):
+    """A ref far enough back to be worth diffing against.
+
+    A provider seen for the first time has no previous observation, so waiting
+    for its next release would leave it with an empty manifest indefinitely.
+    Reaching back a fixed number of releases seeds real history on day one.
+    """
+    cfg = openapi_diff.PROVIDERS[provider]
+    tags = http_json(TAGS_LIST_API.format(repo=cfg["repo"]))
+    names = [t["name"] for t in (tags or [])]
+    if len(names) >= 2:
+        return names[min(back, len(names) - 1)]
+
+    # Plenty of providers publish continuously and never tag (Cloudflare and
+    # DigitalOcean among them). Their history is still there, just addressed by
+    # commit, so reach back through the commits that touched the spec itself.
+    commits = http_json(COMMITS_LIST_API.format(repo=cfg["repo"], path=cfg["path"]))
+    shas = [c["sha"] for c in (commits or [])]
+    if len(shas) >= 2:
+        return shas[min(back, len(shas) - 1)][:12]
+    return None
+
+
 def load_state():
     if os.path.exists(STATE_PATH):
         with open(STATE_PATH) as fh:
@@ -80,7 +105,7 @@ def save_state(state):
         fh.write("\n")
 
 
-def refresh(dry_run=False):
+def refresh(dry_run=False, bootstrap=False):
     import yaml
 
     state = load_state()
@@ -103,18 +128,25 @@ def refresh(dry_run=False):
             continue
 
         if not previous:
-            # First sight of a provider. Record the ref and start the clock;
-            # there is nothing to diff against yet.
-            print("  first observation, baseline recorded")
-            if not dry_run:
-                state["providers"][provider] = {"ref": newest, "first_seen": today,
-                                                "last_change": today}
-            continue
+            # First sight of a provider. Reach back for something to diff
+            # against so it arrives with real history rather than an empty
+            # manifest that only fills in whenever the provider next ships.
+            previous = historical_ref(provider) if bootstrap else None
+            if not previous:
+                print("  first observation, baseline recorded")
+                if not dry_run:
+                    state["providers"][provider] = {"ref": newest, "first_seen": today,
+                                                    "last_change": today}
+                continue
+            print(f"  bootstrapping from {previous}")
 
         try:
             artifacts, ver_a, ver_b, evidence = openapi_diff.diff(provider, previous, newest)
-        except Exception as exc:  # a provider can rename or delete a spec path
-            print(f"  ! diff failed: {exc}")
+        except openapi_diff.SpecUnavailable as exc:
+            print(f"  ! spec unavailable: {exc}")
+            continue
+        except Exception as exc:  # a provider can rename or restructure a spec
+            print(f"  ! diff failed: {type(exc).__name__}: {exc}")
             continue
 
         print(f"  {ver_a} -> {ver_b}: {len(artifacts)} artifacts")
@@ -163,8 +195,10 @@ def refresh(dry_run=False):
 def main():
     ap = argparse.ArgumentParser(description="Poll providers and record drift.")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--bootstrap", action="store_true",
+                    help="seed history for providers never seen before")
     args = ap.parse_args()
-    refresh(dry_run=args.dry_run)
+    refresh(dry_run=args.dry_run, bootstrap=args.bootstrap)
     return 0
 
 
