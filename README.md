@@ -43,13 +43,6 @@ $ npx driftcite .
 
 Runs on your machine. Nothing is uploaded. No account.
 
-> [!NOTE]
-> **Not on npm yet.** Until it is published, run it from source. Node 18+ and nothing else.
-> ```console
-> git clone https://github.com/nilaypatell/driftcite
-> node driftcite/bin/driftcite.mjs .
-> ```
-
 <br>
 
 ---
