@@ -61,12 +61,23 @@ The feed is then just files served from the repo or fronted by a CDN.
 
 Cadence is set by what each source actually supports. All four verified live.
 
-| Source | Mechanism | Cost per poll | Cadence |
+| Source | Mechanism | Real limit | Cadence |
 |---|---|---|---|
-| npm (5.68M packages) | `replicate.npmjs.com/registry/_changes` sequence cursor | 1 request | 5 min |
-| PyPI | `X-PyPI-Last-Serial` header on `/simple/` | 1 HEAD | 5 min |
-| Spec repos in git | GitHub releases/commits API | 1 request per provider | hourly |
-| Docs without a spec | fetch plus content hash | 1 request per page | daily |
+| Spec repos in git | `releases.atom` conditional GET with `If-None-Match` | returns **304 with no rate-limit headers at all**, outside the REST quota | 5 min |
+| Spec repos, fallback | GitHub REST | 5,000/hr authenticated; conditional 304s do not count | hourly |
+| npm (4,230,819 packages) | `replicate.npmjs.com/registry/_changes` sequence cursor, keyless | `limit` max 10,000 | 5 min |
+| PyPI | `X-PyPI-Last-Serial` on `/simple/` | `cache-control: max-age=600`, so faster polling is pointless | 10 min |
+| Docs without a spec | fetch plus content hash | none | daily |
+
+**Polling is mandatory, not a choice.** Webhooks require repository ownership
+or admin, which we will never have on a provider's repo. The Events API is not
+a substitute either: GitHub documents latency of "anywhere from 30 seconds to
+6 hours."
+
+**Never full-crawl npm.** Its Open-Source Terms state that "under no
+circumstances are five million requests in a single month-long period ...
+remotely reasonable." A full packument crawl is 4.2M requests, or 84% of the
+monthly budget in a single pass. Follow the cursor incrementally, always.
 
 **The registries need no per-provider work at all.** One cursor covers all of
 npm; one header covers all of PyPI. That is millions of packages for two
@@ -145,8 +156,96 @@ brand, and GitHub's acceptable use policy bans bulk automated activity outright.
 Opt-in only, never a batch, always with the provider's quote, an evidence URL,
 and a passing test.
 
-## Open questions
+## Hosting, measured
 
-Pricing, license choice, and the exact open-core boundary are pending the
-playbook research. They belong in this document once they are answered with
-comparables rather than instinct.
+The feed goes on **Cloudflare R2 behind a custom domain.** At 1M fetches/day
+R2 costs $7.20/mo against roughly $273 on S3 and $340 to $764 on Vercel Pro.
+It is a 50x decision.
+
+Three options are disqualified outright, for reasons worth writing down so
+nobody relitigates them:
+
+- **GitHub Pages**, twice over: a 100GB/month soft cap, and an explicit
+  prohibition on hosting anything "primarily directed at ... providing
+  commercial software as a service."
+- **Vercel Hobby**: non-commercial use only, and exceeding 1M edge requests
+  pauses the feature for 30 days rather than billing.
+- **`pub-*.r2.dev`**: Cloudflare states it "is intended for non-production
+  traffic," is rate-limited, and gets zero CDN caching. Custom domain always.
+
+Storage is measured, not estimated. Stripe's spec is 7,866,866 bytes raw and
+299,833 compressed with zstd, a 26x ratio. 100 providers times 730 daily
+snapshots is 574GB raw, about 15GB content-addressed and deduplicated, which
+sits inside R2's free band. **There is no reason to ever discard history**,
+which matters because the history is the moat.
+
+One operational trap: scheduled Actions on a public repo auto-disable after 60
+days without activity. A daily manifest commit keeps them alive, but the feed
+needs its own freshness watchdog regardless.
+
+## The PR ceiling
+
+A GitHub App installation gets 5,000/hr baseline, but the binding constraint is
+the secondary limit of **500 content-creating requests per hour**. At roughly
+five calls per PR that is about 100 PRs/hour per installation, so a large
+customer hit by one broad breaking change must be a serial queue with backoff
+from day one.
+
+The AUP bans "automated excessive bulk activity." That makes the 86-to-5
+precision work platform-survival insurance, not a quality nicety.
+
+Permissions ask is exactly two scopes: `Contents: write` and
+`Pull requests: write`. No admin, no org-wide read, and never `Workflows:
+write` unless we actually edit CI files, because that scope scares security
+reviewers and costs installs.
+
+## Licensing and the open-core line
+
+| Component | License |
+|---|---|
+| Scanner CLI, match shapes, manifest schema, spec-diff generator | **Apache 2.0** (the patent grant matters for a matching engine) |
+| Published manifests, evidence registry, severity data | **Proprietary data license**: free for internal use and research, prohibited for building a competing feed. Semgrep's Rules License is the template |
+| Hosted control plane: scheduling, cross-run state, PR generation | Closed |
+
+This is where Dependabot draws it, and that boundary has held for seven years
+at GitHub scale.
+
+## Pricing
+
+Per-org flat, **never per-seat.** Renovate's paid tier was converted to free in
+2019 and Greenkeeper shut down in 2020; both sold dependency automation per
+developer. That grave is well marked.
+
+| Tier | Price | What it buys |
+|---|---|---|
+| Free | $0 | Unlimited public repos, unlimited local CLI, keyless feed, 3 private repos, daily refresh, findings only |
+| Team | $99/mo per org, unlimited seats | 25 private repos, hourly feed, PR generation |
+| Business | $499/mo | 200 private repos, 5-minute feed, SSO, org rollup |
+| Enterprise | from $16,000/yr | Self-hosted, private manifests for the customer's own internal APIs |
+
+Team works out to $3.96 per private repo, sitting between Depfu's $5.80 and
+$2.36 tiers, which is the closest structural comparable. Three independent
+payment triggers: a private repo, feed freshness, or an automated PR.
+
+Publishing a price is itself a differentiator. Infield cannot, because they
+sell expert developer hours alongside the software, and services have no list
+price. Our artifacts are generated from the provider's own spec at near-zero
+marginal cost per provider, so we can.
+
+## Where the OpenRouter analogy breaks
+
+Worth stating plainly, because a serious investor will find it first.
+
+OpenRouter charges 5.5% at the moment money enters their system. They sit on a
+metered flow of 25 trillion tokens a week. **We sit on zero flow and there is
+no obvious version of us that ever does.**
+
+There is no evidenced general premium for being a neutral layer. What the deals
+support is narrower: neutrality *plus a metered flow* commands a premium.
+Plaid sold for $5.3B at a reported >50x multiple as an "insurance policy" on
+Visa's debit business. Against that, Atlassian bought Optic, our exact
+category, for an undisclosed price and archived it in January 2026, and
+GitHub's Dependabot purchase price remains confidential.
+
+Every large number in this space came from a layer carrying money. Every layer
+in our category sold for a price nobody published.
