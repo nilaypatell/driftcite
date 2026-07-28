@@ -197,15 +197,44 @@ dropped. A tool that hides things is worse than one that annoys.
 
 Fails the build on breaking drift and writes the findings, with evidence links, into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`, `offline`.
 
+## Getting a pull request instead of a report
+
+Copy [`driftcite-autofix.yml`](.github/workflows/driftcite-autofix.yml) into
+your own `.github/workflows/`. On a schedule it scans, applies only the fixes
+the provider itself named, and opens a pull request with each claim citing the
+provider's own page.
+
+```diff
+- const MODEL  = "text-davinci-003";
++ const MODEL  = "gpt-3.5-turbo-instruct";
+- const VISION = "gpt-4-vision-preview";
++ const VISION = "gpt-4o";
+```
+
+It fixes what it is certain about and refuses the rest out loud:
+
+```console
+1 finding(s) need a human
+  stripe/endpoint//v1/invoices/upcoming
+    the provider named no replacement
+```
+
+It only ever runs against the repository it is installed in, and it will not
+reopen a pull request you have left sitting. Automatic pull requests are
+welcome when you asked for them and spam when you did not.
+
 ### How it runs
 
 | | Where it runs | What you get |
 |:--|:--|:--|
 | `npx driftcite .` | your machine | what is broken right now |
 | GitHub Action | your CI | the same, every PR, exit 1 on breaking |
-| Hosted watch | our servers | told the moment a provider moves, as a PR |
+| Autofix workflow | your CI | a pull request with the fix already applied |
+| Hosted watch | our servers | told the hour a provider moves, across every repo |
 
-The first two answer *what is broken now.* The third answers *tell me the moment something breaks*, which no local tool can do, because your laptop is asleep when the provider ships.
+The first two answer *what is broken now.* The third closes the loop yourself.
+The fourth answers *tell me the moment something breaks*, which no local tool
+can do, because your laptop is asleep when the provider ships.
 
 > [!NOTE]
 > **Your source code never reaches us at any tier.** The hosted watch stores only the artifact IDs your code matched, a few hundred strings, never files.

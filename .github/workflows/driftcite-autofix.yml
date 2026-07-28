@@ -1,0 +1,119 @@
+# Open a pull request when a provider retires something your code calls.
+#
+# Copy this file into your own repository at .github/workflows/ and it becomes
+# the loop: providers publish a change, the feed records it, and a PR arrives
+# on your default branch with the fix already applied and the provider's own
+# page cited.
+#
+# This only ever runs against the repository it is installed in. That is the
+# whole safety model: automatic pull requests are welcome when you asked for
+# them and spam when you did not, and nobody can install this on someone
+# else's code.
+#
+# It also refuses to guess. Only replacements the provider itself named are
+# applied; anything needing judgement is reported and left alone.
+
+name: driftcite
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"      # Monday morning
+  workflow_dispatch:          # or whenever you want
+
+permissions:
+  contents: write             # to push the fix branch
+  pull-requests: write        # to open the PR
+
+concurrency:
+  group: driftcite-autofix
+  cancel-in-progress: false
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Look for drift
+        id: scan
+        run: |
+          npx --yes driftcite@latest . --json --no-deps > /tmp/drift.json || true
+          breaking=$(node -e "
+            const f = require('/tmp/drift.json').findings || [];
+            console.log(f.filter(x => x.severity === 'breaking').length);
+          ")
+          echo "breaking=$breaking" >> "$GITHUB_OUTPUT"
+          echo "found $breaking breaking finding(s)"
+
+      - name: Apply only the fixes the provider named
+        if: steps.scan.outputs.breaking != '0'
+        id: fix
+        run: |
+          npx --yes driftcite@latest . --fix --write --no-deps || true
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "nothing was auto-fixable; findings need a human"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat
+          fi
+
+      - name: Open a pull request
+        if: steps.fix.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          branch="driftcite/$(date -u +%Y-%m-%d)"
+
+          # If the branch already exists the previous PR is still open and
+          # unmerged. Re-opening it every week is how a helpful bot turns into
+          # a nuisance, so stop instead.
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            echo "branch $branch already exists; leaving the open PR alone"
+            exit 0
+          fi
+
+          git config user.name  "driftcite"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git commit -qam "fix: update API identifiers retired by their providers"
+          git push -q origin "$branch"
+
+          # The PR body is built from the findings themselves, so every claim
+          # carries the provider's own evidence URL and nobody has to trust us.
+          node -e "
+            const f = require('/tmp/drift.json').findings || [];
+            const seen = new Map();
+            for (const x of f.filter(y => y.severity === 'breaking')) {
+              if (!seen.has(x.artifact)) seen.set(x.artifact, x);
+            }
+            const rows = [...seen.values()].map(x => {
+              const when = x.days_left ?? x.daysLeft;
+              const age = when == null ? ''
+                : when < 0 ? \`retired \${Math.abs(when)} days ago\`
+                : \`retires in \${when} days\`;
+              return \`- \\\`\${x.artifact.split('/').pop()}\\\` \${age}\` +
+                     (x.evidence ? \`  \n  evidence: \${x.evidence}\` : '');
+            });
+            console.log([
+              'A provider retired something this repository calls, so these calls now fail.',
+              '',
+              ...rows,
+              '',
+              'Each change swaps the retired value for the replacement the provider itself',
+              'named. Anything the provider did not name a replacement for was left alone',
+              'and is not in this diff.',
+              '',
+              'Opened by [driftcite](https://github.com/nilaypatell/driftcite), which you',
+              'installed in this repository. Delete the workflow to stop these.',
+            ].join('\n'));
+          " > /tmp/body.md
+
+          gh pr create \
+            --title "fix: update API identifiers retired by their providers" \
+            --body-file /tmp/body.md \
+            --head "$branch"
