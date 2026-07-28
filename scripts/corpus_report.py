@@ -27,6 +27,11 @@ def main():
     ok = {k: v for k, v in scanned.items() if v.get("status") == "ok"}
     failed = {k: v for k, v in scanned.items() if v.get("status") != "ok"}
     affected = {k: v for k, v in ok.items() if v.get("breaking")}
+    # The number worth publishing. A repository whose only finding sits in a
+    # test fixture is not calling a dead API in production, and counting it
+    # would inflate every rate here.
+    in_source = {k: v for k, v in ok.items() if v.get("breaking_in_source")}
+    tests_only = {k: v for k, v in affected.items() if not v.get("breaking_in_source")}
 
     total_findings = sum(v["findings"] for v in ok.values())
     total_breaking = sum(v["breaking"] for v in ok.values())
@@ -34,7 +39,7 @@ def main():
     artifacts = Counter()
     providers = Counter()
     for v in ok.values():
-        for a in v.get("artifacts", []):
+        for a in v.get("source_artifacts", v.get("artifacts", [])):
             artifacts[a] += 1
             providers[a.split("/")[0]] += 1
 
@@ -48,15 +53,18 @@ def main():
         bucket = ("under 100 stars" if s < 100 else
                   "100 to 1k" if s < 1000 else
                   "1k to 10k" if s < 10000 else "over 10k")
-        by_pop[bucket].append(1 if v.get("breaking") else 0)
+        by_pop[bucket].append(1 if v.get("breaking_in_source") else 0)
 
     report = {
         "attempted": len(scanned),
         "scanned": len(ok),
         "failed": len(failed),
         "failure_reasons": dict(Counter(v.get("status") for v in failed.values())),
-        "repos_with_breaking_drift": len(affected),
-        "share_with_breaking_drift": round(100 * len(affected) / max(len(ok), 1), 1),
+        "repos_with_breaking_drift_anywhere": len(affected),
+        "repos_with_breaking_drift_in_source": len(in_source),
+        "repos_affected_only_in_tests_or_docs": len(tests_only),
+        "share_with_drift_in_source": round(100 * len(in_source) / max(len(ok), 1), 1),
+        "share_with_drift_anywhere": round(100 * len(affected) / max(len(ok), 1), 1),
         "total_findings": total_findings,
         "total_breaking": total_breaking,
         "median_breaking_when_affected": (
@@ -81,8 +89,10 @@ def main():
     print(f"\n{'=' * 66}")
     print(f"  {r['scanned']} public repositories scanned "
           f"({r['failed']} failed, disclosed below)")
-    print(f"  {r['repos_with_breaking_drift']} of them ({r['share_with_breaking_drift']}%) "
-          f"call an API that is already dead")
+    print(f"  {r['repos_with_breaking_drift_in_source']} of them "
+          f"({r['share_with_drift_in_source']}%) call a dead API from production source")
+    print(f"  a further {r['repos_affected_only_in_tests_or_docs']} only in tests, "
+          f"examples or docs ({r['share_with_drift_anywhere']}% counting those)")
     print(f"{'=' * 66}\n")
 
     print(f"  total findings          {r['total_findings']:,}")

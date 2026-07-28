@@ -198,6 +198,81 @@ function fileContext(rel) {
 
 const CONTEXT_RANK = { source: 0, example: 1, test: 2, doc: 3 };
 
+/**
+ * Suppression, and why it exists.
+ *
+ * A team adds this to CI, hits one finding they will not fix (vendored code, a
+ * deliberate pin, a model they still have access to), and their build fails on
+ * every commit forever. So they delete the tool. That is how linters die, and
+ * no amount of accuracy prevents it.
+ *
+ * Two mechanisms, deliberately different:
+ *
+ *   .driftciteignore  a permanent decision. "This path or artifact is not our
+ *                     problem." Survives new findings.
+ *   baseline          a snapshot. "Everything broken today is accepted; fail
+ *                     only on something new." The honest way to adopt this in
+ *                     a codebase that already has drift.
+ *
+ * A suppressed finding is still counted and reported as suppressed, never
+ * silently dropped, because a tool that hides things is worse than one that
+ * annoys.
+ */
+const IGNORE_FILE = ".driftciteignore";
+const BASELINE_FILE = ".driftcite-baseline.json";
+
+function globToRe(glob) {
+  const body = glob.split("*").map((p) => p.replace(/[.+?^${}()|[\]\\]/g, "\\$&")).join("[^]*");
+  return new RegExp(`^${body}$`);
+}
+
+async function loadIgnores(root) {
+  let text;
+  try {
+    text = await readFile(path.join(root, IGNORE_FILE), "utf8");
+  } catch {
+    return [];
+  }
+  const rules = [];
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.split("#")[0].trim();
+    if (!line) continue;
+    // "path/glob" or "artifact-id" or "path/glob :: artifact-id"
+    const [left, right] = line.split("::").map((x) => x && x.trim());
+    if (right) rules.push({ path: globToRe(left), artifact: right });
+    else if (left.includes("/") && !left.includes(" ")) {
+      // An artifact id also contains slashes; tell them apart by whether the
+      // first segment names a provider we know about.
+      rules.push({ maybe: left, path: globToRe(left), artifact: left });
+    } else rules.push({ artifact: left });
+  }
+  return rules;
+}
+
+function ignoreMatches(rule, finding, providers) {
+  if (rule.maybe) {
+    const isArtifact = providers.has(rule.maybe.split("/")[0]);
+    return isArtifact ? finding.artifact === rule.maybe : rule.path.test(finding.file);
+  }
+  if (rule.path && rule.artifact) {
+    return rule.path.test(finding.file) && finding.artifact === rule.artifact;
+  }
+  if (rule.path) return rule.path.test(finding.file);
+  return finding.artifact === rule.artifact;
+}
+
+async function loadBaseline(root) {
+  try {
+    const doc = JSON.parse(await readFile(path.join(root, BASELINE_FILE), "utf8"));
+    return new Set(doc.accepted || []);
+  } catch {
+    return null;
+  }
+}
+
+/** Identity that survives edits elsewhere in the file: not the line number. */
+const fingerprint = (f) => `${f.file}::${f.artifact}`;
+
 function isDriftData(text) {
   const head = text.slice(0, 4000);
   if (head.includes('"feed_version"') || head.includes("feed_version:")) return true;
@@ -677,7 +752,7 @@ const BOLD = "[1m", DIM = "[2m", RED = "[31m",
 const color = process.stdout.isTTY && !process.env.NO_COLOR;
 const c = (code, s) => (color ? code + s + OFF : s);
 
-function report(findings, registry, root, feedSource) {
+function report(findings, registry, root, feedSource, suppressed = []) {
   const breaking = findings.filter((f) => f.severity === "breaking").length;
 
   console.log();
@@ -690,6 +765,11 @@ function report(findings, registry, root, feedSource) {
   if (registry.notes?.length) {
     for (const n of registry.notes) console.log(c(DIM, `note: ${n}`));
     console.log();
+  }
+
+  if (suppressed.length) {
+    console.log(c(DIM, `${suppressed.length} finding(s) suppressed by `
+      + `${IGNORE_FILE} or baseline\n`));
   }
 
   if (!findings.length && !registry.flagged.length) {
@@ -764,6 +844,7 @@ async function main() {
   npx driftcite . --fix       show the swaps the provider named
   npx driftcite . --fix --write   apply them
   npx driftcite . --list-deps every dependency version resolved, no network
+  npx driftcite . --write-baseline  accept today's findings, fail on new ones
   npx driftcite --version     print the version
 
 Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
@@ -803,17 +884,47 @@ Your source code is never sent anywhere.`);
   }
 
   const { feed, source } = await loadFeed({ offline });
-  const findings = await scanRepo(root, feed.artifacts);
+  const providers = new Set(feed.artifacts.map((a) => a.provider));
+  let findings = await scanRepo(root, feed.artifacts);
+
+  const ignores = await loadIgnores(root);
+  const baseline = await loadBaseline(root);
+  const suppressed = [];
+  if (ignores.length || baseline) {
+    findings = findings.filter((f) => {
+      const byIgnore = ignores.some((r) => ignoreMatches(r, f, providers));
+      const byBaseline = baseline?.has(fingerprint(f));
+      if (byIgnore || byBaseline) {
+        suppressed.push({ ...f, suppressed_by: byIgnore ? "ignore" : "baseline" });
+        return false;
+      }
+      return true;
+    });
+  }
+
+  if (argv.includes("--write-baseline")) {
+    const all = [...findings, ...suppressed];
+    const doc = {
+      created: new Date().toISOString().slice(0, 10),
+      note: "Findings accepted at creation time. New findings still fail. "
+          + "Delete an entry once fixed; regenerate with --write-baseline.",
+      accepted: [...new Set(all.map(fingerprint))].sort(),
+    };
+    await writeFile(path.join(root, BASELINE_FILE), JSON.stringify(doc, null, 1) + "\n");
+    console.log(`wrote ${BASELINE_FILE} accepting ${doc.accepted.length} finding(s)`);
+    console.log("new findings will still fail the build");
+    return 0;
+  }
   const registry = noDeps || offline
     ? { flagged: [], checked: 0, notes: [] }
     : await scanRegistry(root);
 
   if (asJson) {
-    console.log(JSON.stringify({ root, feed: source, findings, registry }, null, 2));
+    console.log(JSON.stringify({ root, feed: source, findings, suppressed, registry }, null, 2));
     return findings.some((f) => f.severity === "breaking") ? 1 : 0;
   }
 
-  const code = report(findings, registry, root, source);
+  const code = report(findings, registry, root, source, suppressed);
 
   if (fix) {
     const byId = new Map(feed.artifacts.map((a) => [a.id, a]));

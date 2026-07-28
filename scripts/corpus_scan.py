@@ -102,14 +102,21 @@ def main():
                 else:
                     findings = result.get("findings", [])
                     breaking = [f for f in findings if f.get("severity") == "breaking"]
+                    src = [f for f in breaking if f.get("context") == "source"]
                     done[full] = {
                         "status": "ok",
                         "stars": repo["stars"],
                         "language": repo.get("language"),
                         "findings": len(findings),
                         "breaking": len(breaking),
+                        # A dead model id in a test fixture is not a call that
+                        # fails. Counting both the same would inflate every
+                        # rate we publish, so they are recorded separately.
+                        "breaking_in_source": len(src),
+                        "contexts": sorted({f.get("context", "source") for f in breaking}),
                         # artifact ids only, never file contents
                         "artifacts": sorted({f["artifact"] for f in findings}),
+                        "source_artifacts": sorted({f["artifact"] for f in src}),
                     }
         except Exception as exc:
             done[full] = {"status": f"error: {type(exc).__name__}"}

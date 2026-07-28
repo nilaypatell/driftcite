@@ -163,6 +163,32 @@ When the replacement is prose rather than a drop-in token, it refuses and says s
 
 <br>
 
+## Adopting it in a codebase that already has drift
+
+Most codebases will have findings on day one, and a build that fails forever is
+a build people delete the check from. Two ways to accept what is already there
+without going blind to what arrives next.
+
+**A baseline.** Accept today's findings, fail only on new ones:
+
+```console
+npx driftcite . --write-baseline
+```
+
+This writes `.driftcite-baseline.json`. Everything already broken is accepted;
+anything new still fails. Delete an entry once you fix it.
+
+**An ignore file** for permanent decisions, `.driftciteignore`:
+
+```
+legacy/*                                  # a path
+openai/model_id/text-davinci-003          # an artifact, anywhere
+examples/* :: google/model_id/gemini-2.0-flash   # that artifact, only there
+```
+
+Suppressed findings are counted and reported as suppressed, never silently
+dropped. A tool that hides things is worse than one that annoys.
+
 ## In CI
 
 ```yaml

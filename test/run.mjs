@@ -193,6 +193,67 @@ function runFix(files, write) {
 }
 
 
+console.log("\nsuppression");
+
+function runRaw(files, extra = []) {
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-sup-"));
+  for (const [name, body] of Object.entries(files)) {
+    const full = path.join(dir, name);
+    mkdirSync(path.dirname(full), { recursive: true });
+    writeFileSync(full, body);
+  }
+  const run = (args) => {
+    try {
+      return { code: 0, out: execFileSync("node", [CLI, dir, "--offline", "--no-deps", ...args],
+        { encoding: "utf8" }) };
+    } catch (err) {
+      return { code: err.status ?? 1, out: err.stdout || "" };
+    }
+  };
+  return { dir, run, cleanup: () => rmSync(dir, { recursive: true, force: true }) };
+}
+
+// A team that cannot suppress one unfixable finding deletes the tool, so this
+// is the behaviour that decides whether it survives in anyone's CI.
+{
+  const t = runRaw({
+    "app.js": `const a = 'text-davinci-003';`,
+    "legacy/lib.js": `const b = 'gpt-4-vision-preview';`,
+    ".driftciteignore": "legacy/*\n",
+  });
+  const r = t.run(["--json"]);
+  const f = JSON.parse(r.out);
+  check("ignore file excludes matching paths",
+    f.findings.every((x) => !x.file.startsWith("legacy")));
+  check("suppressed findings are reported, not hidden",
+    f.suppressed.length === 1 && f.suppressed[0].suppressed_by === "ignore");
+  t.cleanup();
+}
+
+{
+  const t = runRaw({ "app.js": `const a = 'text-davinci-003';` });
+  check("fails before a baseline exists", t.run([]).code === 1);
+  t.run(["--write-baseline"]);
+  check("passes once findings are accepted", t.run([]).code === 0);
+
+  writeFileSync(path.join(t.dir, "new.js"), `const c = 'gpt-4-vision-preview';`);
+  const after = t.run([]);
+  check("a NEW finding still fails after a baseline", after.code === 1,
+    "a baseline that swallows new drift would be worse than no tool at all");
+  check("the new finding is the one reported",
+    after.out.includes("gpt-4-vision-preview") && !after.out.includes("text-davinci-003"));
+  t.cleanup();
+}
+
+{
+  const t = runRaw({
+    "app.js": `const a = 'text-davinci-003';`,
+    ".driftciteignore": "openai/model_id/text-davinci-003\n",
+  });
+  check("ignore file accepts an artifact id as well as a path", t.run([]).code === 0);
+  t.cleanup();
+}
+
 console.log("\nfinding context");
 
 // Two of the first three candidate repositories for an outreach pull request

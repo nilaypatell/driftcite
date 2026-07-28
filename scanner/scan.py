@@ -11,6 +11,7 @@ asserts the fact and carries the evidence URL; this only locates it.
 
 import argparse
 import datetime
+import fnmatch
 import json
 import os
 import re
@@ -167,6 +168,44 @@ def file_context(rel):
     return "source"
 
 
+IGNORE_FILE = ".driftciteignore"
+
+
+def load_ignores(root):
+    """Same format the CLI reads: a path glob, an artifact id, or both split
+    by ::. A team that cannot suppress one unfixable finding removes the tool
+    entirely, so this is not optional."""
+    path = os.path.join(root, IGNORE_FILE)
+    if not os.path.exists(path):
+        return []
+    rules = []
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for raw in fh:
+            line = raw.split("#")[0].strip()
+            if not line:
+                continue
+            left, sep, right = line.partition("::")
+            left, right = left.strip(), right.strip()
+            if sep and right:
+                rules.append((left, right))
+            else:
+                rules.append((left, None))
+    return rules
+
+
+def suppressed_by(rules, finding, providers):
+    for pat, artifact in rules:
+        if artifact:
+            if fnmatch.fnmatch(finding["file"], pat) and finding["artifact"] == artifact:
+                return True
+        elif "/" in pat and pat.split("/")[0] in providers:
+            if finding["artifact"] == pat:
+                return True
+        elif fnmatch.fnmatch(finding["file"], pat) or finding["artifact"] == pat:
+            return True
+    return False
+
+
 def is_drift_data(text):
     head = text[:4000]
     if '"feed_version"' in head or "feed_version:" in head:
@@ -310,6 +349,14 @@ def main():
     for path in walk(root):
         findings.extend(scan_file(path, index, root))
     findings = dedupe(findings)
+
+    rules = load_ignores(root)
+    if rules:
+        providers = {m["provider"] for m in load_manifests()}
+        before = len(findings)
+        findings = [f for f in findings if not suppressed_by(rules, f, providers)]
+        if before != len(findings):
+            print(f"{before - len(findings)} finding(s) suppressed by {IGNORE_FILE}")
 
     if args.json:
         json.dump({"root": root, "findings": findings}, sys.stdout, indent=2)
