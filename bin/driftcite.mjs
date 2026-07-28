@@ -360,6 +360,24 @@ async function scanRepo(root, artifacts) {
 const FIXABLE_KINDS = new Set(["model_id", "enum_value", "endpoint"]);
 const CLEAN_TOKEN = /^[A-Za-z0-9][A-Za-z0-9._/-]*$/;
 
+/**
+ * Refuse a swap when the replacement value is already present in the file.
+ *
+ * Catalogues, pricing tables and provider registries key an object by model
+ * id, and renaming one key to a value the file already uses produces a
+ * duplicate key that silently overwrites its twin. Worse, the surrounding
+ * fields still describe the old model: renaming a pricing key leaves the old
+ * rates attached to the new name.
+ *
+ * Found by applying this to a real backend, where it collided two entries in a
+ * provider registry and repriced one model at another's rate. A literal swap
+ * can be correct on its own line and wrong in its file.
+ */
+function wouldCollide(text, replacement) {
+  const re = new RegExp(`['"\`]${esc(replacement)}['"\`]`);
+  return re.test(text);
+}
+
 function isFixable(art) {
   if (!FIXABLE_KINDS.has(art.kind)) return false;
   const r = art.replacement;
@@ -402,6 +420,14 @@ async function planFixes(root, findings, artifactsById) {
     const eol = original.includes("\r\n") ? "\r\n" : "\n";
     const lines = original.split(/\r?\n/);
     const fileEdits = [];
+    const collided = new Set();
+    // Two DIFFERENT retired ids can share one replacement: both
+    // claude-3-5-haiku-20241022 and claude-3-haiku-20240307 point at
+    // claude-haiku-4-5, and applying both duplicates a key. But one id
+    // appearing several times in a file must be fixed at every occurrence, so
+    // this records which artifact introduced a value, not merely that it was
+    // introduced.
+    const introducedBy = new Map();
 
     for (const { finding, art } of items) {
       const i = finding.line - 1;
@@ -409,6 +435,19 @@ async function planFixes(root, findings, artifactsById) {
       if (isComment(lines[i])) continue;
 
       const replacement = art.replacement.trim();
+      const clash = introducedBy.has(replacement) && introducedBy.get(replacement) !== art.id;
+      if (wouldCollide(original, replacement) || clash) {
+        if (!collided.has(art.id)) {
+          collided.add(art.id);
+          const why = clash
+            ? `another retired id in this file already maps to "${replacement}"; ` +
+              "applying both would duplicate a key"
+            : `"${replacement}" already appears in this file; swapping would ` +
+              "duplicate a key or leave neighbouring fields describing the old value";
+          unfixable.set(`${file} :: ${art.id}`, why);
+        }
+        continue;
+      }
       for (const literal of art.match?.literals || []) {
         if (literal === replacement) continue;
         // Swap only inside the quoting the code already uses, so a bare
@@ -419,6 +458,7 @@ async function planFixes(root, findings, artifactsById) {
         if (after === before) continue;
 
         lines[i] = after;
+        introducedBy.set(replacement, art.id);
         fileEdits.push({
           file, line: finding.line, from: literal, to: replacement,
           artifact: art.id, evidence: art.evidence ?? null,

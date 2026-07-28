@@ -287,6 +287,60 @@ console.log("\nfinding context");
     found[0]?.context === "source", `first was ${found[0]?.context}`);
 }
 
+// Applying this to a real backend renamed a pricing key to a value the file
+// already used, producing a duplicate object key and leaving the old model's
+// rates attached to the new name. A swap can be right on its line and wrong
+// in its file.
+{
+  const src = [
+    "// openai",
+    "const prices = {",
+    "  'text-davinci-003': { in: 1 },",
+    "  'gpt-3.5-turbo-instruct': { in: 2 },",
+    "};",
+  ].join("\n");
+  const r = runFix({ "prices.js": src }, true);
+  check("refuses a swap that would duplicate an existing key",
+    r.files["prices.js"].includes("'text-davinci-003'"),
+    "renaming would have collided with the entry already in the file");
+  check("says why it refused", /already appears in this file/.test(r.out));
+}
+
+{
+  // The same artifact in a file without the collision is still fixed.
+  const r = runFix({ "call.js": `const m = 'text-davinci-003';` }, true);
+  check("still fixes when there is no collision",
+    r.files["call.js"].includes("gpt-3.5-turbo-instruct"));
+}
+
+{
+  // One id appearing several times must be fixed at every occurrence. An
+  // earlier guard refused the second one and left a live route on a dead
+  // model, which is worse than the duplicate it was avoiding.
+  const src = "// openai\nconst a = 'text-davinci-003';\nconst b = 'text-davinci-003';\n";
+  const r = runFix({ "twice.js": src }, true);
+  check("fixes every occurrence of the same id",
+    !r.files["twice.js"].includes("text-davinci-003"),
+    `left behind: ${r.files["twice.js"].trim()}`);
+}
+
+{
+  // Two DIFFERENT retired ids sharing one replacement is the real collision:
+  // applying both produces a duplicate key.
+  const src = [
+    "// openai",
+    "const models = {",
+    "  'gpt-3.5-turbo-0301': 1,",
+    "  'text-davinci-003': 2,",
+    "};",
+  ].join("\n");
+  const r = runFix({ "pair.js": src }, true);
+  const body = r.files["pair.js"];
+  const count = (body.match(/gpt-3\.5-turbo(?!-)/g) || []).length;
+  check("does not let two ids collapse onto one key", count <= 1,
+    `two retired ids both mapping to gpt-3.5-turbo would duplicate a key`);
+}
+
 console.log("\nlockfile parsing");
 
 function runList(files) {
