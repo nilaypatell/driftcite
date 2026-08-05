@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>driftcite — find the API calls in your code that already stopped working</title>
+<meta name="description" content="Providers retire endpoints, parameters and models; your lockfile never moves. driftcite scans your call sites, cites the provider's own page for every finding, and opens the pull request that fixes it. No LLM in the detection path. Nothing uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="driftcite — find the API calls in your code that already stopped working">
+<meta property="og:description" content="39.2% of 449 scanned repositories call an API that is already dead. driftcite finds the call sites and opens the PR, with every claim citing the provider who published the change.">
+<meta property="og:url" content="https://github.com/nilaypatell/driftcite">
+<meta property="og:image" content="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/app-logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="driftcite — dead API calls, found and fixed">
+<meta name="twitter:description" content="Every finding cites the provider who published the change. npx driftcite . — or install the GitHub App and get the PR.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/app-logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "driftcite",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "description": "Finds the API calls in your code that already stopped working — retired endpoints, dropped parameters, shut-down models — and opens the pull request that fixes them. Every finding cites the provider who published the change.",
+  "url": "https://github.com/nilaypatell/driftcite",
+  "installUrl": "https://github.com/apps/driftcite",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://www.apache.org/licenses/LICENSE-2.0"
+}
+</script>
+<style>
+  :root {
+    --paper: #FFFBF8;
+    --ink: #0F1419;
+    --blue: #002288;
+    --coal: #201e1d;
+    --muted: #5C6470;
+    --hairline: #E7DFD5;
+    --card: #FFFFFF;
+    --terminal-bar: #F5EFE7;
+    --red: #C4331D;
+    --green: #1D7A3E;
+    --display: "Plus Jakarta Sans", "Avenir Next", Avenir, Futura, "Segoe UI", sans-serif;
+    --body: "Hanken Grotesk", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0F1216;
+      --ink: #F4EFE8;
+      --blue: #7B96FF;
+      --coal: #C9C4BE;
+      --muted: #9BA3AE;
+      --hairline: #262C33;
+      --card: #161B21;
+      --terminal-bar: #1D232B;
+      --red: #FF7A63;
+      --green: #57C878;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--blue); color: var(--paper); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- the drift rule: a hairline split and offset, like the mark */
+  .drift-rule { display: flex; align-items: center; height: 12px; margin: 0 0 26px; }
+  .drift-rule i { display: block; height: 3px; }
+  .drift-rule i:first-child { width: 38%; background: var(--blue); transform: translateY(-3px); }
+  .drift-rule i:last-child  { width: 26%; background: var(--coal); transform: translateY(3px); margin-left: 6px; }
+
+  /* ---------- citations */
+  .cite {
+    font-family: var(--mono); font-size: .62em; vertical-align: super;
+    color: var(--blue); text-decoration: none; font-weight: 600;
+    padding: 0 .15em; white-space: nowrap;
+  }
+  .cite:hover { background: var(--blue); color: var(--paper); }
+
+  /* ---------- top bar */
+  header { border-bottom: 1px solid var(--hairline); }
+  .bar { display: flex; align-items: center; gap: 14px; padding: 18px 0; }
+  .bar svg { width: 30px; height: 30px; flex: none; }
+  .bar .word { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -.5px; color: var(--ink); text-decoration: none; }
+  .bar nav { margin-left: auto; display: flex; gap: 22px; }
+  .bar nav a { font-family: var(--mono); font-size: 13px; color: var(--muted); text-decoration: none; }
+  .bar nav a:hover { color: var(--blue); }
+
+  /* ---------- hero */
+  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; padding: 84px 0 72px; align-items: center; }
+  .kicker { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.4px; color: var(--muted); text-transform: uppercase; margin-bottom: 22px; }
+  h1 { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.06; letter-spacing: -1.8px; }
+  h1 code { font-family: var(--mono); font-weight: 700; letter-spacing: -1px; color: var(--blue); font-size: .82em; }
+  .hero p.sub { margin: 26px 0 34px; font-size: 19px; color: var(--muted); max-width: 34em; }
+  .hero p.sub b { color: var(--ink); font-weight: 600; }
+
+  .cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .cmd {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: 15px;
+    background: var(--coal); color: #FFFBF8;
+    padding: 13px 18px; border-radius: 8px; cursor: pointer; border: none;
+  }
+  @media (prefers-color-scheme: dark) { .cmd { background: #2A2724; } }
+  .cmd .dollar { color: #8b949e; }
+  .cmd:hover .copy { color: #FFFBF8; }
+  .cmd .copy { color: #8b949e; font-size: 12px; }
+  .app-btn {
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+    color: var(--paper); background: var(--blue); text-decoration: none;
+    padding: 13px 22px; border-radius: 8px;
+  }
+  .app-btn:hover { filter: brightness(1.15); }
+  .cta-note { flex-basis: 100%; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* ---------- terminal */
+  .terminal { background: var(--card); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px -28px rgba(15,20,25,.35); }
+  .t-bar { display: flex; align-items: center; gap: 7px; background: var(--terminal-bar); padding: 11px 15px; border-bottom: 1px solid var(--hairline); }
+  .t-bar i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .t-body { font-family: var(--mono); font-size: 12.6px; line-height: 1.75; padding: 18px 20px 22px; overflow-x: auto; }
+  .t-body .p { color: var(--muted); }
+  .t-body .brk { color: var(--red); font-weight: 700; }
+  .t-body .art { font-weight: 700; }
+  .t-body .dim { color: var(--muted); }
+  .t-body .fix { color: var(--green); }
+  .t-body .loc { padding-left: 2ch; }
+  .cursor { display: inline-block; width: .6em; height: 1.1em; background: var(--blue); vertical-align: text-bottom; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- stat band */
+  .band { background: var(--blue); color: #FFFBF8; }
+  @media (prefers-color-scheme: dark) { .band { background: #16204d; } }
+  .band .wrap { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: baseline; padding-top: 58px; padding-bottom: 58px; }
+  .band .num { font-family: var(--display); font-weight: 800; font-size: clamp(70px, 10vw, 128px); letter-spacing: -4px; line-height: 1; }
+  .band .num small { font-size: .45em; letter-spacing: -1px; }
+  .band p { font-size: 19px; max-width: 30em; opacity: .92; }
+  .band .cite { color: #FFFBF8; opacity: .85; }
+  .band .cite:hover { background: #FFFBF8; color: var(--blue); opacity: 1; }
+
+  /* ---------- sections */
+  section { padding: 78px 0; }
+  section + section { border-top: 1px solid var(--hairline); }
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3vw, 36px); letter-spacing: -1px; margin-bottom: 18px; max-width: 22em; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 38em; }
+  .lede b, .lede strong { color: var(--ink); }
+
+  /* the CircleCI exhibit */
+  .exhibit { margin-top: 40px; display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start; }
+  .exhibit .tag { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 1.6px; text-transform: uppercase; padding-top: 6px; }
+  blockquote { border-left: 3px solid var(--blue); padding: 4px 0 4px 26px; font-size: 21px; line-height: 1.5; max-width: 30em; }
+  blockquote em { font-style: normal; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--blue) 22%, transparent) 62%); }
+  .exhibit figcaption { margin-top: 16px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .days { font-family: var(--display); font-weight: 800; color: var(--blue); }
+
+  /* ladder */
+  .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 44px; }
+  .rung { background: var(--card); border: 1px solid var(--hairline); border-radius: 12px; padding: 26px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .rung .step { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 2px; }
+  .rung h3 { font-family: var(--display); font-size: 19px; font-weight: 800; letter-spacing: -.4px; }
+  .rung p { font-size: 14.5px; color: var(--muted); flex: 1; }
+  .rung pre { font-family: var(--mono); font-size: 12.5px; background: var(--terminal-bar); border-radius: 7px; padding: 11px 13px; overflow-x: auto; }
+  .rung a.go { font-family: var(--mono); font-size: 13px; color: var(--blue); text-decoration: none; }
+  .rung a.go:hover { text-decoration: underline; }
+  .rung.featured { border-color: var(--blue); border-width: 2px; }
+
+  /* receipts */
+  .receipt { margin-top: 42px; background: var(--card); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; max-width: 720px; }
+  .r-head { display: flex; gap: 12px; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--hairline); }
+  .r-head svg { width: 26px; height: 26px; }
+  .r-head .who { font-size: 14px; }
+  .r-head .who b { font-family: var(--mono); }
+  .r-head .pill { margin-left: auto; font-family: var(--mono); font-size: 11px; border: 1px solid var(--hairline); color: var(--muted); border-radius: 20px; padding: 2px 9px; }
+  .diff { font-family: var(--mono); font-size: 12.8px; line-height: 1.8; padding: 16px 20px; overflow-x: auto; }
+  .diff span { display: block; white-space: pre; }
+  .diff .ctx:not(:first-child) { margin-top: 10px; }
+  .diff .del { color: var(--red); }
+  .diff .add { color: var(--green); }
+  .diff .ctx { color: var(--muted); }
+  .r-foot { padding: 13px 20px; border-top: 1px solid var(--hairline); font-family: var(--mono); font-size: 12.5px; }
+  .r-foot a { color: var(--blue); text-decoration: none; }
+  .r-foot a:hover { text-decoration: underline; }
+
+  /* precision */
+  .prec { display: flex; gap: 64px; align-items: baseline; margin-top: 40px; flex-wrap: wrap; }
+  .prec .cell .n { font-family: var(--display); font-weight: 800; font-size: 74px; letter-spacing: -3px; line-height: 1; }
+  .prec .cell .n.was { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 5px; text-decoration-color: var(--red); }
+  .prec .cell .n.is { color: var(--blue); }
+  .prec .cell .lab { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .prec .arrow { font-family: var(--display); font-size: 46px; color: var(--muted); }
+
+  /* rules strip */
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 8px; }
+  .rule-card h3 { font-family: var(--display); font-size: 17px; font-weight: 800; margin-bottom: 8px; letter-spacing: -.3px; }
+  .rule-card h3::before { content: "— "; color: var(--blue); }
+  .rule-card p { font-size: 14.5px; color: var(--muted); max-width: 26em; }
+
+  /* footnotes */
+  .footnotes { background: var(--card); border-top: 1px solid var(--hairline); }
+  .footnotes .wrap { padding-top: 54px; padding-bottom: 60px; }
+  .footnotes h2 { font-size: 15px; font-family: var(--mono); letter-spacing: 2.4px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .footnotes ol { list-style: none; margin-top: 22px; display: grid; gap: 11px; }
+  .footnotes li { font-size: 14px; display: grid; grid-template-columns: 42px 1fr; gap: 10px; }
+  .footnotes li:target { background: color-mix(in srgb, var(--blue) 10%, transparent); border-radius: 6px; }
+  .footnotes .fn { font-family: var(--mono); color: var(--blue); font-weight: 700; }
+  .footnotes a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hairline); overflow-wrap: anywhere; }
+  .footnotes a:hover { color: var(--blue); border-color: var(--blue); }
+  .footnotes .note { color: var(--muted); }
+
+  footer { border-top: 1px solid var(--hairline); }
+  footer .wrap { display: flex; gap: 26px; align-items: center; padding: 30px 28px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--blue); }
+  footer .mark { width: 20px; height: 20px; }
+
+  /* Entrance: CSS-only, hero only. Content is never hidden behind script —
+     with JS off (or a crawler) the page is simply there. */
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > div:first-child > * { animation: rise .6s cubic-bezier(.22, .7, .3, 1) both; }
+    .hero > div:first-child > *:nth-child(2) { animation-delay: .07s; }
+    .hero > div:first-child > *:nth-child(3) { animation-delay: .14s; }
+    .hero > div:first-child > *:nth-child(4) { animation-delay: .24s; }
+    .hero > div:first-child > *:nth-child(5) { animation-delay: .34s; }
+    .terminal { animation: rise .7s .3s cubic-bezier(.22, .7, .3, 1) both; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 54px; }
+    .band .wrap { grid-template-columns: 1fr; gap: 10px; }
+    .ladder, .rules { grid-template-columns: 1fr; }
+    .exhibit { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#002288" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#201e1d" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+    <a class="word" href="https://github.com/nilaypatell/driftcite">driftcite</a>
+    <nav>
+      <a href="https://github.com/nilaypatell/driftcite">github</a>
+      <a href="https://www.npmjs.com/package/driftcite">npm</a>
+      <a href="https://github.com/apps/driftcite">the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <p class="kicker rv">cross-vendor api drift</p>
+      <div class="drift-rule rv" aria-hidden="true"><i></i><i></i></div>
+      <h1 class="rv"><code>text&#8209;davinci&#8209;003</code> died 935 days ago. Your code still calls it.</h1>
+      <p class="sub rv">Providers retire endpoints, parameters and models. Your lockfile never moves, so no dependency tool sees it. <b>driftcite finds the call sites and opens the pull request that fixes them</b> — and every finding cites the provider who published the change.</p>
+      <div class="cta rv">
+        <button class="cmd" id="copyCmd" title="copy">
+          <span><span class="dollar">$</span> npx driftcite .</span>
+          <span class="copy" id="copyLabel">copy</span>
+        </button>
+        <a class="app-btn" href="https://github.com/apps/driftcite">Install the GitHub App</a>
+        <span class="cta-note">runs on your machine · nothing uploaded · no account · Apache-2.0</span>
+      </div>
+    </div>
+    <div class="terminal rv" role="img" aria-label="driftcite terminal output showing a retired model finding with the provider's evidence link">
+      <div class="t-bar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div>
+      <div class="t-body">
+        <div><span class="p">$</span> npx driftcite .</div>
+        <br>
+        <div><span class="brk">[BREAKING]</span> <span class="art">openai/model_id/text-davinci-003</span> -- retired <span class="dim">(DIED 935 days ago)</span></div>
+        <div class="loc">use instead: gpt-3.5-turbo-instruct</div>
+        <div class="loc dim">evidence: developers.openai.com/api/docs/deprecations</div>
+        <div class="loc dim">models.py:6&nbsp;&nbsp;LEGACY = "text-davinci-003"</div>
+        <br>
+        <div><span class="p">$</span> npx driftcite . --fix --write</div>
+        <div class="loc"><span class="brk">- LEGACY = "text-davinci-003"</span></div>
+        <div class="loc"><span class="fix">+ LEGACY = "gpt-3.5-turbo-instruct"</span></div>
+        <br>
+        <div><span class="p">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="num rv">39.2<small>%</small></div>
+      <p class="rv">of 449 public repositories scanned in July 2026 call at least one API that is <b>already dead</b> — 2,932 breaking call sites, median seven per affected repo.<a class="cite" href="#fn2">[2]</a></p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2 class="rv">Being told is not the same as being safe.</h2>
+      <p class="lede rv">CircleCI went down for nearly two hours in March 2022 because an API endpoint they depended on moved. GitHub had announced the change <b>770 days earlier</b>.<a class="cite" href="#fn1">[1]</a> Somebody still had to map a prose announcement onto their own call sites, and nobody did — because that job belongs to a machine.</p>
+      <figure class="exhibit rv">
+        <div class="tag">exhibit a</div>
+        <div>
+          <blockquote>CircleCI looked at the changes and <em>mistakenly concluded that they did not apply to them.</em></blockquote>
+          <figcaption>— CircleCI post-mortem, March 1, 2022 incident<a class="cite" href="#fn1">[1]</a> · notified January 21, 2020 · broke <span class="days">770 days</span> later</figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="rv">Three rungs. Each one is the whole product, smaller.</h2>
+      <div class="ladder">
+        <div class="rung rv">
+          <span class="step">01 · LOOK</span>
+          <h3>Scan, right now</h3>
+          <p>Zero dependencies, nothing leaves your machine, no account. Ten providers, 135 retired artifacts, plus every npm and PyPI package your lockfiles pin.</p>
+          <pre>npx driftcite .</pre>
+          <a class="go" href="https://www.npmjs.com/package/driftcite">npmjs.com/package/driftcite →</a>
+        </div>
+        <div class="rung rv">
+          <span class="step">02 · GUARD</span>
+          <h3>Fail the build on drift</h3>
+          <p>One step in CI. Exit 1 on breaking findings, evidence links in the job summary, a baseline file so day-one debt doesn't drown you.</p>
+          <pre>- uses: nilaypatell/driftcite@main</pre>
+          <a class="go" href="https://github.com/nilaypatell/driftcite#in-ci">the action →</a>
+        </div>
+        <div class="rung featured rv">
+          <span class="step">03 · FIX</span>
+          <h3>The PR just arrives</h3>
+          <p>Install the App. When a provider retires something your code calls, a pull request shows up with the swap the provider itself named — and its citation. Two permissions, and it stores artifact IDs, never your code.</p>
+          <pre>github.com/apps/driftcite</pre>
+          <a class="go" href="https://github.com/apps/driftcite">install →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="rv">Receipts, not promises.</h2>
+      <p class="lede rv">This is a real pull request the App opened, unattended, on August 5, 2026.<a class="cite" href="#fn4">[4]</a> Three providers' dead models, four files, every change carrying the provider's own page.</p>
+      <div class="receipt rv">
+        <div class="r-head">
+          <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#002288" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#201e1d" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+          <span class="who"><b>driftcite[bot]</b> opened this pull request</span>
+          <span class="pill">bot</span>
+        </div>
+        <div class="diff">
+<span class="ctx">underthesea/agent/providers/anthropic_provider.py</span>
+<span class="del">- DEFAULT_MODEL = "claude-sonnet-4-20250514"</span>
+<span class="add">+ DEFAULT_MODEL = "claude-sonnet-5"</span>
+<span class="ctx">tests/agent/test_providers.py</span>
+<span class="del">- self.assertEqual(p.model, "gemini-2.0-flash")</span>
+<span class="add">+ self.assertEqual(p.model, "gemini-3.5-flash")</span>
+        </div>
+        <div class="r-foot">fix: update API identifiers retired by their providers · <a href="https://github.com/nilaypatell/underthesea/pull/1">see the PR itself →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="rv">Precision is the product.</h2>
+      <p class="lede rv">The first version reported 86 findings on a real 1,200-dependency repository, and roughly a quarter were real — <code style="font-family:var(--mono)">refund</code> was matching inside <i>refunded</i>. Every artifact kind now matches only in the shape it takes when actually sent to a provider. A tool that is wrong three times out of four gets muted, then deleted.</p>
+      <div class="prec rv">
+        <div class="cell"><div class="n was">86</div><div class="lab">findings · ~25% true</div></div>
+        <div class="arrow">→</div>
+        <div class="cell"><div class="n is">5</div><div class="lab">findings · 100% true</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="rv">Rules that don't bend.</h2>
+      <div class="rules" style="margin-top:34px">
+        <div class="rule-card rv">
+          <h3>Every fact cites the provider</h3>
+          <p>A finding links to the provider's own deprecations page or spec diff.<a class="cite" href="#fn3">[3]</a> Verify it in one click. You should not have to trust us — <b>no language model sits anywhere in the detection or fix path.</b></p>
+        </div>
+        <div class="rule-card rv">
+          <h3>Severity is computed against today</h3>
+          <p>"Deprecated, retires 2026-10-23" is a countdown, not a footnote. Findings sort by time left: <i>breaks in 88 days</i> before, <i>DIED 935 days ago</i> after. No dependency tool has a field for time remaining.</p>
+        </div>
+        <div class="rule-card rv">
+          <h3>It refuses to guess</h3>
+          <p>Only replacements the provider itself named are applied, inside the quoting your code already uses. Anything needing judgment is reported and left alone, out loud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="footnotes">
+  <div class="wrap">
+    <h2>Evidence</h2>
+    <ol>
+      <li id="fn1"><span class="fn">[1]</span><span><a href="https://discuss.circleci.com/t/post-mortem-workflows-not-running-and-jobs-failing-01-03-2022/43244">CircleCI post-mortem: workflows not running and jobs failing, March 1, 2022</a> <span class="note">— GitHub announced the endpoint migration on January 21, 2020; the brownout broke CircleCI on March 1, 2022.</span></span></li>
+      <li id="fn2"><span class="fn">[2]</span><span><a href="https://github.com/nilaypatell/driftcite/blob/main/corpus/report.json">driftcite corpus report — 449 public repositories, July 2026</a> <span class="note">— methodology and per-provider counts in the repository; reproducible with the public CLI.</span></span></li>
+      <li id="fn3"><span class="fn">[3]</span><span><a href="https://developers.openai.com/api/docs/deprecations">OpenAI deprecations page</a> <span class="note">— one of ten provider sources; spec-diff providers cite the provider's own git compare, e.g. <a href="https://github.com/stripe/openapi">stripe/openapi</a>.</span></span></li>
+      <li id="fn4"><span class="fn">[4]</span><span><a href="https://github.com/nilaypatell/underthesea/pull/1">Pull request opened by driftcite[bot], August 5, 2026</a> <span class="note">— authored, pushed and opened by the App with no human in the loop.</span></span></li>
+    </ol>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#002288" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#201e1d" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+    <span>driftcite · Apache-2.0 · the feed is public and free to read</span>
+    <a href="https://github.com/nilaypatell/driftcite">github.com/nilaypatell/driftcite</a>
+    <a href="https://github.com/apps/driftcite">github.com/apps/driftcite</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("copyCmd").addEventListener("click", () => {
+    navigator.clipboard.writeText("npx driftcite .").then(() => {
+      const l = document.getElementById("copyLabel");
+      l.textContent = "copied";
+      setTimeout(() => { l.textContent = "copy"; }, 1400);
+    });
+  });
+</script>
+
+</body>
+</html>

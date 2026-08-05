@@ -199,10 +199,19 @@ Fails the build on breaking drift and writes the findings, with evidence links, 
 
 ## Getting a pull request instead of a report
 
-Copy [`driftcite-autofix.yml`](.github/workflows/driftcite-autofix.yml) into
-your own `.github/workflows/`. On a schedule it scans, applies only the fixes
-the provider itself named, and opens a pull request with each claim citing the
-provider's own page.
+Two ways, one outcome: a PR arrives with the fix already applied and the
+provider's own page cited.
+
+**Install the GitHub App: [github.com/apps/driftcite](https://github.com/apps/driftcite).**
+Nothing to copy into your repo. The App holds exactly two permissions
+(contents and pull requests), stores only the artifact IDs your code matched
+— never your code — and opens one PR per repository when a provider retires
+something you call. [Here is a real one it opened.](https://github.com/nilaypatell/underthesea/pull/1)
+
+**Or keep it entirely in your own CI:** copy
+[`driftcite-autofix.yml`](.github/workflows/driftcite-autofix.yml) into your
+own `.github/workflows/`. On a schedule it scans, applies only the fixes the
+provider itself named, and opens the same pull request from inside your repo.
 
 ```diff
 - const MODEL  = "text-davinci-003";
@@ -230,11 +239,11 @@ welcome when you asked for them and spam when you did not.
 | `npx driftcite .` | your machine | what is broken right now |
 | GitHub Action | your CI | the same, every PR, exit 1 on breaking |
 | Autofix workflow | your CI | a pull request with the fix already applied |
-| Hosted watch | our servers | told the hour a provider moves, across every repo |
+| [The App](https://github.com/apps/driftcite) | our sweep | a PR in every installed repo when a provider moves |
 
-The first two answer *what is broken now.* The third closes the loop yourself.
-The fourth answers *tell me the moment something breaks*, which no local tool
-can do, because your laptop is asleep when the provider ships.
+The first two answer *what is broken now.* The third closes the loop
+yourself. The fourth closes it for every repository at once, without a
+workflow file in any of them, and runs even while your laptop is asleep.
 
 > [!NOTE]
 > **Your source code never reaches us at any tier.** The hosted watch stores only the artifact IDs your code matched, a few hundred strings, never files.
