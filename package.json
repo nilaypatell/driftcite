@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "node test/run.mjs && node test/watch.mjs",
-    "deploy:site": "npx wrangler@latest pages deploy site --project-name=driftcite"
+    "deploy:site": "vercel deploy --cwd site --prod"
   },
   "keywords": [
     "api",

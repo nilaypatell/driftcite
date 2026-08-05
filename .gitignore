@@ -10,3 +10,4 @@ corpus/results.json
 # private key. Neither belongs in a public repository, ever.
 *.pem
 watch-state.json
+.vercel/
