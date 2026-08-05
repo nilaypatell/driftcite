@@ -17,7 +17,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node test/run.mjs && node test/watch.mjs"
+    "test": "node test/run.mjs && node test/watch.mjs",
+    "deploy:site": "npx wrangler@latest pages deploy site --project-name=driftcite"
   },
   "keywords": [
     "api",
