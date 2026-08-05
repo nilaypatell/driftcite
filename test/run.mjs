@@ -445,6 +445,39 @@ function runList(files) {
   check("prints its version", /^\d+\.\d+\.\d+$/.test(out), `got: ${out}`);
 }
 
+{
+  // Piped stdout is asynchronous, and process.exit() abandons whatever has
+  // not flushed. In a terminal nobody notices; in CI or under the watch the
+  // JSON arrives cut off at a pipe-buffer boundary. Found by the first real
+  // sweep: "Unterminated string in JSON at position 8192".
+  const noisy = {};
+  for (let i = 0; i < 40; i++) {
+    noisy[`mod${i}.js`] = Array.from({ length: 10 },
+      (_, j) => `const m${j} = 'text-davinci-003';`).join("\n");
+  }
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-flush-"));
+  for (const [name, body] of Object.entries(noisy)) {
+    writeFileSync(path.join(dir, name), body);
+  }
+  let out = "";
+  try {
+    out = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json"],
+      { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  } catch (err) {
+    out = err.stdout || "";
+  }
+  rmSync(dir, { recursive: true, force: true });
+  let parsed = null;
+  try {
+    parsed = JSON.parse(out);
+  } catch {
+    /* leave null; the check below reports it */
+  }
+  check("large --json output arrives complete through a pipe",
+    parsed !== null && parsed.findings.length === 400,
+    `got ${out.length} bytes, parse ${parsed ? "ok" : "FAILED"}`);
+}
+
 console.log("\nreporting");
 check(
   "a clean repository yields no findings",

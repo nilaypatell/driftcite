@@ -979,10 +979,13 @@ Your source code is never sent anywhere.`);
   return code;
 }
 
+// process.exit() abandons stdout that has not flushed, and pipes flush
+// asynchronously, so a large --json report would arrive truncated in CI and
+// under the watch. Setting exitCode lets the process drain and then leave.
 main().then(
-  (code) => process.exit(code),
+  (code) => { process.exitCode = code; },
   (err) => {
     console.error(`driftcite: ${err.message}`);
-    process.exit(2);
+    process.exitCode = 2;
   }
 );

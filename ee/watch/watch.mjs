@@ -125,10 +125,12 @@ async function main() {
   return 0;
 }
 
+// Same flush discipline as the CLI: process.exit() would truncate piped
+// output, so set the code and let the process drain.
 main().then(
-  (code) => process.exit(code),
+  (code) => { process.exitCode = code; },
   (err) => {
     console.error(`driftcite watch: ${err.message}`);
-    process.exit(2);
+    process.exitCode = 2;
   }
 );
