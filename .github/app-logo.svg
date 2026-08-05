@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="driftcite">
   <!--
     The app avatar: the driftcite mark (a squared D, split and drifted; the
-    canonical source is mark.svg) filling the canvas — big, centered, with
-    just enough margin to survive GitHub's circular badge crop. The D's two
-    halves no longer meeting is the product: the provider moved, your code
-    did not.
+    canonical source is mark.svg), centered and sized for GitHub's badge,
+    which is "a square image inside a circular background" per their docs.
+    The mark's farthest corner stays ~40px inside the inscribed circle, so
+    nothing gets cropped in round contexts. The D's two halves no longer
+    meeting is the product: the provider moved, your code did not.
   -->
-  <g transform="translate(119.2 72) scale(7.857)">
+  <g transform="translate(197.7 160) scale(6.2857)">
     <polygon fill="#002288" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/>
     <polygon fill="#201e1d" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/>
   </g>
