@@ -6,3 +6,7 @@ __pycache__/
 # showing up with a fix is a shame list. The aggregate report and the
 # reproducible sample are published; the per-repo results stay local.
 corpus/results.json
+# The watch's state names customer repositories, and a private key is a
+# private key. Neither belongs in a public repository, ever.
+*.pem
+watch-state.json

@@ -17,7 +17,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node test/run.mjs"
+    "test": "node test/run.mjs && node test/watch.mjs"
   },
   "keywords": [
     "api",
