@@ -24,7 +24,7 @@ import {
 export const metadata: Metadata = pageMeta({
   path: "/coverage",
   title: "Coverage",
-  description: `${TOTAL_ARTIFACTS} artifacts across ${TOTAL_PROVIDERS} providers under daily watch, every one carrying the provider’s own evidence URL — plus every npm and PyPI package, with no per-provider work at all.`,
+  description: `${TOTAL_ARTIFACTS} artifacts across ${TOTAL_PROVIDERS} providers under daily watch, each carrying the provider’s own evidence URL — plus every npm and PyPI package.`,
 });
 
 /* The headline says "Ten", not "10". Spelling it out of the constant keeps

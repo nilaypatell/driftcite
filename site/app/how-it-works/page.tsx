@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMeta({
   path: "/how-it-works",
   title: "How it works",
   description:
-    "A manifest asserts. A scanner locates. The record is public. No language model sits anywhere in the detection or fix path — the polling runs as public CI, the record is git history, and the scanner is one auditable file.",
+    "A manifest asserts, a scanner locates, the record is public. No language model sits anywhere in the detection or fix path, and the scanner is one auditable file.",
 });
 
 /* ── shared inline values, read straight off the handoff ────────────── */

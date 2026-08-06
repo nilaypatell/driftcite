@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMeta({
   path: "/security",
   title: "Security & privacy",
   description:
-    "Your source code is never transmitted: the scan runs entirely on your machine, with no account, no upload and no telemetry. The three optional network requests, what --fix may write, and the two permissions the GitHub App asks for.",
+    "Your source is never transmitted: the scan runs on your machine, with no account, no upload and no telemetry. The three optional network requests, in full.",
 });
 
 const MUTED = "color-mix(in srgb, var(--color-ink) 78%, transparent)";

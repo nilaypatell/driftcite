@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMeta({
   path: "/changelog",
   title: "Changelog",
   description:
-    "Releases of the driftcite scanner, Action and GitHub App — what changed, and when. The drift manifests are a separate record, regenerated daily by a scheduled workflow.",
+    "Releases of the driftcite scanner, Action and GitHub App — what changed, and when. The drift manifests are a separate record, regenerated daily.",
 });
 
 /** Inline code, the handoff's treatment: mono, 0.92em of its own line. */

@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+  Space_Grotesk,
+  Hanken_Grotesk,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -38,7 +42,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const DESCRIPTION =
-  "You should be shipping, not tracking which model a provider retired last quarter. driftcite finds the API identifiers in your source that are already dead — models, endpoints, parameters — and opens the pull request that replaces them, citing the provider that published the change.";
+  "Finds the models, endpoints and parameters your code calls that providers have already retired, and opens the pull request that replaces them.";
 
 /* The social card is public/og.png, declared rather than conventional — see
    OG_IMAGE in lib/seo.ts for why the file convention's hashed URL was the
