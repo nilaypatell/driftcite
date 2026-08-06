@@ -73,6 +73,10 @@ export const PRECISION = { before: 86, after: 5 } as const;
  *  this to true to put the nav and footer links back. */
 export const SHOW_PRICING: boolean = false;
 
+/** The command, in one place. The hero button copies it, the social card
+ *  draws it, and the docs print it — three places that must not disagree. */
+export const COMMAND = "npx driftcite ." as const;
+
 export const LINKS = {
   repo: "https://github.com/nilaypatell/driftcite",
   app: "https://github.com/apps/driftcite",

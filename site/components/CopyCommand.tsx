@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check, Copy } from "@/components/icons";
+import { COMMAND } from "@/lib/data";
 
-const COMMAND = "npx driftcite .";
+
 
 /**
  * The `$ npx driftcite .` button. Used twice — hero and CTA band — so the

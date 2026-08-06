@@ -278,7 +278,12 @@ a:hover .dc-arrow, button:hover .dc-arrow { transform: translateX(3px); }
   padding-inline:
     max(clamp(20px, 5vw, 72px), calc((100% - 1200px) / 2 + clamp(20px, 5vw, 72px)));
   border-bottom: 1px solid var(--color-divider);
-  background: color-mix(in srgb, var(--color-bg) 93%, transparent);
+  /* 96%, not 93%. The scrolled state below explains why the blur cannot be
+     trusted to carry legibility; the same is true here, and this is the
+     state a reader with JavaScript off is in the whole way down the page,
+     because nothing is there to set data-scrolled. Measured with scripting
+     disabled, the provider table read straight through the header. */
+  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
   backdrop-filter: blur(10px) saturate(1.4);
   -webkit-backdrop-filter: blur(10px) saturate(1.4);
   transition: background-color .3s ease, box-shadow .3s ease;

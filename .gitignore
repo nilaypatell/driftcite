@@ -14,3 +14,6 @@ watch-state.json
 
 # Playwright MCP session artifacts (screenshots, snapshots, console logs)
 .playwright-mcp/
+
+# editor
+.vscode/
