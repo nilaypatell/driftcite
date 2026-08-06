@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mark } from "@/components/primitives";
-import { GitHub, Star } from "@/components/icons";
+import { GitHub } from "@/components/icons";
 import StarCount from "@/components/StarCount";
 import { LINKS, SHOW_PRICING } from "@/lib/data";
 
@@ -98,12 +98,13 @@ export default function SiteNav() {
       <a
         className="dc-btn dc-btn-quiet whitespace-nowrap max-[430px]:hidden"
         href={LINKS.repo}
-        style={{ gap: 8, textDecoration: "none" }}
+        style={{ gap: 9, textDecoration: "none" }}
+        aria-label="driftcite on GitHub"
       >
-        <GitHub size={16} />
-        <span>GitHub</span>
-        <span className="dc-stars max-[560px]:hidden">
-          <Star size={12} />
+        {/* the mark is the label — the word beside it said what the logo
+            already said, twice, in a header with five other links */}
+        <GitHub size={17} className="dc-gh-mark" />
+        <span className="dc-stars">
           <StarCount />
         </span>
       </a>

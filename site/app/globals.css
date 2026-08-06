@@ -183,14 +183,12 @@
   transition: background-color .15s ease;
 }
 .dc-btn-quiet:hover { background: color-mix(in srgb, var(--color-ink) 7%, transparent); }
-/* the count is secondary to the label it follows, and the star says what
-   the number is so the number doesn't have to */
-.dc-stars {
-  display: inline-flex; align-items: center; gap: 4px;
-  color: color-mix(in srgb, var(--color-ink) 52%, transparent);
-  font-feature-settings: 'tnum' 1;
-}
-.dc-btn-quiet:hover .dc-stars { color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
+/* The mark recedes and the number carries the weight — the reverse of a
+   labelled button, where the word leads. Tabular so the chip does not
+   twitch when the count crosses a digit. */
+.dc-gh-mark { color: color-mix(in srgb, var(--color-ink) 46%, transparent); }
+.dc-btn-quiet:hover .dc-gh-mark { color: var(--color-ink); }
+.dc-stars { color: var(--color-ink); font-feature-settings: 'tnum' 1; }
 /* StarCount renders a hidden <b> until a real number arrives; when it is
    hidden the star and its gap go with it, rather than leaving a bare mark. */
 .dc-stars:has(b[hidden]) { display: none; }
