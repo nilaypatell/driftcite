@@ -68,6 +68,11 @@ export const DEAD_IDENTIFIERS = [
 /** The precision story: an early build's false-positive rate. */
 export const PRECISION = { before: 86, after: 5 } as const;
 
+/** Paid tiers aren't sellable yet, so nothing in the chrome points at
+ *  /pricing. The page itself still builds and is reachable by URL — flip
+ *  this to true to put the nav and footer links back. */
+export const SHOW_PRICING: boolean = false;
+
 export const LINKS = {
   repo: "https://github.com/nilaypatell/driftcite",
   app: "https://github.com/apps/driftcite",

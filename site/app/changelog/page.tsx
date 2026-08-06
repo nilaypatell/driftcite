@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Column } from "@/components/primitives";
 import { CORPUS, LINKS, PRECISION, TOTAL_ARTIFACTS } from "@/lib/data";
+import { formatDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Changelog",
@@ -21,7 +22,7 @@ function C({ children }: { children: ReactNode }) {
 type Release = {
   /** The tag, as published. */
   version: string;
-  /** ISO date; rendered in mono, and used verbatim as the `datetime`. */
+  /** ISO date. Used verbatim as the `datetime`, written out for readers. */
   date: string;
   /** Optional pill beside the version — "Latest" on the newest entry. */
   tag?: string;
@@ -248,12 +249,16 @@ export default function Changelog() {
                 alignItems: "flex-start",
               }}
             >
+              {/* written out for readers, ISO for machines */}
               <time
-                className="dc-mono"
                 dateTime={r.date}
-                style={{ fontSize: 12.5, color: "var(--color-neutral-600)" }}
+                style={{
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "var(--color-neutral-600)",
+                }}
               >
-                {r.date}
+                {formatDate(r.date)}
               </time>
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                 <span

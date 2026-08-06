@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mark } from "@/components/primitives";
 import StarCount from "@/components/StarCount";
-import { LINKS } from "@/lib/data";
+import { LINKS, SHOW_PRICING } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
    The sticky header. Rendered once in app/layout.tsx, which is why it
@@ -13,13 +13,15 @@ import { LINKS } from "@/lib/data";
    static markup; the star count brings its own client boundary.
    ═══════════════════════════════════════════════════════════════════════ */
 
-const NAV = [
+/* `when` gates a link without deleting it: /pricing stays in the list and
+   the page keeps building, it just isn't linked while paid tiers are off. */
+const NAV: { href: string; label: string; when?: boolean }[] = [
   { href: "/docs", label: "Docs" },
   { href: "/coverage", label: "Coverage" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/pricing", label: "Pricing", when: SHOW_PRICING },
   { href: "/how-it-works", label: "How it works" },
   { href: "/changelog", label: "Changelog" },
-] as const;
+].filter((item) => item.when !== false);
 
 /* inherit the ink, take the accent on hover and on the current page —
    the hover/aria states cannot be inline, so they are utilities. */
@@ -72,14 +74,7 @@ export default function SiteNav() {
         <span style={{ display: "flex", flex: "none" }}>
           <Mark size={20} />
         </span>
-        <span>
-          driftcite
-          <sup
-            style={{ color: "var(--color-accent)", fontSize: 13, marginLeft: 1 }}
-          >
-            †
-          </sup>
-        </span>
+        <span>driftcite</span>
       </Link>
 
       {NAV.map((item) => (

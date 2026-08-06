@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { Mark } from "@/components/primitives";
-import { LINKS } from "@/lib/data";
+import { LINKS, SHOW_PRICING } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
    The footer. Server component — nothing here moves.
@@ -90,18 +90,7 @@ export default function SiteFooter() {
               }}
             >
               <Mark size={20} />
-              <span>
-                driftcite
-                <sup
-                  style={{
-                    color: "var(--color-accent)",
-                    fontSize: 13,
-                    marginLeft: 1,
-                  }}
-                >
-                  †
-                </sup>
-              </span>
+              <span>driftcite</span>
             </span>
             <p
               style={{
@@ -133,9 +122,12 @@ export default function SiteFooter() {
             <Link className={LINK_CLASS} href="/">
               Overview
             </Link>
-            <Link className={LINK_CLASS} href="/pricing">
-              Pricing
-            </Link>
+            {/* Kept, not deleted — see SHOW_PRICING in lib/data.ts. */}
+            {SHOW_PRICING && (
+              <Link className={LINK_CLASS} href="/pricing">
+                Pricing
+              </Link>
+            )}
             <Link className={LINK_CLASS} href="/changelog">
               Changelog
             </Link>
