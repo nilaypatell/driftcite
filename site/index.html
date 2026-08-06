@@ -29,9 +29,16 @@
   "license": "https://www.apache.org/licenses/LICENSE-2.0"
 }
 </script>
+<script>
+  // Apply the stored theme before first paint, so there is no flash.
+  try {
+    const t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch {}
+</script>
 <style>
-  /* One committed world: the evidence terminal. Blue-black ground, one
-     electric accent, mono as texture. Deliberately single-theme. */
+  /* The evidence terminal. Dark is the home theme; light is a cool clean
+     white, never cream. The toggle wins, the OS preference is the default. */
   :root {
     --ground: #0A0C12;
     --ground-2: #0E1119;
@@ -43,19 +50,74 @@
     --faint: #4A5169;
     --accent: #3D5AFE;
     --accent-soft: #7C90FF;
-    --white-half: #E9ECF5;
+    --mark-a: #3D5AFE;
+    --mark-b: #E9ECF5;
     --red: #FF6B57;
     --green: #4ADE80;
+    --dot: #171B26;
+    --glow: rgba(61, 90, 254, .13);
+    --chip-border: transparent;
     --display: "Plus Jakarta Sans", "Avenir Next", Avenir, "Segoe UI", sans-serif;
     --mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, ui-monospace, monospace;
+    color-scheme: dark;
   }
+  :root[data-theme="light"] {
+    --ground: #FBFCFE;
+    --ground-2: #F4F6FA;
+    --panel: #FFFFFF;
+    --line: #E4E8F1;
+    --line-bright: #CBD3E3;
+    --text: #0D1220;
+    --dim: #5A6478;
+    --faint: #8B94AA;
+    --accent: #002288;
+    --accent-soft: #2E4BFF;
+    --mark-a: #002288;
+    --mark-b: #201E1D;
+    --red: #C4331D;
+    --green: #1D7A3E;
+    --dot: #E9EDF5;
+    --glow: rgba(0, 34, 136, .07);
+    --chip-border: #D5D9E4;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #FBFCFE;
+      --ground-2: #F4F6FA;
+      --panel: #FFFFFF;
+      --line: #E4E8F1;
+      --line-bright: #CBD3E3;
+      --text: #0D1220;
+      --dim: #5A6478;
+      --faint: #8B94AA;
+      --accent: #002288;
+      --accent-soft: #2E4BFF;
+      --mark-a: #002288;
+      --mark-b: #201E1D;
+      --red: #C4331D;
+      --green: #1D7A3E;
+      --dot: #E9EDF5;
+      --glow: rgba(0, 34, 136, .07);
+      --chip-border: #D5D9E4;
+      color-scheme: light;
+    }
+  }
+  /* The terminal and the command chip are terminals: dark in both worlds. */
+  .terminal, .cmd {
+    --ground-2: #0E1119; --panel: #11141D; --line: #1F2433; --line-bright: #2A3147;
+    --text: #EDEFF7; --dim: #8B93A9; --faint: #4A5169;
+    --accent-soft: #7C90FF; --red: #FF6B57; --green: #4ADE80;
+  }
+  .mark-a { fill: var(--mark-a); }
+  .mark-b { fill: var(--mark-b); }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: var(--display);
     background:
-      radial-gradient(1200px 600px at 75% -10%, rgba(61, 90, 254, .13), transparent 60%),
-      radial-gradient(circle at 1px 1px, #171B26 1px, transparent 0) 0 0 / 26px 26px,
+      radial-gradient(1200px 600px at 75% -10%, var(--glow), transparent 60%),
+      radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0) 0 0 / 26px 26px,
       var(--ground);
     color: var(--text);
     line-height: 1.55;
@@ -89,10 +151,17 @@
   .gh-btn {
     display: inline-flex; align-items: center; gap: 8px;
     background: #fff; color: #0A0C12 !important;
+    border: 1px solid var(--chip-border);
     font-family: var(--display) !important; font-weight: 700; font-size: 13px !important;
     border-radius: 7px; padding: 7px 13px; text-decoration: none;
     transition: transform .15s ease, box-shadow .15s ease;
   }
+  .theme-btn {
+    background: none; border: 1px solid var(--line-bright); color: var(--dim);
+    width: 34px; height: 34px; border-radius: 7px; cursor: pointer;
+    font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--accent); }
   .gh-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -6px rgba(255,255,255,.35); }
   .gh-btn svg { width: 16px; height: 16px; }
   .gh-btn b { font-variant-numeric: tabular-nums; border-left: 1px solid #D5D9E4; padding-left: 8px; font-weight: 700; }
@@ -300,7 +369,7 @@
 
 <header>
   <div class="wrap bar">
-    <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#3D5AFE" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#E9ECF5" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+    <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon class="mark-a" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon class="mark-b" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
     <a class="word" href="https://github.com/nilaypatell/driftcite">driftcite</a>
     <nav>
       <a href="https://www.npmjs.com/package/driftcite">npm</a>
@@ -310,6 +379,7 @@
         <b id="ghStars" hidden></b>
       </a>
       <a class="install" href="https://github.com/apps/driftcite">install the app</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch theme">☀</button>
     </nav>
   </div>
 </header>
@@ -415,7 +485,7 @@
       <p class="lede">A real pull request the App opened, unattended, on August 5, 2026.<a class="cite" href="#fn4">[4]</a> Three providers' dead models, four files, every change carrying the provider's own page.</p>
       <div class="receipt">
         <div class="r-head">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#3D5AFE" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#E9ECF5" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+          <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon class="mark-a" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon class="mark-b" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
           <span class="who"><b>driftcite[bot]</b> opened this pull request</span>
           <span class="pill">BOT</span>
         </div>
@@ -485,7 +555,7 @@
 
 <footer>
   <div class="wrap">
-    <svg class="mark" viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#3D5AFE" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#E9ECF5" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
+    <svg class="mark" viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon class="mark-a" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon class="mark-b" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
     <span>driftcite · Apache-2.0 · the feed is public and free to read</span>
     <a href="https://github.com/nilaypatell/driftcite">github.com/nilaypatell/driftcite</a>
     <a href="https://github.com/apps/driftcite">github.com/apps/driftcite</a>
@@ -500,6 +570,21 @@
       setTimeout(() => { l.textContent = "copy"; }, 1400);
     });
   });
+
+  // Theme toggle: the button wins, the OS preference is the default,
+  // the choice is remembered.
+  const themeBtn = document.getElementById("themeBtn");
+  const currentTheme = () =>
+    document.documentElement.dataset.theme ||
+    (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  const paintBtn = () => { themeBtn.textContent = currentTheme() === "dark" ? "☀" : "☾"; };
+  themeBtn.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch {}
+    paintBtn();
+  });
+  paintBtn();
 
   // Live star count on the GitHub chip; shown only once it exists.
   fetch("https://api.github.com/repos/nilaypatell/driftcite")
