@@ -244,7 +244,7 @@ export default function HowItWorks() {
           stage below is observable: the polling runs as public CI, the record
           is git history, and the scanner is one auditable file. The numbers
           come from{" "}
-          <a href={LINKS.architecture} style={LINK_STYLE}>
+          <a target="_blank" rel="noopener" href={LINKS.architecture} style={LINK_STYLE}>
             ARCHITECTURE.md
           </a>
           , each verified against a live endpoint.
@@ -415,10 +415,10 @@ export default function HowItWorks() {
             flexWrap: "wrap",
           }}
         >
-          <a className="dc-btn dc-btn-primary" href={LINKS.app}>
+          <a target="_blank" rel="noopener" className="dc-btn dc-btn-primary" href={LINKS.app}>
             Install the App
           </a>
-          <a className="dc-btn dc-btn-ghost" href={LINKS.architecture}>
+          <a target="_blank" rel="noopener" className="dc-btn dc-btn-ghost" href={LINKS.architecture}>
             Read ARCHITECTURE.md<ArrowRight className="dc-arrow" size={14} />
           </a>
         </div>

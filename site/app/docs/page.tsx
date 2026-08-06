@@ -589,6 +589,8 @@ export default function Docs() {
               }}
             >
               <a
+                target="_blank"
+                rel="noopener"
                 className="dc-btn dc-btn-primary"
                 href={LINKS.app}
                 style={{ textDecoration: "none" }}
@@ -596,6 +598,8 @@ export default function Docs() {
                 Install the App
               </a>
               <a
+                target="_blank"
+                rel="noopener"
                 className="dc-btn dc-btn-ghost"
                 href={LINKS.pr}
                 style={{ textDecoration: "none" }}
@@ -609,6 +613,8 @@ export default function Docs() {
             <p style={{ ...prose, margin: "14px 0 0" }}>
               Copy{" "}
               <a
+                target="_blank"
+                rel="noopener"
                 href={`${LINKS.repo}/blob/main/.github/workflows/driftcite-autofix.yml`}
                 style={link}
               >

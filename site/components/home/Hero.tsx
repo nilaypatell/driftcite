@@ -111,7 +111,7 @@ export default function Hero() {
         never moves, so no dependency tool notices. driftcite reads your call
         sites, finds what already stopped working, and opens the pull request
         that fixes it.{" "}
-        <a href={LINKS.repo} style={{ color: "var(--color-accent-700)" }}>
+        <a target="_blank" rel="noopener" href={LINKS.repo} style={{ color: "var(--color-accent-700)" }}>
           It’s all open source.
         </a>
       </p>
@@ -128,6 +128,8 @@ export default function Hero() {
         }}
       >
         <a
+          target="_blank"
+          rel="noopener"
           className="dc-btn dc-btn-primary"
           href={LINKS.app}
           style={{ minHeight: 44, paddingInline: 24, fontSize: 15 }}

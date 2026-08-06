@@ -155,7 +155,7 @@ export default function SectionArrives() {
             <pre className="dc-mono" style={snippet}>
               github.com/apps/driftcite
             </pre>
-            <a href={LINKS.app} style={arrow}>
+            <a target="_blank" rel="noopener" href={LINKS.app} style={arrow}>
               Install<ArrowRight className="dc-arrow" size={14} />
             </a>
           </div>
@@ -170,7 +170,7 @@ export default function SectionArrives() {
           }}
         >
           Prefer to keep it entirely in your own CI? Copy{" "}
-          <a href={AUTOFIX} style={{ color: "var(--color-accent-700)" }}>
+          <a target="_blank" rel="noopener" href={AUTOFIX} style={{ color: "var(--color-accent-700)" }}>
             <code className="dc-mono" style={{ fontSize: 12 }}>
               driftcite-autofix.yml
             </code>

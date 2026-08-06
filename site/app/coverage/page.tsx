@@ -315,7 +315,7 @@ export default function CoveragePage() {
                 {CORPUS.breaking.toLocaleString("en-US")} breaking call sites
                 across {CORPUS.affected} affected repositories. Reproducible with
                 the public CLI; methodology in{" "}
-                <a href={LINKS.report} style={A}>
+                <a target="_blank" rel="noopener" href={LINKS.report} style={A}>
                   corpus/report.json
                 </a>
                 .
@@ -417,7 +417,7 @@ export default function CoveragePage() {
           <div className="dc-rv">
             <p style={{ ...LEAD, marginTop: 20 }}>
               Manifests live in{" "}
-              <a href={MANIFESTS_DIR} style={A}>
+              <a target="_blank" rel="noopener" href={MANIFESTS_DIR} style={A}>
                 <code className="dc-mono" style={{ fontSize: "0.9em" }}>
                   manifests/
                 </code>
@@ -434,7 +434,7 @@ export default function CoveragePage() {
               thing. The hard part was never obtaining it — it is maintaining it,
               every day, forever, across every provider, because it decays the
               moment anyone stops. That is the one place a restriction sits: the{" "}
-              <a href={MANIFESTS_LICENSE} style={A}>
+              <a target="_blank" rel="noopener" href={MANIFESTS_LICENSE} style={A}>
                 data license
               </a>{" "}
               permits use, redistribution and research, and prohibits repackaging
@@ -478,7 +478,7 @@ export default function CoveragePage() {
               named <i>refund</i> from flagging every codebase that has ever
               mentioned a refund — the difference between a tool people leave
               switched on and one they mute in a week. Full guide in{" "}
-              <a href={LINKS.contributing} style={A}>
+              <a target="_blank" rel="noopener" href={LINKS.contributing} style={A}>
                 CONTRIBUTING.md
               </a>
               ; pull requests welcome.

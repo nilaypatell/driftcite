@@ -149,7 +149,7 @@ export default function SiteFooter() {
             <Link className={LINK_CLASS} href="/docs#cli">
               CLI reference
             </Link>
-            <a className={LINK_CLASS} href={MANIFEST_SPEC}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={MANIFEST_SPEC}>
               Manifest spec
             </a>
           </FooterColumn>
@@ -164,25 +164,25 @@ export default function SiteFooter() {
             <Link className={LINK_CLASS} href="/coverage#add">
               Adding a provider
             </Link>
-            <a className={LINK_CLASS} href={DATA_LICENSE}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={DATA_LICENSE}>
               Data license
             </a>
           </FooterColumn>
 
           <FooterColumn title="Project">
-            <a className={LINK_CLASS} href={LINKS.repo}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={LINKS.repo}>
               GitHub
             </a>
-            <a className={LINK_CLASS} href={LINKS.npm}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={LINKS.npm}>
               npm
             </a>
-            <a className={LINK_CLASS} href={LINKS.contributing}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={LINKS.contributing}>
               Contributing
             </a>
-            <a className={LINK_CLASS} href={ADVISORY}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={ADVISORY}>
               Report a vulnerability
             </a>
-            <a className={LINK_CLASS} href={LICENSE}>
+            <a target="_blank" rel="noopener" className={LINK_CLASS} href={LICENSE}>
               License
             </a>
           </FooterColumn>

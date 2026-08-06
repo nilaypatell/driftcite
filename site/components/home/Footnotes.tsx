@@ -50,7 +50,7 @@ export default function Footnotes() {
         <li id="fn1" className="dc-fn" style={item}>
           <span style={dagger}>&#8224;1</span>
           <span>
-            <a href={LINKS.circleci} style={cite}>
+            <a target="_blank" rel="noopener" href={LINKS.circleci} style={cite}>
               CircleCI post-mortem: workflows not running and jobs failing,
               March 1, 2022
             </a>{" "}
@@ -62,7 +62,7 @@ export default function Footnotes() {
         <li id="fn2" className="dc-fn" style={item}>
           <span style={dagger}>&#8224;2</span>
           <span>
-            <a href={LINKS.report} style={cite}>
+            <a target="_blank" rel="noopener" href={LINKS.report} style={cite}>
               driftcite corpus report &#8212; {CORPUS.scanned} public
               repositories, July 2026
             </a>{" "}
@@ -74,12 +74,12 @@ export default function Footnotes() {
         <li id="fn3" className="dc-fn" style={item}>
           <span style={dagger}>&#8224;3</span>
           <span>
-            <a href={LINKS.openaiDeprecations} style={cite}>
+            <a target="_blank" rel="noopener" href={LINKS.openaiDeprecations} style={cite}>
               OpenAI deprecations page
             </a>{" "}
             &#8212; one of ten provider sources; spec-diff providers cite the
             provider&#8217;s own git compare, e.g.{" "}
-            <a href={LINKS.stripeOpenapi} style={cite}>
+            <a target="_blank" rel="noopener" href={LINKS.stripeOpenapi} style={cite}>
               stripe/openapi
             </a>
             .
@@ -89,7 +89,7 @@ export default function Footnotes() {
         <li id="fn4" className="dc-fn" style={item}>
           <span style={dagger}>&#8224;4</span>
           <span>
-            <a href={LINKS.pr} style={cite}>
+            <a target="_blank" rel="noopener" href={LINKS.pr} style={cite}>
               Pull request opened by driftcite[bot], August 5, 2026
             </a>{" "}
             &#8212; authored, pushed and opened by the App with no human in the

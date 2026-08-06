@@ -208,6 +208,8 @@ export default function Security() {
             auditable in one sitting and pull nothing in. The entire scanner is a single
             file:{" "}
             <a
+              target="_blank"
+              rel="noopener"
               href={`${LINKS.repo}/blob/main/bin/driftcite.mjs`}
               style={{ color: "var(--color-accent-700)" }}
             >
@@ -313,6 +315,8 @@ export default function Security() {
           </p>
           <div style={{ marginTop: 8 }}>
             <a
+              target="_blank"
+              rel="noopener"
               className="dc-btn dc-btn-primary"
               href={`${LINKS.repo}/security/advisories/new`}
               style={{ textDecoration: "none" }}

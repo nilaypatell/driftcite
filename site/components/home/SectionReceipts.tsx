@@ -149,6 +149,8 @@ export default function SectionReceipts() {
             >
               fix: update API identifiers retired by their providers &#183;{" "}
               <a
+                target="_blank"
+                rel="noopener"
                 href={LINKS.pr}
                 style={{
                   color: "var(--color-term-prompt)",

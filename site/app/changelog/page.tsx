@@ -215,6 +215,8 @@ export default function Changelog() {
           — they regenerate daily by a scheduled workflow, and their history is
           the{" "}
           <a
+            target="_blank"
+            rel="noopener"
             href={`${LINKS.repo}/commits/main/manifests`}
             style={{ color: "var(--color-accent-700)" }}
           >

@@ -297,6 +297,8 @@ export default function Pricing() {
                 </Link>
               ) : (
                 <a
+                  target="_blank"
+                  rel="noopener"
                   className={`dc-btn ${
                     tier.cta.primary ? "dc-btn-primary" : "dc-btn-secondary"
                   }`}

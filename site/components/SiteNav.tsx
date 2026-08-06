@@ -96,6 +96,8 @@ export default function SiteNav() {
           34px. Continuing the same pattern one step keeps the CTA, which is
           the one that matters. */}
       <a
+        target="_blank"
+        rel="noopener"
         className="dc-btn dc-btn-quiet whitespace-nowrap max-[430px]:hidden"
         href={LINKS.repo}
         style={{ gap: 9, textDecoration: "none" }}
@@ -110,6 +112,8 @@ export default function SiteNav() {
       </a>
 
       <a
+        target="_blank"
+        rel="noopener"
         className="dc-btn dc-btn-primary whitespace-nowrap"
         href={LINKS.app}
         style={{ textDecoration: "none" }}
