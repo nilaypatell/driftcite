@@ -9,6 +9,8 @@ PY=/Users/nilaypatel/.pyenv/versions/3.11.7/bin/python3
 
 echo "=== $(date -u '+%Y-%m-%d %H:%M') UTC ==="
 $PY scanner/refresh.py || exit 1
+$PY scanner/watch_pages.py || exit 1
+$PY scanner/probe_models.py || exit 1
 $PY scanner/build_feed.py || exit 1
 
 git add manifests/ feed/

@@ -1,0 +1,50 @@
+{
+  "pages": {
+    "https://ai.google.dev/gemini-api/docs/changelog": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "google-models.yaml"
+      ],
+      "sha256": "5a44fde1df25c995a8725107374d87a240b9f7b3e4223294a7fbf453e125b609"
+    },
+    "https://console.groq.com/docs/deprecations": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "groq-models.yaml"
+      ],
+      "sha256": "c7fa23bc5111d43a6a40f5a433ce7c454419348dee6915af43d01949d48b6c07"
+    },
+    "https://developers.openai.com/api/docs/deprecations": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "openai-models.yaml"
+      ],
+      "sha256": "bf457baeb74075c0ffaf5d0a1e83e85415867c4bb3e5ba3e4d12a840a8dedabb"
+    },
+    "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "anthropic.yaml"
+      ],
+      "sha256": "9363064d3ed43daad081815ed3b2eb999ce8dc45af0ce59d87bace2cec8ec223"
+    },
+    "https://platform.claude.com/docs/en/about-claude/models/overview.md": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "anthropic.yaml"
+      ],
+      "sha256": "9b0d15561a2fdea7fb73f76632e85a108c3396c433fe03d5f6c8238fcedbf683"
+    }
+  },
+  "updated": "2026-08-06"
+}

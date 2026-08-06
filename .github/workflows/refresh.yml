@@ -42,11 +42,32 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scanner/refresh.py
 
+      # The curated manifests are transcribed from prose pages. Watch the
+      # pages they cite so an edit upstream becomes a work order, not rot.
+      - name: Watch the cited documentation pages
+        run: python3 scanner/watch_pages.py
+
+      # A page says a model retired; the probe records that the ID actually
+      # stopped being served. Providers whose key is not configured as a
+      # secret are skipped by name.
+      - name: Probe live model lists
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        run: python3 scanner/probe_models.py
+
+      - name: Rebuild the feed
+        run: python3 scanner/build_feed.py
+
       - name: Commit the day
         run: |
           git config user.name "driftcite clock"
           git config user.email "77018379+nilaypatell@users.noreply.github.com"
-          git add manifests/
+          git add manifests/ feed/
           if git diff --staged --quiet; then
             echo "nothing to commit"
           else

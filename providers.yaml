@@ -56,3 +56,49 @@ providers:
 # Providers whose changes are not in a machine-readable spec are curated by
 # hand in manifests/<name>.yaml instead. Model retirements are the usual case:
 # they are published as prose in documentation and never appear in the spec.
+
+# Live model-list endpoints, probed daily by scanner/probe_models.py.
+#
+# A curated manifest says a model was retired because a page said so. The
+# probe says it because we sent the request and the ID was gone. Both are
+# recorded; the second cannot be regenerated later by anyone who was not
+# watching. A provider with no key in the environment is skipped by name,
+# never silently.
+#
+#   url       the provider's list-models endpoint
+#   auth      bearer | x-api-key | query-key   (how the key is presented)
+#   key_env   environment variables tried in order for the key
+#   id_path   where model IDs live in the response: data.id or models.name
+#   strip     optional prefix removed from each ID (Google returns models/...)
+model_lists:
+  openai:
+    url: https://api.openai.com/v1/models
+    auth: bearer
+    key_env: [OPENAI_API_KEY]
+    id_path: data.id
+  anthropic:
+    url: https://api.anthropic.com/v1/models
+    auth: x-api-key
+    key_env: [ANTHROPIC_API_KEY]
+    id_path: data.id
+  google:
+    url: https://generativelanguage.googleapis.com/v1beta/models
+    auth: query-key
+    key_env: [GEMINI_API_KEY, GOOGLE_API_KEY]
+    id_path: models.name
+    strip: models/
+  groq:
+    url: https://api.groq.com/openai/v1/models
+    auth: bearer
+    key_env: [GROQ_API_KEY]
+    id_path: data.id
+  mistral:
+    url: https://api.mistral.ai/v1/models
+    auth: bearer
+    key_env: [MISTRAL_API_KEY]
+    id_path: data.id
+  xai:
+    url: https://api.x.ai/v1/models
+    auth: bearer
+    key_env: [XAI_API_KEY]
+    id_path: data.id
