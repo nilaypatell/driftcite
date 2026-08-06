@@ -234,7 +234,7 @@ def scan_file(path, index, root):
     for literal, art, provider, markers in index:
         if literal not in text:
             continue
-        if art["kind"] in CONTEXT_REQUIRED_KINDS:
+        if art["kind"] in CONTEXT_REQUIRED_KINDS or art.get("require_context"):
             if markers and not any(mk.lower() in lowered for mk in markers):
                 continue
         matcher = compile_matcher(literal, art["kind"])

@@ -51,6 +51,14 @@ const MATCH_SHAPES = {
   sdk_symbol: ["quoted", "word"],
 };
 const DEFAULT_SHAPES = ["quoted", "word"];
+/**
+ * Kinds that never count without a provider marker in the file. Model IDs are
+ * absent because they are normally distinctive enough to stand alone — but a
+ * reseller is not: Azure serves gpt-4o and claude-opus-4-1 under its own,
+ * earlier retirement dates, and reporting those to someone calling OpenAI or
+ * Anthropic directly would be a wrong answer with a real date attached. Such
+ * an artifact sets require_context and is held to the same gate.
+ */
 const CONTEXT_REQUIRED = new Set([
   "request_param", "sdk_symbol", "tool_type", "endpoint", "enum_value",
 ]);
@@ -306,7 +314,7 @@ async function scanRepo(root, artifacts) {
 
     for (const { lit, art } of index) {
       if (!text.includes(lit)) continue;
-      if (CONTEXT_REQUIRED.has(art.kind)) {
+      if (CONTEXT_REQUIRED.has(art.kind) || art.require_context) {
         const markers = art.file_markers || [];
         if (markers.length && !markers.some((m) => lowered.includes(m.toLowerCase()))) continue;
       }
@@ -531,6 +539,8 @@ const DEP_MANIFESTS = {
   pnpmLock: /^pnpm-lock\.yaml$/,
   yarnLock: /^yarn\.lock$/,
   reqs: /^requirements(-.+)?\.txt$/,
+  gemLock: /^Gemfile\.lock$/,
+  cargoLock: /^Cargo\.lock$/,
   pkgJson: /^package\.json$/,
 };
 
@@ -540,13 +550,14 @@ const UNSUPPORTED_MANIFESTS = [
   [/^poetry\.lock$/, "poetry.lock is not read yet; export a pinned requirements.txt for coverage"],
   [/^uv\.lock$/, "uv.lock is not read yet; export a pinned requirements.txt for coverage"],
   [/^Pipfile\.lock$/, "Pipfile.lock is not read yet"],
-  [/^Gemfile\.lock$/, "Gemfile.lock (RubyGems) is not read yet"],
-  [/^Cargo\.lock$/, "Cargo.lock (crates.io) is not read yet"],
-  [/^go\.sum$/, "go.sum (Go modules) is not read yet"],
+  [/^go\.sum$/, "go.sum (Go modules) is not read yet; retract directives are not parsed"],
 ];
 
 async function collectDepFiles(root) {
-  const files = { npmLock: [], pnpmLock: [], yarnLock: [], reqs: [], pkgJson: [] };
+  const files = {
+    npmLock: [], pnpmLock: [], yarnLock: [], reqs: [],
+    gemLock: [], cargoLock: [], pkgJson: [],
+  };
   const notes = new Set();
   for await (const file of walkAll(root)) {
     const base = path.basename(file);
@@ -705,6 +716,123 @@ async function pypiDeps(paths, root) {
   return found;
 }
 
+/**
+ * Gemfile.lock. Only the GEM section's `specs:` block is read, where a gem
+ * and its exact version sit at a known indent; the DEPENDENCIES block below
+ * carries constraints rather than resolved versions, and PATH or GIT sections
+ * are not on rubygems.org at all.
+ *
+ * A platform suffix (`nokogiri (1.16.0-x86_64-linux)`) is kept verbatim here
+ * and reconciled against the registry's own version list later, because the
+ * registry publishes the platform as a separate field.
+ */
+async function gemDeps(paths, root) {
+  const found = new Map();
+  const SPEC = /^ {4}([A-Za-z0-9._-]+) \(([^()]+)\)$/;
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    let inGemSpecs = false;
+    for (const line of text.split(/\r?\n/)) {
+      if (/^\S/.test(line)) inGemSpecs = false;
+      if (line === "GEM") inGemSpecs = "pending";
+      else if (inGemSpecs === "pending" && line === "  specs:") inGemSpecs = true;
+      else if (inGemSpecs === true) {
+        const m = SPEC.exec(line);
+        if (m) found.set(`${m[1]}@${m[2]}`, rel);
+      }
+    }
+  }
+  return found;
+}
+
+/**
+ * Cargo.lock, which is TOML but regular enough to read without a parser:
+ * every entry is a [[package]] table with name and version on their own
+ * lines. Packages carrying a `source` of anything but crates.io are skipped,
+ * since a git or path dependency has no registry to ask.
+ */
+async function cargoDeps(paths, root) {
+  const found = new Map();
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    for (const block of text.split(/^\[\[package\]\]$/m).slice(1)) {
+      const body = block.split(/^\[/m)[0];
+      const name = /^name = "([^"]+)"/m.exec(body)?.[1];
+      const version = /^version = "([^"]+)"/m.exec(body)?.[1];
+      const source = /^source = "([^"]+)"/m.exec(body)?.[1];
+      if (!name || !version) continue;
+      if (source && !source.startsWith("registry+https://github.com/rust-lang/crates.io")) {
+        continue;
+      }
+      if (!source) continue; // a workspace member, not a published crate
+      found.set(`${name}@${version}`, rel);
+    }
+  }
+  return found;
+}
+
+async function checkCrates(name) {
+  try {
+    const res = await fetch(`https://crates.io/api/v1/crates/${encodeURIComponent(name)}`, {
+      // crates.io rejects requests that do not identify themselves.
+      headers: { "user-agent": "driftcite (+https://github.com/nilaypatell/driftcite)" },
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (!res.ok) return {};
+    const doc = await res.json();
+    const out = {};
+    for (const v of doc.versions || []) {
+      if (v?.yanked && v?.num) out[v.num] = "yanked from crates.io";
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * RubyGems publishes no yanked flag: a yanked version simply stops appearing
+ * in the version list. So this asks a narrower question than the other
+ * registries do, and says exactly that in the finding. We report only when
+ * the gem itself is public and known and the pinned version is missing from
+ * it, which is what a fresh `bundle install` would hit. Claiming the
+ * maintainer "deprecated" it would be inventing a statement nobody made.
+ */
+async function checkRubygems(name) {
+  try {
+    const res = await fetch(
+      `https://rubygems.org/api/v1/versions/${encodeURIComponent(name)}.json`,
+      { signal: AbortSignal.timeout(20_000) }
+    );
+    // 404 means the gem is not on rubygems.org at all — private, renamed or
+    // vendored. That is not a yank, and guessing would be a false finding.
+    if (!res.ok) return {};
+    const doc = await res.json();
+    if (!Array.isArray(doc) || doc.length === 0) return {};
+    const served = new Set();
+    for (const v of doc) {
+      if (typeof v?.number !== "string") continue;
+      served.add(v.number);
+      if (v.platform && v.platform !== "ruby") served.add(`${v.number}-${v.platform}`);
+    }
+    return { served };
+  } catch {
+    return {};
+  }
+}
+
 async function checkNpm(name) {
   try {
     const res = await fetch(`https://registry.npmjs.org/${name.replace("/", "%2f")}`, {
@@ -755,7 +883,17 @@ async function resolveFlagged(deps, check, ecosystem) {
         const at = key.lastIndexOf("@");
         if (key.slice(0, at) !== name) continue;
         const version = key.slice(at + 1);
-        if (versions[version]) {
+        // Most registries state which versions are bad. RubyGems instead
+        // stops serving them, so it answers with the set that still exists
+        // and absence is the signal.
+        if (versions.served) {
+          if (!versions.served.has(version)) {
+            flagged.push({
+              ecosystem, name, version, source,
+              message: "not served by rubygems.org; a fresh bundle install fails",
+            });
+          }
+        } else if (versions[version]) {
           flagged.push({ ecosystem, name, version, source, message: versions[version] });
         }
       }
@@ -772,17 +910,25 @@ async function scanRegistry(root, { collectOnly = false } = {}) {
     ...(await yarnDeps(files.yarnLock, root)),
   ]);
   const pypi = await pypiDeps(files.reqs, root);
+  const gems = await gemDeps(files.gemLock, root);
+  const crates = await cargoDeps(files.cargoLock, root);
   if (!js.size && files.pkgJson.length) {
     notes.push(
       "package.json found but no lockfile resolved; commit package-lock.json, pnpm-lock.yaml or yarn.lock so exact versions can be checked"
     );
   }
-  if (collectOnly) return { js, pypi, notes };
-  const [npmFlagged, pypiFlagged] = await Promise.all([
+  if (collectOnly) return { js, pypi, gems, crates, notes };
+  const [npmFlagged, pypiFlagged, gemFlagged, crateFlagged] = await Promise.all([
     resolveFlagged(js, checkNpm, "npm"),
     resolveFlagged(pypi, checkPypi, "pypi"),
+    resolveFlagged(gems, checkRubygems, "rubygems"),
+    resolveFlagged(crates, checkCrates, "crates.io"),
   ]);
-  return { flagged: [...npmFlagged, ...pypiFlagged], checked: js.size + pypi.size, notes };
+  return {
+    flagged: [...npmFlagged, ...pypiFlagged, ...gemFlagged, ...crateFlagged],
+    checked: js.size + pypi.size + gems.size + crates.size,
+    notes,
+  };
 }
 
 // -------------------------------------------------------------------- report
@@ -888,8 +1034,8 @@ async function main() {
   npx driftcite --version     print the version
 
 Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
-berry), and pinned requirements.txt. Formats it cannot read yet are named in
-the output instead of silently skipped.
+berry), pinned requirements.txt, Cargo.lock, and Gemfile.lock. Formats it
+cannot read yet are named in the output instead of silently skipped.
 
 Exits 1 if anything breaking was found, so it drops into CI unchanged.
 Your source code is never sent anywhere.`);
@@ -979,13 +1125,25 @@ Your source code is never sent anywhere.`);
   return code;
 }
 
-// process.exit() abandons stdout that has not flushed, and pipes flush
-// asynchronously, so a large --json report would arrive truncated in CI and
-// under the watch. Setting exitCode lets the process drain and then leave.
-main().then(
-  (code) => { process.exitCode = code; },
-  (err) => {
-    console.error(`driftcite: ${err.message}`);
-    process.exitCode = 2;
-  }
-);
+/** The lockfile readers, for the test suite. Hitting the live registries in a
+ *  test would make the suite depend on someone else's uptime. */
+export const __test = { cargoDeps, gemDeps, pypiDeps };
+
+// Only run when invoked as a command. The scanner is Apache 2.0 so that it
+// can be embedded in other people's tooling, and a module that scans a
+// directory the moment it is imported cannot be.
+const invokedDirectly =
+  process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (invokedDirectly) {
+  // process.exit() abandons stdout that has not flushed, and pipes flush
+  // asynchronously, so a large --json report would arrive truncated in CI and
+  // under the watch. Setting exitCode lets the process drain and then leave.
+  main().then(
+    (code) => { process.exitCode = code; },
+    (err) => {
+      console.error(`driftcite: ${err.message}`);
+      process.exitCode = 2;
+    }
+  );
+}

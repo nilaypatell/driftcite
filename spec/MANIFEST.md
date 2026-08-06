@@ -40,6 +40,7 @@ artifacts:
     severity: breaking | warning | info
     note: <one line, human readable>
     evidence: <url>                 # the specific page proving this artifact
+    require_context: true           # optional; see rule 5
 ```
 
 ## Rules
@@ -59,6 +60,15 @@ artifacts:
 4. **A model, endpoint, or parameter never leaves the manifest.** Retired
    artifacts stay forever, because old code still contains them. The manifest
    is append-mostly.
+
+5. **`require_context: true` when the same name is served by someone else.**
+   Model IDs are normally distinctive enough to match anywhere, so they skip
+   the `file_markers` gate. Resellers break that assumption: Azure serves
+   `gpt-4o` and `claude-opus-4-1` under its own, earlier retirement dates, and
+   telling someone who calls OpenAI or Anthropic directly that their model died
+   on Azure's date is a wrong answer delivered with a citation. An artifact
+   whose literal another provider also serves sets this flag and is then only
+   reported in files that name the provider.
 
 ## Status values
 

@@ -17,6 +17,7 @@ the provider published themselves, and the evidence is their own git compare.
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.request
 
@@ -214,6 +215,37 @@ def distinctive_enum(value):
     return len(value) >= 12
 
 
+def sendable_param(name):
+    """Is this parameter worth reporting if the provider drops it?
+
+    Two separate ways a spec diff produces a parameter that should never reach
+    a user, both observed on Square's spec the day it was added here:
+
+    The name is not something anyone could type. Square's generated spec once
+    called its body parameters `create#body` and `bulk-upsert#body`, then
+    stopped. Real code contains no `#`, so the artifact can never match, and
+    the feed would assert 134 removals no caller ever sent.
+
+    The name is not distinctive. Square dropped a parameter named `body` from
+    134 operations. Matched as an object key, `body:` appears in nearly every
+    JavaScript file that ever called fetch, and Square's own file marker is
+    the ordinary English word "square". Shipping it would have put a false
+    finding in a large share of all JavaScript repositories.
+
+    A parameter worth matching carries a separator or a digit
+    (budget_tokens, filter[advisory_id], store_id) or is long enough that it
+    is not an English word by accident. This is the same test enum values
+    already have to pass, for the same reason.
+    """
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.\-\[\]]*", name or ""):
+        return False
+    if any(ch in name for ch in "-_.[]"):
+        return True
+    if any(ch.isdigit() for ch in name):
+        return True
+    return len(name) >= 12
+
+
 def diff(provider, ref_a, ref_b, min_len=4):
     spec_a, spec_b = load_spec(provider, ref_a), load_spec(provider, ref_b)
     ops_a, ops_b = operations(spec_a), operations(spec_b)
@@ -252,7 +284,7 @@ def diff(provider, ref_a, ref_b, min_len=4):
     for op in sorted(set(ops_a) & set(ops_b)):
         gone = ops_a[op]["params"] - ops_b[op]["params"]
         for p in sorted(gone):
-            if len(p) < min_len:
+            if len(p) < min_len or not sendable_param(p):
                 continue
             add("request_param", f"{op.split(' ', 1)[1]}#{p}", [p], "breaking",
                 f"Parameter '{p}' on {op} existed in {ver_a} and is gone in {ver_b}.",
