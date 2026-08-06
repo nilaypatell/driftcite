@@ -92,7 +92,7 @@ export default function Stats() {
             <p style={VALUE}>
               <span data-count={TOTAL_ARTIFACTS}>{TOTAL_ARTIFACTS}</span>
             </p>
-            <p style={LABEL}>artifacts under daily watch, ten providers</p>
+            <p style={LABEL}>artifacts under daily watch, twelve providers</p>
           </div>
         </div>
       </section>

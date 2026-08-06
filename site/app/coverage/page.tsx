@@ -13,7 +13,7 @@ import {
 } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Coverage — "Ten providers under daily watch."
+   Coverage — "Twelve providers under daily watch."
 
    Every figure on this page is read out of lib/data.ts: the provider table
    off PROVIDERS, the bar chart off PROVIDERS.findings, the identifier table
@@ -150,6 +150,18 @@ const SOURCE_ROWS: {
     bold: true,
     source: "deprecations page, curated",
     count: artifactsOf("Groq"),
+  },
+  {
+    label: "Mistral",
+    bold: true,
+    source: "model docs deprecation table, curated",
+    count: artifactsOf("Mistral"),
+  },
+  {
+    label: "Cohere",
+    bold: true,
+    source: "deprecations page, curated",
+    count: artifactsOf("Cohere"),
   },
   {
     label: "Other model providers",

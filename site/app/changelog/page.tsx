@@ -48,9 +48,33 @@ type Release = {
    ═══════════════════════════════════════════════════════════════════════ */
 const RELEASES: readonly Release[] = [
   {
+    version: "v0.2.1",
+    date: "2026-08-06",
+    tag: "Latest",
+    title: "The feed watches itself",
+    notes: [
+      <>
+        Mistral and Cohere land: 55 curated artifacts from the providers’ own
+        deprecation pages, every replacement verified against the model card
+        that names it. {TOTAL_ARTIFACTS} artifacts across twelve providers, and
+        the sweep of real repositories still reports zero new false findings.
+      </>,
+      <>
+        The daily clock now probes every provider’s live model list — a
+        retirement is recorded because the ID stopped being served, not only
+        because a page said so. Providers without a configured key are skipped
+        by name.
+      </>,
+      <>
+        Every documentation page a curated manifest cites is watched by content
+        hash. When a provider edits one, the change surfaces as a work order
+        instead of quiet rot.
+      </>,
+    ],
+  },
+  {
     version: "v0.2.0",
     date: "2026-08-05",
-    tag: "Latest",
     title: "The pull request arrives",
     notes: [
       <>
@@ -105,8 +129,8 @@ const RELEASES: readonly Release[] = [
       <>
         {PRECISION.before} findings at roughly 25% true on a real
         1,200-dependency repository became {PRECISION.after} at 100%. Coverage
-        grew to ten providers and {TOTAL_ARTIFACTS} artifacts with zero new
-        false findings across nine repositories.
+        grew to ten providers and 135 artifacts with zero new false findings
+        across nine repositories.
       </>,
     ],
   },

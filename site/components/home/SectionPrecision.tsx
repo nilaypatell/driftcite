@@ -116,8 +116,8 @@ export default function SectionPrecision() {
             }}
           >
             Growing from 29 artifacts to {TOTAL_ARTIFACTS} since then has produced
-            zero new false findings across nine real repositories. Coverage is
-            worthless if it arrives with noise.
+            zero new false findings across the real repositories it is checked
+            against. Coverage is worthless if it arrives with noise.
           </p>
         </div>
       </section>
