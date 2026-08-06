@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 12 providers · 190 artifacts · zero dependencies · 58 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 19 providers · 305 artifacts · zero dependencies · 118 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -112,7 +112,9 @@ python3 scanner/openapi_diff.py \
 
 npm carries a per-version `deprecated` string, PyPI carries `yanked_reason`. Written by the maintainer, public, and unseen after install time.
 
-Lockfiles read: `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock` (classic and berry), pinned `requirements.txt`. A format it cannot read yet is named in the output instead of silently skipped.
+Lockfiles read: `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock` (classic and berry), pinned `requirements.txt`, `Cargo.lock`, and `Gemfile.lock`. A format it cannot read yet is named in the output instead of silently skipped.
+
+RubyGems publishes no yanked flag — a yanked version simply stops being served — so that finding says exactly that and never claims the maintainer deprecated anything.
 
 ```console
 urllib3@1.25
@@ -270,7 +272,7 @@ Kinds other than model IDs also require the file to reference that provider at a
 
 </div>
 
-A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 190 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
+A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 305 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
 
 <br>
 
@@ -282,16 +284,28 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 | **Cloudflare** | `cloudflare/api-schemas` | 42 |
 | **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
 | **Stripe** | `stripe/openapi` · 2,345 tagged releases | 10 |
-| **Google** | Gemini changelog, curated | 8 |
+| **Azure** | Foundry model retirement schedule, curated | 43 |
+| **Square** | `square/connect-api-specification` | 41 |
 | **Mistral** | model docs deprecation table, curated | 40 |
+| **Bedrock** | AWS model lifecycle page, curated | 17 |
 | **Cohere** | deprecations page, curated | 15 |
-| **Groq** | deprecations page, curated | 2 |
+| **Datadog** | `DataDog/datadog-api-client-python` | 12 |
+| **Google** | Gemini changelog, curated | 8 |
+| **Plaid** | `plaid/plaid-openapi` | 8 |
+| DigitalOcean · Adyen · Groq | specs and deprecation pages | 7 |
 | Other model providers | curated retirement pages | 15 |
-| Twilio · DigitalOcean · Box | tracked, currently no drift | 0 |
-| **npm · PyPI** | every package, no per-provider work | live |
+| Twilio · Asana · Box | tracked, currently no drift | 0 |
+| **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Twelve providers under daily watch, 190 artifacts, every one carrying the
+Nineteen providers under daily watch, 305 artifacts, every one carrying the
 provider's own evidence URL.
+
+Two of them resell other people's models on their own clock. Azure retires
+`gpt-4o` and `claude-sonnet-4-5` on dates their original vendors do not
+recognise, and AWS states the same thing outright: *"only the dates on this
+page apply."* Those artifacts are reported only in files that name the
+reseller, because a right answer delivered to the wrong caller is a wrong
+answer.
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 

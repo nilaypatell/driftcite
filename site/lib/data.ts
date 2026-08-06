@@ -4,7 +4,7 @@
    All of it is read out of the repository, not invented:
      corpus/report.json     the scan of 449 public repositories, July 2026
      providers.yaml         the seven spec-tracked providers
-     manifests/*.yaml       the curated model retirements, 190 artifacts
+     manifests/*.yaml       the curated model retirements, 305 artifacts
 
    If a figure is not in this file it does not belong on the page.
    ═══════════════════════════════════════════════════════════════════════ */
@@ -38,28 +38,34 @@ export const STATS = [
   { value: CORPUS.worstRepo, label: "worst single repository" },
 ] as const;
 
-/** 190 artifacts across twelve providers. `watched` means the spec is
- *  tracked but nothing has been retired from it yet. Mistral and Cohere
- *  landed after the July 2026 corpus scan, so they carry no `findings`
- *  figure and stay out of that chart rather than claim a zero the scan
- *  never measured. */
+/** 305 artifacts across nineteen providers. `watched` means the spec is
+ *  tracked but nothing has been retired from it yet. Providers that landed
+ *  after the July 2026 corpus scan carry no `findings` figure and stay out
+ *  of that chart rather than claim a zero the scan never measured. */
 export const PROVIDERS = [
   { name: "Anthropic", artifacts: 15, findings: 383 },
   { name: "Google", artifacts: 8, findings: 213 },
   { name: "OpenAI", artifacts: 12, findings: 123 },
   { name: "Groq", artifacts: 2, findings: 87 },
-  { name: "Cloudflare", artifacts: 42, findings: 78 },
-  { name: "Stripe", artifacts: 10, findings: 32 },
+  { name: "Cloudflare", artifacts: 33, findings: 78 },
+  { name: "Stripe", artifacts: 8, findings: 32 },
   { name: "GitHub", artifacts: 46, findings: 1 },
+  { name: "Azure", artifacts: 43 },
+  { name: "Square", artifacts: 41 },
   { name: "Mistral", artifacts: 40 },
+  { name: "Bedrock", artifacts: 17 },
   { name: "Cohere", artifacts: 15 },
+  { name: "Datadog", artifacts: 12 },
+  { name: "Plaid", artifacts: 8 },
+  { name: "DigitalOcean", artifacts: 4 },
+  { name: "Adyen", artifacts: 1 },
   { name: "Twilio", watched: "none yet" },
-  { name: "DigitalOcean", watched: "none yet" },
+  { name: "Asana", watched: "none yet" },
   { name: "Box", watched: "by commit" },
 ] as const;
 
-export const TOTAL_ARTIFACTS = 190;
-export const TOTAL_PROVIDERS = 12;
+export const TOTAL_ARTIFACTS = 305;
+export const TOTAL_PROVIDERS = 19;
 
 export const DEAD_IDENTIFIERS = [
   { prefix: "google/model_id/", id: "gemini-2.0-flash", repos: 81 },
@@ -111,7 +117,7 @@ export const CHAPTERS = [
   { label: "The blind spot", end: "why nothing catches it" },
   { label: "The scan", end: "one command" },
   { label: "The corpus", end: "measured, july 2026" },
-  { label: "What it watches", end: "twelve providers" },
+  { label: "What it watches", end: "nineteen providers" },
   { label: "Three ways to run it", end: "same engine" },
   { label: "Receipts", end: "pr #1, unattended" },
   { label: "Why it stays quiet", end: "precision first" },

@@ -13,7 +13,7 @@ import {
 } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Coverage — "Twelve providers under daily watch."
+   Coverage — "Nineteen providers under daily watch."
 
    Every figure on this page is read out of lib/data.ts: the provider table
    off PROVIDERS, the bar chart off PROVIDERS.findings, the identifier table
@@ -36,6 +36,14 @@ const NUMBER_WORD: Record<number, string> = {
   10: "Ten",
   11: "Eleven",
   12: "Twelve",
+  13: "Thirteen",
+  14: "Fourteen",
+  15: "Fifteen",
+  16: "Sixteen",
+  17: "Seventeen",
+  18: "Eighteen",
+  19: "Nineteen",
+  20: "Twenty",
 };
 const providersWord = NUMBER_WORD[TOTAL_PROVIDERS] ?? String(TOTAL_PROVIDERS);
 
@@ -162,6 +170,42 @@ const SOURCE_ROWS: {
     bold: true,
     source: "deprecations page, curated",
     count: artifactsOf("Cohere"),
+  },
+  {
+    label: "Azure",
+    bold: true,
+    source: "Foundry retirement schedule, curated",
+    count: artifactsOf("Azure"),
+  },
+  {
+    label: "Bedrock",
+    bold: true,
+    source: "AWS model lifecycle page, curated",
+    count: artifactsOf("Bedrock"),
+  },
+  {
+    label: "Square",
+    bold: true,
+    source: code("square/connect-api-specification"),
+    count: artifactsOf("Square"),
+  },
+  {
+    label: "Datadog",
+    bold: true,
+    source: code("DataDog/datadog-api-client-python"),
+    count: artifactsOf("Datadog"),
+  },
+  {
+    label: "Plaid",
+    bold: true,
+    source: code("plaid/plaid-openapi"),
+    count: artifactsOf("Plaid"),
+  },
+  {
+    label: "DigitalOcean · Adyen",
+    bold: false,
+    source: "public OpenAPI specs, diffed",
+    count: artifactsOf("DigitalOcean") + artifactsOf("Adyen"),
   },
   {
     label: "Other model providers",

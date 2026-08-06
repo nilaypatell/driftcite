@@ -102,7 +102,7 @@ export default function SectionArrives() {
             </span>
             <h3 style={cardTitle}>Scan, right now</h3>
             <p style={cardBody}>
-              Zero dependencies, nothing leaves your machine, no account. Twelve
+              Zero dependencies, nothing leaves your machine, no account. Nineteen
               providers, {TOTAL_ARTIFACTS} retired artifacts, plus every npm and
               PyPI package your lockfiles pin.
             </p>

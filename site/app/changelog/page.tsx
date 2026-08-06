@@ -48,15 +48,50 @@ type Release = {
    ═══════════════════════════════════════════════════════════════════════ */
 const RELEASES: readonly Release[] = [
   {
-    version: "v0.2.1",
+    version: "v0.2.2",
     date: "2026-08-06",
     tag: "Latest",
+    title: "The resellers, and the registries",
+    notes: [
+      <>
+        Azure and Bedrock land: the two places enterprises actually call these
+        models, on retirement clocks their original vendors do not recognise.
+        Both are reported only inside files that name the reseller, because
+        Azure retires <C>gpt-4o</C> on a date OpenAI does not, and a right
+        answer given to the wrong caller is a wrong answer.
+      </>,
+      <>
+        Five more spec-tracked providers &#8212; Plaid, Square, Datadog, Adyen
+        and Asana &#8212; each accruing history from the day it landed.{" "}
+        {TOTAL_ARTIFACTS} artifacts across nineteen providers.
+      </>,
+      <>
+        <C>Cargo.lock</C> and <C>Gemfile.lock</C> are read now, so a yanked
+        crate or an unserved gem is found the same way a deprecated npm package
+        already was.
+      </>,
+      <>
+        Endpoints are probed for RFC 8594 <C>Sunset</C> headers. An API that
+        sends one is announcing its own retirement in band, months before the
+        changelog. It has already witnessed one cited removal answering 404.
+      </>,
+      <>
+        A precision fix caught on the way in: a parameter named <C>body</C>,
+        dropped from 134 Square operations, would have matched <C>body:</C> in
+        nearly every JavaScript file that ever called fetch. Parameters now
+        face the same distinctiveness test enum values always have.
+      </>,
+    ],
+  },
+  {
+    version: "v0.2.1",
+    date: "2026-08-06",
     title: "The feed watches itself",
     notes: [
       <>
         Mistral and Cohere land: 55 curated artifacts from the providers’ own
         deprecation pages, every replacement verified against the model card
-        that names it. {TOTAL_ARTIFACTS} artifacts across twelve providers, and
+        that names it. 190 artifacts across twelve providers, and
         the sweep of real repositories still reports zero new false findings.
       </>,
       <>
