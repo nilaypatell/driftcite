@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 10 providers · 135 artifacts · zero dependencies · 34 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 12 providers · 190 artifacts · zero dependencies · 58 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -270,7 +270,7 @@ Kinds other than model IDs also require the file to reference that provider at a
 
 </div>
 
-A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 135 since then has produced **zero** new findings across nine real repositories. Coverage is worthless if it arrives with noise.
+A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 190 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
 
 <br>
 
@@ -283,12 +283,14 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 | **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
 | **Stripe** | `stripe/openapi` · 2,345 tagged releases | 10 |
 | **Google** | Gemini changelog, curated | 8 |
+| **Mistral** | model docs deprecation table, curated | 40 |
+| **Cohere** | deprecations page, curated | 15 |
 | **Groq** | deprecations page, curated | 2 |
 | Other model providers | curated retirement pages | 15 |
 | Twilio · DigitalOcean · Box | tracked, currently no drift | 0 |
 | **npm · PyPI** | every package, no per-provider work | live |
 
-Ten providers under daily watch, 135 artifacts, every one carrying the
+Twelve providers under daily watch, 190 artifacts, every one carrying the
 provider's own evidence URL.
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
@@ -313,6 +315,14 @@ Full guide in **[CONTRIBUTING.md](CONTRIBUTING.md)**. Pull requests welcome.
 ## The feed
 
 Manifests live in [`manifests/`](manifests/), are regenerated daily by a scheduled workflow in this repository, and are committed here in the open. **The git history is the record of what was observed, and when.**
+
+The clock does more than diff specs. Every documentation page a curated
+manifest cites is watched by content hash, so a provider editing a
+deprecations page becomes a work order instead of silent rot. And every
+provider's live model list is probed daily where a key is configured: a
+retirement is then recorded because the ID stopped being served, not only
+because a page said so. Both records are committed here, in the open, like
+everything else.
 
 Every fact is public and free to read. You can vendor the whole thing. The hard part was never obtaining it, it is maintaining it, every day, forever, across every provider, because it decays the moment anyone stops.
 
