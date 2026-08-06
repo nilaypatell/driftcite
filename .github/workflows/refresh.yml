@@ -60,6 +60,11 @@ jobs:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
         run: python3 scanner/probe_models.py
 
+      # RFC 8594: an endpoint that sends Sunset is announcing its own death.
+      # HEAD only, no keys, nothing templated.
+      - name: Probe endpoints for sunset headers
+        run: python3 scanner/probe_sunset.py
+
       - name: Rebuild the feed
         run: python3 scanner/build_feed.py
 

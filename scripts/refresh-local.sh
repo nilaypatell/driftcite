@@ -11,6 +11,7 @@ echo "=== $(date -u '+%Y-%m-%d %H:%M') UTC ==="
 $PY scanner/refresh.py || exit 1
 $PY scanner/watch_pages.py || exit 1
 $PY scanner/probe_models.py || exit 1
+$PY scanner/probe_sunset.py || exit 1
 $PY scanner/build_feed.py || exit 1
 
 git add manifests/ feed/
