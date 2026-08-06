@@ -85,6 +85,17 @@
   .bar nav a:hover { color: var(--accent-soft); }
   .bar nav a.install { color: var(--text); border: 1px solid var(--line-bright); border-radius: 7px; padding: 7px 14px; }
   .bar nav a.install:hover { border-color: var(--accent); color: #fff; background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  /* the real thing: white chip, octocat, live count */
+  .gh-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: #0A0C12 !important;
+    font-family: var(--display) !important; font-weight: 700; font-size: 13px !important;
+    border-radius: 7px; padding: 7px 13px; text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .gh-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -6px rgba(255,255,255,.35); }
+  .gh-btn svg { width: 16px; height: 16px; }
+  .gh-btn b { font-variant-numeric: tabular-nums; border-left: 1px solid #D5D9E4; padding-left: 8px; font-weight: 700; }
 
   /* ---------- hero */
   .hero { display: grid; grid-template-columns: 1.02fr .98fr; gap: 60px; padding: 92px 0 84px; align-items: center; }
@@ -244,6 +255,35 @@
     .hero > div:first-child > *:nth-child(3) { animation-delay: .14s; }
     .hero > div:first-child > *:nth-child(4) { animation-delay: .24s; }
     .terminal { animation: rise .7s .3s cubic-bezier(.22, .7, .3, 1) both; }
+
+    /* the terminal types itself on load */
+    .t-body > div, .t-body > br { animation: rise .3s cubic-bezier(.22, .7, .3, 1) both; }
+    .t-body > *:nth-child(1)  { animation-delay: .8s; }
+    .t-body > *:nth-child(2)  { animation-delay: 1.0s; }
+    .t-body > *:nth-child(3)  { animation-delay: 1.15s; }
+    .t-body > *:nth-child(4)  { animation-delay: 1.3s; }
+    .t-body > *:nth-child(5)  { animation-delay: 1.42s; }
+    .t-body > *:nth-child(6)  { animation-delay: 1.54s; }
+    .t-body > *:nth-child(7)  { animation-delay: 1.66s; }
+    .t-body > *:nth-child(8)  { animation-delay: 1.95s; }
+    .t-body > *:nth-child(9)  { animation-delay: 2.2s; }
+    .t-body > *:nth-child(10) { animation-delay: 2.35s; }
+    .t-body > *:nth-child(11) { animation-delay: 2.5s; }
+    .t-body > *:nth-child(12) { animation-delay: 2.75s; }
+
+    /* cards breathe on hover; the featured rung glows on a slow cycle */
+    .rung, .receipt, .exhibit { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .rung:hover, .receipt:hover, .exhibit:hover { transform: translateY(-4px); }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 44px -18px color-mix(in srgb, var(--accent) 60%, transparent) inset, 0 0 40px -22px color-mix(in srgb, var(--accent) 70%, transparent); }
+      50% { box-shadow: 0 0 44px -18px color-mix(in srgb, var(--accent) 80%, transparent) inset, 0 0 60px -18px color-mix(in srgb, var(--accent) 85%, transparent); }
+    }
+    .rung.featured { animation: pulse 4s ease-in-out infinite; }
+
+    /* scroll reveals exist only when JS is present (html.anim); content is
+       never hidden for crawlers or no-JS readers */
+    html.anim .rv { opacity: 0; transform: translateY(16px); transition: opacity .65s cubic-bezier(.22, .7, .3, 1), transform .65s cubic-bezier(.22, .7, .3, 1); }
+    html.anim .rv.in { opacity: 1; transform: none; }
   }
   @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
 
@@ -263,8 +303,12 @@
     <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon fill="#3D5AFE" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon fill="#E9ECF5" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
     <a class="word" href="https://github.com/nilaypatell/driftcite">driftcite</a>
     <nav>
-      <a href="https://github.com/nilaypatell/driftcite">★ star on github</a>
       <a href="https://www.npmjs.com/package/driftcite">npm</a>
+      <a class="gh-btn" href="https://github.com/nilaypatell/driftcite" aria-label="Star driftcite on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>Star</span>
+        <b id="ghStars" hidden></b>
+      </a>
       <a class="install" href="https://github.com/apps/driftcite">install the app</a>
     </nav>
   </div>
@@ -307,7 +351,7 @@
   <div class="board">
     <div class="wrap">
       <div class="big">
-        <div class="num">39.2<small>%</small></div>
+        <div class="num"><span id="bigNum">39.2</span><small>%</small></div>
         <p class="claim">of public repositories scanned in July 2026 call at least one API that is <b>already dead</b>.<a class="cite" href="#fn2">[2]</a></p>
       </div>
       <div class="row">
@@ -456,6 +500,69 @@
       setTimeout(() => { l.textContent = "copy"; }, 1400);
     });
   });
+
+  // Live star count on the GitHub chip; shown only once it exists.
+  fetch("https://api.github.com/repos/nilaypatell/driftcite")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => {
+      const n = d && d.stargazers_count;
+      if (typeof n === "number" && n > 0) {
+        const el = document.getElementById("ghStars");
+        el.textContent = n.toLocaleString();
+        el.hidden = false;
+      }
+    })
+    .catch(() => {});
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduced) {
+    // Scroll reveals: mark the html element so CSS knows JS is here, then
+    // tag the reveal targets. No-JS readers and crawlers never see this.
+    document.documentElement.classList.add("anim");
+    const targets = document.querySelectorAll(
+      "section .head, section .lede, .exhibit, .rung, .receipt, .prec, .rule, .board .big, .board .row, .footnotes ol"
+    );
+    targets.forEach((el) => el.classList.add("rv"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = `${(i % 3) * 90}ms`;
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    targets.forEach((el) => io.observe(el));
+
+    // Numbers earn their size: count up when they arrive on screen.
+    const countUp = (el, end, decimals, suffix) => {
+      const t0 = performance.now();
+      const dur = 1200;
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (end * eased).toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const nums = [
+      [document.getElementById("bigNum"), 39.2, 1, ""],
+      ...[...document.querySelectorAll(".board .cell .v")].map((el, i) =>
+        [el, [449, 2932, 7][i], 0, ""]),
+    ];
+    const seen = new Set();
+    const nio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting || seen.has(e.target)) return;
+        seen.add(e.target);
+        const cfg = nums.find(([el]) => el === e.target);
+        if (cfg) countUp(cfg[0], cfg[1], cfg[2], cfg[3]);
+        nio.unobserve(e.target);
+      });
+    }, { threshold: 0.5 });
+    nums.forEach(([el]) => el && nio.observe(el));
+  }
 </script>
 
 </body>
