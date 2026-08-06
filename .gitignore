@@ -11,3 +11,6 @@ corpus/results.json
 *.pem
 watch-state.json
 .vercel/
+
+# Playwright MCP session artifacts (screenshots, snapshots, console logs)
+.playwright-mcp/
