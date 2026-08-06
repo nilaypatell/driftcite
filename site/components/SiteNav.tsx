@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mark } from "@/components/primitives";
 import { GitHub } from "@/components/icons";
-import StarCount from "@/components/StarCount";
 import { LINKS, SHOW_PRICING } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
    The sticky header. Rendered once in app/layout.tsx, which is why it
    has to work out the active route for itself — usePathname() is the
    only reason this file is a client component. Everything else here is
-   static markup; the star count brings its own client boundary.
+   static markup, the star count included: it arrives as a prop the layout
+   resolved at build, so the header has no state and cannot reflow.
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* `when` gates a link without deleting it: /pricing stays in the list and
@@ -30,7 +30,7 @@ const LINK_CLASS =
   "whitespace-nowrap text-[14px] text-inherit no-underline " +
   "hover:text-accent aria-[current=page]:text-accent max-[920px]:hidden";
 
-export default function SiteNav() {
+export default function SiteNav({ stars }: { stars: number | null }) {
   const pathname = usePathname();
   const isCurrent = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
@@ -106,9 +106,9 @@ export default function SiteNav() {
         {/* the mark is the label — the word beside it said what the logo
             already said, twice, in a header with five other links */}
         <GitHub size={17} className="dc-gh-mark" />
-        <span className="dc-stars">
-          <StarCount />
-        </span>
+        {stars === null ? null : (
+          <span className="dc-stars">{stars.toLocaleString("en-US")}</span>
+        )}
       </a>
 
       <a

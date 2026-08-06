@@ -6,6 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Motion from "@/components/Motion";
 import RouteOnly from "@/components/RouteOnly";
 import Announcement from "@/components/home/Announcement";
+import { getStars } from "@/lib/stars";
 
 /* next/font downloads and self-hosts these at build time, so the handoff's
    three Google Fonts become zero external requests and cannot fail to load
@@ -80,9 +81,13 @@ const JSON_LD = {
   license: "https://www.apache.org/licenses/LICENSE-2.0",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  /* Read once here, at build, and handed down — SiteNav is a client
+     component and cannot await anything itself. */
+  const stars = await getStars();
+
   return (
     <html
       lang="en"
@@ -96,7 +101,7 @@ export default function RootLayout({
         <RouteOnly path="/">
           <Announcement />
         </RouteOnly>
-        <SiteNav />
+        <SiteNav stars={stars} />
         {children}
         <SiteFooter />
         <Motion />

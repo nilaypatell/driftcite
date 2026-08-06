@@ -146,9 +146,19 @@
   color: var(--color-neutral-600);
 }
 .dc-kicker .n { color: var(--color-accent); }
+/* The dotted leader between the chapter and its twin label. It was in the
+   drawing from the start — the comment above Kicker() draws it — but nothing
+   rendered it, so the two ends of the line floated unconnected. It takes the
+   remaining width, which is what makes the kicker read as one ruled row. */
+.dc-kick-lead {
+  flex: 1 1 auto; min-width: 24px; height: 0;
+  border-bottom: 1px dotted var(--color-neutral-400);
+  transform-origin: left;
+}
 
 /* ── buttons ──────────────────────────────────────────────────────── */
 .dc-btn {
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   cursor: pointer; text-decoration: none;
   font-family: var(--font-display); font-weight: 500;
@@ -156,20 +166,50 @@
   background: transparent; border: 1px solid transparent;
   padding: var(--space-2) calc(var(--space-3) * 1.2);
   border-radius: var(--radius-md);
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease,
+              box-shadow .24s ease, transform .18s cubic-bezier(.22, .7, .3, 1);
 }
+/* The press. Every button on the site gives the same 1px under the finger —
+   the one piece of feedback a pointer gets between hover and the page
+   changing, and the thing whose absence reads as "did that register?". */
+.dc-btn:active { transform: translateY(1px); }
 .dc-btn svg { display: block; }
 .dc-btn-primary {
+  overflow: hidden;
   color: #fff; border-color: var(--color-accent); background: var(--color-accent);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16),
               0 1px 2px color-mix(in srgb, var(--color-accent-900) 35%, transparent);
 }
-.dc-btn-primary:hover { background: var(--color-accent-600); border-color: var(--color-accent-600); color: #fff; }
-.dc-btn-primary:active { background: var(--color-accent-700); border-color: var(--color-accent-700); }
+.dc-btn-primary:hover {
+  background: var(--color-accent-600); border-color: var(--color-accent-600); color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18),
+              0 4px 14px color-mix(in srgb, var(--color-accent-900) 28%, transparent);
+  transform: translateY(-1px);
+}
+.dc-btn-primary:active {
+  background: var(--color-accent-700); border-color: var(--color-accent-700);
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--color-accent-900) 30%, transparent);
+}
+/* A single light pass across the fill on hover — the only ornament on the
+   page that is purely decorative, kept to one 700ms sweep so it reads as a
+   material catching the light rather than as a thing that is still moving. */
+.dc-btn-primary::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg,
+    transparent 34%,
+    rgba(255, 255, 255, .26) 50%,
+    transparent 66%);
+  transform: translateX(-130%);
+}
 .dc-btn-secondary {
   border-color: var(--color-divider); background: var(--color-surface);
   box-shadow: var(--shadow-sm);
 }
-.dc-btn-secondary:hover { background: color-mix(in srgb, var(--color-ink) 7%, transparent); color: var(--color-ink); }
+.dc-btn-secondary:hover {
+  background: color-mix(in srgb, var(--color-ink) 7%, transparent); color: var(--color-ink);
+  box-shadow: var(--shadow-md); transform: translateY(-1px);
+}
 .dc-btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
 .dc-btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
 
@@ -180,18 +220,20 @@
    way, so nothing shifts when the pointer arrives. */
 .dc-btn-quiet {
   border-color: transparent; background: transparent; box-shadow: none;
-  transition: background-color .15s ease;
 }
-.dc-btn-quiet:hover { background: color-mix(in srgb, var(--color-ink) 7%, transparent); }
+.dc-btn-quiet:hover {
+  background: color-mix(in srgb, var(--color-ink) 7%, transparent);
+  box-shadow: none; transform: none;
+}
 /* The mark recedes and the number carries the weight — the reverse of a
    labelled button, where the word leads. Tabular so the chip does not
    twitch when the count crosses a digit. */
-.dc-gh-mark { color: color-mix(in srgb, var(--color-ink) 46%, transparent); }
-.dc-btn-quiet:hover .dc-gh-mark { color: var(--color-ink); }
+.dc-gh-mark {
+  color: color-mix(in srgb, var(--color-ink) 46%, transparent);
+  transition: color .18s ease, transform .3s cubic-bezier(.34, 1.25, .5, 1);
+}
+.dc-btn-quiet:hover .dc-gh-mark { color: var(--color-ink); transform: scale(1.08); }
 .dc-stars { color: var(--color-ink); font-feature-settings: 'tnum' 1; }
-/* StarCount renders a hidden <b> until a real number arrives; when it is
-   hidden the star and its gap go with it, rather than leaving a bare mark. */
-.dc-stars:has(b[hidden]) { display: none; }
 
 /* the dark copy-command button, paired with the primary in every CTA row */
 .dc-cmd {
@@ -234,6 +276,65 @@
 }
 a:hover .dc-arrow, button:hover .dc-arrow { transform: translateX(3px); }
 
+/* ── the header ───────────────────────────────────────────────────
+   Sticky, and it has two states. At the top of the page it is a hairline
+   under a near-opaque bar; once the page has moved it tightens — more
+   blur, less opacity, a shadow that lifts it off the content sliding
+   underneath. The class exists so those states can be written at all: as
+   inline styles on the nav element they could not have a scrolled variant. */
+.dc-nav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: var(--space-6);
+  padding-block: 15px;
+  padding-inline:
+    max(clamp(20px, 5vw, 72px), calc((100% - 1200px) / 2 + clamp(20px, 5vw, 72px)));
+  border-bottom: 1px solid var(--color-divider);
+  background: color-mix(in srgb, var(--color-bg) 93%, transparent);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  transition: background-color .3s ease, box-shadow .3s ease;
+}
+html[data-scrolled] .dc-nav {
+  background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow: 0 6px 24px color-mix(in srgb, #1A2033 7%, transparent);
+}
+
+/* How far down the page you are, drawn on the header's own bottom rule.
+   It replaces nothing and covers nothing — the hairline is still there
+   underneath, and the accent simply advances along it. */
+.dc-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(var(--dc-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+  opacity: 0; transition: opacity .3s ease;
+}
+html[data-scrolled] .dc-progress { opacity: 1; }
+
+/* The wordmark's two halves separate a little when you point at the brand —
+   the mark is a bracket closing on itself, so opening it is the one gesture
+   it already knows how to make. SVG children transform in user units, which
+   is why 7 reads as roughly a pixel at the 20px the header draws it. */
+.dc-mark polygon { transition: transform .38s cubic-bezier(.34, 1.2, .5, 1); }
+.dc-brand:hover .dc-mark .up { transform: translateY(-7px); }
+.dc-brand:hover .dc-mark .dn { transform: translateY(7px); }
+
+/* Nav links: a rule that draws in from the left, and stays drawn on the
+   page you are already on. currentColor, so it is ink on hover and accent
+   on the active route without a second rule saying so. */
+.dc-navlink { position: relative; }
+.dc-navlink::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
+  background: currentColor;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s cubic-bezier(.22, .7, .3, 1);
+}
+.dc-navlink:hover::after,
+.dc-navlink[aria-current="page"]::after { transform: none; }
+
 /* ── tags ─────────────────────────────────────────────────────────── */
 .dc-tag {
   display: inline-flex; align-items: center; font-size: 11px;
@@ -248,20 +349,54 @@ a:hover .dc-arrow, button:hover .dc-arrow { transform: translateX(3px); }
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3); border-radius: var(--radius-md);
   border: 1px solid var(--color-divider); background: transparent;
+  transition: border-color .24s ease, box-shadow .3s ease,
+              transform .3s cubic-bezier(.22, .7, .3, 1);
+}
+.dc-card:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 38%, transparent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 .dc-plate {
   border: 1px solid var(--color-neutral-300);
   border-radius: var(--radius-lg);
 }
 
+/* ── the footer's link columns ────────────────────────────────────── */
+.dc-flink {
+  display: inline-block;
+  transition: color .18s ease, transform .24s cubic-bezier(.22, .7, .3, 1);
+}
+.dc-flink:hover { transform: translateX(3px); }
+
+/* The footer's icon row. 34px targets around 16px marks, so the glyph can
+   stay the size the brand draws it while the thing you click stays the size
+   a thumb needs. */
+.dc-social {
+  display: inline-grid; place-items: center;
+  width: 34px; height: 34px; border-radius: var(--radius-md);
+  color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+  transition: color .18s ease, background-color .18s ease,
+              transform .3s cubic-bezier(.34, 1.25, .5, 1);
+}
+.dc-social:hover {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+  transform: translateY(-2px);
+}
+.dc-social svg { display: block; }
+
 /* ── the dark terminal panel ──────────────────────────────────────── */
 .dc-term {
+  position: relative;
   background: var(--color-term-bg);
   border: 1px solid var(--color-neutral-300);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  transition: box-shadow .5s ease;
 }
+.dc-term:hover { box-shadow: var(--shadow-lg); }
 .dc-term .hd {
   display: flex; align-items: center; justify-content: space-between;
   padding: 11px 18px; border-bottom: 1px solid var(--color-term-rule);
@@ -290,6 +425,7 @@ a:hover .dc-arrow, button:hover .dc-arrow { transform: translateX(3px); }
   padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
 }
 .dc-table td { padding: var(--space-2); border-bottom: 1px solid var(--color-divider); }
+.dc-table tbody tr { transition: background-color .16s ease; }
 .dc-table tbody tr:hover { background: color-mix(in srgb, var(--color-ink) 4%, transparent); }
 
 /* ── the three-column hairline grid; stacks with a top rule ───────── */
