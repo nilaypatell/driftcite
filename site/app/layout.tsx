@@ -7,7 +7,7 @@ import Motion from "@/components/Motion";
 import RouteOnly from "@/components/RouteOnly";
 import Announcement from "@/components/home/Announcement";
 import { getStars } from "@/lib/stars";
-import { SITE } from "@/lib/seo";
+import { OG_IMAGE, SITE } from "@/lib/seo";
 import { LINKS } from "@/lib/data";
 
 /* next/font downloads and self-hosts these at build time, so the handoff's
@@ -40,11 +40,9 @@ const jetbrainsMono = JetBrains_Mono({
 const DESCRIPTION =
   "You should be shipping, not tracking which model a provider retired last quarter. driftcite finds the API identifiers in your source that are already dead — models, endpoints, parameters — and opens the pull request that replaces them, citing the provider that published the change.";
 
-/* The social card is app/opengraph-image.png and app/twitter-image.png. As
-   files they carry their own dimensions and alt text into the tags, and they
-   are served from this deploy — the previous card was a raw.githubusercontent
-   URL, which meant every preview on every platform depended on GitHub serving
-   an image from a branch, and it was a square app icon rather than a card. */
+/* The social card is public/og.png, declared rather than conventional — see
+   OG_IMAGE in lib/seo.ts for why the file convention's hashed URL was the
+   wrong address for a thing whose whole job is to be cached by strangers. */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
@@ -88,12 +86,14 @@ export const metadata: Metadata = {
       "39.2% of 449 scanned repositories call an API that is already dead. driftcite finds the call sites and opens the PR, citing the provider who published the change.",
     url: "/",
     locale: "en_US",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "driftcite — dead API calls, found and fixed",
     description:
       "Static analysis for the strings your dependency tools never look at. npx driftcite .",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
@@ -140,7 +140,7 @@ const JSON_LD = {
       "@id": `${SITE}/#org`,
       name: "driftcite",
       url: SITE,
-      logo: `${SITE}/opengraph-image.png`,
+      logo: `${SITE}/og.png`,
       sameAs: [LINKS.repo, LINKS.npm],
     },
     {
