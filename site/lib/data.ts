@@ -1,0 +1,104 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Every number on the page, in one place.
+
+   All of it is read out of the repository, not invented:
+     corpus/report.json     the scan of 449 public repositories, July 2026
+     providers.yaml         the seven spec-tracked providers
+     manifests/*.yaml       the curated model retirements, 135 artifacts
+
+   If a figure is not in this file it does not belong on the page.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+export const CORPUS = {
+  attempted: 467,
+  scanned: 449,
+  failed: 18,
+  affected: 176,
+  sharePct: 39.2,
+  totalFindings: 3388,
+  breaking: 2932,
+  medianWhenAffected: 7,
+  worstRepo: 115,
+} as const;
+
+/** One dot per repository scanned; `affected` of them are dead. */
+export const PLOT = { total: CORPUS.scanned, hits: CORPUS.affected } as const;
+
+export const BY_POPULARITY = [
+  { label: "under 100 ★", pct: 37.7 },
+  { label: "100 – 1k ★", pct: 39.8 },
+  { label: "1k – 10k ★", pct: 44.1 },
+  { label: "over 10k ★", pct: 83.3 },
+] as const;
+
+export const STATS = [
+  { value: CORPUS.scanned, label: "repositories scanned" },
+  { value: CORPUS.breaking, label: "dead call sites found" },
+  { value: CORPUS.medianWhenAffected, label: "median, when affected" },
+  { value: CORPUS.worstRepo, label: "worst single repository" },
+] as const;
+
+/** 135 artifacts across ten providers. `watched` means the spec is
+ *  tracked but nothing has been retired from it yet. */
+export const PROVIDERS = [
+  { name: "Anthropic", artifacts: 15, findings: 383 },
+  { name: "Google", artifacts: 8, findings: 213 },
+  { name: "OpenAI", artifacts: 12, findings: 123 },
+  { name: "Groq", artifacts: 2, findings: 87 },
+  { name: "Cloudflare", artifacts: 42, findings: 78 },
+  { name: "Stripe", artifacts: 10, findings: 32 },
+  { name: "GitHub", artifacts: 46, findings: 1 },
+  { name: "Twilio", watched: "none yet" },
+  { name: "DigitalOcean", watched: "none yet" },
+  { name: "Box", watched: "by commit" },
+] as const;
+
+export const TOTAL_ARTIFACTS = 135;
+export const TOTAL_PROVIDERS = 10;
+
+export const DEAD_IDENTIFIERS = [
+  { prefix: "google/model_id/", id: "gemini-2.0-flash", repos: 81 },
+  { prefix: "anthropic/model_id/", id: "claude-sonnet-4-20250514", repos: 65 },
+  { prefix: "openai/model_id/", id: "gpt-4-turbo", repos: 57 },
+  { prefix: "groq/model_id/", id: "llama-3.3-70b-versatile", repos: 50 },
+  { prefix: "anthropic/model_id/", id: "claude-3-5-sonnet-20241022", repos: 44 },
+  { prefix: "anthropic/request_param/", id: "budget_tokens", repos: 28 },
+] as const;
+
+/** The precision story: an early build's false-positive rate. */
+export const PRECISION = { before: 86, after: 5 } as const;
+
+export const LINKS = {
+  repo: "https://github.com/nilaypatell/driftcite",
+  app: "https://github.com/apps/driftcite",
+  npm: "https://www.npmjs.com/package/driftcite",
+  readme: "https://github.com/nilaypatell/driftcite#readme",
+  ci: "https://github.com/nilaypatell/driftcite#in-ci",
+  report:
+    "https://github.com/nilaypatell/driftcite/blob/main/corpus/report.json",
+  providersYaml:
+    "https://github.com/nilaypatell/driftcite/blob/main/providers.yaml",
+  pr: "https://github.com/nilaypatell/underthesea/pull/1",
+  architecture:
+    "https://github.com/nilaypatell/driftcite/blob/main/ARCHITECTURE.md",
+  contributing:
+    "https://github.com/nilaypatell/driftcite/blob/main/CONTRIBUTING.md",
+  security:
+    "https://github.com/nilaypatell/driftcite/blob/main/SECURITY.md",
+  circleci:
+    "https://discuss.circleci.com/t/post-mortem-workflows-not-running-and-jobs-failing-01-03-2022/43244",
+  openaiDeprecations: "https://developers.openai.com/api/docs/deprecations",
+  stripeOpenapi: "https://github.com/stripe/openapi",
+} as const;
+
+/** The seven chapter rails, in order. Numbers are derived from this
+ *  array at render time so they cannot drift out of sync. */
+export const CHAPTERS = [
+  { label: "The blind spot", end: "why nothing catches it" },
+  { label: "The scan", end: "one command" },
+  { label: "The corpus", end: "measured, july 2026" },
+  { label: "What it watches", end: "ten providers" },
+  { label: "Three ways to run it", end: "same engine" },
+  { label: "Receipts", end: "pr #1, unattended" },
+  { label: "Why it stays quiet", end: "precision first" },
+] as const;
