@@ -478,6 +478,66 @@ function runList(files) {
     `got ${out.length} bytes, parse ${parsed ? "ok" : "FAILED"}`);
 }
 
+console.log("\nlockfile parsing");
+
+// The parsers are exercised directly: hitting the live registries in a test
+// would make the suite depend on someone else's uptime.
+const { __test } = await import(CLI);
+
+{
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-lock-"));
+  writeFileSync(path.join(dir, "Cargo.lock"), `# @generated
+version = 3
+
+[[package]]
+name = "openssl"
+version = "0.10.44"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "abc"
+dependencies = [
+ "bitflags",
+]
+
+[[package]]
+name = "local-workspace-member"
+version = "0.1.0"
+
+[[package]]
+name = "from-git"
+version = "2.0.0"
+source = "git+https://github.com/someone/thing?rev=abc#abc"
+`);
+  const crates = await __test.cargoDeps([path.join(dir, "Cargo.lock")], dir);
+  check("Cargo.lock yields a registry crate with its version",
+    crates.has("openssl@0.10.44"));
+  check("a workspace member with no source is not asked about",
+    !crates.has("local-workspace-member@0.1.0"));
+  check("a git dependency is not asked about",
+    !crates.has("from-git@2.0.0"),
+    "crates.io has no answer for a git source");
+
+  writeFileSync(path.join(dir, "Gemfile.lock"), `GEM
+  remote: https://rubygems.org/
+  specs:
+    rack (2.2.3)
+    nokogiri (1.16.0-x86_64-linux)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rack (~> 2.2)
+`);
+  const gems = await __test.gemDeps([path.join(dir, "Gemfile.lock")], dir);
+  check("Gemfile.lock yields the resolved gem version", gems.has("rack@2.2.3"));
+  check("a platform-specific gem keeps its platform suffix",
+    gems.has("nokogiri@1.16.0-x86_64-linux"));
+  check("the DEPENDENCIES constraint block is not read as a version",
+    gems.size === 2,
+    `got ${[...gems.keys()].join(", ")}`);
+  rmSync(dir, { recursive: true, force: true });
+}
+
 console.log("\nreporting");
 check(
   "a clean repository yields no findings",
