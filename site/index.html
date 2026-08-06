@@ -126,13 +126,9 @@
   ::selection { background: var(--accent); color: #fff; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 
-  /* section coordinates: the page numbers its own sections the way it
-     numbers its own evidence */
-  .coord { font-family: var(--mono); font-size: 12px; letter-spacing: 3px; color: var(--faint); text-transform: uppercase; }
-  .coord b { color: var(--accent-soft); font-weight: 600; }
 
   .cite {
-    font-family: var(--mono); font-size: .6em; vertical-align: super;
+    font-size: .62em; vertical-align: super;
     color: var(--accent-soft); text-decoration: none; font-weight: 600; padding: 0 .15em;
   }
   .cite:hover { background: var(--accent); color: #fff; }
@@ -143,7 +139,7 @@
   .bar svg { width: 26px; height: 26px; flex: none; }
   .bar .word { font-weight: 800; font-size: 19px; letter-spacing: -.5px; color: var(--text); text-decoration: none; }
   .bar nav { margin-left: auto; display: flex; gap: 24px; align-items: center; }
-  .bar nav a { font-family: var(--mono); font-size: 12.5px; color: var(--dim); text-decoration: none; }
+  .bar nav a { font-size: 13.5px; font-weight: 600; color: var(--dim); text-decoration: none; }
   .bar nav a:hover { color: var(--accent-soft); }
   .bar nav a.install { color: var(--text); border: 1px solid var(--line-bright); border-radius: 7px; padding: 7px 14px; }
   .bar nav a.install:hover { border-color: var(--accent); color: #fff; background: color-mix(in srgb, var(--accent) 18%, transparent); }
@@ -193,7 +189,7 @@
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent), 0 8px 30px -10px color-mix(in srgb, var(--accent) 70%, transparent);
   }
   .app-btn:hover { background: #5470FF; }
-  .cta-note { flex-basis: 100%; font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 2px; }
+  .cta-note { flex-basis: 100%; font-size: 13px; color: var(--faint); margin-top: 2px; }
 
   /* ---------- terminal */
   .terminal {
@@ -219,7 +215,7 @@
   .board .wrap { padding: 64px 28px 58px; }
   .board .big { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; }
   .board .num {
-    font-family: var(--mono); font-weight: 700; font-size: clamp(64px, 9vw, 118px);
+    font-weight: 800; font-size: clamp(64px, 9vw, 118px);
     letter-spacing: -5px; line-height: 1; color: var(--accent-soft);
     font-variant-numeric: tabular-nums;
     text-shadow: 0 0 50px color-mix(in srgb, var(--accent) 45%, transparent);
@@ -230,14 +226,13 @@
   .board .row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 44px; border-top: 1px solid var(--line); }
   .board .cell { padding: 20px 24px 4px; border-left: 1px solid var(--line); }
   .board .cell:first-child { border-left: none; padding-left: 0; }
-  .board .cell .v { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
-  .board .cell .k { font-family: var(--mono); font-size: 11.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--faint); margin-top: 6px; }
+  .board .cell .v { font-size: 32px; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+  .board .cell .k { font-size: 13.5px; color: var(--dim); margin-top: 6px; }
 
   /* ---------- sections */
   section { padding: 88px 0; border-top: 1px solid var(--line); }
   section:first-of-type { border-top: none; }
   .head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
-  .head .coord { white-space: nowrap; }
   h2 { font-weight: 800; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -1.4px; text-wrap: balance; }
   .lede { font-size: 17.5px; color: var(--dim); max-width: 40em; }
   .lede b { color: var(--text); }
@@ -247,7 +242,7 @@
   .exhibit .coord { margin-bottom: 20px; display: block; }
   blockquote { font-size: clamp(19px, 2.2vw, 24px); line-height: 1.5; font-weight: 600; max-width: 28em; letter-spacing: -.3px; }
   blockquote em { font-style: normal; color: var(--accent-soft); }
-  .exhibit figcaption { margin-top: 18px; font-family: var(--mono); font-size: 12.5px; color: var(--faint); }
+  .exhibit figcaption { margin-top: 18px; font-size: 13.5px; color: var(--faint); }
   .exhibit .days { color: var(--red); font-weight: 700; }
 
   /* rungs with ghosted numbers */
@@ -264,7 +259,7 @@
   .rung h3 { font-size: 19px; font-weight: 800; letter-spacing: -.4px; }
   .rung p { font-size: 14.5px; color: var(--dim); flex: 1; }
   .rung pre { font-family: var(--mono); font-size: 12.5px; background: var(--ground); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; color: var(--text); }
-  .rung a.go { font-family: var(--mono); font-size: 13px; color: var(--accent-soft); text-decoration: none; }
+  .rung a.go { font-size: 13.5px; font-weight: 600; color: var(--accent-soft); text-decoration: none; }
   .rung a.go:hover { color: #fff; }
   .rung.featured { border-color: var(--accent); box-shadow: 0 0 44px -18px color-mix(in srgb, var(--accent) 60%, transparent) inset, 0 0 40px -22px color-mix(in srgb, var(--accent) 70%, transparent); }
   .rung.featured::before { -webkit-text-stroke-color: color-mix(in srgb, var(--accent) 55%, transparent); }
@@ -274,24 +269,24 @@
   .r-head { display: flex; gap: 12px; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--line); }
   .r-head svg { width: 26px; height: 26px; }
   .r-head .who { font-size: 14px; color: var(--dim); }
-  .r-head .who b { font-family: var(--mono); color: var(--text); }
-  .r-head .pill { margin-left: auto; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; border: 1px solid var(--line-bright); color: var(--dim); border-radius: 20px; padding: 2px 10px; }
+  .r-head .who b { color: var(--text); }
+  .r-head .pill { margin-left: auto; font-size: 11px; font-weight: 600; border: 1px solid var(--line-bright); color: var(--dim); border-radius: 20px; padding: 2px 10px; }
   .diff { font-family: var(--mono); font-size: 12.8px; line-height: 1.85; padding: 18px 20px; overflow-x: auto; }
   .diff span { display: block; white-space: pre; }
   .diff .ctx { color: var(--faint); }
   .diff .ctx:not(:first-child) { margin-top: 12px; }
   .diff .del { color: var(--red); background: color-mix(in srgb, var(--red) 8%, transparent); }
   .diff .add { color: var(--green); background: color-mix(in srgb, var(--green) 8%, transparent); }
-  .r-foot { padding: 13px 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12.5px; color: var(--dim); }
+  .r-foot { padding: 13px 20px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--dim); }
   .r-foot a { color: var(--accent-soft); text-decoration: none; }
   .r-foot a:hover { color: #fff; }
 
   /* precision */
   .prec { display: flex; gap: 58px; align-items: baseline; margin-top: 44px; flex-wrap: wrap; }
-  .prec .n { font-family: var(--mono); font-weight: 700; font-size: 92px; letter-spacing: -5px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .prec .n { font-weight: 800; font-size: 92px; letter-spacing: -5px; line-height: 1; font-variant-numeric: tabular-nums; }
   .prec .was { color: var(--faint); text-decoration: line-through; text-decoration-thickness: 6px; text-decoration-color: var(--red); }
   .prec .is { color: var(--accent-soft); text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 50%, transparent); }
-  .prec .lab { font-family: var(--mono); font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--faint); margin-top: 10px; }
+  .prec .lab { font-size: 13.5px; color: var(--dim); margin-top: 10px; }
   .prec .arrow { font-size: 44px; color: var(--faint); }
 
   /* rules */
@@ -304,15 +299,16 @@
   /* footnotes */
   .footnotes { border-top: 1px solid var(--line); background: var(--ground-2); }
   .footnotes .wrap { padding-top: 58px; padding-bottom: 64px; }
+  .footnotes .ev-h { font-size: 19px; letter-spacing: -.4px; margin: 0; }
   .footnotes ol { list-style: none; margin-top: 26px; display: grid; gap: 12px; }
   .footnotes li { font-size: 14px; display: grid; grid-template-columns: 44px 1fr; gap: 10px; color: var(--dim); }
   .footnotes li:target { background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 7px; }
-  .footnotes .fn { font-family: var(--mono); color: var(--accent-soft); font-weight: 700; }
+  .footnotes .fn { color: var(--accent-soft); font-weight: 700; }
   .footnotes a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line-bright); overflow-wrap: anywhere; }
   .footnotes a:hover { color: var(--accent-soft); border-color: var(--accent); }
 
   footer { border-top: 1px solid var(--line); }
-  footer .wrap { display: flex; gap: 26px; align-items: center; padding: 32px 28px; font-family: var(--mono); font-size: 12.5px; color: var(--faint); flex-wrap: wrap; }
+  footer .wrap { display: flex; gap: 26px; align-items: center; padding: 32px 28px; font-size: 13px; color: var(--faint); flex-wrap: wrap; }
   footer a { color: var(--dim); text-decoration: none; }
   footer a:hover { color: var(--accent-soft); }
   footer .mark { width: 20px; height: 20px; }
@@ -387,7 +383,6 @@
 <main>
   <div class="wrap hero">
     <div>
-      <p class="coord kicker"><b>[ 00 ]</b> · OPEN SOURCE · APACHE-2.0</p>
       <h1><code>text&#8209;davinci&#8209;003</code> died 935 days ago. Your code still calls it.</h1>
       <p class="sub">Providers retire endpoints, parameters and models. Your lockfile never moves, so no dependency tool sees it. <b>driftcite finds the call sites and opens the pull request that fixes them</b> — every finding citing the provider who published the change.</p>
       <div class="cta">
@@ -436,11 +431,9 @@
     <div class="wrap">
       <div class="head">
         <h2>Being told is not the same as being safe.</h2>
-        <span class="coord"><b>[ 01 ]</b> · THE PROBLEM</span>
       </div>
       <p class="lede">CircleCI went down for nearly two hours in March 2022 because an API endpoint they depended on moved. GitHub had announced the change <b>770 days earlier</b>.<a class="cite" href="#fn1">[1]</a> Somebody still had to map a prose announcement onto their own call sites, and nobody did — because that job belongs to a machine.</p>
       <figure class="exhibit">
-        <span class="coord"><b>EXHIBIT A</b></span>
         <blockquote>CircleCI looked at the changes and <em>mistakenly concluded that they did not apply to them.</em></blockquote>
         <figcaption>— CircleCI post-mortem, March 1, 2022<a class="cite" href="#fn1">[1]</a> · notified 2020-01-21 · broke <span class="days">770 days</span> later</figcaption>
       </figure>
@@ -451,7 +444,6 @@
     <div class="wrap">
       <div class="head">
         <h2>Three rungs. Each one is the whole product, smaller.</h2>
-        <span class="coord"><b>[ 02 ]</b> · HOW IT RUNS</span>
       </div>
       <div class="ladder">
         <div class="rung" data-n="01">
@@ -480,14 +472,13 @@
     <div class="wrap">
       <div class="head">
         <h2>Receipts, not promises.</h2>
-        <span class="coord"><b>[ 03 ]</b> · PROOF</span>
       </div>
       <p class="lede">A real pull request the App opened, unattended, on August 5, 2026.<a class="cite" href="#fn4">[4]</a> Three providers' dead models, four files, every change carrying the provider's own page.</p>
       <div class="receipt">
         <div class="r-head">
           <svg viewBox="0 0 112 112" aria-hidden="true"><g transform="scale(1.12 1)"><polygon class="mark-a" points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"/><polygon class="mark-b" points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"/></g></svg>
           <span class="who"><b>driftcite[bot]</b> opened this pull request</span>
-          <span class="pill">BOT</span>
+          <span class="pill">bot</span>
         </div>
         <div class="diff">
 <span class="ctx">underthesea/agent/providers/anthropic_provider.py</span>
@@ -506,7 +497,6 @@
     <div class="wrap">
       <div class="head">
         <h2>Precision is the product.</h2>
-        <span class="coord"><b>[ 04 ]</b> · SIGNAL</span>
       </div>
       <p class="lede">The first version reported 86 findings on a real 1,200-dependency repository, and roughly a quarter were real — <b style="font-family:var(--mono)">refund</b> was matching inside <i>refunded</i>. Every artifact kind now matches only in the shape it takes when actually sent to a provider. A tool that is wrong three times out of four gets muted, then deleted.</p>
       <div class="prec">
@@ -521,7 +511,6 @@
     <div class="wrap">
       <div class="head">
         <h2>Rules that don't bend.</h2>
-        <span class="coord"><b>[ 05 ]</b> · METHOD</span>
       </div>
       <div class="rules">
         <div class="rule">
@@ -543,7 +532,6 @@
 
 <div class="footnotes">
   <div class="wrap">
-    <span class="coord"><b>[ 06 ]</b> · EVIDENCE</span>
     <ol>
       <li id="fn1"><span class="fn">[1]</span><span><a href="https://discuss.circleci.com/t/post-mortem-workflows-not-running-and-jobs-failing-01-03-2022/43244">CircleCI post-mortem: workflows not running and jobs failing, March 1, 2022</a> — GitHub announced the endpoint migration on January 21, 2020; the brownout broke CircleCI on March 1, 2022.</span></li>
       <li id="fn2"><span class="fn">[2]</span><span><a href="https://github.com/nilaypatell/driftcite/blob/main/corpus/report.json">driftcite corpus report — 449 public repositories, July 2026</a> — methodology and per-provider counts in the repository; reproducible with the public CLI.</span></li>
