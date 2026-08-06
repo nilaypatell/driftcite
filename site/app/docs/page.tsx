@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Column } from "@/components/primitives";
 import { LINKS } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 /* ═══════════════════════════════════════════════════════════════════════
    Docs — "From zero to a failing build in sixty seconds."
@@ -599,7 +600,7 @@ export default function Docs() {
                 href={LINKS.pr}
                 style={{ textDecoration: "none" }}
               >
-                See a real PR it opened →
+                See a real PR it opened<ArrowRight className="dc-arrow" size={14} />
               </a>
             </div>
             <h3 style={{ ...h3, margin: "36px 0 0" }}>

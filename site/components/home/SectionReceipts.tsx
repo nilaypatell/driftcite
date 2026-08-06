@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Kicker, Ref } from "@/components/primitives";
 import { LINKS } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 /* 04 / 06 — Exhibit. A real pull request the App opened with nobody
    watching: four files, three providers, every swap the provider's own. */
@@ -154,7 +155,7 @@ export default function SectionReceipts() {
                   textDecoration: "none",
                 }}
               >
-                see the PR itself &#8594;
+                see the PR itself<ArrowRight className="dc-arrow" size={14} />
               </a>
             </div>
           </div>

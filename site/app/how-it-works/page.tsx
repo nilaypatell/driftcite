@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Column, Kicker } from "@/components/primitives";
 import { LINKS, PRECISION } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -418,7 +419,7 @@ export default function HowItWorks() {
             Install the App
           </a>
           <a className="dc-btn dc-btn-ghost" href={LINKS.architecture}>
-            Read ARCHITECTURE.md →
+            Read ARCHITECTURE.md<ArrowRight className="dc-arrow" size={14} />
           </a>
         </div>
       </section>

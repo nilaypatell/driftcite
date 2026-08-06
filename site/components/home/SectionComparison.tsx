@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Kicker } from "@/components/primitives";
 import { TOTAL_ARTIFACTS } from "@/lib/data";
+import { Check } from "@/components/icons";
 
 /* 06 / 06 — The comparison. Not a scoreboard: a different layer. Lockfiles
    do not move when a provider deletes an endpoint, so no manifest reader
@@ -37,6 +38,17 @@ const label: CSSProperties = {
 const none: CSSProperties = {
   color: "color-mix(in srgb, var(--color-ink) 38%, transparent)",
 };
+
+/* The tick used in the comparison cells. A glyph would inherit whatever
+   the cell's font does to it; this is the same mark at any size. */
+function Tick() {
+  return (
+    <Check
+      size={14}
+      style={{ display: "inline-block", verticalAlign: "-0.18em", marginRight: 4 }}
+    />
+  );
+}
 
 export default function SectionComparison() {
   return (
@@ -80,26 +92,26 @@ export default function SectionComparison() {
                 <td style={none}>&#8212;</td>
                 <td style={none}>&#8212;</td>
                 <td style={ours}>
-                  &#10003;&#8202; {TOTAL_ARTIFACTS} artifacts, ten providers
+                  <Tick /> {TOTAL_ARTIFACTS} artifacts, ten providers
                 </td>
               </tr>
               <tr>
                 <td style={label}>Time remaining as a first-class field</td>
                 <td style={none}>&#8212;</td>
                 <td style={none}>&#8212;</td>
-                <td style={ours}>&#10003;&#8202; &#8220;breaks in 88 days&#8221;</td>
+                <td style={ours}><Tick /> &#8220;breaks in 88 days&#8221;</td>
               </tr>
               <tr>
                 <td style={label}>Evidence link on every finding</td>
                 <td style={none}>&#8212;</td>
                 <td>Advisory page</td>
-                <td style={ours}>&#10003;&#8202; the provider&#8217;s own page</td>
+                <td style={ours}><Tick /> the provider&#8217;s own page</td>
               </tr>
               <tr>
                 <td style={label}>Opens the fixing PR</td>
-                <td>&#10003;&#8202; version bumps</td>
+                <td><Tick /> version bumps</td>
                 <td style={none}>&#8212;</td>
-                <td style={ours}>&#10003;&#8202; the swap the provider named</td>
+                <td style={ours}><Tick /> the swap the provider named</td>
               </tr>
             </tbody>
           </table>

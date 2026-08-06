@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Kicker } from "@/components/primitives";
 import { PRECISION, TOTAL_ARTIFACTS } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 /* 05 / 06 — Signal over noise. 86 findings, a quarter of them real, struck
    through and replaced by 5 that are all real. A tool that cries wolf is a
@@ -87,15 +88,16 @@ export default function SectionPrecision() {
             <p style={caption}>findings &#183; ~25% true</p>
           </div>
 
+          {/* the 86 → 5 connector. Not a link, so no hover nudge and no
+              .dc-arrow — just the same mark at figure scale. */}
           <span
             aria-hidden="true"
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 40,
+              display: "inline-flex",
               color: "color-mix(in srgb, var(--color-ink) 35%, transparent)",
             }}
           >
-            &#8594;
+            <ArrowRight size={34} />
           </span>
 
           <div>

@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Kicker } from "@/components/primitives";
 import { LINKS, TOTAL_ARTIFACTS } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 /* 03 / 06 — How it arrives. Three rungs of the same ladder: the CLI, the
    Action, the App. The third is the product, so it is the one wearing the
@@ -109,7 +110,7 @@ export default function SectionArrives() {
               npx driftcite .
             </pre>
             <Link href="/docs" style={arrow}>
-              Getting started &#8594;
+              Getting started<ArrowRight className="dc-arrow" size={14} />
             </Link>
           </div>
 
@@ -126,7 +127,7 @@ export default function SectionArrives() {
               - uses: nilaypatell/driftcite@main
             </pre>
             <Link href="/docs#ci" style={arrow}>
-              The Action &#8594;
+              The Action<ArrowRight className="dc-arrow" size={14} />
             </Link>
           </div>
 
@@ -155,7 +156,7 @@ export default function SectionArrives() {
               github.com/apps/driftcite
             </pre>
             <a href={LINKS.app} style={arrow}>
-              Install &#8594;
+              Install<ArrowRight className="dc-arrow" size={14} />
             </a>
           </div>
         </div>

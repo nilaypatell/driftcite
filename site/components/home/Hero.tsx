@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CopyCommand from "@/components/CopyCommand";
 import { LINKS } from "@/lib/data";
+import { ArrowRight } from "@/components/icons";
 
 /* The four decorative corner chips. Pure ornament — read by nobody, hidden
    below 980px by `.dc-hero-chip`, and each one a scrap of the scanner's own
@@ -77,7 +78,8 @@ export default function Hero() {
           transition: "border-color .15s ease",
         }}
       >
-        {"text‑davinci‑003 died 935 days ago →"}
+        {"text‑davinci‑003 died 935 days ago"}
+        <ArrowRight className="dc-arrow" size={14} />
       </Link>
 
       <h1

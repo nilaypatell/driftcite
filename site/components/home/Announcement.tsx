@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "@/components/icons";
 
 /**
  * The full-bleed accent banner that sits above the nav.
@@ -21,7 +22,7 @@ export default function Announcement() {
     >
       Introducing the GitHub App — the fix arrives as a pull request.{" "}
       <Link href="/changelog" style={{ color: "#fff" }}>
-        Read the announcement →
+        Read the announcement<ArrowRight className="dc-arrow" size={14} />
       </Link>
     </div>
   );
