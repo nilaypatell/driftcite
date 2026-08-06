@@ -267,14 +267,30 @@ export default function CoveragePage() {
                     }}
                   >
                     <span style={{ fontSize: 13.5 }}>{p.name}</span>
+                    {/* The lane is the whole scale, so a bar reads against
+                        what it could have been — without it GitHub's single
+                        finding was a 2px shard floating in white space. The
+                        bar's data-end is rounded and its baseline stays
+                        square: a pill on both ends would lift the mark off
+                        the axis it is measured from. */}
                     <div
                       style={{
-                        height: 6,
-                        background: "var(--color-accent-400)",
-                        width: `${Math.max(1, Math.round((p.findings / MAX_FINDINGS) * 100))}%`,
-                        minWidth: 2,
+                        height: 8,
+                        borderRadius: "0 4px 4px 0",
+                        background: "var(--color-accent-100)",
+                        overflow: "hidden",
                       }}
-                    />
+                    >
+                      <div
+                        style={{
+                          height: "100%",
+                          borderRadius: "0 4px 4px 0",
+                          background: "var(--color-accent-400)",
+                          width: `${(p.findings / MAX_FINDINGS) * 100}%`,
+                          minWidth: 3,
+                        }}
+                      />
+                    </div>
                     <span
                       style={{
                         fontSize: 13,
