@@ -31,6 +31,11 @@ jobs:
       - name: Scanner tests
         run: node test/run.mjs
 
+      # The hosted watch decides what gets pushed to other people's repos, so
+      # its tests are not optional here.
+      - name: Watch tests
+        run: node test/watch.mjs
+
       # scanner/ is drift-free by construction, so this proves a clean run
       # end to end. The repo root is NOT expected to scan clean: the test
       # fixtures quote retired identifiers on purpose.
@@ -47,6 +52,16 @@ jobs:
           python-version: "3.11"
 
       - run: pip install --quiet pyyaml
+
+      # The filters that decide what may become a finding. Both were added
+      # after a false artifact shipped; neither is allowed to regress.
+      - name: Artifact filters
+        run: python3 scanner/openapi_diff.py --self-test
+
+      - name: Observer logic
+        run: |
+          python3 scanner/probe_models.py --self-test
+          python3 scanner/probe_sunset.py --self-test
 
       - name: Every recommended replacement must exist
         run: python3 scripts/verify_replacements.py

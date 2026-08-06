@@ -18,6 +18,13 @@ The catalog is chat-only. It lists no embedding models at all, so absence
 there is not evidence of absence, and unverifiable ids are reported separately
 from failures rather than counted as errors.
 
+Three things it cannot speak to, each reported with its reason rather than
+waved through: model types it does not carry (rerank, OCR, image, audio,
+forecasting), SKUs that exist only inside a reseller's marketplace, and a
+vendor's experimental tier. Every one of those still carries the provider's
+own evidence URL in the manifest; what is missing is a second source, and
+saying so is different from claiming the model is fake.
+
     python3 scripts/verify_replacements.py
 """
 
@@ -30,8 +37,21 @@ import urllib.request
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 CATALOG = "https://openrouter.ai/api/v1/models"
 
-# Kinds the catalog cannot speak to. Absence proves nothing for these.
-UNVERIFIABLE = re.compile(r"embedding|embed|whisper|tts|moderation|imagen|dall")
+# Model types a chat catalog does not carry. Absence proves nothing for these.
+UNVERIFIABLE = re.compile(
+    r"embedding|embed|whisper|tts|moderation|imagen|dall"
+    r"|rerank|ocr|document-ai|image|voxtral|transcribe|timegpt",
+    re.I,
+)
+
+# A vendor's experimental tier ships under its own prefix and is not listed by
+# neutral catalogs. Mistral's labs- models are the case that turned up here.
+EXPERIMENTAL = re.compile(r"^labs-", re.I)
+
+# Resellers publish their own SKUs. Azure serves Cohere-rerank-v4.0-pro and
+# tsuzumi2 under names only Azure uses, so a neutral catalog will never carry
+# them and their existence has to be checked on the reseller's own page.
+RESELLERS = {"azure", "bedrock"}
 
 
 def normalise(s):
@@ -73,16 +93,25 @@ def main():
         n = normalise(rep)
         if n in known or any(n in k or k in n for k in known):
             confirmed.append(rep)
-        elif UNVERIFIABLE.search(rep):
-            unverifiable.append(rep)
+            continue
+        why = None
+        if UNVERIFIABLE.search(rep):
+            why = "catalog carries no model of this type"
+        elif EXPERIMENTAL.search(rep):
+            why = "the vendor's experimental tier, unlisted by neutral catalogs"
+        elif all(u.split("/", 1)[0] in RESELLERS for u in users):
+            who = sorted({u.split("/", 1)[0] for u in users})
+            why = f"an {'/'.join(who)} marketplace SKU, listed only there"
+        if why:
+            unverifiable.append((rep, why))
         else:
             missing.append((rep, users))
 
     print(f"\n{len(wanted)} replacement ids checked against {count} catalog entries\n")
     print(f"  confirmed present   {len(confirmed)}")
-    print(f"  not verifiable here {len(unverifiable)}  (catalog lists no such model type)")
-    for r in unverifiable:
-        print(f"      {r}")
+    print(f"  not verifiable here {len(unverifiable)}")
+    for r, why in unverifiable:
+        print(f"      {r}\n        {why}")
 
     if missing:
         print(f"\n  NOT FOUND {len(missing)}")

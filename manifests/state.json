@@ -18,7 +18,7 @@
     "cloudflare": {
       "first_seen": "2026-07-26",
       "last_change": "2026-08-06",
-      "ref": "a904ae93d0ad"
+      "ref": "214f396fb489"
     },
     "datadog": {
       "first_seen": "2026-08-06",
@@ -53,7 +53,7 @@
     "stripe": {
       "first_seen": "2026-07-26",
       "last_change": "2026-08-06",
-      "ref": "v2375"
+      "ref": "v2376"
     },
     "twilio": {
       "first_seen": "2026-07-26",

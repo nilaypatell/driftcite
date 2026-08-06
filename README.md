@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 19 providers · 305 artifacts · zero dependencies · 118 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 18 providers · 255 artifacts · zero dependencies · 118 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -272,7 +272,7 @@ Kinds other than model IDs also require the file to reference that provider at a
 
 </div>
 
-A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 305 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
+A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 255 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
 
 <br>
 
@@ -284,21 +284,25 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 | **Cloudflare** | `cloudflare/api-schemas` | 42 |
 | **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
 | **Stripe** | `stripe/openapi` · 2,345 tagged releases | 10 |
-| **Azure** | Foundry model retirement schedule, curated | 43 |
 | **Square** | `square/connect-api-specification` | 41 |
 | **Mistral** | model docs deprecation table, curated | 40 |
 | **Bedrock** | AWS model lifecycle page, curated | 17 |
 | **Cohere** | deprecations page, curated | 15 |
 | **Datadog** | `DataDog/datadog-api-client-python` | 12 |
 | **Google** | Gemini changelog, curated | 8 |
-| **Plaid** | `plaid/plaid-openapi` | 8 |
-| DigitalOcean · Adyen · Groq | specs and deprecation pages | 7 |
+| DigitalOcean · Adyen · Plaid · Groq | specs and deprecation pages | 8 |
 | Other model providers | curated retirement pages | 15 |
 | Twilio · Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Nineteen providers under daily watch, 305 artifacts, every one carrying the
-provider's own evidence URL.
+Eighteen providers in the published feed, 255 artifacts, every one carrying
+the provider's own evidence URL.
+
+Azure is curated (42 artifacts) and **withheld from the published feed** until
+a release carrying `require_context` is the version on npm. The published
+client predates that field, and without it Azure's retirement dates would be
+reported to people calling OpenAI and Anthropic directly. Data must not arrive
+ahead of the gate that makes it safe.
 
 Two of them resell other people's models on their own clock. Azure retires
 `gpt-4o` and `claude-sonnet-4-5` on dates their original vendors do not

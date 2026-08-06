@@ -63,7 +63,7 @@ const RELEASES: readonly Release[] = [
       <>
         Five more spec-tracked providers &#8212; Plaid, Square, Datadog, Adyen
         and Asana &#8212; each accruing history from the day it landed.{" "}
-        {TOTAL_ARTIFACTS} artifacts across nineteen providers.
+        {TOTAL_ARTIFACTS} artifacts across eighteen providers in the published feed.
       </>,
       <>
         <C>Cargo.lock</C> and <C>Gemfile.lock</C> are read now, so a yanked

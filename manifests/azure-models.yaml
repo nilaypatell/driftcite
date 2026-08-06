@@ -26,9 +26,12 @@ sources:
 #     variable name, which is the same reason enum values under four
 #     characters are dropped.
 #
-# claude-opus-4-1 retired on Azure 2026-08-05 and is deliberately absent:
-# Anthropic's own manifest already carries it, and one finding per dead model
-# is enough.
+# claude-opus-4-1 and o1-pro are deliberately absent: Anthropic's and
+# OpenAI's own manifests already carry them, and one finding per dead model is
+# enough. Two artifacts sharing a literal put two different death dates on the
+# same line, and the Azure SDK is imported from the `openai` package, so an
+# Azure file satisfies both marker sets at once. build_feed.py now refuses a
+# feed where two providers claim the same literal.
 context:
   file_markers:
     - azure
@@ -383,18 +386,6 @@ artifacts:
     replacement: null
     severity: breaking
     note: Azure lifecycle Deprecated. Retires 2026-10-16.
-    require_context: true
-    evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
-
-  - id: azure/model_id/o1-pro
-    kind: model_id
-    match:
-      literals: ["o1-pro"]
-    status: deprecated
-    retires_on: 2026-10-21
-    replacement: gpt-5.6-sol
-    severity: breaking
-    note: Azure lifecycle Deprecated. Retires 2026-10-21.
     require_context: true
     evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
 

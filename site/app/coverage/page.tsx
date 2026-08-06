@@ -13,7 +13,7 @@ import {
 } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Coverage — "Nineteen providers under daily watch."
+   Coverage — "Eighteen providers under daily watch."
 
    Every figure on this page is read out of lib/data.ts: the provider table
    off PROVIDERS, the bar chart off PROVIDERS.findings, the identifier table
@@ -170,12 +170,6 @@ const SOURCE_ROWS: {
     bold: true,
     source: "deprecations page, curated",
     count: artifactsOf("Cohere"),
-  },
-  {
-    label: "Azure",
-    bold: true,
-    source: "Foundry retirement schedule, curated",
-    count: artifactsOf("Azure"),
   },
   {
     label: "Bedrock",

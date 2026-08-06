@@ -167,13 +167,23 @@ def enums(node, trail="", found=None):
     Enum values are the highest-value artifact we can extract: a retired model
     ID, a dropped payment method, a dead status all appear in real code as a
     bare string literal, which we can locate exactly.
+
+    Only the string members are collected, and an enum holding a non-string is
+    still read rather than skipped. Skipping it was a real bug: OpenAPI 3.0
+    spells a nullable enum by putting `null` in the list, so the moment Plaid
+    made StudentRepaymentPlan.type nullable, the whole enum vanished from the
+    newer inventory and all ten of its values were published as removed and
+    breaking. Seven false artifacts shipped before this was caught. A value
+    that gains a sibling null has not been retired.
     """
     if found is None:
         found = {}
     if isinstance(node, dict):
         vals = node.get("enum")
-        if isinstance(vals, list) and vals and all(isinstance(v, str) for v in vals):
-            found.setdefault(trail or "<root>", set()).update(vals)
+        if isinstance(vals, list):
+            strings = {v for v in vals if isinstance(v, str)}
+            if strings:
+                found.setdefault(trail or "<root>", set()).update(strings)
         for key, child in node.items():
             if key in ("example", "examples", "default"):
                 continue
@@ -306,13 +316,53 @@ def diff(provider, ref_a, ref_b, min_len=4):
     return artifacts, ver_a, ver_b, evidence
 
 
+def self_test():
+    """The two filters that decide what is allowed to become a finding.
+
+    Both exist because of a false artifact that actually shipped, so both are
+    pinned here rather than left to be rediscovered the same way.
+    """
+    # A nullable enum must not read as a mass retirement. OpenAPI 3.0 spells
+    # nullable by putting null in the list, and skipping such an enum wholesale
+    # published seven of Plaid's live repayment plans as removed and breaking.
+    before = {"components": {"schemas": {"Plan": {"properties": {
+        "type": {"enum": ["standard", "graduated", "interest-only"]}}}}}}
+    after = {"components": {"schemas": {"Plan": {"properties": {
+        "type": {"enum": ["standard", "graduated", "interest-only", None]}}}}}}
+    removed = set(enum_inventory(before)) - set(enum_inventory(after))
+    assert removed == set(), f"nullable enum read as removed: {removed}"
+
+    # A value genuinely dropped alongside a new null is still caught.
+    shrunk = {"components": {"schemas": {"Plan": {"properties": {
+        "type": {"enum": ["standard", "graduated", None]}}}}}}
+    assert set(enum_inventory(before)) - set(enum_inventory(shrunk)) == {"interest-only"}
+
+    # A parameter has to be something a caller could have typed, and
+    # distinctive enough not to be an English word or a bare object key.
+    for bad in ("create#body", "body", "type", "refund", "", "1abc"):
+        assert not sendable_param(bad), f"{bad!r} should be refused"
+    for good in ("budget_tokens", "filter[advisory_id]", "store_id",
+                 "search_queries_only", "max_tokens_to_sample"):
+        assert sendable_param(good), f"{good!r} should be kept"
+
+    print("openapi_diff self-test: ok")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description="Diff two OpenAPI spec versions into drift artifacts.")
-    ap.add_argument("--provider", required=True, choices=sorted(PROVIDERS))
-    ap.add_argument("--from", dest="ref_a", required=True)
-    ap.add_argument("--to", dest="ref_b", required=True)
+    ap.add_argument("--self-test", action="store_true",
+                    help="check the artifact filters, no network")
+    ap.add_argument("--provider", choices=sorted(PROVIDERS))
+    ap.add_argument("--from", dest="ref_a")
+    ap.add_argument("--to", dest="ref_b")
     ap.add_argument("--out", help="write a manifest YAML here")
     args = ap.parse_args()
+
+    if args.self_test:
+        return self_test()
+    if not (args.provider and args.ref_a and args.ref_b):
+        ap.error("--provider, --from and --to are required unless --self-test")
 
     artifacts, ver_a, ver_b, evidence = diff(args.provider, args.ref_a, args.ref_b)
 
