@@ -1,14 +1,23 @@
 provider: cloudflare
 spec_version: 1
-generated_from:
-  repo: cloudflare/api-schemas
+source_license: BSD-3-Clause
+source_notice: https://github.com/cloudflare/api-schemas/blob/main/LICENSE
+observations:
+- repo: cloudflare/api-schemas
   from: c166647800fb
   to: d3a1cc521849
   from_api_version: 4.0.0
   to_api_version: 4.0.0
   observed_on: '2026-07-26'
+- repo: cloudflare/api-schemas
+  from: d3a1cc521849
+  to: cadacbb547e8
+  from_api_version: 4.0.0
+  to_api_version: 4.0.0
+  observed_on: '2026-08-06'
 sources:
 - https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 context:
   file_markers:
   - cloudflare
@@ -22,49 +31,118 @@ artifacts:
     - /accounts/{account_id}/cloudforce-one/exemptions
   status: removed
   severity: breaking
-  note: DELETE /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and
+  note: POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and
     is gone in 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}
+- id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances
   kind: endpoint
   match:
     literals:
-    - /system/accounts/{account_tag}/stores/{store_id}
+    - /accounts/{account_id}/containers/applications/{application_id}/instances
   status: removed
   severity: breaking
-  note: DELETE /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and
-    is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets
-  kind: endpoint
-  match:
-    literals:
-    - /system/accounts/{account_tag}/stores/{store_id}/secrets
-  status: removed
-  severity: breaking
-  note: DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets existed in
-    4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
-  kind: endpoint
-  match:
-    literals:
-    - /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
-  status: removed
-  severity: breaking
-  note: DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
+  note: POST /accounts/{account_id}/containers/applications/{application_id}/instances
     existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
   kind: endpoint
   match:
     literals:
-    - /accounts/{account_id}/cloudforce-one/exemptions
+    - /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
   status: removed
   severity: breaking
-  note: GET /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and
-    is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+  note: GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec
+  status: removed
+  severity: breaking
+  note: POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch
+  status: removed
+  severity: breaking
+  note: POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/email/routing/suppression
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/email/routing/suppression
+  status: deprecated
+  severity: warning
+  note: POST /accounts/{account_id}/email/routing/suppression was marked deprecated
+    between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/email/routing/suppression/{suppression_id}
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/email/routing/suppression/{suppression_id}
+  status: deprecated
+  severity: warning
+  note: GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was
+    marked deprecated between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/email/sending/suppression
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/email/sending/suppression
+  status: deprecated
+  severity: warning
+  note: POST /accounts/{account_id}/email/sending/suppression was marked deprecated
+    between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/email/sending/suppression/{suppression_id}
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/email/sending/suppression/{suppression_id}
+  status: deprecated
+  severity: warning
+  note: GET /accounts/{account_id}/email/sending/suppression/{suppression_id} was
+    marked deprecated between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss
+  status: removed
+  severity: breaking
+  note: PUT /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/paygo-usage
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/paygo-usage
+  status: removed
+  severity: breaking
+  note: GET /accounts/{account_id}/paygo-usage existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/paygo-usage-info
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/paygo-usage-info
+  status: removed
+  severity: breaking
+  note: GET /accounts/{account_id}/paygo-usage-info existed in 4.0.0 and is gone in
+    4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores
   kind: endpoint
   match:
@@ -72,7 +150,7 @@ artifacts:
     - /system/accounts/{account_tag}/stores
   status: removed
   severity: breaking
-  note: GET /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in
+  note: POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in
     4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}
@@ -92,18 +170,8 @@ artifacts:
     - /system/accounts/{account_tag}/stores/{store_id}/secrets
   status: removed
   severity: breaking
-  note: GET /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0
+  note: POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0
     and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
-  kind: endpoint
-  match:
-    literals:
-    - /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
-  status: removed
-  severity: breaking
-  note: GET /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed
-    in 4.0.0 and is gone in 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
   kind: endpoint
@@ -115,36 +183,6 @@ artifacts:
   note: PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
     existed in 4.0.0 and is gone in 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions
-  kind: endpoint
-  match:
-    literals:
-    - /accounts/{account_id}/cloudforce-one/exemptions
-  status: removed
-  severity: breaking
-  note: POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and
-    is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores
-  kind: endpoint
-  match:
-    literals:
-    - /system/accounts/{account_tag}/stores
-  status: removed
-  severity: breaking
-  note: POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in
-    4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets
-  kind: endpoint
-  match:
-    literals:
-    - /system/accounts/{account_tag}/stores/{store_id}/secrets
-  status: removed
-  severity: breaking
-  note: POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0
-    and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate
   kind: endpoint
   match:
@@ -155,256 +193,56 @@ artifacts:
   note: POST /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate
     existed in 4.0.0 and is gone in 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id
-  kind: request_param
+- id: cloudflare/endpoint//zones/{zone_id}/email/routing/suppression
+  kind: endpoint
   match:
     literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id
-  kind: request_param
+    - /zones/{zone_id}/email/routing/suppression
+  status: deprecated
+  severity: warning
+  note: POST /zones/{zone_id}/email/routing/suppression was marked deprecated between
+    4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//zones/{zone_id}/email/routing/suppression/{suppression_id}
+  kind: endpoint
   match:
     literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id
-  kind: request_param
+    - /zones/{zone_id}/email/routing/suppression/{suppression_id}
+  status: deprecated
+  severity: warning
+  note: GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was marked
+    deprecated between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//zones/{zone_id}/email/sending/suppression
+  kind: endpoint
   match:
     literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id
-  kind: request_param
+    - /zones/{zone_id}/email/sending/suppression
+  status: deprecated
+  severity: warning
+  note: POST /zones/{zone_id}/email/sending/suppression was marked deprecated between
+    4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//zones/{zone_id}/email/sending/suppression/{suppression_id}
+  kind: endpoint
   match:
     literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id
-  kind: request_param
+    - /zones/{zone_id}/email/sending/suppression/{suppression_id}
+  status: deprecated
+  severity: warning
+  note: GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was marked
+    deprecated between 4.0.0 and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//zones/{zone_id}/rate_limit_analytics
+  kind: endpoint
   match:
     literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id
-  kind: request_param
-  match:
-    literals:
-    - secret_id
-  status: removed
-  severity: breaking
-  note: Parameter 'secret_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/quota#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/quota existed
-    in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id
-  kind: request_param
-  match:
-    literals:
-    - secret_id
-  status: removed
-  severity: breaking
-  note: Parameter 'secret_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id
-  kind: request_param
-  match:
-    literals:
-    - secret_id
-  status: removed
-  severity: breaking
-  note: Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#account_id
-  kind: request_param
-  match:
-    literals:
-    - account_id
-  status: removed
-  severity: breaking
-  note: Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id
-  kind: request_param
-  match:
-    literals:
-    - secret_id
-  status: removed
-  severity: breaking
-  note: Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
-- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id
-  kind: request_param
-  match:
-    literals:
-    - store_id
-  status: removed
-  severity: breaking
-  note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
-  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+    - /zones/{zone_id}/rate_limit_analytics
+  status: deprecated
+  severity: warning
+  note: GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between 4.0.0
+    and 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.create
   kind: enum_value
   match:
@@ -434,4 +272,84 @@ artifacts:
   severity: breaking
   note: 'Enum value ''#com.cloudflare.api.account.secrets-store.secret.list'' was
     valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired'
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/enum_value/library_push
+  kind: enum_value
+  match:
+    literals:
+    - library_push
+  status: removed
+  severity: breaking
+  note: 'Enum value ''library_push'' was valid in 4.0.0 and is gone in 4.0.0. Seen
+    at: components.schemas.cc_ImageRegistryPermissions'
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/enum_value/stopped_with_code
+  kind: enum_value
+  match:
+    literals:
+    - stopped_with_code
+  status: removed
+  severity: breaking
+  note: 'Enum value ''stopped_with_code'' was valid in 4.0.0 and is gone in 4.0.0.
+    Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status'
+  evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id
+  kind: request_param
+  match:
+    literals:
+    - store_id
+  status: removed
+  severity: breaking
+  note: Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id
+  kind: request_param
+  match:
+    literals:
+    - store_id
+  status: removed
+  severity: breaking
+  note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id
+  kind: request_param
+  match:
+    literals:
+    - secret_id
+  status: removed
+  severity: breaking
+  note: Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id
+  kind: request_param
+  match:
+    literals:
+    - store_id
+  status: removed
+  severity: breaking
+  note: Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id
+  kind: request_param
+  match:
+    literals:
+    - secret_id
+  status: removed
+  severity: breaking
+  note: Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
+    existed in 4.0.0 and is gone in 4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
+- id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id
+  kind: request_param
+  match:
+    literals:
+    - store_id
+  status: removed
+  severity: breaking
+  note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
+    existed in 4.0.0 and is gone in 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849

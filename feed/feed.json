@@ -3,6 +3,18 @@
  "generated_on": "2026-08-06",
  "providers": [
   {
+   "provider": "adyen",
+   "manifests": [
+    "adyen.generated.yaml"
+   ],
+   "source_license": "MIT",
+   "source_notice": "https://github.com/Adyen/adyen-openapi/blob/main/LICENSE",
+   "sources": [
+    "https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721"
+   ],
+   "artifact_count": 1
+  },
+  {
    "provider": "anthropic",
    "manifests": [
     "anthropic.yaml"
@@ -16,16 +28,42 @@
    "artifact_count": 15
   },
   {
-   "provider": "cloudflare",
+   "provider": "azure",
    "manifests": [
-    "cloudflare.generated.yaml"
+    "azure-models.yaml"
    ],
    "source_license": null,
    "source_notice": null,
    "sources": [
-    "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849"
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements"
    ],
-   "artifact_count": 42
+   "artifact_count": 43
+  },
+  {
+   "provider": "bedrock",
+   "manifests": [
+    "bedrock-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html"
+   ],
+   "artifact_count": 17
+  },
+  {
+   "provider": "cloudflare",
+   "manifests": [
+    "cloudflare.generated.yaml"
+   ],
+   "source_license": "BSD-3-Clause",
+   "source_notice": "https://github.com/cloudflare/api-schemas/blob/main/LICENSE",
+   "sources": [
+    "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+    "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8"
+   ],
+   "artifact_count": 33
   },
   {
    "provider": "cohere",
@@ -38,6 +76,30 @@
     "https://docs.cohere.com/docs/deprecations"
    ],
    "artifact_count": 15
+  },
+  {
+   "provider": "datadog",
+   "manifests": [
+    "datadog.generated.yaml"
+   ],
+   "source_license": "Apache-2.0",
+   "source_notice": "https://github.com/DataDog/datadog-api-client-python/blob/master/LICENSE",
+   "sources": [
+    "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0"
+   ],
+   "artifact_count": 12
+  },
+  {
+   "provider": "digitalocean",
+   "manifests": [
+    "digitalocean.generated.yaml"
+   ],
+   "source_license": "Apache-2.0",
+   "source_notice": "https://github.com/digitalocean/openapi/blob/main/LICENSE",
+   "sources": [
+    "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b"
+   ],
+   "artifact_count": 4
   },
   {
    "provider": "github",
@@ -102,6 +164,30 @@
    "artifact_count": 12
   },
   {
+   "provider": "plaid",
+   "manifests": [
+    "plaid.generated.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6"
+   ],
+   "artifact_count": 8
+  },
+  {
+   "provider": "square",
+   "manifests": [
+    "square.generated.yaml"
+   ],
+   "source_license": "Apache-2.0",
+   "source_notice": "https://github.com/square/connect-api-specification/blob/master/LICENSE.txt",
+   "sources": [
+    "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05"
+   ],
+   "artifact_count": 41
+  },
+  {
    "provider": "stripe",
    "manifests": [
     "stripe.generated.yaml"
@@ -109,12 +195,32 @@
    "source_license": "MIT",
    "source_notice": "https://github.com/stripe/openapi/blob/master/LICENSE",
    "sources": [
-    "https://github.com/stripe/openapi/compare/v1200...v2345"
+    "https://github.com/stripe/openapi/compare/v1200...v2345",
+    "https://github.com/stripe/openapi/compare/v2345...v2375"
    ],
-   "artifact_count": 10
+   "artifact_count": 8
   }
  ],
  "artifacts": [
+  {
+   "id": "adyen/enum_value/moneybookers",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "moneybookers"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'moneybookers' was valid in 71 and is gone in 71. Seen at: components.schemas.PaymentDetails.properties.type",
+   "evidence": "https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721",
+   "provider": "adyen",
+   "file_markers": [
+    "adyen",
+    "ADYEN_API_KEY",
+    "checkout.adyen.com"
+   ]
+  },
   {
    "id": "anthropic/model_id/claude-3-opus-20240229",
    "kind": "model_id",
@@ -430,6 +536,1429 @@
    ]
   },
   {
+   "id": "azure/model_id/gpt-5-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.1-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.2-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.2-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.3-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.3-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-R1-0528",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-R1-0528"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Pro",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-V3-0324",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-V3-0324"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Flash",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-V3.1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-V3.1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Flash",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-3",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-3"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-3-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-3-mini"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-4-fast-non-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-non-reasoning"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-non-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-4-fast-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-reasoning"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-r-08-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-r-08-2024"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-r-plus-08-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-r-plus-08-2024"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-rerank-v3.5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-rerank-v3.5"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-14",
+   "replacement": "Cohere-rerank-v4.0-pro",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Llama-3.2-11B-Vision-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Llama-3.2-11B-Vision-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Llama-3.2-90B-Vision-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Llama-3.2-90B-Vision-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-405B-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-405B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-8B",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-8B"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-8B-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-8B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/mistral-document-ai-2505",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-document-ai-2505"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-20",
+   "replacement": "mistral-document-ai-2512",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Diffusion-3.5-Large",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Diffusion-3.5-Large"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Image-Core",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Image-Core"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Image-Ultra",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Image-Ultra"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-R1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-R1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-13",
+   "replacement": "DeepSeek-V4-Pro",
+   "severity": "breaking",
+   "note": "Azure lifecycle Legacy. Retires 2026-08-13.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/TimeGEN-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "TimeGEN-1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": "TimeGPT-1",
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/tsuzumi-7b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "tsuzumi-7b"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": "tsuzumi2",
+   "severity": "breaking",
+   "note": "Azure lifecycle Legacy. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/o3-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o3-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-01",
+   "replacement": "o4-mini",
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-01.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1-nano",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1-nano"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/o4-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o4-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-16",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-16.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/o1-pro",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o1-pro"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-21",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-21.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/codex-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "codex-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-11-15",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-11-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4o-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/MAI-Image-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "MAI-Image-2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-15",
+   "replacement": "MAI-Image-2.5",
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/MAI-Image-2e",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "MAI-Image-2e"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-15",
+   "replacement": "MAI-Image-2.5-Flash",
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-realtime-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-realtime-2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Kimi-K2.7-Code",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Kimi-K2.7-Code"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-03",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-03.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-a-plus-05-2026",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-a-plus-05-2026"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-13.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-haiku-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-haiku-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-opus-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-opus-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-sonnet-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-sonnet-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-image-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-image-1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-23.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-3-sonnet-20240229-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-3-sonnet-20240229-v1:0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-01-30",
+   "retires_on": "2026-07-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "End of life. Requests fail.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-3-5-sonnet-20240620-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-01-30",
+   "retires_on": "2026-07-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "End of life. Requests fail.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-3-5-sonnet-20241022-v2:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-3-5-sonnet-20241022-v2:0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-01-30",
+   "retires_on": "2026-07-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "End of life. Requests fail.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-3-7-sonnet-20250219-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-01-30",
+   "retires_on": "2026-07-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "End of life. Requests fail.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/cohere.command-r-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "cohere.command-r-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-02-19",
+   "retires_on": "2026-08-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-02-19. End of life 2026-08-19.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/cohere.command-r-plus-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "cohere.command-r-plus-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-02-19",
+   "retires_on": "2026-08-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-02-19. End of life 2026-08-19.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-3-haiku-20240307-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-3-haiku-20240307-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-10",
+   "retires_on": "2026-09-10",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-10. End of life 2026-09-10.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/amazon.nova-premier-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "amazon.nova-premier-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-13",
+   "retires_on": "2026-09-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-13. End of life 2026-09-14.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/amazon.nova-sonic-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "amazon.nova-sonic-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-13",
+   "retires_on": "2026-09-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-13. End of life 2026-09-14.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/amazon.nova-canvas-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "amazon.nova-canvas-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-30",
+   "retires_on": "2026-09-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-30. End of life 2026-09-30.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/amazon.nova-reel-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "amazon.nova-reel-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-30",
+   "retires_on": "2026-09-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-30. End of life 2026-09-30.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/amazon.nova-reel-v1:1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "amazon.nova-reel-v1:1"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-03-30",
+   "retires_on": "2026-09-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-03-30. End of life 2026-09-30.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-sonnet-4-20250514-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-sonnet-4-20250514-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-04-14",
+   "retires_on": "2026-10-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-04-14. End of life 2026-10-14.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/ai21.jamba-1-5-large-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ai21.jamba-1-5-large-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-05-26",
+   "retires_on": "2026-11-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-05-26. End of life 2026-11-26.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/ai21.jamba-1-5-mini-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ai21.jamba-1-5-mini-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-05-26",
+   "retires_on": "2026-11-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-05-26. End of life 2026-11-26.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/twelvelabs.marengo-embed-2-7-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "twelvelabs.marengo-embed-2-7-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-05-29",
+   "retires_on": "2026-11-30",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-05-29. End of life 2026-11-30.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
+   "id": "bedrock/model_id/anthropic.claude-opus-4-1-20250805-v1:0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "anthropic.claude-opus-4-1-20250805-v1:0"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-07-08",
+   "retires_on": "2027-01-08",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Legacy since 2026-07-08. End of life 2027-01-08.",
+   "evidence": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+   "provider": "bedrock",
+   "file_markers": [
+    "bedrock",
+    "AWS_",
+    "boto3",
+    "amazonaws"
+   ]
+  },
+  {
    "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
    "kind": "endpoint",
    "match": {
@@ -439,7 +1968,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "DELETE /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -449,17 +1978,17 @@
    ]
   },
   {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances",
    "kind": "endpoint",
    "match": {
     "literals": [
-     "/system/accounts/{account_tag}/stores/{store_id}"
+     "/accounts/{account_id}/containers/applications/{application_id}/instances"
     ]
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -468,17 +1997,17 @@
    ]
   },
   {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}",
    "kind": "endpoint",
    "match": {
     "literals": [
-     "/system/accounts/{account_tag}/stores/{store_id}/secrets"
+     "/accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}"
     ]
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "note": "GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -487,17 +2016,17 @@
    ]
   },
   {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec",
    "kind": "endpoint",
    "match": {
     "literals": [
-     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}"
+     "/accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec"
     ]
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "DELETE /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -506,17 +2035,150 @@
    ]
   },
   {
-   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch",
    "kind": "endpoint",
    "match": {
     "literals": [
-     "/accounts/{account_id}/cloudforce-one/exemptions"
+     "/accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch"
     ]
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/email/routing/suppression"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /accounts/{account_id}/email/routing/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression/{suppression_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/email/routing/suppression/{suppression_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/email/sending/suppression"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /accounts/{account_id}/email/sending/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression/{suppression_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/email/sending/suppression/{suppression_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /accounts/{account_id}/email/sending/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/paygo-usage",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/paygo-usage"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /accounts/{account_id}/paygo-usage existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/paygo-usage-info",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/paygo-usage-info"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /accounts/{account_id}/paygo-usage-info existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -534,7 +2196,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -572,26 +2234,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -620,63 +2263,6 @@
    ]
   },
   {
-   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/accounts/{account_id}/cloudforce-one/exemptions"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/system/accounts/{account_tag}/stores"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/system/accounts/{account_tag}/stores/{store_id}/secrets"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
    "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate",
    "kind": "endpoint",
    "match": {
@@ -696,17 +2282,17 @@
    ]
   },
   {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id",
-   "kind": "request_param",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression",
+   "kind": "endpoint",
    "match": {
     "literals": [
-     "account_id"
+     "/zones/{zone_id}/email/routing/suppression"
     ]
    },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /zones/{zone_id}/email/routing/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -715,17 +2301,17 @@
    ]
   },
   {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
-   "kind": "request_param",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression/{suppression_id}",
+   "kind": "endpoint",
    "match": {
     "literals": [
-     "store_id"
+     "/zones/{zone_id}/email/routing/suppression/{suppression_id}"
     ]
    },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -734,17 +2320,17 @@
    ]
   },
   {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
-   "kind": "request_param",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression",
+   "kind": "endpoint",
    "match": {
     "literals": [
-     "account_id"
+     "/zones/{zone_id}/email/sending/suppression"
     ]
    },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /zones/{zone_id}/email/sending/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -753,17 +2339,17 @@
    ]
   },
   {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
-   "kind": "request_param",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression/{suppression_id}",
+   "kind": "endpoint",
    "match": {
     "literals": [
-     "store_id"
+     "/zones/{zone_id}/email/sending/suppression/{suppression_id}"
     ]
    },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -772,397 +2358,17 @@
    ]
   },
   {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
-   "kind": "request_param",
+   "id": "cloudflare/endpoint//zones/{zone_id}/rate_limit_analytics",
+   "kind": "endpoint",
    "match": {
     "literals": [
-     "account_id"
+     "/zones/{zone_id}/rate_limit_analytics"
     ]
    },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "secret_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'secret_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on DELETE /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/quota#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/quota existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "secret_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'secret_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "secret_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#account_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "account_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'account_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "secret_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-   "provider": "cloudflare",
-   "file_markers": [
-    "cloudflare",
-    "CLOUDFLARE_API",
-    "CF_API"
-   ]
-  },
-  {
-   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "store_id"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
-   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between 4.0.0 and 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -1219,6 +2425,158 @@
    "status": "removed",
    "severity": "breaking",
    "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.list' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/enum_value/library_push",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "library_push"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'library_push' was valid in 4.0.0 and is gone in 4.0.0. Seen at: components.schemas.cc_ImageRegistryPermissions",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/enum_value/stopped_with_code",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "stopped_with_code"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'stopped_with_code' was valid in 4.0.0 and is gone in 4.0.0. Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "secret_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "store_id"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1559,6 +2917,322 @@
     "CO_API_KEY",
     "COHERE_API_KEY",
     "api.cohere"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/dora/incident",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/dora/incident"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /api/v2/dora/incident was marked deprecated between 1.0 and 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/metrics/config/bulk-tags",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/metrics/config/bulk-tags"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /api/v2/metrics/config/bulk-tags was marked deprecated between 1.0 and 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/scorecard/outcomes/batch",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/scorecard/outcomes/batch"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /api/v2/scorecard/outcomes/batch was marked deprecated between 1.0 and 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/security/assets",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/security/assets"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /api/v2/security/assets existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/security/vulnerabilities",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/security/vulnerabilities"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /api/v2/security/vulnerabilities was marked deprecated between 1.0 and 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/services",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/services"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /api/v2/services existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/services/{service_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/services/{service_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /api/v2/services/{service_id} existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/teams",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/teams"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /api/v2/teams existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/endpoint//api/v2/teams/{team_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/api/v2/teams/{team_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PATCH /api/v2/teams/{team_id} existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/enum_value/dora_incident",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "dora_incident"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'dora_incident' was valid in 1.0 and is gone in 1.0. Seen at: components.schemas.DORAIncidentType",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/enum_value/security_responses",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "security_responses"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'security_responses' was valid in 1.0 and is gone in 1.0. Seen at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "filter[advisory_id]"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Parameter 'filter[advisory_id]' on GET /api/v2/security/vulnerabilities existed in 1.0 and is gone in 1.0.",
+   "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
+   "provider": "datadog",
+   "file_markers": [
+    "datadog",
+    "DD_API_KEY",
+    "DATADOG_API_KEY",
+    "datadoghq.com"
+   ]
+  },
+  {
+   "id": "digitalocean/endpoint//v2/security/secrets",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/security/secrets"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /v2/security/secrets existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
+   "provider": "digitalocean",
+   "file_markers": [
+    "digitalocean",
+    "DIGITALOCEAN_TOKEN",
+    "api.digitalocean.com"
+   ]
+  },
+  {
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/security/secrets/{secret}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "PUT /v2/security/secrets/{secret} existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
+   "provider": "digitalocean",
+   "file_markers": [
+    "digitalocean",
+    "DIGITALOCEAN_TOKEN",
+    "api.digitalocean.com"
+   ]
+  },
+  {
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}/restore",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/security/secrets/{secret}/restore"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /v2/security/secrets/{secret}/restore existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
+   "provider": "digitalocean",
+   "file_markers": [
+    "digitalocean",
+    "DIGITALOCEAN_TOKEN",
+    "api.digitalocean.com"
+   ]
+  },
+  {
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}/versions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/security/secrets/{secret}/versions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v2/security/secrets/{secret}/versions existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
+   "provider": "digitalocean",
+   "file_markers": [
+    "digitalocean",
+    "DIGITALOCEAN_TOKEN",
+    "api.digitalocean.com"
    ]
   },
   {
@@ -3777,6 +5451,937 @@
    ]
   },
   {
+   "id": "plaid/endpoint//income/verification/paystub/get",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/income/verification/paystub/get"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /income/verification/paystub/get existed in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6.",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/extended graduated",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "extended graduated"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'extended graduated' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/extended standard",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "extended standard"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'extended standard' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/income-based repayment",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "income-based repayment"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'income-based repayment' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/income-contingent repayment",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "income-contingent repayment"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'income-contingent repayment' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/interest-only",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "interest-only"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'interest-only' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/pay as you earn",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "pay as you earn"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'pay as you earn' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "plaid/enum_value/revised pay as you earn",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "revised pay as you earn"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'revised pay as you earn' was valid in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6. Seen at: components.schemas.StudentRepaymentPlan.properties.type",
+   "evidence": "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6",
+   "provider": "plaid",
+   "file_markers": [
+    "plaid",
+    "PLAID_CLIENT_ID",
+    "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "square/endpoint//mobile/authorization-code",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/mobile/authorization-code"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /mobile/authorization-code existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//oauth2/clients/{client_id}/access-token/renew",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/oauth2/clients/{client_id}/access-token/renew"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /oauth2/clients/{client_id}/access-token/renew existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/orders",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/orders"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v1/{location_id}/orders was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/orders/{order_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/orders/{order_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "PUT /v1/{location_id}/orders/{order_id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/payments",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/payments"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v1/{location_id}/payments existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/payments/{payment_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/payments/{payment_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v1/{location_id}/payments/{payment_id} existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/refunds",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/refunds"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /v1/{location_id}/refunds existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/settlements",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/settlements"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v1/{location_id}/settlements existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v1/{location_id}/settlements/{settlement_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/{location_id}/settlements/{settlement_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v1/{location_id}/settlements/{settlement_id} existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/customers/{customer_id}/cards",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/customers/{customer_id}/cards"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/customers/{customer_id}/cards was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/customers/{customer_id}/cards/{card_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/customers/{customer_id}/cards/{card_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "DELETE /v2/customers/{customer_id}/cards/{card_id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/employees",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/employees"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/employees was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/employees/{id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/employees/{id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/employees/{id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/adjustment/{adjustment_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/adjustment/{adjustment_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/inventory/adjustment/{adjustment_id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/batch-change",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/batch-change"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/inventory/batch-change was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/batch-retrieve-changes",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/batch-retrieve-changes"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/inventory/batch-retrieve-changes was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/batch-retrieve-counts",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/batch-retrieve-counts"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/inventory/batch-retrieve-counts was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/physical-count/{physical_count_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/physical-count/{physical_count_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/inventory/physical-count/{physical_count_id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/transfers/{transfer_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/transfers/{transfer_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /v2/inventory/transfers/{transfer_id} existed in 2.0 and is gone in 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/inventory/{catalog_object_id}/changes",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/inventory/{catalog_object_id}/changes"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/inventory/{catalog_object_id}/changes was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/labor/employee-wages",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/labor/employee-wages"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/labor/employee-wages was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/labor/employee-wages/{id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/labor/employee-wages/{id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/labor/employee-wages/{id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/labor/shifts",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/labor/shifts"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/labor/shifts was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/labor/shifts/search",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/labor/shifts/search"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/labor/shifts/search was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/labor/shifts/{id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/labor/shifts/{id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "PUT /v2/labor/shifts/{id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/locations/{location_id}/checkouts",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/locations/{location_id}/checkouts"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/locations/{location_id}/checkouts was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/locations/{location_id}/transactions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/locations/{location_id}/transactions"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/locations/{location_id}/transactions was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/locations/{location_id}/transactions/{transaction_id}"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/locations/{location_id}/transactions/{transaction_id} was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/locations/{location_id}/transactions/{transaction_id}/capture"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/capture was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/locations/{location_id}/transactions/{transaction_id}/void"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/void was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/endpoint//v2/loyalty/programs",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v2/loyalty/programs"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "GET /v2/loyalty/programs was marked deprecated between 2.0 and 2.0.",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/BALANCE_CHARGE",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "BALANCE_CHARGE"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'BALANCE_CHARGE' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/GIFT_CARD_ACTIVATION",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "GIFT_CARD_ACTIVATION"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'GIFT_CARD_ACTIVATION' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/GIFT_CARD_RELOAD",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "GIFT_CARD_RELOAD"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'GIFT_CARD_RELOAD' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/GIFT_CARD_UNKNOWN",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "GIFT_CARD_UNKNOWN"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'GIFT_CARD_UNKNOWN' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/INCENTED_PAYMENT",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "INCENTED_PAYMENT"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'INCENTED_PAYMENT' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/RETURNED_ACH_ENTRY",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "RETURNED_ACH_ENTRY"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'RETURNED_ACH_ENTRY' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/RETURNED_SQUARE_275",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "RETURNED_SQUARE_275"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'RETURNED_SQUARE_275' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/SQUARE_275",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "SQUARE_275"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'SQUARE_275' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/SQUARE_CAPITAL_ADVANCE",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "SQUARE_CAPITAL_ADVANCE"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'SQUARE_CAPITAL_ADVANCE' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
+   "id": "square/enum_value/SQUARE_CARD",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "SQUARE_CARD"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'SQUARE_CARD' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
+   "provider": "square",
+   "file_markers": [
+    "square",
+    "SQUARE_ACCESS_TOKEN",
+    "squareup.com"
+   ]
+  },
+  {
    "id": "stripe/endpoint//v1/invoices/upcoming",
    "kind": "endpoint",
    "match": {
@@ -3844,44 +6449,6 @@
    "status": "removed",
    "severity": "breaking",
    "note": "POST /v1/subscription_items/{subscription_item}/usage_records existed in 2024-06-20 and is gone in 2026-06-24.dahlia.",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/request_param//v1/credit_notes/preview#refund",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "refund"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'refund' on GET /v1/credit_notes/preview existed in 2024-06-20 and is gone in 2026-06-24.dahlia.",
-   "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
-   "provider": "stripe",
-   "file_markers": [
-    "stripe",
-    "STRIPE_SECRET",
-    "STRIPE_API"
-   ]
-  },
-  {
-   "id": "stripe/request_param//v1/credit_notes/preview/lines#refund",
-   "kind": "request_param",
-   "match": {
-    "literals": [
-     "refund"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "Parameter 'refund' on GET /v1/credit_notes/preview/lines existed in 2024-06-20 and is gone in 2026-06-24.dahlia.",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [

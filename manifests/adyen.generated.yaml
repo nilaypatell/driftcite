@@ -1,0 +1,28 @@
+provider: adyen
+spec_version: 1
+source_license: MIT
+source_notice: https://github.com/Adyen/adyen-openapi/blob/main/LICENSE
+observations:
+- repo: Adyen/adyen-openapi
+  from: bb2a964906ad
+  to: f0d0bd47b721
+  from_api_version: '71'
+  to_api_version: '71'
+  observed_on: '2026-08-06'
+sources:
+- https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721
+context:
+  file_markers:
+  - adyen
+  - ADYEN_API_KEY
+  - checkout.adyen.com
+artifacts:
+- id: adyen/enum_value/moneybookers
+  kind: enum_value
+  match:
+    literals:
+    - moneybookers
+  status: removed
+  severity: breaking
+  note: 'Enum value ''moneybookers'' was valid in 71 and is gone in 71. Seen at: components.schemas.PaymentDetails.properties.type'
+  evidence: https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721

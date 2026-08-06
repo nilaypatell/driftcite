@@ -53,6 +53,34 @@ providers:
     # tags would pin us to a museum piece. Follow the spec's commits instead.
     track: commits
 
+  plaid:
+    repo: plaid/plaid-openapi
+    path: 2020-09-14.yml
+    markers: [plaid, PLAID_CLIENT_ID, PLAID_SECRET]
+
+  asana:
+    repo: Asana/openapi
+    path: defs/asana_oas.yaml
+    markers: [asana, ASANA_ACCESS_TOKEN, "app.asana.com"]
+
+  adyen:
+    # Adyen versions by filename, so this path goes quiet when a new major
+    # (v72, ...) replaces it. That is visible in the observations, not silent:
+    # bump the path when Adyen bumps theirs.
+    repo: Adyen/adyen-openapi
+    path: json/CheckoutService-v71.json
+    markers: [adyen, ADYEN_API_KEY, "checkout.adyen.com"]
+
+  square:
+    repo: square/connect-api-specification
+    path: api.json
+    markers: [square, SQUARE_ACCESS_TOKEN, "squareup.com"]
+
+  datadog:
+    repo: DataDog/datadog-api-client-python
+    path: .generator/schemas/v2/openapi.yaml
+    markers: [datadog, DD_API_KEY, DATADOG_API_KEY, "datadoghq.com"]
+
 # Providers whose changes are not in a machine-readable spec are curated by
 # hand in manifests/<name>.yaml instead. Model retirements are the usual case:
 # they are published as prose in documentation and never appear in the spec.
@@ -102,3 +130,33 @@ model_lists:
     auth: bearer
     key_env: [XAI_API_KEY]
     id_path: data.id
+
+# Endpoints probed for RFC 8594 Sunset and RFC 9745 Deprecation headers by
+# scanner/probe_sunset.py. A provider sending either is announcing a
+# retirement on the endpoint itself, ahead of any changelog.
+#
+# Paths come from the endpoint artifacts already in that provider's manifests
+# (probing a removal we cite turns it into a removal we witnessed), plus any
+# watch_paths listed here for endpoints that are still alive. Only HEAD is
+# ever sent, and templated paths are skipped, so nothing is guessed and
+# nothing is mutated. No API key is needed: a 401 still carries headers.
+sunset_probes:
+  github:
+    # GitHub lists Deprecation, Sunset and Warning in its CORS
+    # access-control-expose-headers, so the mechanism is in production here.
+    base: https://api.github.com
+    watch_paths:
+      - /repos/octocat/hello-world
+      - /rate_limit
+      - /emojis
+  stripe:
+    base: https://api.stripe.com
+    watch_paths:
+      - /v1/charges
+      - /v1/invoices/upcoming
+  cohere:
+    base: https://api.cohere.com
+    watch_paths:
+      - /v1/generate
+      - /v1/summarize
+      - /v1/classify

@@ -1,0 +1,55 @@
+provider: digitalocean
+spec_version: 1
+source_license: Apache-2.0
+source_notice: https://github.com/digitalocean/openapi/blob/main/LICENSE
+observations:
+- repo: digitalocean/openapi
+  from: 7e5b46e1d90a
+  to: 87e82da6548b
+  from_api_version: '2.0'
+  to_api_version: '2.0'
+  observed_on: '2026-08-06'
+sources:
+- https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
+context:
+  file_markers:
+  - digitalocean
+  - DIGITALOCEAN_TOKEN
+  - api.digitalocean.com
+artifacts:
+- id: digitalocean/endpoint//v2/security/secrets
+  kind: endpoint
+  match:
+    literals:
+    - /v2/security/secrets
+  status: removed
+  severity: breaking
+  note: POST /v2/security/secrets existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
+- id: digitalocean/endpoint//v2/security/secrets/{secret}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/security/secrets/{secret}
+  status: removed
+  severity: breaking
+  note: PUT /v2/security/secrets/{secret} existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
+- id: digitalocean/endpoint//v2/security/secrets/{secret}/restore
+  kind: endpoint
+  match:
+    literals:
+    - /v2/security/secrets/{secret}/restore
+  status: removed
+  severity: breaking
+  note: POST /v2/security/secrets/{secret}/restore existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
+- id: digitalocean/endpoint//v2/security/secrets/{secret}/versions
+  kind: endpoint
+  match:
+    literals:
+    - /v2/security/secrets/{secret}/versions
+  status: removed
+  severity: breaking
+  note: GET /v2/security/secrets/{secret}/versions existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b

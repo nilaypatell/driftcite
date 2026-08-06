@@ -1,0 +1,134 @@
+provider: datadog
+spec_version: 1
+source_license: Apache-2.0
+source_notice: https://github.com/DataDog/datadog-api-client-python/blob/master/LICENSE
+observations:
+- repo: DataDog/datadog-api-client-python
+  from: 2.33.0
+  to: 2.57.0
+  from_api_version: '1.0'
+  to_api_version: '1.0'
+  observed_on: '2026-08-06'
+sources:
+- https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+context:
+  file_markers:
+  - datadog
+  - DD_API_KEY
+  - DATADOG_API_KEY
+  - datadoghq.com
+artifacts:
+- id: datadog/endpoint//api/v2/dora/incident
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/dora/incident
+  status: deprecated
+  severity: warning
+  note: POST /api/v2/dora/incident was marked deprecated between 1.0 and 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/metrics/config/bulk-tags
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/metrics/config/bulk-tags
+  status: deprecated
+  severity: warning
+  note: POST /api/v2/metrics/config/bulk-tags was marked deprecated between 1.0 and
+    1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/scorecard/outcomes/batch
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/scorecard/outcomes/batch
+  status: deprecated
+  severity: warning
+  note: POST /api/v2/scorecard/outcomes/batch was marked deprecated between 1.0 and
+    1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/security/assets
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/security/assets
+  status: removed
+  severity: breaking
+  note: GET /api/v2/security/assets existed in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/security/vulnerabilities
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/security/vulnerabilities
+  status: deprecated
+  severity: warning
+  note: GET /api/v2/security/vulnerabilities was marked deprecated between 1.0 and
+    1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/services
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/services
+  status: removed
+  severity: breaking
+  note: POST /api/v2/services existed in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/services/{service_id}
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/services/{service_id}
+  status: removed
+  severity: breaking
+  note: PATCH /api/v2/services/{service_id} existed in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/teams
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/teams
+  status: removed
+  severity: breaking
+  note: POST /api/v2/teams existed in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/teams/{team_id}
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/teams/{team_id}
+  status: removed
+  severity: breaking
+  note: PATCH /api/v2/teams/{team_id} existed in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/enum_value/dora_incident
+  kind: enum_value
+  match:
+    literals:
+    - dora_incident
+  status: removed
+  severity: breaking
+  note: 'Enum value ''dora_incident'' was valid in 1.0 and is gone in 1.0. Seen at:
+    components.schemas.DORAIncidentType'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/enum_value/security_responses
+  kind: enum_value
+  match:
+    literals:
+    - security_responses
+  status: removed
+  severity: breaking
+  note: 'Enum value ''security_responses'' was valid in 1.0 and is gone in 1.0. Seen
+    at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]
+  kind: request_param
+  match:
+    literals:
+    - filter[advisory_id]
+  status: removed
+  severity: breaking
+  note: Parameter 'filter[advisory_id]' on GET /api/v2/security/vulnerabilities existed
+    in 1.0 and is gone in 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0

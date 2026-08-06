@@ -1,0 +1,115 @@
+{
+  "providers": {
+    "cohere": {
+      "base": "https://api.cohere.com",
+      "first_probed": "2026-08-06",
+      "paths": {
+        "/v1/classify": {
+          "artifact": "cohere/endpoint//v1/classify",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/v1/connectors": {
+          "artifact": "cohere/endpoint//v1/connectors",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/v1/generate": {
+          "artifact": "cohere/endpoint//v1/generate",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/v1/summarize": {
+          "artifact": "cohere/endpoint//v1/summarize",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        }
+      }
+    },
+    "github": {
+      "base": "https://api.github.com",
+      "first_probed": "2026-08-06",
+      "paths": {
+        "/applications/grants": {
+          "artifact": "github/endpoint//applications/grants",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/authorizations": {
+          "artifact": "github/endpoint//authorizations",
+          "first_probed": "2026-08-06",
+          "first_status": 404,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 404
+        },
+        "/emojis": {
+          "first_probed": "2026-08-06",
+          "first_status": 200,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 200
+        },
+        "/rate_limit": {
+          "first_probed": "2026-08-06",
+          "first_status": 404,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 404
+        },
+        "/repos/octocat/hello-world": {
+          "first_probed": "2026-08-06",
+          "first_status": 200,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 200
+        }
+      }
+    },
+    "stripe": {
+      "base": "https://api.stripe.com",
+      "first_probed": "2026-08-06",
+      "paths": {
+        "/v1/charges": {
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/v1/invoices/upcoming": {
+          "artifact": "stripe/endpoint//v1/invoices/upcoming",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        },
+        "/v1/invoices/upcoming/lines": {
+          "artifact": "stripe/endpoint//v1/invoices/upcoming/lines",
+          "first_probed": "2026-08-06",
+          "first_status": 401,
+          "headers": {},
+          "last_probed": "2026-08-06",
+          "status": 401
+        }
+      }
+    }
+  },
+  "updated": "2026-08-06"
+}

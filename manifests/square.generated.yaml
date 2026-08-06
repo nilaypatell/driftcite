@@ -1,0 +1,413 @@
+provider: square
+spec_version: 1
+source_license: Apache-2.0
+source_notice: https://github.com/square/connect-api-specification/blob/master/LICENSE.txt
+observations:
+- repo: square/connect-api-specification
+  from: 53f476ccbf13
+  to: e695f0162c05
+  from_api_version: '2.0'
+  to_api_version: '2.0'
+  observed_on: '2026-08-06'
+sources:
+- https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+context:
+  file_markers:
+  - square
+  - SQUARE_ACCESS_TOKEN
+  - squareup.com
+artifacts:
+- id: square/endpoint//mobile/authorization-code
+  kind: endpoint
+  match:
+    literals:
+    - /mobile/authorization-code
+  status: removed
+  severity: breaking
+  note: POST /mobile/authorization-code existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//oauth2/clients/{client_id}/access-token/renew
+  kind: endpoint
+  match:
+    literals:
+    - /oauth2/clients/{client_id}/access-token/renew
+  status: removed
+  severity: breaking
+  note: POST /oauth2/clients/{client_id}/access-token/renew existed in 2.0 and is
+    gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/orders
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/orders
+  status: deprecated
+  severity: warning
+  note: GET /v1/{location_id}/orders was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/orders/{order_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/orders/{order_id}
+  status: deprecated
+  severity: warning
+  note: PUT /v1/{location_id}/orders/{order_id} was marked deprecated between 2.0
+    and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/payments
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/payments
+  status: removed
+  severity: breaking
+  note: GET /v1/{location_id}/payments existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/payments/{payment_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/payments/{payment_id}
+  status: removed
+  severity: breaking
+  note: GET /v1/{location_id}/payments/{payment_id} existed in 2.0 and is gone in
+    2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/refunds
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/refunds
+  status: removed
+  severity: breaking
+  note: POST /v1/{location_id}/refunds existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/settlements
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/settlements
+  status: removed
+  severity: breaking
+  note: GET /v1/{location_id}/settlements existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v1/{location_id}/settlements/{settlement_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v1/{location_id}/settlements/{settlement_id}
+  status: removed
+  severity: breaking
+  note: GET /v1/{location_id}/settlements/{settlement_id} existed in 2.0 and is gone
+    in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/customers/{customer_id}/cards
+  kind: endpoint
+  match:
+    literals:
+    - /v2/customers/{customer_id}/cards
+  status: deprecated
+  severity: warning
+  note: POST /v2/customers/{customer_id}/cards was marked deprecated between 2.0 and
+    2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/customers/{customer_id}/cards/{card_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/customers/{customer_id}/cards/{card_id}
+  status: deprecated
+  severity: warning
+  note: DELETE /v2/customers/{customer_id}/cards/{card_id} was marked deprecated between
+    2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/employees
+  kind: endpoint
+  match:
+    literals:
+    - /v2/employees
+  status: deprecated
+  severity: warning
+  note: GET /v2/employees was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/employees/{id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/employees/{id}
+  status: deprecated
+  severity: warning
+  note: GET /v2/employees/{id} was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/adjustment/{adjustment_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/adjustment/{adjustment_id}
+  status: deprecated
+  severity: warning
+  note: GET /v2/inventory/adjustment/{adjustment_id} was marked deprecated between
+    2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/batch-change
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/batch-change
+  status: deprecated
+  severity: warning
+  note: POST /v2/inventory/batch-change was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/batch-retrieve-changes
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/batch-retrieve-changes
+  status: deprecated
+  severity: warning
+  note: POST /v2/inventory/batch-retrieve-changes was marked deprecated between 2.0
+    and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/batch-retrieve-counts
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/batch-retrieve-counts
+  status: deprecated
+  severity: warning
+  note: POST /v2/inventory/batch-retrieve-counts was marked deprecated between 2.0
+    and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/physical-count/{physical_count_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/physical-count/{physical_count_id}
+  status: deprecated
+  severity: warning
+  note: GET /v2/inventory/physical-count/{physical_count_id} was marked deprecated
+    between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/transfers/{transfer_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/transfers/{transfer_id}
+  status: removed
+  severity: breaking
+  note: GET /v2/inventory/transfers/{transfer_id} existed in 2.0 and is gone in 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/inventory/{catalog_object_id}/changes
+  kind: endpoint
+  match:
+    literals:
+    - /v2/inventory/{catalog_object_id}/changes
+  status: deprecated
+  severity: warning
+  note: GET /v2/inventory/{catalog_object_id}/changes was marked deprecated between
+    2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/labor/employee-wages
+  kind: endpoint
+  match:
+    literals:
+    - /v2/labor/employee-wages
+  status: deprecated
+  severity: warning
+  note: GET /v2/labor/employee-wages was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/labor/employee-wages/{id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/labor/employee-wages/{id}
+  status: deprecated
+  severity: warning
+  note: GET /v2/labor/employee-wages/{id} was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/labor/shifts
+  kind: endpoint
+  match:
+    literals:
+    - /v2/labor/shifts
+  status: deprecated
+  severity: warning
+  note: POST /v2/labor/shifts was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/labor/shifts/search
+  kind: endpoint
+  match:
+    literals:
+    - /v2/labor/shifts/search
+  status: deprecated
+  severity: warning
+  note: POST /v2/labor/shifts/search was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/labor/shifts/{id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/labor/shifts/{id}
+  status: deprecated
+  severity: warning
+  note: PUT /v2/labor/shifts/{id} was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/locations/{location_id}/checkouts
+  kind: endpoint
+  match:
+    literals:
+    - /v2/locations/{location_id}/checkouts
+  status: deprecated
+  severity: warning
+  note: POST /v2/locations/{location_id}/checkouts was marked deprecated between 2.0
+    and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/locations/{location_id}/transactions
+  kind: endpoint
+  match:
+    literals:
+    - /v2/locations/{location_id}/transactions
+  status: deprecated
+  severity: warning
+  note: GET /v2/locations/{location_id}/transactions was marked deprecated between
+    2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}
+  kind: endpoint
+  match:
+    literals:
+    - /v2/locations/{location_id}/transactions/{transaction_id}
+  status: deprecated
+  severity: warning
+  note: GET /v2/locations/{location_id}/transactions/{transaction_id} was marked deprecated
+    between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture
+  kind: endpoint
+  match:
+    literals:
+    - /v2/locations/{location_id}/transactions/{transaction_id}/capture
+  status: deprecated
+  severity: warning
+  note: POST /v2/locations/{location_id}/transactions/{transaction_id}/capture was
+    marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void
+  kind: endpoint
+  match:
+    literals:
+    - /v2/locations/{location_id}/transactions/{transaction_id}/void
+  status: deprecated
+  severity: warning
+  note: POST /v2/locations/{location_id}/transactions/{transaction_id}/void was marked
+    deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/endpoint//v2/loyalty/programs
+  kind: endpoint
+  match:
+    literals:
+    - /v2/loyalty/programs
+  status: deprecated
+  severity: warning
+  note: GET /v2/loyalty/programs was marked deprecated between 2.0 and 2.0.
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/BALANCE_CHARGE
+  kind: enum_value
+  match:
+    literals:
+    - BALANCE_CHARGE
+  status: removed
+  severity: breaking
+  note: 'Enum value ''BALANCE_CHARGE'' was valid in 2.0 and is gone in 2.0. Seen at:
+    definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/GIFT_CARD_ACTIVATION
+  kind: enum_value
+  match:
+    literals:
+    - GIFT_CARD_ACTIVATION
+  status: removed
+  severity: breaking
+  note: 'Enum value ''GIFT_CARD_ACTIVATION'' was valid in 2.0 and is gone in 2.0.
+    Seen at: definitions.V1PaymentItemizationItemizationType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/GIFT_CARD_RELOAD
+  kind: enum_value
+  match:
+    literals:
+    - GIFT_CARD_RELOAD
+  status: removed
+  severity: breaking
+  note: 'Enum value ''GIFT_CARD_RELOAD'' was valid in 2.0 and is gone in 2.0. Seen
+    at: definitions.V1PaymentItemizationItemizationType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/GIFT_CARD_UNKNOWN
+  kind: enum_value
+  match:
+    literals:
+    - GIFT_CARD_UNKNOWN
+  status: removed
+  severity: breaking
+  note: 'Enum value ''GIFT_CARD_UNKNOWN'' was valid in 2.0 and is gone in 2.0. Seen
+    at: definitions.V1PaymentItemizationItemizationType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/INCENTED_PAYMENT
+  kind: enum_value
+  match:
+    literals:
+    - INCENTED_PAYMENT
+  status: removed
+  severity: breaking
+  note: 'Enum value ''INCENTED_PAYMENT'' was valid in 2.0 and is gone in 2.0. Seen
+    at: definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/RETURNED_ACH_ENTRY
+  kind: enum_value
+  match:
+    literals:
+    - RETURNED_ACH_ENTRY
+  status: removed
+  severity: breaking
+  note: 'Enum value ''RETURNED_ACH_ENTRY'' was valid in 2.0 and is gone in 2.0. Seen
+    at: definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/RETURNED_SQUARE_275
+  kind: enum_value
+  match:
+    literals:
+    - RETURNED_SQUARE_275
+  status: removed
+  severity: breaking
+  note: 'Enum value ''RETURNED_SQUARE_275'' was valid in 2.0 and is gone in 2.0. Seen
+    at: definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/SQUARE_275
+  kind: enum_value
+  match:
+    literals:
+    - SQUARE_275
+  status: removed
+  severity: breaking
+  note: 'Enum value ''SQUARE_275'' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/SQUARE_CAPITAL_ADVANCE
+  kind: enum_value
+  match:
+    literals:
+    - SQUARE_CAPITAL_ADVANCE
+  status: removed
+  severity: breaking
+  note: 'Enum value ''SQUARE_CAPITAL_ADVANCE'' was valid in 2.0 and is gone in 2.0.
+    Seen at: definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05
+- id: square/enum_value/SQUARE_CARD
+  kind: enum_value
+  match:
+    literals:
+    - SQUARE_CARD
+  status: removed
+  severity: breaking
+  note: 'Enum value ''SQUARE_CARD'' was valid in 2.0 and is gone in 2.0. Seen at:
+    definitions.V1SettlementEntryType'
+  evidence: https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05

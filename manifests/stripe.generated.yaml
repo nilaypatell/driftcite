@@ -1,15 +1,22 @@
 provider: stripe
 spec_version: 1
-generated_from:
-  repo: stripe/openapi
+source_license: MIT
+source_notice: https://github.com/stripe/openapi/blob/master/LICENSE
+observations:
+- repo: stripe/openapi
   from: v1200
   to: v2345
   from_api_version: '2024-06-20'
   to_api_version: 2026-06-24.dahlia
-source_license: MIT
-source_notice: https://github.com/stripe/openapi/blob/master/LICENSE
+- repo: stripe/openapi
+  from: v2345
+  to: v2375
+  from_api_version: 2026-06-24.dahlia
+  to_api_version: 2026-07-29.dahlia
+  observed_on: '2026-08-06'
 sources:
 - https://github.com/stripe/openapi/compare/v1200...v2345
+- https://github.com/stripe/openapi/compare/v2345...v2375
 context:
   file_markers:
   - stripe
@@ -52,26 +59,6 @@ artifacts:
   status: removed
   severity: breaking
   note: POST /v1/subscription_items/{subscription_item}/usage_records existed in 2024-06-20
-    and is gone in 2026-06-24.dahlia.
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/request_param//v1/credit_notes/preview#refund
-  kind: request_param
-  match:
-    literals:
-    - refund
-  status: removed
-  severity: breaking
-  note: Parameter 'refund' on GET /v1/credit_notes/preview existed in 2024-06-20 and
-    is gone in 2026-06-24.dahlia.
-  evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-- id: stripe/request_param//v1/credit_notes/preview/lines#refund
-  kind: request_param
-  match:
-    literals:
-    - refund
-  status: removed
-  severity: breaking
-  note: Parameter 'refund' on GET /v1/credit_notes/preview/lines existed in 2024-06-20
     and is gone in 2026-06-24.dahlia.
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
 - id: stripe/enum_value/last_during_period
