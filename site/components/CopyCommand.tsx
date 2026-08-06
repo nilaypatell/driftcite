@@ -27,9 +27,9 @@ export default function CopyCommand() {
   return (
     <button className="dc-cmd" title="Copy to clipboard" onClick={copy}>
       <span>
-        <span className="d">$</span> {COMMAND}
+        <span className="p">$</span> {COMMAND}
       </span>
-      <span className="c">{copied ? "copied" : "copy"}</span>
+      <span className="lab">{copied ? "copied" : "copy"}</span>
     </button>
   );
 }

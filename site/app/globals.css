@@ -1,455 +1,291 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════════
-   driftcite — the drawing.
+   driftcite — design system, ported from the handoff bundle.
 
-   White paper, ruled. Everything structural is a draughtsman's mark:
-   ruler ticks down the margins, dimension lines under the figures that
-   need measuring, crop marks at the corners of every plate. One signal
-   colour, and it means alive. Red means dead. Nothing else is coloured.
+   Tokens are the handoff's, unchanged: ground #FBFCFE, ink #0D1220,
+   a single blue accent #3D5AFE with a nine-step ramp generated in OKLCH
+   on one shared lightness scale. Space Grotesk for display, Hanken
+   Grotesk for body, JetBrains Mono for code and section markers.
 
-   Tailwind carries layout, spacing and type. The drafting marks below are
-   real CSS because they are components, not utilities — and because a
-   global stylesheet is exactly how the old build shipped a class
-   collision. Everything here is namespaced under dc- for that reason.
+   LAYERING IS LOAD-BEARING. An unlayered rule beats every layered one
+   regardless of specificity, so the reset lives in @layer base and every
+   component class in @layer components — otherwise `* { padding: 0 }`
+   silently defeats every Tailwind padding utility on the page, and a
+   component class outranks the utility meant to override it. Both of
+   those shipped here once already.
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-paper:   #FFFFFF;
-  --color-paper-2: #FBFBFC;
+  --color-bg:      #FBFCFE;
+  --color-surface: #F1F4F9;
+  --color-ink:     #0D1220;
+  --color-accent:  #3D5AFE;
 
-  --color-ink:   #0B0C0E;
-  --color-dim:   #55595F;
-  --color-faint: #8B9098;
-  --color-ghost: #C4C8CE;
+  --color-neutral-100: #F7F9FC;
+  --color-neutral-200: #ECEFF5;
+  --color-neutral-300: #DBE0EA;
+  --color-neutral-400: #BEC5D4;
+  --color-neutral-500: #9CA4B8;
+  --color-neutral-600: #7A8299;
+  --color-neutral-700: #5C647B;
+  --color-neutral-800: #414A61;
+  --color-neutral-900: #2A3143;
 
-  /* the signal. Lime is alive; it is the only colour that carries meaning
-     on this page besides red, which is dead. */
-  --color-live:        #4D7C0F;  /* text-safe on white — 4.9:1 */
-  --color-live-bright: #A3E635;  /* fills and highlights, never small text */
-  --color-live-mid:    #84CC16;  /* graphic marks: dots, bars, ticks */
-  --color-dead:        #DC2626;
+  --color-accent-100: #EEF1FF;
+  --color-accent-200: #DCE3FF;
+  --color-accent-300: #BCC9FF;
+  --color-accent-400: #93A5FF;
+  --color-accent-500: #5F79FF;
+  --color-accent-600: #2E43D9;
+  --color-accent-700: #2136AE;
+  --color-accent-800: #192880;
+  --color-accent-900: #131E58;
 
-  /* three rule weights. There is no fourth. */
-  --color-rule-1: #F0F0F2;
-  --color-rule-2: #E6E7EA;
-  --color-rule-3: #D9DBDF;
+  /* the dark terminal panel is an object, not a theme */
+  --color-term-bg:     #0E1119;
+  --color-term-rule:   #232A3E;
+  --color-term-border: #2A3147;
+  --color-term-text:   #EDEFF7;
+  --color-term-muted:  #8B93A9;
+  --color-term-faint:  #5A6178;
+  --color-term-label:  #6E7690;
+  --color-term-prompt: #7C90FF;
+  --color-term-break:  #FF6B57;
+  --color-term-ok:     #4ADE80;
 
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body:    var(--font-hanken-grotesk), system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  --container-page: 1112px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 }
 
 :root {
-  --l8:  rgba(132, 204, 22, .08);
-  --l14: rgba(132, 204, 22, .14);
-  --l22: rgba(132, 204, 22, .22);
-  --dead-8: rgba(220, 38, 38, .06);
-  --gutter: 24px;
+  --color-divider: color-mix(in srgb, #0D1220 14%, transparent);
+
+  --space-1: 4.6px;
+  --space-2: 9.2px;
+  --space-3: 13.8px;
+  --space-4: 18.4px;
+  --space-6: 27.6px;
+  --space-8: 36.8px;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #1A2033 10%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #1A2033 12%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #1A2033 18%, transparent);
+
   color-scheme: light;
 }
 
-/* The reset MUST be layered. An unlayered rule beats every layered one
-   regardless of specificity, so `* { padding: 0 }` sitting outside a
-   layer silently defeats every Tailwind padding and margin utility on
-   the page — which is precisely how the first build of this file
-   collapsed all seven sections to zero vertical padding. */
 @layer base {
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    background: var(--color-paper);
+    background: var(--color-bg);
     color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 15px;
     line-height: 1.55;
+    font-weight: 400;
+    text-wrap: pretty;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  ::selection { background: var(--color-live-bright); color: var(--color-ink); }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  a { color: var(--color-accent); text-underline-offset: 3px; }
+  a:hover { color: var(--color-accent-600); }
+  img { display: block; max-width: 100%; }
+  figure { margin: 0; }
+
+  :focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  ::selection { background: var(--color-accent); color: #fff; }
+
+  /* every figure, stat and marker uses tabular numerals */
+  .tnum, code, pre, .dc-mono { font-feature-settings: 'tnum' 1; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Everything below lives in @layer components, and that is load-bearing.
-
-   Tailwind v4 emits utilities into @layer utilities. An UNLAYERED rule
-   beats any layered one regardless of specificity, so if these sat
-   outside a layer, `.dc-cell { padding: 28px 26px }` would silently win
-   over a `p-5` utility and no override would ever apply. Inside
-   components, utilities win — which is what a component class is for.
-   ═══════════════════════════════════════════════════════════════════ */
 @layer components {
 
-/* ── layout ───────────────────────────────────────────────────────── */
-.dc-wrap {
-  max-width: var(--container-page);
+/* ── the column ───────────────────────────────────────────────────
+   Every page is one 1200px column with hairline edges, so the site
+   reads as a single ruled sheet rather than a stack of bands. */
+.dc-col {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--gutter);
-  position: relative;
-  z-index: 1;
-}
-/* overflow-x: clip, not hidden — clip contains the bleeding aurora
-   without turning this into a scroll container */
-.dc-bleed { position: relative; overflow-x: clip; }
-
-/* ── the ruled sheet ──────────────────────────────────────────────
-   Two margin rules carrying ruler ticks, two interior construction
-   lines. Clipped to the viewport: on a narrow screen the outer rules sit
-   past the edge and would otherwise widen the page. */
-.dc-sheet {
-  position: fixed; inset: 0; z-index: 0;
-  pointer-events: none; overflow: hidden;
-}
-.dc-sheet i, .dc-sheet u { position: absolute; top: 0; bottom: 0; display: block; }
-.dc-sheet i { width: 1px; background: var(--color-rule-2); }
-.dc-sheet i.faint { background: var(--color-rule-1); }
-.dc-sheet u {
-  width: 6px;
-  background-image: repeating-linear-gradient(
-    to bottom, var(--color-rule-3) 0 1px, transparent 1px 56px);
-}
-@media (max-width: 900px) { .dc-sheet i.faint, .dc-sheet u { display: none; } }
-
-/* ── plates: bordered figures with crop marks ─────────────────────── */
-.dc-plate {
-  position: relative;
-  border: 1px solid var(--color-rule-2);
-  background: var(--color-paper);
-}
-/* The crop-mark carrier must not be laid out. Left in flow it becomes a
-   grid item, and on a two-column .dc-split plate it eats cell 1 and wraps
-   the panes — which is exactly what the hand-written page shipped doing.
-   Absolute + inset:0 makes it cover the plate's padding box without
-   participating, so the marks land in the same place and nothing counts
-   it as a child. */
-.dc-plate > .dc-cm { position: absolute; inset: 0; pointer-events: none; }
-.dc-plate::before, .dc-plate::after,
-.dc-plate > .dc-cm::before, .dc-plate > .dc-cm::after {
-  content: ""; position: absolute; width: 7px; height: 7px;
-  border: 0 solid var(--color-ghost); pointer-events: none;
-}
-.dc-plate::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
-.dc-plate::after  { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
-.dc-plate > .dc-cm::before { bottom: -1px; left: -1px; border-bottom-width: 1px; border-left-width: 1px; }
-.dc-plate > .dc-cm::after  { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
-
-/* ── chapter rail ─────────────────────────────────────────────────── */
-.dc-rail {
-  border-top: 1px solid var(--color-rule-2);
-  border-bottom: 1px solid var(--color-rule-2);
-  background: var(--color-paper-2);
-}
-.dc-rail .dc-wrap {
-  display: flex; align-items: center; gap: 13px;
-  padding-top: 22px; padding-bottom: 22px;
-  font-family: var(--font-mono); font-size: 11px;
-  letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-faint);
-}
-.dc-rail .tk { width: 14px; height: 1px; background: var(--color-live-mid); flex: none; }
-.dc-rail .idx b { color: var(--color-live); font-weight: 500; }
-.dc-rail .sep { color: var(--color-ghost); }
-.dc-rail .lbl { color: var(--color-dim); }
-.dc-rail .end { margin-left: auto; color: var(--color-ghost); letter-spacing: 1.2px; }
-
-/* ── edge annotations ─────────────────────────────────────────────── */
-.dc-edge {
-  position: absolute; font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 1.5px; color: var(--color-ghost); white-space: nowrap;
-  pointer-events: none; user-select: none;
-}
-.dc-edge.tl { top: 26px; left: 12px; }
-.dc-edge.tr { top: 26px; right: 12px; }
-.dc-edge.bl { bottom: 26px; left: 12px; }
-.dc-edge.br { bottom: 26px; right: 12px; }
-@media (max-width: 1320px) { .dc-edge { display: none; } }
-
-/* ── dimension line: ├──── 770 days ────┤ ─────────────────────────
-   Named dc-dimline, never "dim" — dim is the terminal's muted-text
-   class, and that exact collision silently turned terminal output into
-   a grid in the hand-written build. */
-.dc-dimline {
-  display: grid; grid-template-columns: auto 1fr auto 1fr auto;
-  align-items: center; gap: 11px; margin-top: 26px;
-}
-.dc-dimline .cap { width: 1px; height: 9px; background: var(--color-ghost); }
-.dc-dimline .ln { height: 1px; background: var(--color-rule-3); transform-origin: left; }
-.dc-dimline .ln.r { transform-origin: right; }
-.dc-dimline .val {
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: .8px;
-  color: var(--color-dim); white-space: nowrap;
-}
-.dc-dimline .val b { color: var(--color-dead); font-weight: 500; }
-
-/* ── type ─────────────────────────────────────────────────────────
-   Light and large reads expensive; heavy and tight reads like a
-   template. Stripe sets its hero at 300 — this follows that. */
-.dc-h1 {
-  font-size: clamp(31px, 4.6vw, 54px);
-  font-weight: 300; line-height: 1.14; letter-spacing: -1.4px;
-  text-wrap: balance;
-}
-.dc-h1 .run {
-  display: block; color: var(--color-dim);
-  font-size: .54em; line-height: 1.44; letter-spacing: -.4px;
-  margin: .7em auto 0; max-width: 26em;
-}
-.dc-h1 .run code { font-size: .92em; color: var(--color-ink); font-family: var(--font-mono); }
-.dc-h2 {
-  font-size: clamp(25px, 3.2vw, 40px);
-  font-weight: 300; line-height: 1.16; letter-spacing: -1.1px;
-  text-wrap: balance;
-}
-.dc-h3 { font-size: 16.5px; font-weight: 500; letter-spacing: -.2px; }
-
-/* the marker: signal used as a highlight, ink stays ink */
-.dc-mk {
-  background: var(--color-live-bright);
-  padding: 0 .12em; border-radius: 2px;
-  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  padding-inline: clamp(20px, 5vw, 72px);
+  border-inline: 1px solid var(--color-divider);
 }
 
-.dc-lede { font-size: 17px; color: var(--color-dim); max-width: 37em; line-height: 1.62; }
-.dc-lede b, .dc-lede strong { color: var(--color-ink); font-weight: 500; }
-.dc-lede code { font-size: .92em; color: var(--color-ink); font-family: var(--font-mono); }
-
-/* the tag: a drawing callout, not a chip */
-.dc-tag {
-  display: inline-flex; align-items: center; gap: 9px;
-  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.6px;
-  text-transform: uppercase; color: var(--color-faint); margin-bottom: 22px;
+.dc-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1;
 }
-.dc-tag::before { content: ""; width: 22px; height: 1px; background: var(--color-live-mid); }
 
-.dc-cite {
-  font-family: var(--font-mono); font-size: .58em; vertical-align: super;
-  color: var(--color-live); text-decoration: none; padding: 0 .1em;
+/* ── section kicker: [ 01 / 06 ] · The case ······ // twin label // ── */
+.dc-kicker {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-neutral-600);
 }
-.dc-cite:hover { background: var(--l22); border-radius: 2px; }
+.dc-kicker .n { color: var(--color-accent); }
 
 /* ── buttons ──────────────────────────────────────────────────────── */
 .dc-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--color-live-bright); color: var(--color-ink);
-  text-decoration: none; font-size: 13.5px; font-weight: 500;
-  padding: 8px 15px; border-radius: 6px; border: 1px solid #8FD11F;
-  transition: background .15s ease, border-color .15s ease;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 14px; line-height: 1.2; color: var(--color-ink);
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
 }
-.dc-btn:hover { background: #B4F04A; }
-.dc-btn.lg { font-size: 15px; padding: 12px 22px; }
+.dc-btn svg { display: block; }
+.dc-btn-primary {
+  color: #fff; border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16),
+              0 1px 2px color-mix(in srgb, var(--color-accent-900) 35%, transparent);
+}
+.dc-btn-primary:hover { background: var(--color-accent-600); border-color: var(--color-accent-600); color: #fff; }
+.dc-btn-primary:active { background: var(--color-accent-700); border-color: var(--color-accent-700); }
+.dc-btn-secondary {
+  border-color: var(--color-divider); background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+.dc-btn-secondary:hover { background: color-mix(in srgb, var(--color-ink) 7%, transparent); color: var(--color-ink); }
+.dc-btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.dc-btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
 
+/* the dark copy-command button, paired with the primary in every CTA row */
 .dc-cmd {
   display: inline-flex; align-items: center; gap: 14px;
-  font-family: var(--font-mono); font-size: 14px;
-  background: var(--color-paper); color: var(--color-ink);
-  border: 1px solid var(--color-rule-3); border-radius: 6px;
-  padding: 12px 16px; cursor: pointer; transition: border-color .15s ease;
+  font-family: var(--font-mono); font-size: 13.5px;
+  background: var(--color-term-bg); color: var(--color-term-text);
+  border: 1px solid var(--color-term-border);
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md); cursor: pointer;
+  transition: border-color .15s ease;
 }
-.dc-cmd:hover { border-color: var(--color-live-mid); }
-.dc-cmd .d { color: var(--color-live); }
-.dc-cmd .c { font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--color-faint); }
-.dc-cmd:hover .c { color: var(--color-live); }
-
-.dc-go {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 15px; font-family: var(--font-mono); font-size: 12px;
-  letter-spacing: .4px; color: var(--color-live); text-decoration: none;
+.dc-cmd:hover { border-color: var(--color-accent); }
+.dc-cmd .p { color: var(--color-term-prompt); }
+.dc-cmd .lab {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-term-label);
 }
-.dc-go::after { content: "→"; transition: transform .15s ease; }
-.dc-go:hover::after { transform: translateX(3px); }
 
-/* ── cell grid ────────────────────────────────────────────────────── */
-.dc-cells { display: grid; }
-.dc-cell {
-  padding: 28px 26px;
-  border-top: 1px solid var(--color-rule-2);
-  border-left: 1px solid var(--color-rule-2);
+/* ── tags ─────────────────────────────────────────────────────────── */
+.dc-tag {
+  display: inline-flex; align-items: center; font-size: 11px;
+  letter-spacing: 0.02em; padding: 3px 10px; border-radius: 999px;
 }
-.dc-cells.c2 { grid-template-columns: repeat(2, 1fr); }
-.dc-cells.c3 { grid-template-columns: repeat(3, 1fr); }
-.dc-cells.c4 { grid-template-columns: repeat(4, 1fr); }
-.dc-cells.c2 > .dc-cell:nth-child(-n+2),
-.dc-cells.c3 > .dc-cell:nth-child(-n+3),
-.dc-cells.c4 > .dc-cell:nth-child(-n+4) { border-top: none; }
-.dc-cells.c2 > .dc-cell:nth-child(2n+1),
-.dc-cells.c3 > .dc-cell:nth-child(3n+1),
-.dc-cells.c4 > .dc-cell:nth-child(4n+1) { border-left: none; }
+.dc-tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.dc-tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.dc-tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
 
-.dc-claim { font-size: 15px; line-height: 1.62; color: var(--color-dim); }
-.dc-claim b { color: var(--color-ink); font-weight: 500; }
-
-/* ── the aurora ───────────────────────────────────────────────────
-   Stripe's hero runs a 1392x761 canvas to get its gradient. This is the
-   same idea at a fraction of the cost: three blurred blobs on a slow
-   drift, kept inside the signal family so the page stays two-colour. */
-.dc-aurora {
-  position: absolute; top: -140px; left: -8%; right: -8%; height: 720px;
-  z-index: 0; pointer-events: none; overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 34%, #000 0%, transparent 74%);
-          mask-image: radial-gradient(ellipse 62% 68% at 50% 34%, #000 0%, transparent 74%);
+/* ── cards ────────────────────────────────────────────────────────── */
+.dc-card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3); border-radius: var(--radius-md);
+  border: 1px solid var(--color-divider); background: transparent;
 }
-.dc-aurora b {
-  position: absolute; display: block; border-radius: 50%;
-  filter: blur(80px); opacity: .42;
+.dc-plate {
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-lg);
 }
-.dc-aurora b:nth-child(1) { width: 46%; height: 58%; left: 8%;  top: 6%;  background: #A3E635; }
-.dc-aurora b:nth-child(2) { width: 40%; height: 52%; left: 44%; top: 20%; background: #5EEAD4; opacity: .3; }
-.dc-aurora b:nth-child(3) { width: 34%; height: 44%; left: 26%; top: 34%; background: #D9F99D; opacity: .5; }
 
-/* ── terminal (dark: it is an object, not a theme) ────────────────── */
+/* ── the dark terminal panel ──────────────────────────────────────── */
 .dc-term {
-  --t-bg: #0B0C0E; --t-panel: #101215; --t-line: #1C1F24;
-  --t-text: #E9EBEE; --t-dim: #8A9099; --t-faint: #4B5158;
-  --t-live: #A3E635; --t-dead: #FF6B57;
-  background: var(--t-bg); border: 1px solid #14171B; border-radius: 10px;
+  background: var(--color-term-bg);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
-.dc-term .bar {
-  display: flex; align-items: center; gap: 12px;
-  background: var(--t-panel); padding: 10px 14px;
-  border-bottom: 1px solid var(--t-line);
-}
-.dc-term .bar .dots { display: flex; gap: 6px; }
-.dc-term .bar .dots i { width: 9px; height: 9px; border-radius: 50%; display: block; background: #23272D; }
-.dc-term .bar .ttl { font-family: var(--font-mono); font-size: 10.5px; color: var(--t-faint); letter-spacing: 1px; }
-.dc-term .bar .rt { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--t-faint); }
-.dc-term .body {
-  font-family: var(--font-mono); font-size: 12.4px; line-height: 1.85;
-  padding: 15px 17px 19px; overflow-x: auto; color: var(--t-text);
-}
-.dc-term .p { color: var(--t-live); }
-.dc-term .brk { color: var(--t-dead); }
-.dc-term .art { color: var(--t-text); font-weight: 500; }
-.dc-term .mut { color: var(--t-dim); }
-.dc-term .fnt { color: var(--t-faint); }
-.dc-term .ok { color: var(--t-live); }
-.dc-term .in { padding-left: 2ch; }
-.dc-cursor {
-  display: inline-block; width: .5em; height: 1em;
-  background: #A3E635; vertical-align: text-bottom;
-}
-
-/* ── code panes ───────────────────────────────────────────────────── */
-.dc-split { display: grid; grid-template-columns: 1fr 1fr; }
-.dc-split > * { min-width: 0; }
-.dc-pane .hd {
+.dc-term .hd {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 15px; border-bottom: 1px solid var(--color-rule-2);
-  font-family: var(--font-mono); font-size: 10.5px;
-  color: var(--color-faint); letter-spacing: 1.2px;
+  padding: 11px 18px; border-bottom: 1px solid var(--color-term-rule);
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-term-label);
 }
-.dc-pane pre {
-  font-family: var(--font-mono); font-size: 12.4px; line-height: 1.85;
-  padding: 15px 17px; overflow-x: auto; color: var(--color-ink);
+.dc-term .body {
+  font-family: var(--font-mono); font-size: 12.5px; line-height: 1.85;
+  padding: 20px 18px 22px; overflow-x: auto; color: var(--color-term-text);
 }
-.dc-pane pre .k { color: var(--color-live); }
-.dc-pane pre .s { color: var(--color-dim); }
-.dc-pane pre .c { color: var(--color-faint); }
-.dc-pane pre .x { color: var(--color-dead); }
+.dc-term .p { color: var(--color-term-prompt); }
+.dc-term .brk { color: var(--color-term-break); font-weight: 600; }
+.dc-term .muted { color: var(--color-term-muted); }
+.dc-term .faint { color: var(--color-term-faint); }
+.dc-term .ok { color: var(--color-term-ok); }
+.dc-cursor {
+  display: inline-block; width: .55em; height: 1.05em;
+  background: var(--color-term-prompt); vertical-align: text-bottom;
+}
 
-.dc-tab {
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: .8px;
-  text-transform: uppercase; background: transparent;
-  border: 1px solid transparent; border-bottom: none;
-  color: var(--color-faint); padding: 10px 16px; cursor: pointer;
-  transition: color .14s ease;
+/* ── tables ───────────────────────────────────────────────────────── */
+.dc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.dc-table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
 }
-.dc-tab:hover { color: var(--color-dim); }
-.dc-tab[aria-selected="true"] {
-  background: var(--color-paper); border-color: var(--color-rule-2); color: var(--color-ink);
-}
-.dc-cbtn {
-  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px;
-  text-transform: uppercase; color: var(--color-faint);
-  background: none; border: none; cursor: pointer; padding: 0;
-}
-.dc-cbtn:hover { color: var(--color-live); }
+.dc-table td { padding: var(--space-2); border-bottom: 1px solid var(--color-divider); }
+.dc-table tbody tr:hover { background: color-mix(in srgb, var(--color-ink) 4%, transparent); }
 
-/* ── figures ──────────────────────────────────────────────────────── */
-.dc-bignum {
-  font-size: clamp(70px, 10vw, 124px); font-weight: 500;
-  letter-spacing: -5px; line-height: .9; color: var(--color-ink);
-  font-variant-numeric: tabular-nums;
-}
-.dc-bignum sup { font-size: .36em; letter-spacing: -2px; vertical-align: super; color: var(--color-faint); }
+/* ── the three-column hairline grid; stacks with a top rule ───────── */
+.dc-cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+.dc-cols3 > div + div { border-left: 1px solid var(--color-divider); padding-left: 34px; }
 
-.dc-plot { display: grid; grid-template-columns: repeat(29, 1fr); gap: 5px; padding: 2px; }
-.dc-plot b { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--color-rule-3); opacity: 0; }
-.dc-plot b.hit { background: var(--color-live-mid); }
+/* ── footnotes ────────────────────────────────────────────────────── */
+.dc-fn:target { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
 
-.dc-bars .row { display: grid; grid-template-columns: 104px 1fr 56px; gap: 16px; align-items: center; padding: 11px 0; }
-.dc-bars .row + .row { border-top: 1px solid var(--color-rule-1); }
-.dc-bars .lab { font-family: var(--font-mono); font-size: 11px; color: var(--color-dim); letter-spacing: .4px; }
-/* both must be blocks — a span in a plain block stays inline and drops width */
-.dc-bars .track { display: block; height: 5px; background: var(--color-rule-1); overflow: hidden; }
-.dc-bars .fill { display: block; height: 100%; width: 0; background: var(--color-live-mid); }
-.dc-bars .row:last-child .fill { background: var(--color-dead); }
-.dc-bars .pct { font-family: var(--font-mono); font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; color: var(--color-dim); }
-.dc-bars .row:last-child .pct { color: var(--color-dead); }
-
-.dc-diff { font-family: var(--font-mono); font-size: 12.2px; line-height: 1.9; padding: 6px 0; overflow-x: auto; }
-.dc-diff span { display: block; white-space: pre; padding: 0 17px; }
-.dc-diff .ctx { color: var(--color-faint); padding-top: 9px; }
-.dc-diff .del { color: var(--color-dead); background: var(--dead-8); }
-.dc-diff .add { color: var(--color-live); background: var(--l8); }
+.dc-muted { color: color-mix(in srgb, var(--color-ink) 55%, transparent); }
+.dc-hr { height: 1px; border: 0; background: var(--color-divider); }
 
 /* ── motion ───────────────────────────────────────────────────────
-   Gated twice: on the OS preference AND on a class only JS adds, so a
-   crawler or a no-JS reader always gets the finished page.
-   Quiet by design: 6px of travel, no card lift, no pulse, no spring. */
+   Additive only: the markup is complete and visible without it. */
 @media (prefers-reduced-motion: no-preference) {
+  html.anim .dc-rise { animation: dc-rise .55s cubic-bezier(.22,.7,.3,1) both; }
   html.anim .dc-rv {
-    opacity: 0; transform: translateY(6px);
-    transition: opacity .5s cubic-bezier(.32,.72,.3,1), transform .5s cubic-bezier(.32,.72,.3,1);
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .55s cubic-bezier(.22,.7,.3,1), transform .55s cubic-bezier(.22,.7,.3,1);
   }
   html.anim .dc-rv.in { opacity: 1; transform: none; }
-
-  html.anim .dc-hero > * { animation: dc-rise .5s cubic-bezier(.32,.72,.3,1) both; }
-  html.anim .dc-hero > *:nth-child(2) { animation-delay: .06s; }
-  html.anim .dc-hero > *:nth-child(3) { animation-delay: .12s; }
-  html.anim .dc-hero > *:nth-child(4) { animation-delay: .18s; }
-  html.anim .dc-hero-term { animation: dc-rise .55s .28s cubic-bezier(.32,.72,.3,1) both; }
-  html.anim .dc-term .body > * { animation: dc-rise .22s cubic-bezier(.32,.72,.3,1) both; }
-
   .dc-cursor { animation: dc-blink 1.1s steps(1) infinite; }
+}
 
-  html.anim .dc-dimline .ln { transform: scaleX(0); transition: transform .8s cubic-bezier(.32,.72,.3,1); }
-  html.anim .dc-dimline.in .ln { transform: scaleX(1); }
-  .dc-plot b { transition: opacity .3s ease; }
-  .dc-bars .fill { transition: width .9s cubic-bezier(.32,.72,.3,1); }
-
-  /* the aurora drifts. Slow enough to be felt rather than watched. */
-  .dc-aurora b:nth-child(1) { animation: dc-drift-a 24s ease-in-out infinite alternate; }
-  .dc-aurora b:nth-child(2) { animation: dc-drift-b 30s ease-in-out infinite alternate; }
-  .dc-aurora b:nth-child(3) { animation: dc-drift-c 27s ease-in-out infinite alternate; }
+/* ── responsive ───────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .dc-cols3 { grid-template-columns: 1fr; }
+  .dc-cols3 > div + div {
+    border-left: none; padding-left: 0;
+    border-top: 1px solid var(--color-divider); padding-top: 27.6px;
+  }
+  .dc-hero-chip, .dc-kick-right { display: none; }
 }
 
 } /* end @layer components */
 
-@keyframes dc-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes dc-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes dc-blink { 50% { opacity: 0; } }
-@keyframes dc-drift-a { to { transform: translate3d(9%, 7%, 0) scale(1.14); } }
-@keyframes dc-drift-b { to { transform: translate3d(-11%, 5%, 0) scale(1.1); } }
-@keyframes dc-drift-c { to { transform: translate3d(6%, -9%, 0) scale(1.18); } }
 
-/* ── responsive ───────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .dc-section { padding-top: 64px; padding-bottom: 64px; }
-  .dc-split { grid-template-columns: 1fr; }
-  .dc-cells.c2, .dc-cells.c3, .dc-cells.c4 { grid-template-columns: 1fr; }
-  .dc-cells.c2 > .dc-cell, .dc-cells.c3 > .dc-cell, .dc-cells.c4 > .dc-cell {
-    border-left: none; border-top: 1px solid var(--color-rule-2);
-  }
-  .dc-cells > .dc-cell:first-child { border-top: none; }
-  .dc-plot { grid-template-columns: repeat(20, 1fr); gap: 4px; }
-  .dc-bars .row { grid-template-columns: 88px 1fr 46px; gap: 11px; }
-}
-@media (max-width: 560px) {
-  .dc-plot { grid-template-columns: repeat(16, 1fr); }
-  .dc-dimline { grid-template-columns: auto 1fr auto; }
-  .dc-dimline .ln.r, .dc-dimline .cap.r { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
 }

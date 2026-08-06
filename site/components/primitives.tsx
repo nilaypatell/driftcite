@@ -1,136 +1,131 @@
 import type { ReactNode } from "react";
-import { CHAPTERS } from "@/lib/data";
 
-/* Shared building blocks. Every section composes these rather than
-   re-declaring markup, so the drawing stays consistent. All of them are
-   server components — nothing here needs the client. */
+/* Shared building blocks. Server components — nothing here needs the client. */
 
-export function Wrap({
+/** The 1200px ruled column every page sits in. */
+export function Column({
   children,
   className = "",
 }: {
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`dc-wrap ${className}`}>{children}</div>;
+  return <div className={`dc-col ${className}`}>{children}</div>;
 }
 
-export function Section({
-  children,
-  className = "",
+/**
+ * [ 01 / 06 ] · The case ································ // Why driftcite exists //
+ *
+ * The right-hand twin label is decorative and hides below 980px.
+ */
+export function Kicker({
+  n,
+  total = 6,
+  label,
+  twin,
 }: {
-  children: ReactNode;
-  className?: string;
+  n: number;
+  total?: number;
+  label: string;
+  twin?: string;
 }) {
-  return (
-    <section className={`dc-section relative py-[92px] ${className}`}>
-      {children}
-    </section>
-  );
-}
-
-/** ▌ [ 03 / 07 ] · THE CORPUS ................ measured, july 2026
- *  The number is derived from CHAPTERS, so it cannot drift out of sync
- *  the way a hand-written one does. */
-export function Rail({ n, id }: { n: number; id?: string }) {
-  const chapter = CHAPTERS[n - 1];
   const pad = (v: number) => String(v).padStart(2, "0");
   return (
-    <div className="dc-rail" id={id}>
-      <Wrap>
-        <span className="tk" />
-        <span className="idx">
-          [ <b>{pad(n)}</b> / {pad(CHAPTERS.length)} ]
-        </span>{" "}
-        <span className="sep">·</span> <span className="lbl">{chapter.label}</span>
-        <span className="end">{chapter.end}</span>
-      </Wrap>
+    <div className="dc-kicker">
+      <span>
+        [ <span className="n">{pad(n)}</span> / {pad(total)} ] &nbsp;·&nbsp; {label}
+      </span>
+      {twin ? (
+        <span className="dc-kick-right" aria-hidden="true">
+          // {twin} //
+        </span>
+      ) : null}
     </div>
   );
 }
 
-/** A bordered figure with crop marks at all four corners. The `dc-cm`
- *  child is what draws the bottom two. */
-export function Plate({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+/** A dagger footnote reference, pointing at the notes list. */
+export function Ref({ n }: { n: number }) {
   return (
-    <div className={`dc-plate ${className}`}>
-      <span className="dc-cm" />
-      {children}
-    </div>
+    <sup>
+      <a
+        href={`#fn${n}`}
+        style={{ color: "var(--color-accent-700)", textDecoration: "none" }}
+      >
+        †{n}
+      </a>
+    </sup>
   );
 }
 
-export function Tag({
-  children,
-  center = false,
-}: {
-  children: ReactNode;
-  center?: boolean;
-}) {
-  return (
-    <span className="dc-tag" style={center ? { justifyContent: "center" } : undefined}>
-      {children}
-    </span>
-  );
-}
-
-/** Mono annotations clipped at the viewport edge, like the margin notes
- *  on a drawing. Hidden below 1320px, where there is no margin to sit in. */
-export function EdgeNote({
-  at,
-  children,
-}: {
-  at: "tl" | "tr" | "bl" | "br";
-  children: ReactNode;
-}) {
-  return <span className={`dc-edge ${at}`}>{children}</span>;
-}
-
-export function Lede({
-  children,
-  className = "",
-  style,
-}: {
-  children: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <p className={`dc-lede ${className}`} style={style}>
-      {children}
-    </p>
-  );
-}
-
-/** A superscript citation pointing at the evidence list. */
-export function Cite({ n }: { n: number }) {
-  return (
-    <a className="dc-cite" href={`#fn${n}`}>
-      [{n}]
-    </a>
-  );
-}
-
-/** The wordmark. Lime is alive, ink is the rest. */
+/** The wordmark: accent and ink polygons, x-scaled 1.12. */
 export function Mark({ size = 22 }: { size?: number }) {
   return (
     <svg viewBox="0 0 112 112" width={size} height={size} aria-hidden="true">
       <g transform="scale(1.12 1)">
         <polygon
-          fill="#84CC16"
+          fill="#3D5AFE"
           points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"
         />
         <polygon
-          fill="#0B0C0E"
+          fill="#0D1220"
           points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"
         />
       </g>
     </svg>
+  );
+}
+
+/** A page's opening block: H1 plus a lede, used by every page but home. */
+export function PageHead({
+  kicker,
+  title,
+  children,
+}: {
+  kicker: string;
+  title: ReactNode;
+  children?: ReactNode;
+}) {
+  return (
+    <header className="dc-rise" style={{ padding: "72px 0 44px" }}>
+      <div
+        className="dc-mono"
+        style={{
+          fontSize: 12,
+          fontWeight: 500,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--color-neutral-600)",
+          marginBottom: "var(--space-3)",
+        }}
+      >
+        {kicker}
+      </div>
+      <h1
+        style={{
+          fontFamily: "var(--font-display)",
+          fontWeight: 700,
+          fontSize: "clamp(32px, 3.6vw, 50px)",
+          lineHeight: 1.1,
+          letterSpacing: "-0.02em",
+          maxWidth: "18ch",
+        }}
+      >
+        {title}
+      </h1>
+      {children ? (
+        <div
+          style={{
+            marginTop: "var(--space-4)",
+            fontSize: 17,
+            lineHeight: "28px",
+            maxWidth: "58ch",
+            color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+          }}
+        >
+          {children}
+        </div>
+      ) : null}
+    </header>
   );
 }
