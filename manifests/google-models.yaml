@@ -1,12 +1,25 @@
 provider: google
 spec_version: 1
-updated: 2026-07-26
+updated: 2026-08-06
 sources:
+  - https://ai.google.dev/gemini-api/docs/deprecations
   - https://ai.google.dev/gemini-api/docs/changelog
 
 # Gemini model retirements are announced in the changelog and in the model
 # documentation, never in a machine-readable spec, so this file is curated by
 # hand. Every date below is stated by the provider.
+#
+# The two pages do different jobs. The changelog announces a shutdown and dates
+# it; the deprecations page carries the "Recommended replacement" column, which
+# is the only place Google states what to migrate to. Where they disagree the
+# deprecations page wins, because it is the maintained table: the changelog
+# entry of 2026-06-01 sent gemini-2.0-flash to gemini-3.5-flash, and the table
+# now sends it to gemini-3.6-flash, released seven weeks after that entry.
+#
+# Google drops a model from the deprecations table once it is gone, so the
+# Gemini 1.x models are listed on neither page with a replacement. Their
+# shutdowns are citable in the changelog and their replacements are not, so they
+# carry replacement: null and the CLI refuses to autofix them out loud.
 context:
   file_markers:
     - gemini
@@ -20,10 +33,10 @@ artifacts:
     match:
       literals: ["gemini-1.0-pro"]
     status: retired
-    retires_on: 2024-07-12
-    replacement: gemini-2.5-pro
+    retires_on: 2025-02-18
+    replacement: null
     severity: breaking
-    note: Shut down. Requests fail.
+    note: Shut down. Requests fail. Google names no replacement.
     evidence: https://ai.google.dev/gemini-api/docs/changelog
 
   - id: google/model_id/gemini-1.5-pro
@@ -32,9 +45,9 @@ artifacts:
       literals: ["gemini-1.5-pro"]
     status: retired
     retires_on: 2025-09-29
-    replacement: gemini-2.5-pro
+    replacement: null
     severity: breaking
-    note: Shut down. Requests fail.
+    note: Shut down. Requests fail. Google names no replacement.
     evidence: https://ai.google.dev/gemini-api/docs/changelog
 
   - id: google/model_id/gemini-1.5-flash
@@ -43,9 +56,9 @@ artifacts:
       literals: ["gemini-1.5-flash"]
     status: retired
     retires_on: 2025-09-29
-    replacement: gemini-2.5-flash
+    replacement: null
     severity: breaking
-    note: Shut down. Requests fail.
+    note: Shut down. Requests fail. Google names no replacement.
     evidence: https://ai.google.dev/gemini-api/docs/changelog
 
   - id: google/model_id/gemini-1.5-flash-8b
@@ -54,9 +67,9 @@ artifacts:
       literals: ["gemini-1.5-flash-8b"]
     status: retired
     retires_on: 2025-09-29
-    replacement: gemini-3.1-flash-lite
+    replacement: null
     severity: breaking
-    note: Shut down. Requests fail.
+    note: Shut down. Requests fail. Google names no replacement.
     evidence: https://ai.google.dev/gemini-api/docs/changelog
 
   - id: google/model_id/gemini-2.0-flash
@@ -65,10 +78,10 @@ artifacts:
       literals: ["gemini-2.0-flash", "gemini-2.0-flash-001"]
     status: retired
     retires_on: 2026-06-01
-    replacement: gemini-3.5-flash
+    replacement: gemini-3.6-flash
     severity: breaking
     note: Shut down. Requests fail.
-    evidence: https://ai.google.dev/gemini-api/docs/changelog
+    evidence: https://ai.google.dev/gemini-api/docs/deprecations
 
   - id: google/model_id/gemini-2.0-flash-lite
     kind: model_id
@@ -79,7 +92,7 @@ artifacts:
     replacement: gemini-3.1-flash-lite
     severity: breaking
     note: Shut down. Requests fail.
-    evidence: https://ai.google.dev/gemini-api/docs/changelog
+    evidence: https://ai.google.dev/gemini-api/docs/deprecations
 
   - id: google/model_id/text-embedding-004
     kind: model_id
@@ -90,7 +103,7 @@ artifacts:
     replacement: gemini-embedding-2
     severity: breaking
     note: Shut down. Requests fail.
-    evidence: https://ai.google.dev/gemini-api/docs/changelog
+    evidence: https://ai.google.dev/gemini-api/docs/deprecations
 
   # ---- announced, still serving ----
   - id: google/model_id/imagen-4.0-generate-001
@@ -102,6 +115,7 @@ artifacts:
         - "imagen-4.0-fast-generate-001"
     status: deprecated
     retires_on: 2026-08-17
+    replacement: gemini-3.1-flash-image
     severity: warning
     note: Shutdown announced for 2026-08-17.
-    evidence: https://ai.google.dev/gemini-api/docs/changelog
+    evidence: https://ai.google.dev/gemini-api/docs/deprecations

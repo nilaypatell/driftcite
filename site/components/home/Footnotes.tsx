@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { CORPUS, LINKS } from "@/lib/data";
+import { CORPUS, LINKS, TOTAL_PROVIDERS } from "@/lib/data";
 
 /* [ † ] — notes & sources. Every claim on the page ends here, and every
    note ends at somebody else's page. `dc-fn` lights the row up when a
@@ -77,7 +77,8 @@ export default function Footnotes() {
             <a target="_blank" rel="noopener" href={LINKS.openaiDeprecations} style={cite}>
               OpenAI deprecations page
             </a>{" "}
-            &#8212; one of ten provider sources; spec-diff providers cite the
+            &#8212; one of {TOTAL_PROVIDERS} provider sources; spec-diff
+            providers cite the
             provider&#8217;s own git compare, e.g.{" "}
             <a target="_blank" rel="noopener" href={LINKS.stripeOpenapi} style={cite}>
               stripe/openapi

@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMeta({
   path: "/security",
   title: "Security & privacy",
   description:
-    "Your source is never transmitted: the scan runs on your machine, with no account, no upload and no telemetry. The three optional network requests, in full.",
+    "Your source is never transmitted: the scan runs on your machine, with no account, no upload and no telemetry. The five optional network requests, in full.",
 });
 
 const MUTED = "color-mix(in srgb, var(--color-ink) 78%, transparent)";
@@ -117,7 +117,7 @@ export default function Security() {
         </h2>
         <p style={{ ...LEDE, maxWidth: "62ch" }}>
           The scan runs entirely on your machine. There is no account, no
-          upload, and no telemetry. The CLI makes exactly three kinds of network
+          upload, and no telemetry. The CLI makes exactly five kinds of network
           request, all of them optional — and registry requests send package
           names only: public identifiers, never file contents, paths, or
           repository names.
@@ -167,6 +167,36 @@ export default function Security() {
                 </code>
               </td>
               <td>was a release you pinned yanked</td>
+              <td>
+                <code className="dc-mono" style={CODE}>
+                  --no-deps
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code className="dc-mono" style={CODE}>
+                  crates.io/api/v1/crates/&lt;crate&gt;
+                </code>
+              </td>
+              <td>was a version in your Cargo.lock yanked</td>
+              <td>
+                <code className="dc-mono" style={CODE}>
+                  --no-deps
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code className="dc-mono" style={CODE}>
+                  rubygems.org/api/v1/versions/&lt;gem&gt;.json
+                </code>
+              </td>
+              <td>
+                is a version in your Gemfile.lock still served — RubyGems
+                publishes no yanked flag, so the whole version list is read and
+                compared
+              </td>
               <td>
                 <code className="dc-mono" style={CODE}>
                   --no-deps

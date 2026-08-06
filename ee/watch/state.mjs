@@ -44,7 +44,7 @@ export function assertPrivate(state) {
   }
 
   for (const [name, entry] of Object.entries(state.repos ?? {})) {
-    const KEYS = new Set(["providers", "artifacts", "head", "last_scan", "prs"]);
+    const KEYS = new Set(["providers", "artifacts", "head", "last_scan", "failed_on", "prs"]);
     for (const k of Object.keys(entry)) if (!KEYS.has(k)) refuse(`repos[${name}].${k}`);
     if (!strArray(entry.providers)) refuse(`repos[${name}].providers`);
     if (!Array.isArray(entry.artifacts) || !entry.artifacts.every(artifactId)) {
@@ -52,6 +52,9 @@ export function assertPrivate(state) {
     }
     if (!strOrNull(entry.head)) refuse(`repos[${name}].head`);
     if (!strOrNull(entry.last_scan)) refuse(`repos[${name}].last_scan`);
+    if (entry.failed_on !== undefined && !strOrNull(entry.failed_on)) {
+      refuse(`repos[${name}].failed_on`);
+    }
     for (const [branch, pr] of Object.entries(entry.prs ?? {})) {
       const PR = new Set(["opened_on", "url"]);
       for (const k of Object.keys(pr)) if (!PR.has(k)) refuse(`repos[${name}].prs[${branch}].${k}`);
@@ -71,6 +74,28 @@ export function assertPrivate(state) {
 export const carryPrs = (prev, entry) => ({
   ...entry,
   prs: { ...(prev?.prs || {}), ...entry.prs },
+});
+
+/**
+ * The entry for a repository whose sweep threw: everything the last good
+ * sweep learned, plus the day this one failed.
+ *
+ * The day is the whole record. An error message is the one string here
+ * written by someone else's git, lockfile or scanner output, and it can
+ * carry a path out of their repository, so it goes to the operator's console
+ * and never into this file. What the next sweep needs is only that the
+ * attempt did not happen: `planRepo` scans a repository with `failed_on`
+ * whether or not its code or its providers moved, because its recorded head
+ * is the one from the last sweep that actually completed, and "code
+ * unchanged" is true of a repository nobody managed to look at.
+ */
+export const markFailed = (prev, day) => ({
+  providers: prev?.providers ?? [],
+  artifacts: prev?.artifacts ?? [],
+  head: prev?.head ?? null,
+  last_scan: prev?.last_scan ?? null,
+  failed_on: day,
+  prs: prev?.prs ?? {},
 });
 
 export async function loadState(file) {

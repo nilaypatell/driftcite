@@ -1,13 +1,18 @@
 provider: groq
 spec_version: 1
-updated: 2026-07-26
+updated: 2026-08-06
 sources:
   - https://console.groq.com/docs/deprecations
 
 # Groq announces deprecations by email and on the deprecations page, with a
 # transition period before "requests to deprecated model IDs will return
-# errors". The page names the migration target but does not publish a shutdown
-# date for these, so no retires_on is recorded rather than one being invented.
+# errors". When this file was first written the page named the migration target
+# but no shutdown date, so none was recorded. Groq has since published one:
+# both models shut down 08/16/26, announced by email on 2026-06-17.
+#
+# The deprecation applies to the free and developer tiers. Enterprise customers
+# with a committed-spend contract are explicitly excluded, so a finding here is
+# not necessarily a dead call for every reader.
 context:
   file_markers:
     - groq
@@ -20,11 +25,12 @@ artifacts:
     match:
       literals: ["llama-3.1-8b-instant"]
     status: deprecated
+    retires_on: 2026-08-16
     replacement: openai/gpt-oss-20b
     severity: warning
     note: >-
-      Deprecated for free and developer tiers. Requests will return errors at
-      end of life. No shutdown date published.
+      Deprecated for free and developer tiers. Shuts down 2026-08-16, after
+      which requests return errors.
     evidence: https://console.groq.com/docs/deprecations
 
   - id: groq/model_id/llama-3.3-70b-versatile
@@ -32,9 +38,11 @@ artifacts:
     match:
       literals: ["llama-3.3-70b-versatile"]
     status: deprecated
+    retires_on: 2026-08-16
     replacement: openai/gpt-oss-120b
     severity: warning
     note: >-
-      Deprecated for free and developer tiers. Requests will return errors at
-      end of life. No shutdown date published.
+      Deprecated for free and developer tiers. Shuts down 2026-08-16, after
+      which requests return errors. Groq names qwen/qwen3.6-27b as a second
+      accepted target.
     evidence: https://console.groq.com/docs/deprecations

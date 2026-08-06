@@ -65,7 +65,7 @@ const CONTEXT_REQUIRED = new Set([
 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-function matcher(literal, kind) {
+function matcher(literal, kind, flags = "") {
   const lit = esc(literal);
   const parts = [];
   for (const shape of MATCH_SHAPES[kind] || DEFAULT_SHAPES) {
@@ -73,7 +73,7 @@ function matcher(literal, kind) {
     else if (shape === "key") parts.push(`(?<![\\w.])${lit}\\s*[:=]`);
     else if (shape === "word") parts.push(`(?<![\\w./-])${lit}(?![\\w.-])`);
   }
-  return new RegExp(parts.join("|"));
+  return new RegExp(parts.join("|"), flags);
 }
 
 /**
@@ -312,6 +312,21 @@ async function scanRepo(root, artifacts) {
     const lowered = text.toLowerCase();
     let lines = null;
 
+    /**
+     * Which literal claimed which stretch of which line.
+     *
+     * An endpoint literal is a prefix of its own sub-paths, and the "word"
+     * shape has to allow a trailing slash so that /v1/invoices/upcoming still
+     * matches inside a URL that continues past it. The cost is that the parent
+     * artifact also matches inside /v1/invoices/upcoming/lines, and one call
+     * site came back as two findings, once under each id. Recording the span
+     * each literal matched, rather than only that it matched somewhere on the
+     * line, is what lets the longer literal win exactly where the two overlap
+     * while a shorter one standing on its own further along the same line is
+     * still its own call.
+     */
+    const claims = new Map();
+
     for (const { lit, art } of index) {
       if (!text.includes(lit)) continue;
       if (CONTEXT_REQUIRED.has(art.kind) || art.require_context) {
@@ -322,11 +337,31 @@ async function scanRepo(root, artifacts) {
       if (!re.test(text)) continue;
       if (lines === null) lines = text.split(/\r?\n/);
 
+      const all = matcher(lit, art.kind, "g");
       for (let i = 0; i < lines.length; i++) {
         if (isComment(lines[i])) continue;
-        if (!re.test(lines[i])) continue;
+        all.lastIndex = 0;
+        const spans = [...lines[i].matchAll(all)].map((m) => [m.index, m.index + m[0].length]);
+        if (!spans.length) continue;
+        if (!claims.has(i)) claims.set(i, []);
+        claims.get(i).push({ art, lit, spans });
+      }
+    }
+
+    const rel = path.relative(root, file);
+    for (const i of [...claims.keys()].sort((a, b) => a - b)) {
+      const onLine = claims.get(i);
+      for (const claim of onLine) {
+        // Every place this literal appeared sits inside something longer that
+        // also matched here, so it is the same call site read through a less
+        // specific artifact rather than a second one.
+        const shadowed = claim.spans.every(([s, e]) => onLine.some(
+          (other) => other.lit.length > claim.lit.length &&
+            other.spans.some(([os, oe]) => os <= s && oe >= e)
+        ));
+        if (shadowed) continue;
+        const art = claim.art;
         const { severity, status, daysLeft } = applyDeadline(art);
-        const rel = path.relative(root, file);
         findings.push({
           context: fileContext(rel),
           file: rel,
@@ -783,6 +818,38 @@ async function cargoDeps(paths, root) {
   return found;
 }
 
+/**
+ * A registry answer, and the difference between "no" and "could not ask".
+ *
+ * Each of these lookups used to return {} from a bare catch, so a dropped
+ * connection, a rate limit or a 500 was indistinguishable from a package the
+ * registry had nothing against. The user then read "No drift found" when the
+ * truth was that the question never got through. These two constructors are
+ * what makes that difference sayable, and every caller has to unwrap one.
+ */
+const answered = (versions) => ({ ok: true, versions });
+const unanswered = (why) => ({ ok: false, why });
+
+/**
+ * A 404 is an answer, not a failure: the package is not published on this
+ * registry at all — private, renamed, vendored, or an internal name that
+ * happens to collide. Nothing was yanked and nothing is unknown. Any other
+ * refusal (429, 403, 5xx) means the question went unanswered and has to be
+ * counted as such.
+ */
+function fromStatus(res) {
+  if (res.status === 404) return answered({});
+  return unanswered(`HTTP ${res.status}`);
+}
+
+/** The full stack of a fetch failure is noise in a one-line note. */
+function whyFailed(err) {
+  if (err?.name === "TimeoutError" || err?.name === "AbortError") return "timed out";
+  const code = err?.cause?.code || err?.code;
+  if (code) return String(code);
+  return err?.message ? String(err.message).slice(0, 60) : "request failed";
+}
+
 async function checkCrates(name) {
   try {
     const res = await fetch(`https://crates.io/api/v1/crates/${encodeURIComponent(name)}`, {
@@ -790,15 +857,15 @@ async function checkCrates(name) {
       headers: { "user-agent": "driftcite (+https://github.com/nilaypatell/driftcite)" },
       signal: AbortSignal.timeout(20_000),
     });
-    if (!res.ok) return {};
+    if (!res.ok) return fromStatus(res);
     const doc = await res.json();
     const out = {};
     for (const v of doc.versions || []) {
       if (v?.yanked && v?.num) out[v.num] = "yanked from crates.io";
     }
-    return out;
-  } catch {
-    return {};
+    return answered(out);
+  } catch (err) {
+    return unanswered(whyFailed(err));
   }
 }
 
@@ -816,20 +883,20 @@ async function checkRubygems(name) {
       `https://rubygems.org/api/v1/versions/${encodeURIComponent(name)}.json`,
       { signal: AbortSignal.timeout(20_000) }
     );
-    // 404 means the gem is not on rubygems.org at all — private, renamed or
-    // vendored. That is not a yank, and guessing would be a false finding.
-    if (!res.ok) return {};
+    if (!res.ok) return fromStatus(res);
     const doc = await res.json();
-    if (!Array.isArray(doc) || doc.length === 0) return {};
+    // A body that is not a version list answers nothing about any version,
+    // but the registry did reply, so this is not an outage.
+    if (!Array.isArray(doc) || doc.length === 0) return answered({});
     const served = new Set();
     for (const v of doc) {
       if (typeof v?.number !== "string") continue;
       served.add(v.number);
       if (v.platform && v.platform !== "ruby") served.add(`${v.number}-${v.platform}`);
     }
-    return { served };
-  } catch {
-    return {};
+    return answered({ served });
+  } catch (err) {
+    return unanswered(whyFailed(err));
   }
 }
 
@@ -839,15 +906,15 @@ async function checkNpm(name) {
       headers: { accept: "application/vnd.npm.install-v1+json" },
       signal: AbortSignal.timeout(20_000),
     });
-    if (!res.ok) return {};
+    if (!res.ok) return fromStatus(res);
     const doc = await res.json();
     const out = {};
     for (const [v, meta] of Object.entries(doc.versions || {})) {
       if (meta?.deprecated) out[v] = String(meta.deprecated).trim();
     }
-    return out;
-  } catch {
-    return {};
+    return answered(out);
+  } catch (err) {
+    return unanswered(whyFailed(err));
   }
 }
 
@@ -856,7 +923,7 @@ async function checkPypi(name) {
     const res = await fetch(`https://pypi.org/pypi/${encodeURIComponent(name)}/json`, {
       signal: AbortSignal.timeout(20_000),
     });
-    if (!res.ok) return {};
+    if (!res.ok) return fromStatus(res);
     const doc = await res.json();
     const out = {};
     for (const [v, files] of Object.entries(doc.releases || {})) {
@@ -865,20 +932,35 @@ async function checkPypi(name) {
         out[v] = (first.yanked_reason || "").trim() || "yanked, no reason given";
       }
     }
-    return out;
-  } catch {
-    return {};
+    return answered(out);
+  } catch (err) {
+    return unanswered(whyFailed(err));
   }
 }
 
+/**
+ * Ask a registry about every package a lockfile resolved, and keep count of
+ * the ones it would not answer for.
+ *
+ * A lookup that failed is not a package that is fine. An unreachable registry
+ * must never fail the build — running this on a plane, or behind a proxy that
+ * blocks npmjs.org, has to stay pleasant — but the count and the reason come
+ * back here so the report can say plainly which packages went unchecked.
+ */
 async function resolveFlagged(deps, check, ecosystem) {
   const names = [...new Set([...deps.keys()].map((k) => k.slice(0, k.lastIndexOf("@"))))];
   const flagged = [];
+  const reasons = new Map(); // why -> how many packages hit it
   const CONC = 16;
   for (let i = 0; i < names.length; i += CONC) {
     const batch = names.slice(i, i + CONC);
     const results = await Promise.all(batch.map((n) => check(n).then((r) => [n, r])));
-    for (const [name, versions] of results) {
+    for (const [name, answer] of results) {
+      if (!answer.ok) {
+        reasons.set(answer.why, (reasons.get(answer.why) || 0) + 1);
+        continue;
+      }
+      const versions = answer.versions;
       for (const [key, source] of deps) {
         const at = key.lastIndexOf("@");
         if (key.slice(0, at) !== name) continue;
@@ -899,7 +981,14 @@ async function resolveFlagged(deps, check, ecosystem) {
       }
     }
   }
-  return flagged;
+  let unasked = 0;
+  for (const n of reasons.values()) unasked += n;
+  const ranked = [...reasons].sort((a, b) => b[1] - a[1]).map(([why]) => why);
+  const note = unasked
+    ? `${ecosystem}: ${unasked} of ${names.length} package(s) could not be checked `
+      + `(${ranked.slice(0, 3).join(", ")}); those versions are unverified, not clean`
+    : null;
+  return { flagged, unasked, note };
 }
 
 async function scanRegistry(root, { collectOnly = false } = {}) {
@@ -918,15 +1007,20 @@ async function scanRegistry(root, { collectOnly = false } = {}) {
     );
   }
   if (collectOnly) return { js, pypi, gems, crates, notes };
-  const [npmFlagged, pypiFlagged, gemFlagged, crateFlagged] = await Promise.all([
+  const results = await Promise.all([
     resolveFlagged(js, checkNpm, "npm"),
     resolveFlagged(pypi, checkPypi, "pypi"),
     resolveFlagged(gems, checkRubygems, "rubygems"),
     resolveFlagged(crates, checkCrates, "crates.io"),
   ]);
+  // A registry that would not answer is named alongside the lockfile formats
+  // that are not read yet: both are things the tool could not do, and both
+  // would otherwise look exactly like a clean result.
+  for (const r of results) if (r.note) notes.push(r.note);
   return {
-    flagged: [...npmFlagged, ...pypiFlagged, ...gemFlagged, ...crateFlagged],
+    flagged: results.flatMap((r) => r.flagged),
     checked: js.size + pypi.size + gems.size + crates.size,
+    unreachable: results.reduce((n, r) => n + r.unasked, 0),
     notes,
   };
 }
@@ -959,7 +1053,12 @@ function report(findings, registry, root, feedSource, suppressed = []) {
   }
 
   if (!findings.length && !registry.flagged.length) {
-    console.log("No drift found.");
+    // The plain sentence would be a claim about packages nobody managed to
+    // ask about. The note above says which ones; this stops the summary line
+    // from contradicting it.
+    console.log(registry.unreachable
+      ? "No drift found in what could be checked."
+      : "No drift found.");
     console.log();
     return 0;
   }
@@ -1037,7 +1136,13 @@ Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
 berry), pinned requirements.txt, Cargo.lock, and Gemfile.lock. Formats it
 cannot read yet are named in the output instead of silently skipped.
 
+Registry lookups that fail — offline, rate limited, a 500 — are counted and
+named in the output. They never fail the build, but they are never reported
+as a clean package either.
+
 Exits 1 if anything breaking was found, so it drops into CI unchanged.
+--fix --write still exits 1 when a breaking finding it could not fix is left
+in the tree, so a partial repair never turns the build green.
 Your source code is never sent anywhere.`);
     return 0;
   }
@@ -1058,8 +1163,13 @@ Your source code is never sent anywhere.`);
   if (argv.includes("--list-deps")) {
     // Parse every dependency manifest and print what resolved, no network.
     // Exists so the lockfile parsers are testable without touching a registry.
-    const { js, pypi, notes } = await scanRegistry(root, { collectOnly: true });
-    for (const [ecosystem, deps] of [["npm", js], ["pypi", pypi]]) {
+    // Every ecosystem scanRegistry resolves is listed. Printing only npm and
+    // pypi made Cargo.lock and Gemfile.lock look unread when they had in fact
+    // been parsed, which is the same lie as skipping them.
+    const { js, pypi, gems, crates, notes } = await scanRegistry(root, { collectOnly: true });
+    for (const [ecosystem, deps] of [
+      ["npm", js], ["pypi", pypi], ["rubygems", gems], ["crates.io", crates],
+    ]) {
       for (const [key, source] of deps) {
         const at = key.lastIndexOf("@");
         console.log(`${ecosystem} ${key.slice(0, at)} ${key.slice(at + 1)} ${source}`);
@@ -1102,7 +1212,7 @@ Your source code is never sent anywhere.`);
     return 0;
   }
   const registry = noDeps || offline
-    ? { flagged: [], checked: 0, notes: [] }
+    ? { flagged: [], checked: 0, unreachable: 0, notes: [] }
     : await scanRegistry(root);
 
   if (asJson) {
@@ -1119,15 +1229,35 @@ Your source code is never sent anywhere.`);
       for (const w of plan.writes) await writeFile(w.full, w.body, "utf8");
     }
     reportFixes(plan.edits, plan.unfixable, write);
-    if (write && plan.edits.length) return 0;
+    if (write) {
+      // --write repairs what it can and leaves the rest exactly where it was.
+      // Returning 0 because *something* was fixed turned CI green over code
+      // that still called a removed endpoint, which is the one outcome this
+      // tool exists to prevent. What is still in the tree decides the exit
+      // code, precisely as it would have without --fix.
+      const repaired = new Set(plan.edits.map((e) => `${e.file}:${e.line}:${e.artifact}`));
+      const left = findings.filter((f) => f.severity === "breaking"
+        && !repaired.has(`${f.file}:${f.line}:${f.artifact}`));
+      if (left.length) {
+        console.log(c(BOLD, `${left.length} breaking finding(s) remain after --write`));
+        console.log(c(DIM, "  exiting 1: these are still in your tree\n"));
+      }
+      return left.length ? 1 : 0;
+    }
   }
 
   return code;
 }
 
-/** The lockfile readers, for the test suite. Hitting the live registries in a
- *  test would make the suite depend on someone else's uptime. */
-export const __test = { cargoDeps, gemDeps, pypiDeps };
+/** The lockfile readers and the registry layer, for the test suite. Hitting
+ *  the live registries in a test would make the suite depend on someone
+ *  else's uptime; these are called with globalThis.fetch swapped for a stub,
+ *  which is also the only way to exercise a rate limit on purpose. */
+export const __test = {
+  cargoDeps, gemDeps, pypiDeps,
+  checkNpm, checkPypi, checkCrates, checkRubygems,
+  resolveFlagged, scanRegistry,
+};
 
 // Only run when invoked as a command. The scanner is Apache 2.0 so that it
 // can be embedded in other people's tooling, and a module that scans a

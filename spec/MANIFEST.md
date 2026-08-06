@@ -22,7 +22,9 @@ any particular customer's repo.
 ```yaml
 provider: <slug>            # stripe, openai, github, cloudflare
 spec_version: 1
-updated: <YYYY-MM-DD>
+updated: <YYYY-MM-DD>       # curated manifests; generated ones carry observations
+source_license: <spdx>      # optional; the licence of the spec this came from
+source_notice: <url>        # optional; that licence, where it can be read
 sources:                    # where each fact can be independently checked
   - <url>
 context:                    # optional
@@ -30,7 +32,7 @@ context:                    # optional
     - <string>              # non-model artifacts count as findings
 artifacts:
   - id: <provider>/<kind>/<name>    # stable, globally unique
-    kind: model_id | request_param | tool_type | endpoint | sdk_symbol
+    kind: model_id | request_param | tool_type | endpoint | sdk_symbol | enum_value
     match:
       literals: ["<exact string as it appears in source>"]
     status: active | deprecated | retired | removed
@@ -42,6 +44,31 @@ artifacts:
     evidence: <url>                 # the specific page proving this artifact
     require_context: true           # optional; see rule 5
 ```
+
+### `observations`, on a generated manifest
+
+A manifest produced by diffing two published specs also records each
+comparison it made, and what it decided not to emit:
+
+```yaml
+observations:
+  - repo: stripe/openapi
+    from: v1200
+    to: v2345
+    from_api_version: '2024-06-20'
+    to_api_version: 2026-06-24.dahlia
+    observed_on: '2026-07-26'
+    withheld:
+      - reason: enum value is an ordinary word and would match unrelated code
+        count: 6
+        examples: ["'embedded'", "'fastest'", "'hosted'"]
+```
+
+`withheld` is the part that matters. A generator that drops a candidate
+silently is indistinguishable from one that never saw it, so the reason and
+the examples are written down and committed. It is also the only record of why
+a real removal is absent from the feed, which is the first question anyone
+asks when they find one missing.
 
 ## Rules
 

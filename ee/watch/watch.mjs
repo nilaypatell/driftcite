@@ -14,6 +14,9 @@
  * Serial on purpose, one repository and one PR at a time: the binding limit
  * is 500 content-creating requests per hour, and a queue that honours
  * Retry-After survives it where a fan-out gets the App suspended.
+ *
+ * Exit 0 if every repository was reached, 1 if any of them failed and was
+ * named as failed, 2 if the sweep itself could not run.
  */
 
 import { readFile } from "node:fs/promises";
@@ -21,7 +24,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { appJwt, makeApi, installationToken, listInstallations, listRepos } from "./github.mjs";
-import { loadState, saveState, carryPrs } from "./state.mjs";
+import { loadState, saveState, carryPrs, markFailed } from "./state.mjs";
 import { feedSnapshot, feedDelta, planRepo } from "./plan.mjs";
 import { sweepRepo } from "./sweep.mjs";
 
@@ -38,6 +41,108 @@ const USAGE = `driftcite watch: scan every repository the App is installed on.
 Needs DRIFTCITE_APP_ID and DRIFTCITE_APP_KEY_FILE in the environment. The App
 holds exactly two repository permissions: Contents (read & write) and Pull
 requests (read & write).`;
+
+/**
+ * The sweep itself: every installation, every repository, one at a time.
+ *
+ * Nothing a single repository does ends the run. A clone that dies halfway,
+ * a permission removed between minting the token and using it, a lockfile
+ * the scanner chokes on — before this, any of them threw all the way out of
+ * the process, and because the state file is written once at the end, the
+ * work already done on every repository swept before the bad one was thrown
+ * away with it. The next run then re-cloned all of them. So a repository
+ * that fails is recorded as failed, named in the output, and the sweep moves
+ * on to the next one.
+ *
+ * Effects come in as arguments, the same as every other module here, so the
+ * tests can run a full sweep with no network and no real App.
+ */
+export async function runSweep({
+  state, today, live, full, delta, api, installations, jwt,
+  mintToken = installationToken,
+  repos = listRepos,
+  sweep = sweepRepo,
+  cliPath = CLI,
+  log = console.log,
+}) {
+  const counts = {};
+  const tally = (k) => { counts[k] = (counts[k] || 0) + 1; };
+  const failures = [];
+
+  // An error message is the operator's only clue about a repository that
+  // threw, and it is also the one string in this run written by someone
+  // else's git or scanner output. One capped line of it reaches the log, so
+  // a stack trace or a chunk of a customer's file cannot pour into it.
+  const because = (err) => String(err?.message ?? err).split("\n")[0].slice(0, 200);
+  const line = (action, name, note) => log(`  ${action.padEnd(12)} ${name}   ${note}`);
+
+  const failed = (name, err) => {
+    tally("failed");
+    failures.push({ name, because: because(err) });
+    line("failed", name, because(err));
+  };
+
+  for (const inst of installations) {
+    let token;
+    let visible;
+    try {
+      // A JWT lives nine minutes and an installation token an hour; minting
+      // fresh ones per installation keeps a long serial sweep inside both.
+      token = await mintToken(api, jwt(), inst.id);
+      visible = await repos(api, token);
+    } catch (err) {
+      // A suspended installation or a revoked grant is one customer's
+      // problem, and it used to be every customer's: the throw came out
+      // through the whole loop and no state was written at all. There is no
+      // repository to mark here — the list of them is exactly what failed.
+      failed(`installation ${inst.id}`, err);
+      continue;
+    }
+
+    for (const repo of visible) {
+      const name = repo.full_name;
+      const entry = state.repos[name];
+      try {
+        // For a known repo, one cheap API call decides whether the clone is
+        // earned at all; a never-seen repo is cloned regardless.
+        let head = null;
+        if (entry) {
+          const branch = await api(token, "GET",
+            `/repos/${name}/branches/${encodeURIComponent(repo.default_branch)}`);
+          head = branch?.commit?.sha ?? null;
+        }
+        const plan = planRepo(entry, { head, delta, full });
+        if (!plan.scan) {
+          tally("skipped");
+          line("skip", name, plan.reason);
+          continue;
+        }
+
+        const out = await sweep({
+          repo: {
+            fullName: name,
+            cloneUrl: repo.clone_url.replace("https://", `https://x-access-token:${token}@`),
+            defaultBranch: repo.default_branch,
+          },
+          api, token, cliPath, today, live,
+        });
+        state.repos[name] = carryPrs(entry, out.entry);
+        tally(out.action);
+        line(out.action, name, plan.reason + (out.url ? `   ${out.url}` : ""));
+      } catch (err) {
+        // Whatever went wrong here is about this repository: the sweep of
+        // the next one is unaffected, and the entries already folded into
+        // the state stay folded in. The mark is what stops a repository
+        // from going quiet — the next sweep scans it whether or not
+        // anything moved.
+        state.repos[name] = markFailed(entry, today);
+        failed(name, err);
+      }
+    }
+  }
+
+  return { counts, failures };
+}
 
 async function main() {
   const argv = process.argv.slice(2);
@@ -70,50 +175,29 @@ async function main() {
   console.log(`${installations.length} installation(s)` +
     (live ? "" : "   dry run: nothing will be pushed"));
 
-  const counts = {};
-  const tally = (k) => { counts[k] = (counts[k] || 0) + 1; };
-
-  for (const inst of installations) {
-    // A JWT lives nine minutes and an installation token an hour; minting
-    // fresh ones per installation keeps a long serial sweep inside both.
-    const token = await installationToken(api, appJwt({ appId, privateKey }), inst.id);
-
-    for (const repo of await listRepos(api, token)) {
-      const name = repo.full_name;
-      const entry = state.repos[name];
-
-      // For a known repo, one cheap API call decides whether the clone is
-      // earned at all; a never-seen repo is cloned regardless.
-      let head = null;
-      if (entry) {
-        const branch = await api(token, "GET",
-          `/repos/${name}/branches/${encodeURIComponent(repo.default_branch)}`);
-        head = branch?.commit?.sha ?? null;
-      }
-      const plan = planRepo(entry, { head, delta, full });
-      if (!plan.scan) {
-        tally("skipped");
-        console.log(`  skip   ${name}   ${plan.reason}`);
-        continue;
-      }
-
-      const out = await sweepRepo({
-        repo: {
-          fullName: name,
-          cloneUrl: repo.clone_url.replace("https://", `https://x-access-token:${token}@`),
-          defaultBranch: repo.default_branch,
-        },
-        api, token, cliPath: CLI, today, live,
-      });
-      state.repos[name] = carryPrs(entry, out.entry);
-      tally(out.action);
-      console.log(`  ${out.action.padEnd(12)} ${name}   ${plan.reason}` +
-        (out.url ? `   ${out.url}` : ""));
-    }
+  let counts = {};
+  let failures = [];
+  let fatal = null;
+  try {
+    ({ counts, failures } = await runSweep({
+      state, today, live, full, delta, api, installations,
+      jwt: () => appJwt({ appId, privateKey }),
+    }));
+  } catch (err) {
+    // A repository never gets here; this is the sweep itself coming apart.
+    // What it learned before that is still true, and dropping it would send
+    // the next run back to clone every repository this one already read.
+    fatal = err;
   }
 
-  state.feed_snapshot = snapshot;
   state.last_sweep = today;
+  // The snapshot is how the next sweep learns which providers moved.
+  // Advancing it after a run that did not finish would retire a delta on
+  // behalf of repositories this run never reached, and they would sit
+  // unscanned straight through the drift. A repository that failed is not
+  // stranded that way: it carries failed_on and is scanned regardless.
+  if (!fatal) state.feed_snapshot = snapshot;
+
   if (live) {
     await saveState(stateFile, state);
   } else {
@@ -122,15 +206,31 @@ async function main() {
   console.log(
     Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(", ") || "no repositories visible"
   );
-  return 0;
+  // Named, not buried in the per-repository lines above: a sweep that quietly
+  // half-happened is the one failure mode nobody notices.
+  if (failures.length) {
+    console.log(`failed: ${failures.map((f) => f.name).join(", ")}`);
+  }
+  if (fatal) {
+    console.error(`driftcite watch: ${fatal.message}`);
+    return 2;
+  }
+  return failures.length ? 1 : 0;
 }
 
-// Same flush discipline as the CLI: process.exit() would truncate piped
-// output, so set the code and let the process drain.
-main().then(
-  (code) => { process.exitCode = code; },
-  (err) => {
-    console.error(`driftcite watch: ${err.message}`);
-    process.exitCode = 2;
-  }
-);
+// Only run when invoked as a command, so the tests can import runSweep and
+// drive a whole sweep without the process going looking for an App.
+const invokedDirectly =
+  process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (invokedDirectly) {
+  // Same flush discipline as the CLI: process.exit() would truncate piped
+  // output, so set the code and let the process drain.
+  main().then(
+    (code) => { process.exitCode = code; },
+    (err) => {
+      console.error(`driftcite watch: ${err.message}`);
+      process.exitCode = 2;
+    }
+  );
+}

@@ -9,12 +9,24 @@ observations:
   from_api_version: 4.0.0
   to_api_version: 4.0.0
   observed_on: '2026-07-26'
+  withheld:
+  - reason: enum value appears in more than six schemas; too broad to attribute
+    count: 1
+    examples:
+    - '''#com.cloudflare.api.account.secrets-store.secret.read'' at 10 schemas'
 - repo: cloudflare/api-schemas
   from: d3a1cc521849
   to: cadacbb547e8
   from_api_version: 4.0.0
   to_api_version: 4.0.0
   observed_on: '2026-08-06'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 4
+    examples:
+    - '''crawl'''
+    - '''env'''
+    - '''starting'''
 sources:
 - https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
@@ -31,8 +43,9 @@ artifacts:
     - /accounts/{account_id}/cloudforce-one/exemptions
   status: removed
   severity: breaking
-  note: POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and
-    is gone in 4.0.0.
+  note: DELETE, GET, POST /accounts/{account_id}/cloudforce-one/exemptions existed
+    in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own
+    version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances
   kind: endpoint
@@ -41,8 +54,9 @@ artifacts:
     - /accounts/{account_id}/containers/applications/{application_id}/instances
   status: removed
   severity: breaking
-  note: POST /accounts/{account_id}/containers/applications/{application_id}/instances
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: GET, POST /accounts/{account_id}/containers/applications/{application_id}/instances
+    existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
   kind: endpoint
@@ -51,8 +65,9 @@ artifacts:
     - /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
   status: removed
   severity: breaking
-  note: GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: DELETE, GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}
+    existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec
   kind: endpoint
@@ -62,7 +77,8 @@ artifacts:
   status: removed
   severity: breaking
   note: POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch
   kind: endpoint
@@ -72,7 +88,8 @@ artifacts:
   status: removed
   severity: breaking
   note: POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/email/routing/suppression
   kind: endpoint
@@ -81,8 +98,9 @@ artifacts:
     - /accounts/{account_id}/email/routing/suppression
   status: deprecated
   severity: warning
-  note: POST /accounts/{account_id}/email/routing/suppression was marked deprecated
-    between 4.0.0 and 4.0.0.
+  note: GET, POST /accounts/{account_id}/email/routing/suppression was marked deprecated
+    between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version
+    stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/email/routing/suppression/{suppression_id}
   kind: endpoint
@@ -91,8 +109,9 @@ artifacts:
     - /accounts/{account_id}/email/routing/suppression/{suppression_id}
   status: deprecated
   severity: warning
-  note: GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was
-    marked deprecated between 4.0.0 and 4.0.0.
+  note: DELETE, GET /accounts/{account_id}/email/routing/suppression/{suppression_id}
+    was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06;
+    the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/email/sending/suppression
   kind: endpoint
@@ -101,8 +120,9 @@ artifacts:
     - /accounts/{account_id}/email/sending/suppression
   status: deprecated
   severity: warning
-  note: POST /accounts/{account_id}/email/sending/suppression was marked deprecated
-    between 4.0.0 and 4.0.0.
+  note: GET, POST /accounts/{account_id}/email/sending/suppression was marked deprecated
+    between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version
+    stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/email/sending/suppression/{suppression_id}
   kind: endpoint
@@ -111,8 +131,9 @@ artifacts:
     - /accounts/{account_id}/email/sending/suppression/{suppression_id}
   status: deprecated
   severity: warning
-  note: GET /accounts/{account_id}/email/sending/suppression/{suppression_id} was
-    marked deprecated between 4.0.0 and 4.0.0.
+  note: DELETE, GET /accounts/{account_id}/email/sending/suppression/{suppression_id}
+    was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06;
+    the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss
   kind: endpoint
@@ -122,7 +143,8 @@ artifacts:
   status: removed
   severity: breaking
   note: PUT /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/paygo-usage
   kind: endpoint
@@ -131,7 +153,8 @@ artifacts:
     - /accounts/{account_id}/paygo-usage
   status: removed
   severity: breaking
-  note: GET /accounts/{account_id}/paygo-usage existed in 4.0.0 and is gone in 4.0.0.
+  note: GET /accounts/{account_id}/paygo-usage existed in d3a1cc521849 and is gone
+    in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//accounts/{account_id}/paygo-usage-info
   kind: endpoint
@@ -140,8 +163,8 @@ artifacts:
     - /accounts/{account_id}/paygo-usage-info
   status: removed
   severity: breaking
-  note: GET /accounts/{account_id}/paygo-usage-info existed in 4.0.0 and is gone in
-    4.0.0.
+  note: GET /accounts/{account_id}/paygo-usage-info existed in d3a1cc521849 and is
+    gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores
   kind: endpoint
@@ -150,8 +173,8 @@ artifacts:
     - /system/accounts/{account_tag}/stores
   status: removed
   severity: breaking
-  note: POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in
-    4.0.0.
+  note: GET, POST /system/accounts/{account_tag}/stores existed in c166647800fb and
+    is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}
   kind: endpoint
@@ -160,8 +183,9 @@ artifacts:
     - /system/accounts/{account_tag}/stores/{store_id}
   status: removed
   severity: breaking
-  note: GET /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and
-    is gone in 4.0.0.
+  note: DELETE, GET /system/accounts/{account_tag}/stores/{store_id} existed in c166647800fb
+    and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed
+    4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets
   kind: endpoint
@@ -170,8 +194,9 @@ artifacts:
     - /system/accounts/{account_tag}/stores/{store_id}/secrets
   status: removed
   severity: breaking
-  note: POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0
-    and is gone in 4.0.0.
+  note: DELETE, GET, POST /system/accounts/{account_tag}/stores/{store_id}/secrets
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
   kind: endpoint
@@ -180,8 +205,9 @@ artifacts:
     - /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
   status: removed
   severity: breaking
-  note: PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: DELETE, GET, PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate
   kind: endpoint
@@ -191,7 +217,8 @@ artifacts:
   status: removed
   severity: breaking
   note: POST /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/endpoint//zones/{zone_id}/email/routing/suppression
   kind: endpoint
@@ -200,8 +227,9 @@ artifacts:
     - /zones/{zone_id}/email/routing/suppression
   status: deprecated
   severity: warning
-  note: POST /zones/{zone_id}/email/routing/suppression was marked deprecated between
-    4.0.0 and 4.0.0.
+  note: GET, POST /zones/{zone_id}/email/routing/suppression was marked deprecated
+    between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version
+    stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//zones/{zone_id}/email/routing/suppression/{suppression_id}
   kind: endpoint
@@ -210,8 +238,9 @@ artifacts:
     - /zones/{zone_id}/email/routing/suppression/{suppression_id}
   status: deprecated
   severity: warning
-  note: GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was marked
-    deprecated between 4.0.0 and 4.0.0.
+  note: DELETE, GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was
+    marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06;
+    the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//zones/{zone_id}/email/sending/suppression
   kind: endpoint
@@ -220,8 +249,9 @@ artifacts:
     - /zones/{zone_id}/email/sending/suppression
   status: deprecated
   severity: warning
-  note: POST /zones/{zone_id}/email/sending/suppression was marked deprecated between
-    4.0.0 and 4.0.0.
+  note: GET, POST /zones/{zone_id}/email/sending/suppression was marked deprecated
+    between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version
+    stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//zones/{zone_id}/email/sending/suppression/{suppression_id}
   kind: endpoint
@@ -230,8 +260,9 @@ artifacts:
     - /zones/{zone_id}/email/sending/suppression/{suppression_id}
   status: deprecated
   severity: warning
-  note: GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was marked
-    deprecated between 4.0.0 and 4.0.0.
+  note: DELETE, GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was
+    marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06;
+    the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/endpoint//zones/{zone_id}/rate_limit_analytics
   kind: endpoint
@@ -240,8 +271,8 @@ artifacts:
     - /zones/{zone_id}/rate_limit_analytics
   status: deprecated
   severity: warning
-  note: GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between 4.0.0
-    and 4.0.0.
+  note: GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between d3a1cc521849
+    and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.create
   kind: enum_value
@@ -251,7 +282,8 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''#com.cloudflare.api.account.secrets-store.secret.create'' was
-    valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.post.x-cfPermissionsRequired'
+    valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores.post.x-cfPermissionsRequired.
+    Observed 2026-07-26; the spec''s own version stayed 4.0.0.'
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.delete
   kind: enum_value
@@ -261,7 +293,8 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''#com.cloudflare.api.account.secrets-store.secret.delete'' was
-    valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores/{store_id}/secrets.delete.x-cfPermissionsRequired'
+    valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores/{store_id}/secrets.delete.x-cfPermissionsRequired.
+    Observed 2026-07-26; the spec''s own version stayed 4.0.0.'
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.list
   kind: enum_value
@@ -271,7 +304,8 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''#com.cloudflare.api.account.secrets-store.secret.list'' was
-    valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired'
+    valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired.
+    Observed 2026-07-26; the spec''s own version stayed 4.0.0.'
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/enum_value/library_push
   kind: enum_value
@@ -280,8 +314,9 @@ artifacts:
     - library_push
   status: removed
   severity: breaking
-  note: 'Enum value ''library_push'' was valid in 4.0.0 and is gone in 4.0.0. Seen
-    at: components.schemas.cc_ImageRegistryPermissions'
+  note: 'Enum value ''library_push'' was valid in d3a1cc521849 and is gone in cadacbb547e8.
+    Seen at: components.schemas.cc_ImageRegistryPermissions. Observed 2026-08-06;
+    the spec''s own version stayed 4.0.0.'
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/enum_value/stopped_with_code
   kind: enum_value
@@ -290,8 +325,9 @@ artifacts:
     - stopped_with_code
   status: removed
   severity: breaking
-  note: 'Enum value ''stopped_with_code'' was valid in 4.0.0 and is gone in 4.0.0.
-    Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status'
+  note: 'Enum value ''stopped_with_code'' was valid in d3a1cc521849 and is gone in
+    cadacbb547e8. Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status.
+    Observed 2026-08-06; the spec''s own version stayed 4.0.0.'
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id
   kind: request_param
@@ -300,8 +336,9 @@ artifacts:
     - store_id
   status: removed
   severity: breaking
-  note: Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id}
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: Parameter 'store_id' on DELETE, GET /accounts/{account_id}/secrets_store/stores/{store_id}
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id
   kind: request_param
@@ -310,8 +347,9 @@ artifacts:
     - store_id
   status: removed
   severity: breaking
-  note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: Parameter 'store_id' on DELETE, GET, POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id
   kind: request_param
@@ -320,8 +358,9 @@ artifacts:
     - secret_id
   status: removed
   severity: breaking
-  note: Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: Parameter 'secret_id' on DELETE, GET, PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id
   kind: request_param
@@ -330,8 +369,9 @@ artifacts:
     - store_id
   status: removed
   severity: breaking
-  note: Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
-    existed in 4.0.0 and is gone in 4.0.0.
+  note: Parameter 'store_id' on DELETE, GET, PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id
   kind: request_param
@@ -341,7 +381,8 @@ artifacts:
   status: removed
   severity: breaking
   note: Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - id: cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id
   kind: request_param
@@ -351,5 +392,6 @@ artifacts:
   status: removed
   severity: breaking
   note: Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate
-    existed in 4.0.0 and is gone in 4.0.0.
+    existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the
+    spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849

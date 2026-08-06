@@ -17,7 +17,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
-import { branchName, prBody, splitWorkflowEdits, PR_TITLE } from "./pr.mjs";
+import { branchName, existingBranch, prBody, splitWorkflowEdits, PR_TITLE } from "./pr.mjs";
 
 const exec = promisify(execFile);
 
@@ -68,12 +68,18 @@ export async function sweepRepo({ repo, api, token, cliPath, today, live }) {
     for (const file of refused) await git("checkout", "--", file);
     if (!allowed.length) return { action: "needs-human", entry, refused };
 
-    // A branch already on the remote means a previous PR is open or was
-    // deliberately closed. Re-opening it is how a helpful bot becomes a
-    // nuisance, so leave it alone either way.
+    // Any driftcite branch on the remote means a previous PR is open, was
+    // merged with its branch left behind, or was deliberately closed.
+    // Re-opening it is how a helpful bot becomes a nuisance, so leave it
+    // alone either way. Every head is listed rather than asking the remote
+    // to match a pattern for us, because the answer decides whether we push
+    // into someone else's repository and glob semantics are not worth
+    // betting that on.
+    const heads = (await git("ls-remote", "--heads", "origin")).stdout;
+    const existing = existingBranch(heads);
+    if (existing) return { action: "left-alone", entry, refused, branch: existing };
+
     const branch = branchName(today);
-    const existing = (await git("ls-remote", "--heads", "origin", branch)).stdout.trim();
-    if (existing) return { action: "left-alone", entry, refused };
 
     const body = prBody(breaking);
     if (!live) {

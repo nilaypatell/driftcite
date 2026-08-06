@@ -304,16 +304,22 @@ export default function Docs() {
                   }}
                 >
                   npm carries a per-version <C>deprecated</C> string, PyPI a{" "}
-                  <C>yanked_reason</C>. Written by the maintainer, public, and
-                  unseen after install time.
+                  <C>yanked_reason</C>, crates.io a <C>yanked</C> flag. Written
+                  by the maintainer, public, and unseen after install time.
+                  RubyGems publishes no such flag — a yanked gem stops being
+                  served, and the finding says that rather than claiming a
+                  deprecation nobody wrote.
                 </p>
               </div>
             </div>
             <p style={{ ...aside, margin: "20px 0 0" }}>
               Lockfiles read: <C>package-lock.json</C>, <C>pnpm-lock.yaml</C>,{" "}
               <C>yarn.lock</C> (classic and berry), pinned{" "}
-              <C>requirements.txt</C>. A format it cannot read yet is named in
-              the output instead of silently skipped.
+              <C>requirements.txt</C>, <C>Cargo.lock</C> and{" "}
+              <C>Gemfile.lock</C> — checked against npm, PyPI, crates.io and
+              RubyGems. The formats it cannot read yet — <C>poetry.lock</C>,{" "}
+              <C>uv.lock</C>, <C>Pipfile.lock</C> and <C>go.sum</C> — are named
+              in the output instead of silently skipped.
             </p>
           </section>
 
@@ -683,9 +689,10 @@ export default function Docs() {
             <h2 style={h2}>Offline &amp; privacy</h2>
             <p style={{ ...lead, margin: "16px 0 0" }}>
               Your source code is never transmitted anywhere. The CLI makes
-              exactly three kinds of network request, all optional, and registry
-              requests send package names only — public identifiers, never file
-              contents, paths, or repository names.
+              exactly five kinds of network request — the feed, and one registry
+              apiece for npm, PyPI, crates.io and RubyGems — all optional, and
+              registry requests send package names only: public identifiers,
+              never file contents, paths, or repository names.
             </p>
             <pre className="dc-mono" style={{ ...pre, margin: "20px 0 0" }}>
               {"npx driftcite . --offline --no-deps   "}

@@ -12,7 +12,7 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI = path.join(HERE, "..", "bin", "driftcite.mjs");
@@ -100,6 +100,39 @@ check(
   runOn({ "app.js": `const m = 'text-davinci-003'; // legacy` }).length > 0
 );
 
+// /api/v2/services is a prefix of /api/v2/services/{service_id}, and the
+// endpoint shape deliberately allows a trailing slash so a URL that continues
+// past the path still matches it. The parent artifact therefore matched inside
+// the child, and one call site came back as two findings under two ids.
+{
+  const found = runOn({
+    "dd.js": `// datadog\nconst url = "/api/v2/services/{service_id}";`,
+  });
+  check("a nested endpoint path is reported once, not once per prefix",
+    found.length === 1,
+    `got ${found.length}: ${found.map((f) => f.artifact).join(", ")}`);
+  check("the most specific endpoint artifact is the one reported",
+    found[0]?.artifact === "datadog/endpoint//api/v2/services/{service_id}",
+    `got ${found[0]?.artifact}`);
+}
+
+// The prefix is not guilty by association: on its own it is its own call.
+check(
+  "the parent path still reports when it is the whole call",
+  runOn({ "dd2.js": `// datadog\nconst u = "/api/v2/services";` })
+    .some((f) => f.artifact === "datadog/endpoint//api/v2/services")
+);
+
+// Two genuinely different calls on one line are two findings. This is why the
+// span each literal matched is compared, rather than dropping the shorter
+// artifact everywhere it shares a line with a longer one.
+check(
+  "two distinct endpoint calls on one line are both reported",
+  runOn({
+    "dd3.js": `// datadog\nconst p = ["/api/v2/services", "/api/v2/services/{service_id}"];`,
+  }).length === 2
+);
+
 // A manifest contains every literal by definition, so vendoring the feed into
 // a repository must not report the entire feed back as findings.
 check(
@@ -138,12 +171,14 @@ function runFix(files, write) {
   const args = [CLI, dir, "--offline", "--no-deps", "--fix"];
   if (write) args.push("--write");
   let out = "";
+  let code = 0;
   try {
     out = execFileSync("node", args, { encoding: "utf8" });
   } catch (err) {
     out = err.stdout || "";
+    code = err.status ?? 1;
   }
-  const result = { out, files: {} };
+  const result = { out, code, files: {} };
   for (const name of Object.keys(files)) {
     result.files[name] = readFileSync(path.join(dir, name), "utf8");
   }
@@ -190,6 +225,33 @@ function runFix(files, write) {
   check("leaves a finding alone when no replacement was named",
     r.files["e.js"].includes("/v1/invoices/upcoming"));
   check("explains what needs a human", /need a human/.test(r.out));
+}
+
+// The exit code after --write is the whole reason this is safe to put in CI.
+// Reporting success because *something* was fixed is a green build over code
+// that still calls a removed endpoint.
+{
+  const r = runFix({
+    "fixable.js": `const m = 'text-davinci-003';`,
+    "stuck.js": `// stripe\nconst url = "/v1/invoices/upcoming";`,
+  }, true);
+  check("--write still applies the fixes it has",
+    r.files["fixable.js"].includes("gpt-3.5-turbo-instruct"));
+  check("--fix --write exits 1 while a breaking finding it refused remains",
+    r.code === 1, `got exit ${r.code}`);
+  check("says why the build is still red", /remain after --write/.test(r.out));
+}
+
+{
+  const r = runFix({ "only.js": `const m = 'text-davinci-003';` }, true);
+  check("--fix --write exits 0 once nothing breaking is left", r.code === 0,
+    `got exit ${r.code}`);
+}
+
+{
+  const help = execFileSync("node", [CLI, "--help"], { encoding: "utf8" });
+  check("--help documents the exit code after --fix --write",
+    /--fix --write still exits 1/.test(help));
 }
 
 
@@ -432,6 +494,25 @@ function runList(files) {
     lines.includes("pypi requests 2.31.0 requirements.txt"));
 }
 
+// --list-deps parsed Cargo.lock and Gemfile.lock and then printed neither, so
+// the two newest ecosystems looked unread when they had in fact resolved.
+{
+  const lines = runList({
+    "Gemfile.lock": "GEM\n  remote: https://rubygems.org/\n  specs:\n    rack (2.2.3)\n",
+    "Cargo.lock": [
+      "version = 3", "",
+      "[[package]]",
+      'name = "openssl"',
+      'version = "0.10.44"',
+      'source = "registry+https://github.com/rust-lang/crates.io-index"', "",
+    ].join("\n"),
+  });
+  check("--list-deps prints resolved gems",
+    lines.includes("rubygems rack 2.2.3 Gemfile.lock"), lines.join(" | "));
+  check("--list-deps prints resolved crates",
+    lines.includes("crates.io openssl 0.10.44 Cargo.lock"), lines.join(" | "));
+}
+
 {
   const lines = runList({ "poetry.lock": "content", "package.json": "{}" });
   check("says when a lockfile format is not read",
@@ -536,6 +617,109 @@ DEPENDENCIES
     gems.size === 2,
     `got ${[...gems.keys()].join(", ")}`);
   rmSync(dir, { recursive: true, force: true });
+}
+
+console.log("\nregistry failures");
+
+// Every one of these lookups used to return {} from a bare catch, so a rate
+// limit, a 500 or an unplugged network was indistinguishable from a package
+// the registry had nothing against, and the report said "No drift found" when
+// nothing had been asked. fetch is swapped for a stub here, which is also the
+// only way to hit a rate limit on purpose.
+{
+  const realFetch = globalThis.fetch;
+  const withFetch = async (stub, fn) => {
+    globalThis.fetch = stub;
+    try {
+      return await fn();
+    } finally {
+      globalThis.fetch = realFetch;
+    }
+  };
+  const offline = async () => {
+    const err = new TypeError("fetch failed");
+    err.cause = { code: "ENOTFOUND" };
+    throw err;
+  };
+  const status = (code) => async () => new Response("", { status: code });
+
+  for (const [name, check_] of [
+    ["checkNpm", __test.checkNpm], ["checkPypi", __test.checkPypi],
+    ["checkCrates", __test.checkCrates], ["checkRubygems", __test.checkRubygems],
+  ]) {
+    const down = await withFetch(offline, () => check_("lodash"));
+    check(`${name} reports a network failure as unanswered`,
+      down.ok === false && down.why === "ENOTFOUND", `got ${JSON.stringify(down)}`);
+    const rate = await withFetch(status(429), () => check_("lodash"));
+    check(`${name} reports a rate limit as unanswered`,
+      rate.ok === false && /429/.test(rate.why), `got ${JSON.stringify(rate)}`);
+    // A 404 is a real answer: the package is not on this registry at all,
+    // which is not a yank and never was.
+    const gone = await withFetch(status(404), () => check_("private-thing"));
+    check(`${name} treats a 404 as an answer, not an outage`, gone.ok === true,
+      `got ${JSON.stringify(gone)}`);
+  }
+
+  const deps = new Map([
+    ["lodash@4.17.21", "package-lock.json"],
+    ["axios@1.2.3", "package-lock.json"],
+  ]);
+  const res = await __test.resolveFlagged(deps, async () => ({ ok: false, why: "HTTP 503" }), "npm");
+  check("an unanswered lookup is never turned into a finding", res.flagged.length === 0);
+  check("every package that went unasked is counted", res.unasked === 2, `got ${res.unasked}`);
+  check("the count and the reason reach the output as a note",
+    /npm: 2 of 2 package\(s\) could not be checked \(HTTP 503\)/.test(res.note || ""),
+    `got ${res.note}`);
+
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-reg-"));
+  writeFileSync(path.join(dir, "package-lock.json"), JSON.stringify({
+    lockfileVersion: 3,
+    packages: { "": {}, "node_modules/lodash": { version: "4.17.21" } },
+  }));
+  const reg = await withFetch(status(503), () => __test.scanRegistry(dir));
+  rmSync(dir, { recursive: true, force: true });
+  check("a registry outage surfaces beside the unread-lockfile notes",
+    reg.notes.some((n) => n.startsWith("npm:") && n.includes("503")),
+    `notes: ${JSON.stringify(reg.notes)}`);
+  check("the scan still reports how many went unchecked", reg.unreachable === 1,
+    `got ${reg.unreachable}`);
+}
+
+// End to end, with every network call failing the way it does on a plane.
+// A preloaded stub replaces fetch before the CLI starts, so this exercises the
+// real registry path — the one --offline skips — without touching a registry.
+{
+  const stubDir = mkdtempSync(path.join(tmpdir(), "driftcite-stub-"));
+  const stub = path.join(stubDir, "no-network.mjs");
+  writeFileSync(stub, [
+    "globalThis.fetch = async () => {",
+    '  const e = new TypeError("fetch failed");',
+    '  e.cause = { code: "ENOTFOUND" };',
+    "  throw e;",
+    "};", "",
+  ].join("\n"));
+
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-net-"));
+  writeFileSync(path.join(dir, "package-lock.json"), JSON.stringify({
+    lockfileVersion: 3,
+    packages: { "": {}, "node_modules/lodash": { version: "4.17.21" } },
+  }));
+  const args = ["--import", pathToFileURL(stub).href, CLI, dir];
+  let out = "", code = 0;
+  try {
+    out = execFileSync("node", args, { encoding: "utf8" });
+  } catch (err) {
+    out = err.stdout || "";
+    code = err.status ?? 1;
+  }
+  rmSync(dir, { recursive: true, force: true });
+  rmSync(stubDir, { recursive: true, force: true });
+
+  check("an unreachable registry does not fail the build", code === 0, `got exit ${code}`);
+  check("an unreachable registry is named in the report",
+    /note: npm: 1 of 1 package\(s\) could not be checked/.test(out), out);
+  check("the summary does not claim a package nobody could ask about is clean",
+    out.includes("No drift found in what could be checked."), out);
 }
 
 console.log("\nreporting");

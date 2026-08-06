@@ -158,7 +158,11 @@ def merge_generated(provider, new_artifacts, observation, evidence, newest):
     except Exception as exc:
         print(f"  ! self-heal skipped: {exc}")
 
-    if not new_artifacts and not healed:
+    # A refresh that published nothing is still worth writing down when it
+    # withheld something. Twilio's 2.3.2 -> 2.6.9 diff produced no artifacts and
+    # 637 withheld enum values; with nothing recorded, the repository's memory
+    # of that release is identical to a release where Twilio changed nothing.
+    if not new_artifacts and not healed and not observation.get("withheld"):
         return len(merged), False
 
     observations = existing.get("observations") or []
@@ -171,7 +175,10 @@ def merge_generated(provider, new_artifacts, observation, evidence, newest):
 
     spdx = existing.get("source_license")
     notice = existing.get("source_notice")
-    if not spdx:
+    # "undetermined" means GitHub did not answer, so ask again. "none published"
+    # is an answer — plaid/plaid-openapi has no LICENSE file — and re-asking
+    # every day would spend a request to learn the same thing.
+    if not spdx or spdx == openapi_diff.UNDETERMINED:
         spdx, notice = openapi_diff.source_license(openapi_diff.PROVIDERS[provider]["repo"])
 
     doc = {
@@ -240,7 +247,8 @@ def refresh(dry_run=False, bootstrap=False):
             print(f"  bootstrapping from {previous}")
 
         try:
-            artifacts, ver_a, ver_b, evidence = openapi_diff.diff(provider, previous, newest)
+            artifacts, ver_a, ver_b, evidence, withheld = openapi_diff.diff(
+                provider, previous, newest, observed_on=today)
         except openapi_diff.SpecUnavailable as exc:
             print(f"  ! spec unavailable: {exc}")
             if first_sight and not dry_run:
@@ -260,17 +268,26 @@ def refresh(dry_run=False, bootstrap=False):
         breaking = [a for a in artifacts if a.get("severity") == "breaking"]
         if breaking:
             print(f"  {len(breaking)} breaking")
+        # Twilio moved 637 enum values in one release and this loop printed
+        # "0 artifacts", which is what a provider that did not move looks like.
+        # The count of what was withheld, and why, goes in the log and in the
+        # observation, so a quiet day is distinguishable from a filtered one.
+        if withheld.total():
+            print(f"  {withheld.total()} withheld:")
+            for row in withheld.records():
+                print(f"    {row['count']:>5}  {row['reason']}")
 
         if dry_run:
             continue
 
         out_path = os.path.join(MANIFEST_DIR, f"{provider}.generated.yaml")
-        if artifacts or os.path.exists(out_path):
+        if artifacts or withheld.total() or os.path.exists(out_path):
             observation = {
                 "repo": openapi_diff.PROVIDERS[provider]["repo"],
                 "from": previous, "to": newest,
                 "from_api_version": ver_a, "to_api_version": ver_b,
                 "observed_on": today,
+                "withheld": withheld.records(),
             }
             total, wrote = merge_generated(provider, artifacts, observation, evidence, newest)
             if wrote:

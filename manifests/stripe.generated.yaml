@@ -8,6 +8,19 @@ observations:
   to: v2345
   from_api_version: '2024-06-20'
   to_api_version: 2026-06-24.dahlia
+  observed_on: '2026-07-26'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 6
+    examples:
+    - '''embedded'''
+    - '''fastest'''
+    - '''hosted'''
+  - reason: parameter name is not distinctive enough to match safely
+    count: 2
+    examples:
+    - '''refund'' at GET /v1/credit_notes/preview'
+    - '''refund'' at GET /v1/credit_notes/preview/lines'
 - repo: stripe/openapi
   from: v2345
   to: v2375
@@ -69,7 +82,7 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''last_during_period'' was valid in 2024-06-20 and is gone in
-    2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage'
+    2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage.'
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
 - id: stripe/enum_value/last_ever
   kind: enum_value
@@ -79,7 +92,7 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''last_ever'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: components.schemas.plan.properties.aggregate_usage'
+    Seen at: components.schemas.plan.properties.aggregate_usage.'
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
 - id: stripe/enum_value/usage_record
   kind: enum_value
@@ -89,7 +102,7 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''usage_record'' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia.
-    Seen at: components.schemas.usage_record.properties.object'
+    Seen at: components.schemas.usage_record.properties.object.'
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
 - id: stripe/enum_value/usage_record_summary
   kind: enum_value
@@ -99,5 +112,5 @@ artifacts:
   status: removed
   severity: breaking
   note: 'Enum value ''usage_record_summary'' was valid in 2024-06-20 and is gone in
-    2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object'
+    2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object.'
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345

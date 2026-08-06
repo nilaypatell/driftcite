@@ -22,189 +22,148 @@ function C({ children }: { children: ReactNode }) {
 }
 
 type Release = {
-  /** The tag, as published. */
+  /** The version in package.json when this work landed. Written without a
+   *  leading `v` because the repository carries no tags — there is nothing
+   *  named `v0.2.0` to link to, and writing one would imply there were. */
   version: string;
   /** ISO date. Used verbatim as the `datetime`, written out for readers. */
   date: string;
-  /** Optional pill beside the version — "Latest" on the newest entry. */
-  tag?: string;
+  /** What that date actually is, printed under the version. An entry whose
+   *  provenance cannot be stated in four words does not belong here. */
+  provenance: string;
+  /** Pill beside the version. */
+  tag: string;
+  /** Accent for what npm serves, neutral for what it does not. */
+  tone: "accent" | "neutral";
   title: string;
   notes: ReactNode[];
 };
 
-/* ═══════════════════════════════════════════════════════════════════════
-   PLACEHOLDER RELEASES — NOT YET VERIFIED. REPLACE BEFORE LAUNCH.
-
-   Every entry below is reproduced verbatim from the design handoff
-   (design_handoff_driftcite_site/changelog.dc.html), whose README labels
-   this page "Release entries, dated Aug 2026+ (placeholder dates —
-   replace with real releases)". The versions, dates and notes are design
-   filler: none of them has been checked against a git tag, a GitHub
-   release or the npm registry.
-
-   Whoever ships this page: replace this array with the real release
-   history. The page renders whatever it holds — nothing else on the page
-   knows a version number, so editing here is the whole job.
-   ═══════════════════════════════════════════════════════════════════════ */
+/* Two entries, because driftcite has been published once. Every date below
+   is either the npm publish record (`npm view driftcite time --json`) or the
+   commit that carries the work; `git tag -l` is empty, so nothing here is
+   dated from a tag. An earlier version of this page listed seven releases
+   going back to April 2026, none of which existed. */
 const RELEASES: readonly Release[] = [
   {
-    version: "v0.2.2",
+    version: "0.2.1",
     date: "2026-08-06",
-    tag: "Latest",
-    title: "The resellers, and the registries",
+    provenance: "on main, dated by its commits",
+    tag: "Unreleased",
+    tone: "neutral",
+    title: "The resellers, the registries, and a feed that watches itself",
     notes: [
       <>
-        Azure and Bedrock land: the two places enterprises actually call these
+        None of this is installable yet. <C>npx driftcite</C> still fetches
+        0.2.0; the work below has been landing on <C>main</C> since July 27,
+        2026, and the date beside it is the commit that bumped the version.
+      </>,
+      <>
+        Azure and Bedrock: the two places enterprises actually call these
         models, on retirement clocks their original vendors do not recognise.
         Both are reported only inside files that name the reseller, because
         Azure retires <C>gpt-4o</C> on a date OpenAI does not, and a right
-        answer given to the wrong caller is a wrong answer.
+        answer given to the wrong caller is a wrong answer. Azure&#8217;s 42
+        artifacts are curated but held out of the published feed until the
+        version on npm is one that can read the field that scopes them — 0.2.0
+        predates it, and would cite Microsoft&#8217;s dates at people calling
+        OpenAI directly.
       </>,
       <>
-        Five more spec-tracked providers &#8212; Plaid, Square, Datadog, Adyen
-        and Asana &#8212; each accruing history from the day it landed.{" "}
-        {TOTAL_ARTIFACTS} artifacts across eighteen providers in the published feed.
+        Mistral, Cohere, Plaid, Square, Datadog, Adyen and Asana joined the
+        watch, each accruing history from the day it landed.{" "}
+        {TOTAL_ARTIFACTS} artifacts across eighteen providers in the published
+        feed.
       </>,
       <>
-        <C>Cargo.lock</C> and <C>Gemfile.lock</C> are read now, so a yanked
-        crate or an unserved gem is found the same way a deprecated npm package
-        already was.
+        <C>Cargo.lock</C> and <C>Gemfile.lock</C> are read — 0.2.0 could only
+        name them as formats it could not. crates.io publishes a yanked flag
+        per version, so it reads like npm and PyPI already did. RubyGems
+        publishes none: a yanked gem simply stops being served, so the finding
+        says exactly that and never claims a maintainer deprecated anything.
       </>,
       <>
-        Endpoints are probed for RFC 8594 <C>Sunset</C> headers. An API that
-        sends one is announcing its own retirement in band, months before the
-        changelog. It has already witnessed one cited removal answering 404.
+        Endpoints are probed for RFC 8594 <C>Sunset</C> headers, and every
+        provider&#8217;s live model list is polled — a retirement can now be
+        recorded because the ID stopped being served, not only because a page
+        said so. Providers without a configured key are skipped by name.
       </>,
       <>
-        A precision fix caught on the way in: a parameter named <C>body</C>,
-        dropped from 134 Square operations, would have matched <C>body:</C> in
-        nearly every JavaScript file that ever called fetch. Parameters now
-        face the same distinctiveness test enum values always have.
-      </>,
-    ],
-  },
-  {
-    version: "v0.2.1",
-    date: "2026-08-06",
-    title: "The feed watches itself",
-    notes: [
-      <>
-        Mistral and Cohere land: 55 curated artifacts from the providers’ own
-        deprecation pages, every replacement verified against the model card
-        that names it. 190 artifacts across twelve providers, and
-        the sweep of real repositories still reports zero new false findings.
+        Precision, twice. A parameter named <C>body</C>, dropped from 134
+        Square operations, would have matched <C>body:</C> in nearly every
+        JavaScript file that ever called fetch; parameters now face the
+        distinctiveness test enum values always have. And a nullable enum is
+        not a mass retirement — reading one as such had published seven of
+        Plaid&#8217;s live repayment plans as removed and breaking.
       </>,
       <>
-        The daily clock now probes every provider’s live model list — a
-        retirement is recorded because the ID stopped being served, not only
-        because a page said so. Providers without a configured key are skipped
-        by name.
-      </>,
-      <>
-        Every documentation page a curated manifest cites is watched by content
-        hash. When a provider edits one, the change surfaces as a work order
-        instead of quiet rot.
-      </>,
-    ],
-  },
-  {
-    version: "v0.2.0",
-    date: "2026-08-05",
-    title: "The pull request arrives",
-    notes: [
-      <>
-        The GitHub App is live: the hosted watch sweeps every installation and
-        opens one cited pull request per repository, serially — with the swap
-        the provider itself named. It stores artifact IDs, never your code.
-      </>,
-      <>
-        <C>driftcite-autofix.yml</C>: the same pull request, opened from inside
-        your own CI on a schedule.
+        <C>--write-baseline</C> and <C>.driftciteignore</C>, so a codebase with
+        day-one drift can adopt the check without a build that fails forever.
+        Suppressed findings are counted and reported as suppressed.
       </>,
       <>
         The corpus study: {CORPUS.scanned} public repositories scanned in July
         2026 — {CORPUS.sharePct}% call at least one API that is already dead.
         Methodology and per-provider counts in <C>corpus/</C>.
       </>,
-    ],
-  },
-  {
-    version: "v0.1.3",
-    date: "2026-07-14",
-    title: "Day-one debt, handled",
-    notes: [
       <>
-        <C>--write-baseline</C> accepts today’s findings and fails only on new
-        ones. Delete an entry once you fix it.
-      </>,
-      <>
-        <C>.driftciteignore</C> with path, artifact, and <C>path :: artifact</C>{" "}
-        scoping. Suppressed findings are counted and reported, never silently
-        dropped.
-      </>,
-      <>
-        The Action writes findings, with evidence links, into the job summary.
+        <C>driftcite-autofix.yml</C> and the hosted watch: the same cited pull
+        request, opened either from inside your own CI or by our sweep.{" "}
+        <a
+          target="_blank"
+          rel="noopener"
+          href={LINKS.pr}
+          style={{ color: "var(--color-accent-700)" }}
+        >
+          The first one it opened
+        </a>{" "}
+        is public.
       </>,
     ],
   },
   {
-    version: "v0.1.2",
-    date: "2026-06-09",
-    title: "The precision rework",
+    version: "0.2.0",
+    date: "2026-07-27",
+    provenance: "published to npm",
+    tag: "Latest on npm",
+    tone: "accent",
+    title: "The only published release",
     notes: [
       <>
-        Every artifact kind now matches only in the shape it takes when actually
-        sent to a provider: quoted literals, object keys, bounded tokens.
+        npm recorded the publish at 06:01 UTC on {formatDate("2026-07-27")}.
+        This is still what <C>npx driftcite</C> installs.
       </>,
-      <>
-        Provider markers gate non-model artifacts — a retired parameter named{" "}
-        <C>refund</C> no longer flags every codebase that has ever mentioned a
-        refund.
-      </>,
-      <>
-        {PRECISION.before} findings at roughly 25% true on a real
-        1,200-dependency repository became {PRECISION.after} at 100%. Coverage
-        grew to ten providers and 135 artifacts with zero new false findings
-        across nine repositories.
-      </>,
-    ],
-  },
-  {
-    version: "v0.1.1",
-    date: "2026-05-18",
-    title: "More lockfiles",
-    notes: [
-      <>
-        <C>pnpm-lock.yaml</C> and <C>yarn.lock</C> (classic and berry) join{" "}
-        <C>package-lock.json</C> and pinned <C>requirements.txt</C>.
-      </>,
-      <>
-        <C>--list-deps</C> and <C>--offline</C>.
-      </>,
-      <>
-        A lockfile format it cannot read yet is named in the output instead of
-        silently skipped.
-      </>,
-    ],
-  },
-  {
-    version: "v0.1.0",
-    date: "2026-04-27",
-    title: "First release",
-    notes: [
       <>
         A single-file scanner, <C>bin/driftcite.mjs</C>, with zero runtime
-        dependencies.
+        dependencies. Node 18 or newer, and nothing else.
       </>,
       <>
-        Manifests committed in the open; the git history is the record of what
-        was observed, and when.
+        Manifests committed in the open, and a feed that accumulates history
+        rather than replacing it — the git log is the record of what was
+        observed, and when.
+      </>,
+      <>
+        Every artifact kind matches only in the shape it takes when actually
+        sent to a provider: quoted literals, object keys, bounded tokens, with
+        provider markers gating anything that is also an English word. That
+        rework took one real 1,200-dependency repository from{" "}
+        {PRECISION.before} findings at roughly 25% true to {PRECISION.after} at
+        100%.
+      </>,
+      <>
+        <C>--fix</C> swaps the string the provider retired for the string the
+        provider named, inside the quoting your code already uses, and refuses
+        when the replacement is prose rather than a drop-in token.
+      </>,
+      <>
+        Lockfiles: <C>package-lock.json</C>, <C>pnpm-lock.yaml</C>,{" "}
+        <C>yarn.lock</C> (classic and berry) and pinned <C>requirements.txt</C>,
+        checked against npm <C>deprecated</C> and PyPI <C>yanked</C>.{" "}
+        <C>Cargo.lock</C>, <C>Gemfile.lock</C>, <C>poetry.lock</C>,{" "}
+        <C>uv.lock</C>, <C>Pipfile.lock</C> and <C>go.sum</C> are named in the
+        output as unread rather than skipped in silence.
       </>,
       <>The GitHub Action: exit 1 on breaking drift.</>,
-      <>
-        npm <C>deprecated</C> and PyPI <C>yanked</C> checks against your
-        lockfiles.
-      </>,
     ],
   },
 ];
@@ -275,9 +234,10 @@ export default function Changelog() {
             margin: "20px 0 0",
           }}
         >
-          Releases of the tool itself. The drift manifests are a separate record
-          — they regenerate daily by a scheduled workflow, and their history is
-          the{" "}
+          Releases of the tool itself. One version has been published to npm;
+          work that has landed since is listed as unreleased and says so. The
+          drift manifests are a separate record — they regenerate daily by a
+          scheduled workflow, and their history is the{" "}
           <a
             target="_blank"
             rel="noopener"
@@ -333,10 +293,20 @@ export default function Changelog() {
                 >
                   {r.version}
                 </span>
-                {r.tag ? (
-                  <span className="dc-tag dc-tag-accent">{r.tag}</span>
-                ) : null}
+                <span className={`dc-tag dc-tag-${r.tone}`}>{r.tag}</span>
               </div>
+              {/* where the date came from, said on every row rather than
+                  once at the bottom, because a reader who scrolls to one
+                  entry should not have to trust the other */}
+              <span
+                style={{
+                  fontSize: 12,
+                  lineHeight: "18px",
+                  color: "color-mix(in srgb, var(--color-ink) 55%, transparent)",
+                }}
+              >
+                {r.provenance}
+              </span>
             </div>
 
             <div>
@@ -360,6 +330,24 @@ export default function Changelog() {
           </article>
         ))}
       </section>
+
+      <p
+        style={{
+          fontSize: 12.5,
+          lineHeight: "21px",
+          maxWidth: "72ch",
+          color: "color-mix(in srgb, var(--color-ink) 55%, transparent)",
+          borderTop: "1px solid var(--color-divider)",
+          padding: "20px 0 70px",
+          margin: 0,
+        }}
+      >
+        The repository carries no git tags, so nothing here is dated from one.
+        0.2.0 is dated from the npm publish record; 0.2.1 from the commit that
+        raised the version. Version 0.1.0 sat in the tree for two hours on{" "}
+        {formatDate("2026-07-26")} and was never published, which is why it has
+        no entry.
+      </p>
     </Column>
   );
 }

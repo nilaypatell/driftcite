@@ -4,7 +4,7 @@
    All of it is read out of the repository, not invented:
      corpus/report.json     the scan of 449 public repositories, July 2026
      providers.yaml         the seven spec-tracked providers
-     feed/feed.json         what users receive, 255 artifacts
+     feed/feed.json         what users receive, 235 artifacts
 
    If a figure is not in this file it does not belong on the page.
    ═══════════════════════════════════════════════════════════════════════ */
@@ -38,7 +38,7 @@ export const STATS = [
   { value: CORPUS.worstRepo, label: "worst single repository" },
 ] as const;
 
-/** 255 artifacts across eighteen providers, counted from feed/feed.json —
+/** 235 artifacts across eighteen providers, counted from feed/feed.json —
  *  what a user actually receives, not what the repository holds. The
  *  manifests carry 297: Azure's 42 are curated and withheld from the
  *  published feed until a release carrying `require_context` is the version
@@ -50,19 +50,19 @@ export const STATS = [
  *  `findings` figure and stay out of that chart rather than claim a zero the
  *  scan never measured. */
 export const PROVIDERS = [
-  { name: "Anthropic", artifacts: 15, findings: 383 },
-  { name: "Google", artifacts: 8, findings: 213 },
-  { name: "OpenAI", artifacts: 12, findings: 123 },
-  { name: "Groq", artifacts: 2, findings: 87 },
-  { name: "Cloudflare", artifacts: 33, findings: 78 },
-  { name: "Stripe", artifacts: 8, findings: 32 },
-  { name: "GitHub", artifacts: 46, findings: 1 },
   { name: "Square", artifacts: 41 },
   { name: "Mistral", artifacts: 40 },
+  { name: "Cloudflare", artifacts: 33, findings: 78 },
+  { name: "GitHub", artifacts: 26, findings: 1 },
   { name: "Bedrock", artifacts: 17 },
+  { name: "Anthropic", artifacts: 15, findings: 383 },
   { name: "Cohere", artifacts: 15 },
   { name: "Datadog", artifacts: 12 },
+  { name: "OpenAI", artifacts: 12, findings: 123 },
+  { name: "Google", artifacts: 8, findings: 213 },
+  { name: "Stripe", artifacts: 8, findings: 32 },
   { name: "DigitalOcean", artifacts: 4 },
+  { name: "Groq", artifacts: 2, findings: 87 },
   { name: "Adyen", artifacts: 1 },
   { name: "Plaid", artifacts: 1 },
   { name: "Twilio", watched: "none yet" },
@@ -70,7 +70,7 @@ export const PROVIDERS = [
   { name: "Box", watched: "by commit" },
 ] as const;
 
-export const TOTAL_ARTIFACTS = 255;
+export const TOTAL_ARTIFACTS = 235;
 export const TOTAL_PROVIDERS = 18;
 
 export const DEAD_IDENTIFIERS = [

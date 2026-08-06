@@ -9,6 +9,22 @@ observations:
   from_api_version: '1.0'
   to_api_version: '1.0'
   observed_on: '2026-08-06'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 8
+    examples:
+    - '''Ddeb'''
+    - '''cache'''
+    - '''db'''
+  - reason: path still served by another method, so the literal is still live
+    count: 2
+    examples:
+    - /api/v2/incidents/{incident_id}/attachments at PATCH removed
+    - /api/v2/posture_management/findings at PATCH removed
+  - reason: parameter name is not distinctive enough to match safely
+    count: 1
+    examples:
+    - '''sort'' at GET /api/v2/security_monitoring/signals'
 sources:
 - https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 context:
@@ -25,7 +41,8 @@ artifacts:
     - /api/v2/dora/incident
   status: deprecated
   severity: warning
-  note: POST /api/v2/dora/incident was marked deprecated between 1.0 and 1.0.
+  note: POST /api/v2/dora/incident was marked deprecated between 2.33.0 and 2.57.0.
+    Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/metrics/config/bulk-tags
   kind: endpoint
@@ -34,8 +51,8 @@ artifacts:
     - /api/v2/metrics/config/bulk-tags
   status: deprecated
   severity: warning
-  note: POST /api/v2/metrics/config/bulk-tags was marked deprecated between 1.0 and
-    1.0.
+  note: DELETE, POST /api/v2/metrics/config/bulk-tags was marked deprecated between
+    2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/scorecard/outcomes/batch
   kind: endpoint
@@ -44,8 +61,8 @@ artifacts:
     - /api/v2/scorecard/outcomes/batch
   status: deprecated
   severity: warning
-  note: POST /api/v2/scorecard/outcomes/batch was marked deprecated between 1.0 and
-    1.0.
+  note: POST /api/v2/scorecard/outcomes/batch was marked deprecated between 2.33.0
+    and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/security/assets
   kind: endpoint
@@ -54,7 +71,8 @@ artifacts:
     - /api/v2/security/assets
   status: removed
   severity: breaking
-  note: GET /api/v2/security/assets existed in 1.0 and is gone in 1.0.
+  note: GET /api/v2/security/assets existed in 2.33.0 and is gone in 2.57.0. Observed
+    2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/security/vulnerabilities
   kind: endpoint
@@ -63,8 +81,8 @@ artifacts:
     - /api/v2/security/vulnerabilities
   status: deprecated
   severity: warning
-  note: GET /api/v2/security/vulnerabilities was marked deprecated between 1.0 and
-    1.0.
+  note: GET /api/v2/security/vulnerabilities was marked deprecated between 2.33.0
+    and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/services
   kind: endpoint
@@ -73,7 +91,8 @@ artifacts:
     - /api/v2/services
   status: removed
   severity: breaking
-  note: POST /api/v2/services existed in 1.0 and is gone in 1.0.
+  note: GET, POST /api/v2/services existed in 2.33.0 and is gone in 2.57.0. Observed
+    2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/services/{service_id}
   kind: endpoint
@@ -82,7 +101,8 @@ artifacts:
     - /api/v2/services/{service_id}
   status: removed
   severity: breaking
-  note: PATCH /api/v2/services/{service_id} existed in 1.0 and is gone in 1.0.
+  note: DELETE, GET, PATCH /api/v2/services/{service_id} existed in 2.33.0 and is
+    gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/teams
   kind: endpoint
@@ -91,7 +111,8 @@ artifacts:
     - /api/v2/teams
   status: removed
   severity: breaking
-  note: POST /api/v2/teams existed in 1.0 and is gone in 1.0.
+  note: GET, POST /api/v2/teams existed in 2.33.0 and is gone in 2.57.0. Observed
+    2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/endpoint//api/v2/teams/{team_id}
   kind: endpoint
@@ -100,7 +121,8 @@ artifacts:
     - /api/v2/teams/{team_id}
   status: removed
   severity: breaking
-  note: PATCH /api/v2/teams/{team_id} existed in 1.0 and is gone in 1.0.
+  note: DELETE, GET, PATCH /api/v2/teams/{team_id} existed in 2.33.0 and is gone in
+    2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/enum_value/dora_incident
   kind: enum_value
@@ -109,8 +131,9 @@ artifacts:
     - dora_incident
   status: removed
   severity: breaking
-  note: 'Enum value ''dora_incident'' was valid in 1.0 and is gone in 1.0. Seen at:
-    components.schemas.DORAIncidentType'
+  note: 'Enum value ''dora_incident'' was valid in 2.33.0 and is gone in 2.57.0. Seen
+    at: components.schemas.DORAIncidentType. Observed 2026-08-06; the spec''s own
+    version stayed 1.0.'
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/enum_value/security_responses
   kind: enum_value
@@ -119,8 +142,9 @@ artifacts:
     - security_responses
   status: removed
   severity: breaking
-  note: 'Enum value ''security_responses'' was valid in 1.0 and is gone in 1.0. Seen
-    at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory'
+  note: 'Enum value ''security_responses'' was valid in 2.33.0 and is gone in 2.57.0.
+    Seen at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory. Observed
+    2026-08-06; the spec''s own version stayed 1.0.'
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
 - id: datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]
   kind: request_param
@@ -130,5 +154,6 @@ artifacts:
   status: removed
   severity: breaking
   note: Parameter 'filter[advisory_id]' on GET /api/v2/security/vulnerabilities existed
-    in 1.0 and is gone in 1.0.
+    in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed
+    1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0

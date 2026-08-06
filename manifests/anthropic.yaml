@@ -1,7 +1,8 @@
 provider: anthropic
 spec_version: 1
-updated: 2026-07-26
+updated: 2026-08-06
 sources:
+  - https://platform.claude.com/docs/en/about-claude/model-deprecations
   - https://platform.claude.com/docs/en/about-claude/models/overview.md
   - https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
 
@@ -13,6 +14,13 @@ context:
     - "claude-"
     - ANTHROPIC_API_KEY
 
+# Every replacement below is copied verbatim from the "Recommended replacement"
+# column of the deprecation history tables on the model-deprecations page. That
+# column is the only place Anthropic states what to migrate a dead model to, and
+# it does not say "the newest model" — Claude Sonnet 3.5 is sent to Sonnet 4.6,
+# not Sonnet 5. Guessing the newest model instead of reading the column is how
+# this file previously told people to move seven models to versions Anthropic
+# never named for them.
 artifacts:
   # ---- retired models: these return 404 today ----
   - id: anthropic/model_id/claude-3-opus-20240229
@@ -24,7 +32,7 @@ artifacts:
     replacement: claude-opus-4-8
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-3-7-sonnet-20250219
     kind: model_id
@@ -32,10 +40,10 @@ artifacts:
       literals: ["claude-3-7-sonnet-20250219"]
     status: retired
     retires_on: 2026-02-19
-    replacement: claude-sonnet-5
+    replacement: claude-sonnet-4-6
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-3-5-haiku-20241022
     kind: model_id
@@ -43,10 +51,10 @@ artifacts:
       literals: ["claude-3-5-haiku-20241022"]
     status: retired
     retires_on: 2026-02-19
-    replacement: claude-haiku-4-5
+    replacement: claude-haiku-4-5-20251001
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-3-5-sonnet-20241022
     kind: model_id
@@ -54,10 +62,10 @@ artifacts:
       literals: ["claude-3-5-sonnet-20241022"]
     status: retired
     retires_on: 2025-10-28
-    replacement: claude-sonnet-5
+    replacement: claude-sonnet-4-6
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-3-5-sonnet-20240620
     kind: model_id
@@ -65,10 +73,10 @@ artifacts:
       literals: ["claude-3-5-sonnet-20240620"]
     status: retired
     retires_on: 2025-10-28
-    replacement: claude-sonnet-5
+    replacement: claude-sonnet-4-6
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-3-sonnet-20240229
     kind: model_id
@@ -76,55 +84,59 @@ artifacts:
       literals: ["claude-3-sonnet-20240229"]
     status: retired
     retires_on: 2025-07-21
-    replacement: claude-sonnet-5
+    replacement: claude-sonnet-4-6
     severity: breaking
     note: Retired. Calls return 404.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
-  # ---- deprecated models: still work, dated ----
+  # ---- models that have since crossed their retirement date ----
+  # These four were still serving when this file was last written, and were
+  # recorded as warnings. Anthropic's model status table now lists every one of
+  # them as Retired, so they are breaking findings. Claude Opus 4.1 retired on
+  # 2026-08-05, one day before this pass.
   - id: anthropic/model_id/claude-3-haiku-20240307
     kind: model_id
     match:
       literals: ["claude-3-haiku-20240307"]
-    status: deprecated
-    retires_on: 2026-04-19
-    replacement: claude-haiku-4-5
-    severity: warning
-    note: Deprecated, retires 2026-04-19.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/overview.md
+    status: retired
+    retires_on: 2026-04-20
+    replacement: claude-haiku-4-5-20251001
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-opus-4-1-20250805
     kind: model_id
     match:
       literals: ["claude-opus-4-1-20250805", "claude-opus-4-1"]
-    status: deprecated
+    status: retired
     retires_on: 2026-08-05
-    replacement: claude-opus-5
-    severity: warning
-    note: Deprecated, retires 2026-08-05.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/overview.md
+    replacement: claude-opus-4-8
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-opus-4-20250514
     kind: model_id
     match:
       literals: ["claude-opus-4-20250514", "claude-opus-4-0"]
-    status: deprecated
+    status: retired
     retires_on: 2026-06-15
-    replacement: claude-opus-5
-    severity: warning
-    note: Deprecated, retires 2026-06-15.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    replacement: claude-opus-4-8
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   - id: anthropic/model_id/claude-sonnet-4-20250514
     kind: model_id
     match:
       literals: ["claude-sonnet-4-20250514", "claude-sonnet-4-0"]
-    status: deprecated
+    status: retired
     retires_on: 2026-06-15
-    replacement: claude-sonnet-5
-    severity: warning
-    note: Deprecated, retires 2026-06-15.
-    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+    replacement: claude-sonnet-4-6
+    severity: breaking
+    note: Retired. Calls return 404.
+    evidence: https://platform.claude.com/docs/en/about-claude/model-deprecations
 
   # ---- request parameters removed on current models ----
   - id: anthropic/request_param/budget_tokens

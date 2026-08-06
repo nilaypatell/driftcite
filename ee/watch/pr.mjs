@@ -7,7 +7,29 @@
 
 export const PR_TITLE = "fix: update API identifiers retired by their providers";
 
-export const branchName = (day) => `driftcite/${day}`;
+export const BRANCH_PREFIX = "driftcite/";
+
+export const branchName = (day) => `${BRANCH_PREFIX}${day}`;
+
+/**
+ * The branch this sweep has already pushed to a repository, if any, read out
+ * of `git ls-remote --heads` output.
+ *
+ * The branch name carries the day it was opened, and the check for "have we
+ * been here before" used to ask the remote for today's name only. It found
+ * nothing every morning after, so a repository whose providers moved on
+ * Tuesday and again on Wednesday collected two pull requests with the same
+ * diff, then a third on Thursday. The prefix is the part of the name that
+ * does not move, so the prefix is what to ask about.
+ */
+export function existingBranch(lsRemote) {
+  const head = "refs/heads/";
+  for (const line of (lsRemote || "").split("\n")) {
+    const ref = (line.split("\t")[1] || "").trim();
+    if (ref.startsWith(head + BRANCH_PREFIX)) return ref.slice(head.length);
+  }
+  return null;
+}
 
 export function prBody(findings) {
   // One row per artifact however many call sites it has: a retired model

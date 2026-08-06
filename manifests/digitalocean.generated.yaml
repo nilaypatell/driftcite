@@ -24,7 +24,8 @@ artifacts:
     - /v2/security/secrets
   status: removed
   severity: breaking
-  note: POST /v2/security/secrets existed in 2.0 and is gone in 2.0.
+  note: GET, POST /v2/security/secrets existed in 7e5b46e1d90a and is gone in 87e82da6548b.
+    Observed 2026-08-06; the spec's own version stayed 2.0.
   evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
 - id: digitalocean/endpoint//v2/security/secrets/{secret}
   kind: endpoint
@@ -33,7 +34,8 @@ artifacts:
     - /v2/security/secrets/{secret}
   status: removed
   severity: breaking
-  note: PUT /v2/security/secrets/{secret} existed in 2.0 and is gone in 2.0.
+  note: DELETE, GET, PUT /v2/security/secrets/{secret} existed in 7e5b46e1d90a and
+    is gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.
   evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
 - id: digitalocean/endpoint//v2/security/secrets/{secret}/restore
   kind: endpoint
@@ -42,7 +44,8 @@ artifacts:
     - /v2/security/secrets/{secret}/restore
   status: removed
   severity: breaking
-  note: POST /v2/security/secrets/{secret}/restore existed in 2.0 and is gone in 2.0.
+  note: POST /v2/security/secrets/{secret}/restore existed in 7e5b46e1d90a and is
+    gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.
   evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b
 - id: digitalocean/endpoint//v2/security/secrets/{secret}/versions
   kind: endpoint
@@ -51,5 +54,6 @@ artifacts:
     - /v2/security/secrets/{secret}/versions
   status: removed
   severity: breaking
-  note: GET /v2/security/secrets/{secret}/versions existed in 2.0 and is gone in 2.0.
+  note: GET /v2/security/secrets/{secret}/versions existed in 7e5b46e1d90a and is
+    gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.
   evidence: https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b

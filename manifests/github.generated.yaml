@@ -1,13 +1,26 @@
 provider: github
 spec_version: 1
-generated_from:
-  repo: github/rest-api-description
+source_license: MIT
+source_notice: https://github.com/github/rest-api-description/blob/main/LICENSE.md
+observations:
+- repo: github/rest-api-description
   from: v1.1.4
   to: v2.1.0
   from_api_version: 1.1.4
   to_api_version: 1.1.4
-source_license: MIT
-source_notice: https://github.com/github/rest-api-description/blob/main/LICENSE.md
+  observed_on: '2026-07-26'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 9
+    examples:
+    - '''Add'''
+    - '''None'''
+    - '''Remove'''
+  - reason: path still served by another method, so the literal is still live
+    count: 1
+    examples:
+    - /orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}
+      at PUT removed
 sources:
 - https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 context:
@@ -16,84 +29,6 @@ context:
   - octokit
   - GITHUB_TOKEN
 artifacts:
-- id: github/endpoint//applications/grants/{grant_id}
-  kind: endpoint
-  match:
-    literals:
-    - /applications/grants/{grant_id}
-  status: removed
-  severity: breaking
-  note: DELETE /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//authorizations/{authorization_id}
-  kind: endpoint
-  match:
-    literals:
-    - /authorizations/{authorization_id}
-  status: removed
-  severity: breaking
-  note: DELETE /authorizations/{authorization_id} existed in 1.1.4 and is gone in
-    1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/credential-authorizations/{credential_id}
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/credential-authorizations/{credential_id}
-  status: removed
-  severity: breaking
-  note: DELETE /orgs/{org}/credential-authorizations/{credential_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/teams/{team_slug}/external-groups
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/teams/{team_slug}/external-groups
-  status: removed
-  severity: breaking
-  note: DELETE /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and
-    is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//reactions/{reaction_id}
-  kind: endpoint
-  match:
-    literals:
-    - /reactions/{reaction_id}
-  status: removed
-  severity: breaking
-  note: DELETE /reactions/{reaction_id} existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  status: removed
-  severity: breaking
-  note: DELETE /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in
-    1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: DELETE /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/organizations/{org}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: DELETE /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//applications/grants
   kind: endpoint
   match:
@@ -101,7 +36,8 @@ artifacts:
     - /applications/grants
   status: removed
   severity: breaking
-  note: GET /applications/grants existed in 1.1.4 and is gone in 1.1.4.
+  note: GET /applications/grants existed in v1.1.4 and is gone in v2.1.0. Observed
+    2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//applications/grants/{grant_id}
   kind: endpoint
@@ -110,7 +46,8 @@ artifacts:
     - /applications/grants/{grant_id}
   status: removed
   severity: breaking
-  note: GET /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.
+  note: DELETE, GET /applications/grants/{grant_id} existed in v1.1.4 and is gone
+    in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//authorizations
   kind: endpoint
@@ -119,288 +56,8 @@ artifacts:
     - /authorizations
   status: removed
   severity: breaking
-  note: GET /authorizations existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//authorizations/{authorization_id}
-  kind: endpoint
-  match:
-    literals:
-    - /authorizations/{authorization_id}
-  status: removed
-  severity: breaking
-  note: GET /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//enterprises/{enterprise}/audit-log
-  kind: endpoint
-  match:
-    literals:
-    - /enterprises/{enterprise}/audit-log
-  status: removed
-  severity: breaking
-  note: GET /enterprises/{enterprise}/audit-log existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//enterprises/{enterprise}/settings/billing/actions
-  kind: endpoint
-  match:
-    literals:
-    - /enterprises/{enterprise}/settings/billing/actions
-  status: removed
-  severity: breaking
-  note: GET /enterprises/{enterprise}/settings/billing/actions existed in 1.1.4 and
-    is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//enterprises/{enterprise}/settings/billing/packages
-  kind: endpoint
-  match:
-    literals:
-    - /enterprises/{enterprise}/settings/billing/packages
-  status: removed
-  severity: breaking
-  note: GET /enterprises/{enterprise}/settings/billing/packages existed in 1.1.4 and
-    is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage
-  kind: endpoint
-  match:
-    literals:
-    - /enterprises/{enterprise}/settings/billing/shared-storage
-  status: removed
-  severity: breaking
-  note: GET /enterprises/{enterprise}/settings/billing/shared-storage existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/audit-log
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/audit-log
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/audit-log existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/credential-authorizations
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/credential-authorizations
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/credential-authorizations existed in 1.1.4 and is gone in
-    1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/external-group/{group_id}
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/external-group/{group_id}
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/external-group/{group_id} existed in 1.1.4 and is gone in
-    1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/external-groups
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/external-groups
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/external-groups existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/team-sync/groups
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/team-sync/groups
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/team-sync/groups existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/teams/{team_slug}/team-sync/group-mappings
-  status: removed
-  severity: breaking
-  note: GET /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Groups
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone
-    in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Users
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone in
-    1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/organizations/{org}/Users
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/organizations/{org}/Users
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/organizations/{org}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: GET /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and
-    is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//teams/{team_id}/team-sync/group-mappings
-  kind: endpoint
-  match:
-    literals:
-    - /teams/{team_id}/team-sync/group-mappings
-  status: removed
-  severity: breaking
-  note: GET /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone
-    in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//authorizations/{authorization_id}
-  kind: endpoint
-  match:
-    literals:
-    - /authorizations/{authorization_id}
-  status: removed
-  severity: breaking
-  note: PATCH /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/teams/{team_slug}/external-groups
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/teams/{team_slug}/external-groups
-  status: removed
-  severity: breaking
-  note: PATCH /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and is
-    gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings
-  kind: endpoint
-  match:
-    literals:
-    - /orgs/{org}/teams/{team_slug}/team-sync/group-mappings
-  status: removed
-  severity: breaking
-  note: PATCH /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-  status: removed
-  severity: breaking
-  note: PATCH /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in
-    1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: PATCH /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4
-    and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/organizations/{org}/Users/{scim_user_id}
-  status: removed
-  severity: breaking
-  note: PATCH /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and
-    is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//teams/{team_id}/team-sync/group-mappings
-  kind: endpoint
-  match:
-    literals:
-    - /teams/{team_id}/team-sync/group-mappings
-  status: removed
-  severity: breaking
-  note: PATCH /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone
-    in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//authorizations
-  kind: endpoint
-  match:
-    literals:
-    - /authorizations
-  status: removed
-  severity: breaking
-  note: POST /authorizations existed in 1.1.4 and is gone in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Groups
-  status: removed
-  severity: breaking
-  note: POST /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone
-    in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/enterprises/{enterprise}/Users
-  status: removed
-  severity: breaking
-  note: POST /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone
-    in 1.1.4.
-  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//scim/v2/organizations/{org}/Users
-  kind: endpoint
-  match:
-    literals:
-    - /scim/v2/organizations/{org}/Users
-  status: removed
-  severity: breaking
-  note: POST /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.
+  note: GET, POST /authorizations existed in v1.1.4 and is gone in v2.1.0. Observed
+    2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//authorizations/clients/{client_id}
   kind: endpoint
@@ -409,7 +66,8 @@ artifacts:
     - /authorizations/clients/{client_id}
   status: removed
   severity: breaking
-  note: PUT /authorizations/clients/{client_id} existed in 1.1.4 and is gone in 1.1.4.
+  note: PUT /authorizations/clients/{client_id} existed in v1.1.4 and is gone in v2.1.0.
+    Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//authorizations/clients/{client_id}/{fingerprint}
   kind: endpoint
@@ -418,18 +76,159 @@ artifacts:
     - /authorizations/clients/{client_id}/{fingerprint}
   status: removed
   severity: breaking
-  note: PUT /authorizations/clients/{client_id}/{fingerprint} existed in 1.1.4 and
-    is gone in 1.1.4.
+  note: PUT /authorizations/clients/{client_id}/{fingerprint} existed in v1.1.4 and
+    is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
-- id: github/endpoint//orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}
+- id: github/endpoint//authorizations/{authorization_id}
   kind: endpoint
   match:
     literals:
-    - /orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}
+    - /authorizations/{authorization_id}
   status: removed
   severity: breaking
-  note: PUT /orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}
-    existed in 1.1.4 and is gone in 1.1.4.
+  note: DELETE, GET, PATCH /authorizations/{authorization_id} existed in v1.1.4 and
+    is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//enterprises/{enterprise}/audit-log
+  kind: endpoint
+  match:
+    literals:
+    - /enterprises/{enterprise}/audit-log
+  status: removed
+  severity: breaking
+  note: GET /enterprises/{enterprise}/audit-log existed in v1.1.4 and is gone in v2.1.0.
+    Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//enterprises/{enterprise}/settings/billing/actions
+  kind: endpoint
+  match:
+    literals:
+    - /enterprises/{enterprise}/settings/billing/actions
+  status: removed
+  severity: breaking
+  note: GET /enterprises/{enterprise}/settings/billing/actions existed in v1.1.4 and
+    is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//enterprises/{enterprise}/settings/billing/packages
+  kind: endpoint
+  match:
+    literals:
+    - /enterprises/{enterprise}/settings/billing/packages
+  status: removed
+  severity: breaking
+  note: GET /enterprises/{enterprise}/settings/billing/packages existed in v1.1.4
+    and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage
+  kind: endpoint
+  match:
+    literals:
+    - /enterprises/{enterprise}/settings/billing/shared-storage
+  status: removed
+  severity: breaking
+  note: GET /enterprises/{enterprise}/settings/billing/shared-storage existed in v1.1.4
+    and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/audit-log
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/audit-log
+  status: removed
+  severity: breaking
+  note: GET /orgs/{org}/audit-log existed in v1.1.4 and is gone in v2.1.0. Observed
+    2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/credential-authorizations
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/credential-authorizations
+  status: removed
+  severity: breaking
+  note: GET /orgs/{org}/credential-authorizations existed in v1.1.4 and is gone in
+    v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/credential-authorizations/{credential_id}
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/credential-authorizations/{credential_id}
+  status: removed
+  severity: breaking
+  note: DELETE /orgs/{org}/credential-authorizations/{credential_id} existed in v1.1.4
+    and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/external-group/{group_id}
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/external-group/{group_id}
+  status: removed
+  severity: breaking
+  note: GET /orgs/{org}/external-group/{group_id} existed in v1.1.4 and is gone in
+    v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/external-groups
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/external-groups
+  status: removed
+  severity: breaking
+  note: GET /orgs/{org}/external-groups existed in v1.1.4 and is gone in v2.1.0. Observed
+    2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/team-sync/groups
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/team-sync/groups
+  status: removed
+  severity: breaking
+  note: GET /orgs/{org}/team-sync/groups existed in v1.1.4 and is gone in v2.1.0.
+    Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/teams/{team_slug}/external-groups
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/teams/{team_slug}/external-groups
+  status: removed
+  severity: breaking
+  note: DELETE, PATCH /orgs/{org}/teams/{team_slug}/external-groups existed in v1.1.4
+    and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings
+  kind: endpoint
+  match:
+    literals:
+    - /orgs/{org}/teams/{team_slug}/team-sync/group-mappings
+  status: removed
+  severity: breaking
+  note: GET, PATCH /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed
+    in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed
+    1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//reactions/{reaction_id}
+  kind: endpoint
+  match:
+    literals:
+    - /reactions/{reaction_id}
+  status: removed
+  severity: breaking
+  note: DELETE /reactions/{reaction_id} existed in v1.1.4 and is gone in v2.1.0. Observed
+    2026-07-26; the spec's own version stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups
+  kind: endpoint
+  match:
+    literals:
+    - /scim/v2/enterprises/{enterprise}/Groups
+  status: removed
+  severity: breaking
+  note: GET, POST /scim/v2/enterprises/{enterprise}/Groups existed in v1.1.4 and is
+    gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
   kind: endpoint
@@ -438,8 +237,19 @@ artifacts:
     - /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
   status: removed
   severity: breaking
-  note: PUT /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4
-    and is gone in 1.1.4.
+  note: DELETE, GET, PATCH, PUT /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
+    existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version
+    stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//scim/v2/enterprises/{enterprise}/Users
+  kind: endpoint
+  match:
+    literals:
+    - /scim/v2/enterprises/{enterprise}/Users
+  status: removed
+  severity: breaking
+  note: GET, POST /scim/v2/enterprises/{enterprise}/Users existed in v1.1.4 and is
+    gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
   kind: endpoint
@@ -448,8 +258,19 @@ artifacts:
     - /scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
   status: removed
   severity: breaking
-  note: PUT /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4
-    and is gone in 1.1.4.
+  note: DELETE, GET, PATCH, PUT /scim/v2/enterprises/{enterprise}/Users/{scim_user_id}
+    existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version
+    stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//scim/v2/organizations/{org}/Users
+  kind: endpoint
+  match:
+    literals:
+    - /scim/v2/organizations/{org}/Users
+  status: removed
+  severity: breaking
+  note: GET, POST /scim/v2/organizations/{org}/Users existed in v1.1.4 and is gone
+    in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
 - id: github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}
   kind: endpoint
@@ -458,6 +279,17 @@ artifacts:
     - /scim/v2/organizations/{org}/Users/{scim_user_id}
   status: removed
   severity: breaking
-  note: PUT /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and
-    is gone in 1.1.4.
+  note: DELETE, GET, PATCH, PUT /scim/v2/organizations/{org}/Users/{scim_user_id}
+    existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version
+    stayed 1.1.4.
+  evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0
+- id: github/endpoint//teams/{team_id}/team-sync/group-mappings
+  kind: endpoint
+  match:
+    literals:
+    - /teams/{team_id}/team-sync/group-mappings
+  status: removed
+  severity: breaking
+  note: GET, PATCH /teams/{team_id}/team-sync/group-mappings existed in v1.1.4 and
+    is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.
   evidence: https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0

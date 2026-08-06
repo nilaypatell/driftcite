@@ -9,6 +9,13 @@ observations:
   from_api_version: '71'
   to_api_version: '71'
   observed_on: '2026-08-06'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 10
+    examples:
+    - '''B'''
+    - '''F'''
+    - '''MCC'''
 sources:
 - https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721
 context:
@@ -24,5 +31,7 @@ artifacts:
     - moneybookers
   status: removed
   severity: breaking
-  note: 'Enum value ''moneybookers'' was valid in 71 and is gone in 71. Seen at: components.schemas.PaymentDetails.properties.type'
+  note: 'Enum value ''moneybookers'' was valid in bb2a964906ad and is gone in f0d0bd47b721.
+    Seen at: components.schemas.PaymentDetails.properties.type. Observed 2026-08-06;
+    the spec''s own version stayed 71.'
   evidence: https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721

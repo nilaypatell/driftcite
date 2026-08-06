@@ -16,10 +16,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { appJwt, makeApi, paginate } from "../ee/watch/github.mjs";
-import { emptyState, assertPrivate, loadState, saveState, carryPrs } from "../ee/watch/state.mjs";
+import {
+  emptyState, assertPrivate, loadState, saveState, carryPrs, markFailed,
+} from "../ee/watch/state.mjs";
 import { feedSnapshot, feedDelta, planRepo } from "../ee/watch/plan.mjs";
-import { branchName, prBody, splitWorkflowEdits, PR_TITLE } from "../ee/watch/pr.mjs";
+import {
+  branchName, existingBranch, prBody, splitWorkflowEdits, PR_TITLE,
+} from "../ee/watch/pr.mjs";
 import { sweepRepo } from "../ee/watch/sweep.mjs";
+import { runSweep } from "../ee/watch/watch.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI = path.join(HERE, "..", "bin", "driftcite.mjs");
@@ -218,6 +223,56 @@ console.log("\nthe state file stays private");
   check("everything else comes from the fresh scan", merged.head === "new");
   check("the first sweep of a repo has nothing to carry",
     carryPrs(undefined, fresh).prs["driftcite/2026-08-05"]?.url === "https://x/2");
+  check("a repo that swept cleanly is no longer marked failed",
+    carryPrs({ ...prev, failed_on: "2026-08-04" }, fresh).failed_on === undefined);
+}
+
+{
+  // A repository whose sweep threw keeps everything the last good sweep
+  // learned and gains the day it failed. The day is the whole record: the
+  // error message is written by someone else's git or scanner and can carry
+  // a path out of their repository, so it goes to the console, never here.
+  const prev = {
+    providers: ["openai"], artifacts: ["openai/model_id/text-davinci-003"],
+    head: "abc", last_scan: "2026-08-01",
+    prs: { "driftcite/2026-08-01": { opened_on: "2026-08-01", url: "https://x/1" } },
+  };
+  const failed = markFailed(prev, "2026-08-06");
+  check("a failed sweep keeps the fingerprint the last good one wrote",
+    failed.head === "abc" && failed.artifacts.length === 1 &&
+    failed.prs["driftcite/2026-08-01"]?.url === "https://x/1");
+  check("a failed sweep records the day and nothing else about the failure",
+    failed.failed_on === "2026-08-06" &&
+    Object.keys(failed).sort().join(",") ===
+      "artifacts,failed_on,head,last_scan,providers,prs");
+
+  const fresh = markFailed(undefined, "2026-08-06");
+  check("a repo that was never scanned can still be recorded as failed",
+    fresh.failed_on === "2026-08-06" && fresh.head === null);
+
+  const state = emptyState();
+  state.repos["octo/app"] = failed;
+  let ok = true;
+  try {
+    assertPrivate(state);
+  } catch {
+    ok = false;
+  }
+  check("the failure record passes the privacy allowlist", ok);
+
+  // The date is the only shape allowed through. A message pasted in here
+  // would arrive with the newlines of a stack trace or a git diff.
+  const smuggled = emptyState();
+  smuggled.repos["octo/app"] = {
+    ...markFailed(prev, "fatal: could not read src/app.js\n  at clone (git)"),
+  };
+  let threw = false;
+  try {
+    assertPrivate(smuggled);
+  } catch {
+    threw = true;
+  }
+  check("refuses to persist an error message as the failure record", threw);
 }
 
 console.log("\nearning the clone");
@@ -261,6 +316,14 @@ console.log("\nearning the clone");
   check("the skip says why", typeof skip.reason === "string" && skip.reason.length > 0);
   check("--full scans everything regardless",
     planRepo(entry, { head: "abc", delta: new Set(), full: true }).scan === true);
+
+  // The head and the providers on a failed entry are the ones from the last
+  // sweep that finished, so every other question here answers "nothing
+  // moved" about a repository nobody managed to look at.
+  const retry = planRepo({ ...entry, failed_on: "2026-08-05" },
+    { head: "abc", delta: new Set(), full: false });
+  check("a repo whose last sweep failed is scanned again", retry.scan === true);
+  check("the retry says which day it is retrying", retry.reason.includes("2026-08-05"));
 }
 
 console.log("\npull request rules");
@@ -284,6 +347,26 @@ console.log("\npull request rules");
   check("pr body leaves warnings out; a PR is for what is broken",
     !body.includes("stripe/endpoint//v1/x"));
   check("pr body says how to make it stop", /uninstall/i.test(body));
+}
+
+{
+  // The branch name carries the day it was opened, so asking the remote for
+  // today's name found nothing every morning after and the same repository
+  // collected a fresh identical PR each day the feed moved. The prefix is
+  // the part of the name that does not move, so it is the part to ask about.
+  const heads = [
+    "5df9627e3afc30e1149cde8efad9a72af05f9a51\trefs/heads/main",
+    "e0f7006276ea5779f2cce69b09e0ceb25023e506\trefs/heads/driftcite/2026-08-05",
+  ].join("\n");
+  check("a branch opened on another day is still ours",
+    existingBranch(heads) === "driftcite/2026-08-05");
+  check("a remote with only their branches is untouched by us",
+    existingBranch("abc\trefs/heads/main\ndef\trefs/heads/renovate/lodash-4.x\n") === null);
+  check("a remote with no branches at all", existingBranch("") === null);
+  // Someone else's branch that merely starts with the word is not ours; the
+  // separator is what makes it a namespace.
+  check("only the driftcite/ namespace counts as ours",
+    existingBranch("abc\trefs/heads/driftcite-notes\n") === null);
 }
 
 {
@@ -399,6 +482,38 @@ function fakeApi() {
 }
 
 {
+  // The same repository, the next day, and the day after. The feed moves and
+  // the sweep runs again; the fix is the same fix and the diff is the same
+  // diff, so the second PR is not a second problem, it is spam. This is the
+  // one that was broken: the branch carries the day in its name, and the
+  // check for "have we been here" asked only for today's name.
+  const { root, origin } = makeOrigin({ "app.js": "const m = 'text-davinci-003';\n" });
+  const gh = fakeApi();
+  const repo = { fullName: "octo/app", cloneUrl: origin, defaultBranch: "main" };
+  const run = (today, live = true) =>
+    sweepRepo({ repo, api: gh.api, token: "tok", cliPath: CLI, today, live });
+
+  const first = await run("2026-08-05");
+  const nextDay = await run("2026-08-06");
+  const dayAfter = await run("2026-08-07");
+  check("the first day opens the pull request", first.action === "opened-pr");
+  check("a later sweep opens no second pr for the same repo",
+    nextDay.action === "left-alone" && dayAfter.action === "left-alone" &&
+    gh.created.length === 1);
+  check("the repo left alone names the branch that is already open",
+    nextDay.branch === "driftcite/2026-08-05");
+  check("no second branch was pushed either",
+    shell(root, "git", "ls-remote", "--heads", origin).split("\n").length === 2);
+
+  // The dry run takes the same decision, so what it prints is what a live
+  // run would do rather than a PR it would have opened.
+  const dry = await run("2026-08-08", false);
+  check("a dry run on a later day leaves it alone too", dry.action === "left-alone");
+
+  rmSync(root, { recursive: true, force: true });
+}
+
+{
   // A repository with nothing broken produces a fingerprint and no PR.
   const { root, origin } = makeOrigin({ "clean.js": "export const hi = 1;\n" });
   const gh = fakeApi();
@@ -427,6 +542,110 @@ function fakeApi() {
   check("the untouched repo gained no branches",
     shell(root, "git", "ls-remote", "--heads", origin).split("\n").length === 1);
   rmSync(root, { recursive: true, force: true });
+}
+
+console.log("\none repository cannot end the sweep");
+
+const repoRecord = (name) => ({
+  full_name: name,
+  default_branch: "main",
+  clone_url: `https://github.example/${name}.git`,
+});
+
+{
+  // The state file is written once, at the end of the run. One repository
+  // throwing used to take the process with it, so everything learned about
+  // every repository swept before it went too and the next run re-cloned all
+  // of them. Two ways to fail are covered here: the API call that earns the
+  // clone, and the sweep itself.
+  const state = emptyState();
+  const known = { providers: ["openai"], artifacts: [], head: "old", last_scan: "2026-08-01", prs: {} };
+  state.repos["octo/first"] = { ...known };
+  state.repos["octo/blip"] = { ...known };
+
+  const api = async (token, method, url) => {
+    if (url.includes("octo/blip")) {
+      throw new Error("GitHub 403 on GET /repos/octo/blip/branches/main: not accessible");
+    }
+    if (method === "GET" && url.includes("/branches/")) return { commit: { sha: "new" } };
+    throw new Error(`unexpected api call: ${method} ${url}`);
+  };
+  const swept = [];
+  const lines = [];
+  const { counts, failures } = await runSweep({
+    state, today: "2026-08-06", live: true, full: false, delta: new Set(),
+    api, installations: [{ id: 1 }], jwt: () => "jwt",
+    mintToken: async () => "tok",
+    repos: async () => ["octo/first", "octo/blip", "octo/boom", "octo/last"].map(repoRecord),
+    sweep: async ({ repo }) => {
+      swept.push(repo.fullName);
+      if (repo.fullName === "octo/boom") {
+        throw new Error(
+          "fatal: could not read from remote repository\n" +
+          "please make sure you have the correct access rights");
+      }
+      return {
+        action: "clean",
+        entry: { providers: ["openai"], artifacts: [], head: "new", last_scan: "2026-08-06", prs: {} },
+      };
+    },
+    log: (l) => lines.push(l),
+  });
+
+  check("the sweep carries on past the repository that threw",
+    swept.includes("octo/last") && counts.clean === 2);
+  check("both kinds of failure are counted, neither is fatal", counts.failed === 2);
+  check("state written before the failure survives it",
+    state.repos["octo/first"].last_scan === "2026-08-06");
+  check("a repository swept after the failure is recorded too",
+    state.repos["octo/last"].last_scan === "2026-08-06");
+  check("the failing repositories are named in the output",
+    failures.map((f) => f.name).sort().join(",") === "octo/blip,octo/boom" &&
+    lines.some((l) => l.includes("failed") && l.includes("octo/boom")));
+  check("a repository that failed is recorded as failed",
+    state.repos["octo/boom"].failed_on === "2026-08-06" &&
+    state.repos["octo/blip"].failed_on === "2026-08-06");
+  check("the failed repository keeps what the last good sweep knew",
+    state.repos["octo/blip"].head === "old" &&
+    state.repos["octo/blip"].last_scan === "2026-08-01");
+  check("the whole state is still something we are allowed to write",
+    (() => { try { assertPrivate(state); return true; } catch { return false; } })());
+  // The message is written by someone else's git; one capped line of it goes
+  // to the operator's console and none of it goes to the state file.
+  check("only the first line of the error reaches the log",
+    !lines.join("\n").includes("correct access rights") &&
+    !JSON.stringify(state).includes("could not read"));
+  check("a repository that failed is scanned again next sweep, quiet or not",
+    planRepo(state.repos["octo/blip"], { head: "old", delta: new Set(), full: false }).scan === true);
+}
+
+{
+  // A whole installation can fail: the grant revoked, the install suspended,
+  // the token endpoint having a moment. That is one customer's outage and it
+  // used to be every customer's.
+  const state = emptyState();
+  const { counts, failures } = await runSweep({
+    state, today: "2026-08-06", live: true, full: false, delta: new Set(),
+    api: async (t, m, url) => { throw new Error(`unexpected api call: ${m} ${url}`); },
+    installations: [{ id: 11 }, { id: 22 }],
+    jwt: () => "jwt",
+    mintToken: async (api, jwt, id) => {
+      if (id === 11) throw new Error("GitHub 401 on POST /app/installations/11/access_tokens");
+      return "tok";
+    },
+    repos: async () => [repoRecord("octo/ok")],
+    sweep: async () => ({
+      action: "clean",
+      entry: { providers: [], artifacts: [], head: "new", last_scan: "2026-08-06", prs: {} },
+    }),
+    log: () => {},
+  });
+  check("an installation that cannot be reached is one failure, not all of them",
+    counts.failed === 1 && counts.clean === 1);
+  check("the unreachable installation is named too",
+    failures[0]?.name === "installation 11");
+  check("the next installation is still swept",
+    state.repos["octo/ok"]?.last_scan === "2026-08-06");
 }
 
 console.log(`\n${passed} passed, ${failed} failed\n`);

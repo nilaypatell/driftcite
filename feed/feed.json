@@ -22,6 +22,7 @@
    "source_license": null,
    "source_notice": null,
    "sources": [
+    "https://platform.claude.com/docs/en/about-claude/model-deprecations",
     "https://platform.claude.com/docs/en/about-claude/models/overview.md",
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md"
    ],
@@ -98,7 +99,7 @@
    "sources": [
     "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0"
    ],
-   "artifact_count": 46
+   "artifact_count": 26
   },
   {
    "provider": "google",
@@ -108,6 +109,7 @@
    "source_license": null,
    "source_notice": null,
    "sources": [
+    "https://ai.google.dev/gemini-api/docs/deprecations",
     "https://ai.google.dev/gemini-api/docs/changelog"
    ],
    "artifact_count": 8
@@ -142,8 +144,8 @@
     "openai-models.yaml",
     "openai.generated.yaml"
    ],
-   "source_license": null,
-   "source_notice": null,
+   "source_license": "MIT",
+   "source_notice": "https://github.com/openai/openai-openapi/blob/main/LICENSE",
    "sources": [
     "https://developers.openai.com/api/docs/deprecations",
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
@@ -155,8 +157,8 @@
    "manifests": [
     "plaid.generated.yaml"
    ],
-   "source_license": null,
-   "source_notice": null,
+   "source_license": "none published",
+   "source_notice": "https://github.com/plaid/plaid-openapi",
    "sources": [
     "https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6"
    ],
@@ -199,7 +201,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'moneybookers' was valid in 71 and is gone in 71. Seen at: components.schemas.PaymentDetails.properties.type",
+   "note": "Enum value 'moneybookers' was valid in bb2a964906ad and is gone in f0d0bd47b721. Seen at: components.schemas.PaymentDetails.properties.type. Observed 2026-08-06; the spec's own version stayed 71.",
    "evidence": "https://github.com/Adyen/adyen-openapi/compare/bb2a964906ad...f0d0bd47b721",
    "provider": "adyen",
    "file_markers": [
@@ -221,7 +223,7 @@
    "replacement": "claude-opus-4-8",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -239,10 +241,10 @@
    },
    "status": "retired",
    "retires_on": "2026-02-19",
-   "replacement": "claude-sonnet-5",
+   "replacement": "claude-sonnet-4-6",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -260,10 +262,10 @@
    },
    "status": "retired",
    "retires_on": "2026-02-19",
-   "replacement": "claude-haiku-4-5",
+   "replacement": "claude-haiku-4-5-20251001",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -281,10 +283,10 @@
    },
    "status": "retired",
    "retires_on": "2025-10-28",
-   "replacement": "claude-sonnet-5",
+   "replacement": "claude-sonnet-4-6",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -302,10 +304,10 @@
    },
    "status": "retired",
    "retires_on": "2025-10-28",
-   "replacement": "claude-sonnet-5",
+   "replacement": "claude-sonnet-4-6",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -323,10 +325,10 @@
    },
    "status": "retired",
    "retires_on": "2025-07-21",
-   "replacement": "claude-sonnet-5",
+   "replacement": "claude-sonnet-4-6",
    "severity": "breaking",
    "note": "Retired. Calls return 404.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -342,12 +344,12 @@
      "claude-3-haiku-20240307"
     ]
    },
-   "status": "deprecated",
-   "retires_on": "2026-04-19",
-   "replacement": "claude-haiku-4-5",
-   "severity": "warning",
-   "note": "Deprecated, retires 2026-04-19.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+   "status": "retired",
+   "retires_on": "2026-04-20",
+   "replacement": "claude-haiku-4-5-20251001",
+   "severity": "breaking",
+   "note": "Retired. Calls return 404.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -364,12 +366,12 @@
      "claude-opus-4-1"
     ]
    },
-   "status": "deprecated",
+   "status": "retired",
    "retires_on": "2026-08-05",
-   "replacement": "claude-opus-5",
-   "severity": "warning",
-   "note": "Deprecated, retires 2026-08-05.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+   "replacement": "claude-opus-4-8",
+   "severity": "breaking",
+   "note": "Retired. Calls return 404.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -386,12 +388,12 @@
      "claude-opus-4-0"
     ]
    },
-   "status": "deprecated",
+   "status": "retired",
    "retires_on": "2026-06-15",
-   "replacement": "claude-opus-5",
-   "severity": "warning",
-   "note": "Deprecated, retires 2026-06-15.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "replacement": "claude-opus-4-8",
+   "severity": "breaking",
+   "note": "Retired. Calls return 404.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -408,12 +410,12 @@
      "claude-sonnet-4-0"
     ]
    },
-   "status": "deprecated",
+   "status": "retired",
    "retires_on": "2026-06-15",
-   "replacement": "claude-sonnet-5",
-   "severity": "warning",
-   "note": "Deprecated, retires 2026-06-15.",
-   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "replacement": "claude-sonnet-4-6",
+   "severity": "breaking",
+   "note": "Retired. Calls return 404.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
    "provider": "anthropic",
    "file_markers": [
     "anthropic",
@@ -923,7 +925,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /accounts/{account_id}/cloudforce-one/exemptions existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "DELETE, GET, POST /accounts/{account_id}/cloudforce-one/exemptions existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -942,7 +944,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "GET, POST /accounts/{account_id}/containers/applications/{application_id}/instances existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -961,7 +963,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "DELETE, GET /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id} existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -980,7 +982,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -999,7 +1001,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1018,7 +1020,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /accounts/{account_id}/email/routing/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "GET, POST /accounts/{account_id}/email/routing/suppression was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1037,7 +1039,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "DELETE, GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1056,7 +1058,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /accounts/{account_id}/email/sending/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "GET, POST /accounts/{account_id}/email/sending/suppression was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1075,7 +1077,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /accounts/{account_id}/email/sending/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "DELETE, GET /accounts/{account_id}/email/sending/suppression/{suppression_id} was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1094,7 +1096,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "PUT /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1113,7 +1115,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /accounts/{account_id}/paygo-usage existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "GET /accounts/{account_id}/paygo-usage existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1132,7 +1134,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /accounts/{account_id}/paygo-usage-info existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "GET /accounts/{account_id}/paygo-usage-info existed in d3a1cc521849 and is gone in cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1151,7 +1153,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /system/accounts/{account_tag}/stores existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "GET, POST /system/accounts/{account_tag}/stores existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1170,7 +1172,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /system/accounts/{account_tag}/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "DELETE, GET /system/accounts/{account_tag}/stores/{store_id} existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1189,7 +1191,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "DELETE, GET, POST /system/accounts/{account_tag}/stores/{store_id}/secrets existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1208,7 +1210,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "DELETE, GET, PATCH /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id} existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1227,7 +1229,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "POST /system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1246,7 +1248,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /zones/{zone_id}/email/routing/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "GET, POST /zones/{zone_id}/email/routing/suppression was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1265,7 +1267,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "DELETE, GET /zones/{zone_id}/email/routing/suppression/{suppression_id} was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1284,7 +1286,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /zones/{zone_id}/email/sending/suppression was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "GET, POST /zones/{zone_id}/email/sending/suppression was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1303,7 +1305,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "DELETE, GET /zones/{zone_id}/email/sending/suppression/{suppression_id} was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1322,7 +1324,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between 4.0.0 and 4.0.0.",
+   "note": "GET /zones/{zone_id}/rate_limit_analytics was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1341,7 +1343,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.create' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.post.x-cfPermissionsRequired",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.create' was valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores.post.x-cfPermissionsRequired. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1360,7 +1362,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.delete' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores/{store_id}/secrets.delete.x-cfPermissionsRequired",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.delete' was valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores/{store_id}/secrets.delete.x-cfPermissionsRequired. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1379,7 +1381,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.list' was valid in 4.0.0 and is gone in 4.0.0. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired",
+   "note": "Enum value '#com.cloudflare.api.account.secrets-store.secret.list' was valid in c166647800fb and is gone in d3a1cc521849. Seen at: paths./accounts/{account_id}/secrets_store/stores.get.x-cfPermissionsRequired. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1398,7 +1400,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'library_push' was valid in 4.0.0 and is gone in 4.0.0. Seen at: components.schemas.cc_ImageRegistryPermissions",
+   "note": "Enum value 'library_push' was valid in d3a1cc521849 and is gone in cadacbb547e8. Seen at: components.schemas.cc_ImageRegistryPermissions. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1417,7 +1419,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'stopped_with_code' was valid in 4.0.0 and is gone in 4.0.0. Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status",
+   "note": "Enum value 'stopped_with_code' was valid in d3a1cc521849 and is gone in cadacbb547e8. Seen at: components.schemas.cc_ContainerInstanceStatus.properties.status. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
    "provider": "cloudflare",
    "file_markers": [
@@ -1436,7 +1438,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'store_id' on GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'store_id' on DELETE, GET /accounts/{account_id}/secrets_store/stores/{store_id} existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1455,7 +1457,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'store_id' on DELETE, GET, POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1474,7 +1476,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'secret_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'secret_id' on DELETE, GET, PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1493,7 +1495,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'store_id' on PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'store_id' on DELETE, GET, PATCH /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id} existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1512,7 +1514,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'secret_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1531,7 +1533,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in 4.0.0 and is gone in 4.0.0.",
+   "note": "Parameter 'store_id' on POST /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate existed in c166647800fb and is gone in d3a1cc521849. Observed 2026-07-26; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
    "provider": "cloudflare",
    "file_markers": [
@@ -1884,7 +1886,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /api/v2/dora/incident was marked deprecated between 1.0 and 1.0.",
+   "note": "POST /api/v2/dora/incident was marked deprecated between 2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -1904,7 +1906,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /api/v2/metrics/config/bulk-tags was marked deprecated between 1.0 and 1.0.",
+   "note": "DELETE, POST /api/v2/metrics/config/bulk-tags was marked deprecated between 2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -1924,7 +1926,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /api/v2/scorecard/outcomes/batch was marked deprecated between 1.0 and 1.0.",
+   "note": "POST /api/v2/scorecard/outcomes/batch was marked deprecated between 2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -1944,7 +1946,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /api/v2/security/assets existed in 1.0 and is gone in 1.0.",
+   "note": "GET /api/v2/security/assets existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -1964,7 +1966,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /api/v2/security/vulnerabilities was marked deprecated between 1.0 and 1.0.",
+   "note": "GET /api/v2/security/vulnerabilities was marked deprecated between 2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -1984,7 +1986,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /api/v2/services existed in 1.0 and is gone in 1.0.",
+   "note": "GET, POST /api/v2/services existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2004,7 +2006,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PATCH /api/v2/services/{service_id} existed in 1.0 and is gone in 1.0.",
+   "note": "DELETE, GET, PATCH /api/v2/services/{service_id} existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2024,7 +2026,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /api/v2/teams existed in 1.0 and is gone in 1.0.",
+   "note": "GET, POST /api/v2/teams existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2044,7 +2046,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PATCH /api/v2/teams/{team_id} existed in 1.0 and is gone in 1.0.",
+   "note": "DELETE, GET, PATCH /api/v2/teams/{team_id} existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2064,7 +2066,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'dora_incident' was valid in 1.0 and is gone in 1.0. Seen at: components.schemas.DORAIncidentType",
+   "note": "Enum value 'dora_incident' was valid in 2.33.0 and is gone in 2.57.0. Seen at: components.schemas.DORAIncidentType. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2084,7 +2086,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'security_responses' was valid in 1.0 and is gone in 1.0. Seen at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory",
+   "note": "Enum value 'security_responses' was valid in 2.33.0 and is gone in 2.57.0. Seen at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2104,7 +2106,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Parameter 'filter[advisory_id]' on GET /api/v2/security/vulnerabilities existed in 1.0 and is gone in 1.0.",
+   "note": "Parameter 'filter[advisory_id]' on GET /api/v2/security/vulnerabilities existed in 2.33.0 and is gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.",
    "evidence": "https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0",
    "provider": "datadog",
    "file_markers": [
@@ -2124,7 +2126,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /v2/security/secrets existed in 2.0 and is gone in 2.0.",
+   "note": "GET, POST /v2/security/secrets existed in 7e5b46e1d90a and is gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
    "provider": "digitalocean",
    "file_markers": [
@@ -2143,7 +2145,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /v2/security/secrets/{secret} existed in 2.0 and is gone in 2.0.",
+   "note": "DELETE, GET, PUT /v2/security/secrets/{secret} existed in 7e5b46e1d90a and is gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
    "provider": "digitalocean",
    "file_markers": [
@@ -2162,7 +2164,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /v2/security/secrets/{secret}/restore existed in 2.0 and is gone in 2.0.",
+   "note": "POST /v2/security/secrets/{secret}/restore existed in 7e5b46e1d90a and is gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
    "provider": "digitalocean",
    "file_markers": [
@@ -2181,165 +2183,13 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v2/security/secrets/{secret}/versions existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v2/security/secrets/{secret}/versions existed in 7e5b46e1d90a and is gone in 87e82da6548b. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b",
    "provider": "digitalocean",
    "file_markers": [
     "digitalocean",
     "DIGITALOCEAN_TOKEN",
     "api.digitalocean.com"
-   ]
-  },
-  {
-   "id": "github/endpoint//applications/grants/{grant_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/applications/grants/{grant_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//authorizations/{authorization_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/authorizations/{authorization_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/credential-authorizations/{credential_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/credential-authorizations/{credential_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /orgs/{org}/credential-authorizations/{credential_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/teams/{team_slug}/external-groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//reactions/{reaction_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/reactions/{reaction_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /reactions/{reaction_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "DELETE /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
    ]
   },
   {
@@ -2352,7 +2202,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /applications/grants existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "GET /applications/grants existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -2371,7 +2221,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /applications/grants/{grant_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "DELETE, GET /applications/grants/{grant_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -2390,558 +2240,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /authorizations existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//authorizations/{authorization_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/authorizations/{authorization_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//enterprises/{enterprise}/audit-log",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/enterprises/{enterprise}/audit-log"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /enterprises/{enterprise}/audit-log existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/actions",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/enterprises/{enterprise}/settings/billing/actions"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /enterprises/{enterprise}/settings/billing/actions existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/packages",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/enterprises/{enterprise}/settings/billing/packages"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /enterprises/{enterprise}/settings/billing/packages existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/enterprises/{enterprise}/settings/billing/shared-storage"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /enterprises/{enterprise}/settings/billing/shared-storage existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/audit-log",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/audit-log"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/audit-log existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/credential-authorizations",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/credential-authorizations"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/credential-authorizations existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/external-group/{group_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/external-group/{group_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/external-group/{group_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/external-groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/external-groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/team-sync/groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/team-sync/groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/team-sync/groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Users"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/organizations/{org}/Users"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/teams/{team_id}/team-sync/group-mappings"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//authorizations/{authorization_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/authorizations/{authorization_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /authorizations/{authorization_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/teams/{team_slug}/external-groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /orgs/{org}/teams/{team_slug}/external-groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/organizations/{org}/Users/{scim_user_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/teams/{team_id}/team-sync/group-mappings"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "PATCH /teams/{team_id}/team-sync/group-mappings existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//authorizations",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/authorizations"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /authorizations existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Groups"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /scim/v2/enterprises/{enterprise}/Groups existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/enterprises/{enterprise}/Users"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /scim/v2/enterprises/{enterprise}/Users existed in 1.1.4 and is gone in 1.1.4.",
-   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
-   "provider": "github",
-   "file_markers": [
-    "github",
-    "octokit",
-    "GITHUB_TOKEN"
-   ]
-  },
-  {
-   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/scim/v2/organizations/{org}/Users"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "POST /scim/v2/organizations/{org}/Users existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "GET, POST /authorizations existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -2960,7 +2259,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /authorizations/clients/{client_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "PUT /authorizations/clients/{client_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -2979,7 +2278,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /authorizations/clients/{client_id}/{fingerprint} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "PUT /authorizations/clients/{client_id}/{fingerprint} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -2989,16 +2288,282 @@
    ]
   },
   {
-   "id": "github/endpoint//orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
+   "id": "github/endpoint//authorizations/{authorization_id}",
    "kind": "endpoint",
    "match": {
     "literals": [
-     "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}"
+     "/authorizations/{authorization_id}"
     ]
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "DELETE, GET, PATCH /authorizations/{authorization_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/audit-log",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/audit-log"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/audit-log existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/actions",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/actions"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/actions existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/packages",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/packages"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/packages existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/enterprises/{enterprise}/settings/billing/shared-storage"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /enterprises/{enterprise}/settings/billing/shared-storage existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/audit-log",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/audit-log"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/audit-log existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/credential-authorizations",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/credential-authorizations"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/credential-authorizations existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/credential-authorizations/{credential_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/credential-authorizations/{credential_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /orgs/{org}/credential-authorizations/{credential_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/external-group/{group_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/external-group/{group_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/external-group/{group_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/external-groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/external-groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/external-groups existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/team-sync/groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/team-sync/groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /orgs/{org}/team-sync/groups existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/external-groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, PATCH /orgs/{org}/teams/{team_slug}/external-groups existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, PATCH /orgs/{org}/teams/{team_slug}/team-sync/group-mappings existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//reactions/{reaction_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/reactions/{reaction_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE /reactions/{reaction_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Groups"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, POST /scim/v2/enterprises/{enterprise}/Groups existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -3017,7 +2582,26 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "DELETE, GET, PATCH, PUT /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/enterprises/{enterprise}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, POST /scim/v2/enterprises/{enterprise}/Users existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -3036,7 +2620,26 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "DELETE, GET, PATCH, PUT /scim/v2/enterprises/{enterprise}/Users/{scim_user_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/scim/v2/organizations/{org}/Users"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, POST /scim/v2/organizations/{org}/Users existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -3055,7 +2658,26 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "PUT /scim/v2/organizations/{org}/Users/{scim_user_id} existed in 1.1.4 and is gone in 1.1.4.",
+   "note": "DELETE, GET, PATCH, PUT /scim/v2/organizations/{org}/Users/{scim_user_id} existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
+   "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
+   "provider": "github",
+   "file_markers": [
+    "github",
+    "octokit",
+    "GITHUB_TOKEN"
+   ]
+  },
+  {
+   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/teams/{team_id}/team-sync/group-mappings"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, PATCH /teams/{team_id}/team-sync/group-mappings existed in v1.1.4 and is gone in v2.1.0. Observed 2026-07-26; the spec's own version stayed 1.1.4.",
    "evidence": "https://github.com/github/rest-api-description/compare/v1.1.4...v2.1.0",
    "provider": "github",
    "file_markers": [
@@ -3073,10 +2695,10 @@
     ]
    },
    "status": "retired",
-   "retires_on": "2024-07-12",
-   "replacement": "gemini-2.5-pro",
+   "retires_on": "2025-02-18",
+   "replacement": null,
    "severity": "breaking",
-   "note": "Shut down. Requests fail.",
+   "note": "Shut down. Requests fail. Google names no replacement.",
    "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
    "provider": "google",
    "file_markers": [
@@ -3096,9 +2718,9 @@
    },
    "status": "retired",
    "retires_on": "2025-09-29",
-   "replacement": "gemini-2.5-pro",
+   "replacement": null,
    "severity": "breaking",
-   "note": "Shut down. Requests fail.",
+   "note": "Shut down. Requests fail. Google names no replacement.",
    "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
    "provider": "google",
    "file_markers": [
@@ -3118,9 +2740,9 @@
    },
    "status": "retired",
    "retires_on": "2025-09-29",
-   "replacement": "gemini-2.5-flash",
+   "replacement": null,
    "severity": "breaking",
-   "note": "Shut down. Requests fail.",
+   "note": "Shut down. Requests fail. Google names no replacement.",
    "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
    "provider": "google",
    "file_markers": [
@@ -3140,9 +2762,9 @@
    },
    "status": "retired",
    "retires_on": "2025-09-29",
-   "replacement": "gemini-3.1-flash-lite",
+   "replacement": null,
    "severity": "breaking",
-   "note": "Shut down. Requests fail.",
+   "note": "Shut down. Requests fail. Google names no replacement.",
    "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
    "provider": "google",
    "file_markers": [
@@ -3163,10 +2785,10 @@
    },
    "status": "retired",
    "retires_on": "2026-06-01",
-   "replacement": "gemini-3.5-flash",
+   "replacement": "gemini-3.6-flash",
    "severity": "breaking",
    "note": "Shut down. Requests fail.",
-   "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
+   "evidence": "https://ai.google.dev/gemini-api/docs/deprecations",
    "provider": "google",
    "file_markers": [
     "gemini",
@@ -3189,7 +2811,7 @@
    "replacement": "gemini-3.1-flash-lite",
    "severity": "breaking",
    "note": "Shut down. Requests fail.",
-   "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
+   "evidence": "https://ai.google.dev/gemini-api/docs/deprecations",
    "provider": "google",
    "file_markers": [
     "gemini",
@@ -3211,7 +2833,7 @@
    "replacement": "gemini-embedding-2",
    "severity": "breaking",
    "note": "Shut down. Requests fail.",
-   "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
+   "evidence": "https://ai.google.dev/gemini-api/docs/deprecations",
    "provider": "google",
    "file_markers": [
     "gemini",
@@ -3232,9 +2854,10 @@
    },
    "status": "deprecated",
    "retires_on": "2026-08-17",
+   "replacement": "gemini-3.1-flash-image",
    "severity": "warning",
    "note": "Shutdown announced for 2026-08-17.",
-   "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
+   "evidence": "https://ai.google.dev/gemini-api/docs/deprecations",
    "provider": "google",
    "file_markers": [
     "gemini",
@@ -3252,9 +2875,10 @@
     ]
    },
    "status": "deprecated",
+   "retires_on": "2026-08-16",
    "replacement": "openai/gpt-oss-20b",
    "severity": "warning",
-   "note": "Deprecated for free and developer tiers. Requests will return errors at end of life. No shutdown date published.",
+   "note": "Deprecated for free and developer tiers. Shuts down 2026-08-16, after which requests return errors.",
    "evidence": "https://console.groq.com/docs/deprecations",
    "provider": "groq",
    "file_markers": [
@@ -3272,9 +2896,10 @@
     ]
    },
    "status": "deprecated",
+   "retires_on": "2026-08-16",
    "replacement": "openai/gpt-oss-120b",
    "severity": "warning",
-   "note": "Deprecated for free and developer tiers. Requests will return errors at end of life. No shutdown date published.",
+   "note": "Deprecated for free and developer tiers. Shuts down 2026-08-16, after which requests return errors. Groq names qwen/qwen3.6-27b as a second accepted target.",
    "evidence": "https://console.groq.com/docs/deprecations",
    "provider": "groq",
    "file_markers": [
@@ -4311,44 +3936,6 @@
    ]
   },
   {
-   "id": "openai/endpoint//engines",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/engines"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /engines existed in 1.3.0 and is gone in 2.0.0.",
-   "evidence": "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0",
-   "provider": "openai",
-   "file_markers": [
-    "openai",
-    "OPENAI_API_KEY",
-    "gpt-"
-   ]
-  },
-  {
-   "id": "openai/endpoint//engines/{engine_id}",
-   "kind": "endpoint",
-   "match": {
-    "literals": [
-     "/engines/{engine_id}"
-    ]
-   },
-   "status": "removed",
-   "severity": "breaking",
-   "note": "GET /engines/{engine_id} existed in 1.3.0 and is gone in 2.0.0.",
-   "evidence": "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0",
-   "provider": "openai",
-   "file_markers": [
-    "openai",
-    "OPENAI_API_KEY",
-    "gpt-"
-   ]
-  },
-  {
    "id": "openai/endpoint//answers",
    "kind": "endpoint",
    "match": {
@@ -4378,6 +3965,44 @@
    "status": "removed",
    "severity": "breaking",
    "note": "POST /classifications existed in 1.3.0 and is gone in 2.0.0.",
+   "evidence": "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/endpoint//engines",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/engines"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /engines existed in 1.3.0 and is gone in 2.0.0.",
+   "evidence": "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/endpoint//engines/{engine_id}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/engines/{engine_id}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /engines/{engine_id} existed in 1.3.0 and is gone in 2.0.0.",
    "evidence": "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0",
    "provider": "openai",
    "file_markers": [
@@ -4434,7 +4059,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /mobile/authorization-code existed in 2.0 and is gone in 2.0.",
+   "note": "POST /mobile/authorization-code existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4453,7 +4078,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /oauth2/clients/{client_id}/access-token/renew existed in 2.0 and is gone in 2.0.",
+   "note": "POST /oauth2/clients/{client_id}/access-token/renew existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4472,7 +4097,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v1/{location_id}/orders was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v1/{location_id}/orders was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4491,7 +4116,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "PUT /v1/{location_id}/orders/{order_id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET, PUT /v1/{location_id}/orders/{order_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4510,7 +4135,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v1/{location_id}/payments existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v1/{location_id}/payments existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4529,7 +4154,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v1/{location_id}/payments/{payment_id} existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v1/{location_id}/payments/{payment_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4548,7 +4173,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "POST /v1/{location_id}/refunds existed in 2.0 and is gone in 2.0.",
+   "note": "GET, POST /v1/{location_id}/refunds existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4567,7 +4192,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v1/{location_id}/settlements existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v1/{location_id}/settlements existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4586,7 +4211,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v1/{location_id}/settlements/{settlement_id} existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v1/{location_id}/settlements/{settlement_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4605,7 +4230,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/customers/{customer_id}/cards was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/customers/{customer_id}/cards was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4624,7 +4249,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "DELETE /v2/customers/{customer_id}/cards/{card_id} was marked deprecated between 2.0 and 2.0.",
+   "note": "DELETE /v2/customers/{customer_id}/cards/{card_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4643,7 +4268,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/employees was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/employees was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4662,7 +4287,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/employees/{id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/employees/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4681,7 +4306,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/inventory/adjustment/{adjustment_id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/inventory/adjustment/{adjustment_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4700,7 +4325,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/inventory/batch-change was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/inventory/batch-change was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4719,7 +4344,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/inventory/batch-retrieve-changes was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/inventory/batch-retrieve-changes was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4738,7 +4363,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/inventory/batch-retrieve-counts was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/inventory/batch-retrieve-counts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4757,7 +4382,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/inventory/physical-count/{physical_count_id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/inventory/physical-count/{physical_count_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4776,7 +4401,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "GET /v2/inventory/transfers/{transfer_id} existed in 2.0 and is gone in 2.0.",
+   "note": "GET /v2/inventory/transfers/{transfer_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4795,7 +4420,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/inventory/{catalog_object_id}/changes was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/inventory/{catalog_object_id}/changes was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4814,7 +4439,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/labor/employee-wages was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/labor/employee-wages was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4833,7 +4458,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/labor/employee-wages/{id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/labor/employee-wages/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4852,7 +4477,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/labor/shifts was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/labor/shifts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4871,7 +4496,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/labor/shifts/search was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/labor/shifts/search was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4890,7 +4515,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "PUT /v2/labor/shifts/{id} was marked deprecated between 2.0 and 2.0.",
+   "note": "DELETE, GET, PUT /v2/labor/shifts/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4909,7 +4534,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/locations/{location_id}/checkouts was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/locations/{location_id}/checkouts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4928,7 +4553,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/locations/{location_id}/transactions was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/locations/{location_id}/transactions was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4947,7 +4572,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/locations/{location_id}/transactions/{transaction_id} was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/locations/{location_id}/transactions/{transaction_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4966,7 +4591,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/capture was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/capture was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -4985,7 +4610,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/void was marked deprecated between 2.0 and 2.0.",
+   "note": "POST /v2/locations/{location_id}/transactions/{transaction_id}/void was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5004,7 +4629,7 @@
    },
    "status": "deprecated",
    "severity": "warning",
-   "note": "GET /v2/loyalty/programs was marked deprecated between 2.0 and 2.0.",
+   "note": "GET /v2/loyalty/programs was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5023,7 +4648,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'BALANCE_CHARGE' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'BALANCE_CHARGE' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5042,7 +4667,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'GIFT_CARD_ACTIVATION' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "note": "Enum value 'GIFT_CARD_ACTIVATION' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5061,7 +4686,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'GIFT_CARD_RELOAD' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "note": "Enum value 'GIFT_CARD_RELOAD' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5080,7 +4705,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'GIFT_CARD_UNKNOWN' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1PaymentItemizationItemizationType",
+   "note": "Enum value 'GIFT_CARD_UNKNOWN' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5099,7 +4724,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'INCENTED_PAYMENT' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'INCENTED_PAYMENT' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5118,7 +4743,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'RETURNED_ACH_ENTRY' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'RETURNED_ACH_ENTRY' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5137,7 +4762,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'RETURNED_SQUARE_275' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'RETURNED_SQUARE_275' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5156,7 +4781,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'SQUARE_275' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'SQUARE_275' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5175,7 +4800,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'SQUARE_CAPITAL_ADVANCE' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'SQUARE_CAPITAL_ADVANCE' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5194,7 +4819,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'SQUARE_CARD' was valid in 2.0 and is gone in 2.0. Seen at: definitions.V1SettlementEntryType",
+   "note": "Enum value 'SQUARE_CARD' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.",
    "evidence": "https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05",
    "provider": "square",
    "file_markers": [
@@ -5289,7 +4914,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'last_during_period' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage",
+   "note": "Enum value 'last_during_period' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage.",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [
@@ -5308,7 +4933,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'last_ever' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage",
+   "note": "Enum value 'last_ever' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage.",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [
@@ -5327,7 +4952,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'usage_record' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record.properties.object",
+   "note": "Enum value 'usage_record' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record.properties.object.",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [
@@ -5346,7 +4971,7 @@
    },
    "status": "removed",
    "severity": "breaking",
-   "note": "Enum value 'usage_record_summary' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object",
+   "note": "Enum value 'usage_record_summary' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object.",
    "evidence": "https://github.com/stripe/openapi/compare/v1200...v2345",
    "provider": "stripe",
    "file_markers": [

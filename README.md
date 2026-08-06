@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 18 providers · 255 artifacts · zero dependencies · 118 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 15 providers · 235 artifacts · zero dependencies · 179 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -22,24 +22,38 @@
 
 ```console
 $ npx driftcite .
+feed: live | 0 dependencies resolved
 
-[BREAKING] openai/model_id/text-davinci-003 -- retired (DIED 935 days ago, 2024-01-04)
+4 provider findings (4 breaking)
+
+[BREAKING] openai/model_id/text-davinci-003 -- retired (DIED 945 days ago, 2024-01-04)
   Shut down. Requests fail.
   use instead: gpt-3.5-turbo-instruct
   evidence: https://developers.openai.com/api/docs/deprecations
     models.py:6  LEGACY = "text-davinci-003"
 
-[BREAKING] openai/model_id/gpt-4-turbo -- deprecated (breaks in 88 days, 2026-10-23)
+[BREAKING] openai/model_id/gpt-4-vision-preview -- retired (DIED 608 days ago, 2024-12-06)
+  Shut down. Requests fail.
+  use instead: gpt-4o
+  evidence: https://developers.openai.com/api/docs/deprecations
+    models.py:8  VISION = "gpt-4-vision-preview"
+
+[BREAKING] openai/model_id/gpt-4-turbo -- deprecated (breaks in 78 days, 2026-10-23)
   Shutdown announced for 2026-10-23.
   use instead: gpt-5.6-sol
   evidence: https://developers.openai.com/api/docs/deprecations
     models.py:7  CHAT_MODEL = "gpt-4-turbo"
 
 [BREAKING] stripe/endpoint//v1/invoices/upcoming -- removed
-  GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.
+  GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.dahlia.
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
-    billing.js:5  return stripe.request("GET", "/v1/invoices/upcoming", { customer });
+    billing.js:4  return stripe.request("GET", "/v1/invoices/upcoming", { customer });
 ```
+
+That is a whole run, on 2026-08-06. The only line removed is the one naming the
+directory it was pointed at; no finding was dropped to make the output look
+tidier. The day counts are the part that moves: they are computed against the
+day the command runs, so they will not read 945 and 78 when you run it.
 
 Runs on your machine. Nothing is uploaded. No account.
 
@@ -80,7 +94,7 @@ You should not have to trust us.
 
 An entry reading *"deprecated, retires 2026-10-23"* is a countdown, not a footnote, and becomes **retired** the moment that date passes.
 
-Findings sort by how long you have left: `breaks in 88 days` before, `DIED 935 days ago` after.
+Findings sort by how long you have left: `breaks in 78 days` before, `DIED 945 days ago` after.
 
 No dependency tool has a field for time remaining.
 
@@ -121,7 +135,7 @@ urllib3@1.25
   "Broken release"
 
 basic-ftp@4.6.6
-  "Security vulnerability fixed in 5.2.1"
+  "Security vulnerability fixed in 5.2.1, please upgrade"
 ```
 
 </td>
@@ -155,7 +169,7 @@ npx driftcite . --fix --write   # apply them
 When the replacement is prose rather than a drop-in token, it refuses and says so:
 
 ```console
-2 findings need a human
+1 finding(s) need a human
   stripe/endpoint//v1/invoices/upcoming
     the provider named no replacement
 ```
@@ -272,7 +286,7 @@ Kinds other than model IDs also require the file to reference that provider at a
 
 </div>
 
-A tool that is wrong three times out of four gets muted, then deleted. Going from 29 artifacts to 255 since then has produced **zero** new findings across the real repositories it is checked against. Coverage is worthless if it arrives with noise.
+A tool that is wrong three times out of four gets muted, then deleted. Coverage has gone from 29 artifacts to 235 since then without loosening one match shape, and 24 of the 179 tests exist for no other purpose than to stop it being loosened: `refund` inside "refunded", `hosted` as an ordinary English word, a literal quoted inside a comment. Every one of them was a finding this scanner produced before it was a finding this scanner refuses. Coverage is worthless if it arrives with noise.
 
 <br>
 
@@ -280,23 +294,24 @@ A tool that is wrong three times out of four gets muted, then deleted. Going fro
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
-| **GitHub** | `github/rest-api-description` | 46 |
-| **Cloudflare** | `cloudflare/api-schemas` | 42 |
-| **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
-| **Stripe** | `stripe/openapi` · 2,345 tagged releases | 10 |
 | **Square** | `square/connect-api-specification` | 41 |
 | **Mistral** | model docs deprecation table, curated | 40 |
+| **Cloudflare** | `cloudflare/api-schemas` | 33 |
+| **GitHub** | `github/rest-api-description` | 26 |
 | **Bedrock** | AWS model lifecycle page, curated | 17 |
+| **Anthropic** | model deprecations page, curated | 15 |
 | **Cohere** | deprecations page, curated | 15 |
+| **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
 | **Datadog** | `DataDog/datadog-api-client-python` | 12 |
-| **Google** | Gemini changelog, curated | 8 |
-| DigitalOcean · Adyen · Plaid · Groq | specs and deprecation pages | 8 |
-| Other model providers | curated retirement pages | 15 |
+| **Google** | Gemini deprecations page and changelog, curated | 8 |
+| **Stripe** | `stripe/openapi` · tags v1200 through v2375 | 8 |
+| DigitalOcean · Groq · Adyen · Plaid | specs and deprecation pages | 8 |
 | Twilio · Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Eighteen providers in the published feed, 255 artifacts, every one carrying
-the provider's own evidence URL.
+Fifteen providers in the published feed, 235 artifacts, every one carrying the
+provider's own evidence URL. Nineteen are tracked in total: Twilio, Asana and
+Box are polled and have produced nothing yet, and Azure is held back below.
 
 Azure is curated (42 artifacts) and **withheld from the published feed** until
 a release carrying `require_context` is the version on npm. The published
@@ -307,9 +322,12 @@ ahead of the gate that makes it safe.
 Two of them resell other people's models on their own clock. Azure retires
 `gpt-4o` and `claude-sonnet-4-5` on dates their original vendors do not
 recognise, and AWS states the same thing outright: *"only the dates on this
-page apply."* Those artifacts are reported only in files that name the
-reseller, because a right answer delivered to the wrong caller is a wrong
-answer.
+page apply."* The two are handled differently because they name models
+differently. Bedrock's IDs carry the reseller in the literal —
+`anthropic.claude-3-5-sonnet-20240620-v1:0` cannot be a direct Anthropic call
+— so those 17 report anywhere. Azure serves the bare vendor ID, so all 42 of
+its artifacts set `require_context` and are reported only in files that name
+Azure. A right answer delivered to the wrong caller is a wrong answer.
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 
@@ -336,11 +354,13 @@ Manifests live in [`manifests/`](manifests/), are regenerated daily by a schedul
 
 The clock does more than diff specs. Every documentation page a curated
 manifest cites is watched by content hash, so a provider editing a
-deprecations page becomes a work order instead of silent rot. And every
-provider's live model list is probed daily where a key is configured: a
-retirement is then recorded because the ID stopped being served, not only
-because a page said so. Both records are committed here, in the open, like
-everything else.
+deprecations page becomes a work order instead of silent rot. Every provider's
+live model list is probed daily where a key is configured: a retirement is then
+recorded because the ID stopped being served, not only because a page said so.
+And the endpoints themselves are asked whether they are dying, by HEAD, for the
+`Sunset` and `Deprecation` headers of RFC 8594 and RFC 9745 — twelve paths
+across GitHub, Stripe and Cohere on 2026-08-06, none of which sent either one.
+All three records are committed here, in the open, like everything else.
 
 Every fact is public and free to read. You can vendor the whole thing. The hard part was never obtaining it, it is maintaining it, every day, forever, across every provider, because it decays the moment anyone stops.
 
@@ -369,5 +389,5 @@ The underlying facts are not ours and never could be, which is exactly why every
 <br>
 
 <div align="center">
-<sub>Every number in this README came from a real run against a real codebase.</sub>
+<sub>Every number in this README was measured on 2026-08-06, not estimated. The counts are what <code>scanner/build_feed.py</code> printed; the transcripts are whole runs, untrimmed; the day counts inside them are computed against the day the command runs and will differ from yours.</sub>
 </div>

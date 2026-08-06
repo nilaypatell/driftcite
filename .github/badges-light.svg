@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="931" height="36" viewBox="0 0 931 36" role="img" aria-label="Apache 2.0 · 18 providers · 255 artifacts · zero dependencies · 118 tests passing · Node 18+">
+<svg xmlns="http://www.w3.org/2000/svg" width="931" height="36" viewBox="0 0 931 36" role="img" aria-label="Apache 2.0 · 18 providers · 235 artifacts · zero dependencies · 179 tests passing · Node 18+">
   <defs>
     <style>
       /* Each label is one centred run rather than separately positioned words.
@@ -29,7 +29,7 @@
   <g>
     <rect x="284" y="0" width="145" height="36" rx="18" fill="#FFFFFF" stroke="#EFE8DF"/>
     <text class="chip" text-anchor="middle" x="356.5" y="22.5">
-      <tspan class="value">255</tspan><tspan class="label" dx="5">artifacts</tspan>
+      <tspan class="value">235</tspan><tspan class="label" dx="5">artifacts</tspan>
     </text>
   </g>
 
@@ -43,7 +43,7 @@
   <g>
     <rect x="630" y="0" width="183" height="36" rx="18" fill="#FFFFFF" stroke="#EFE8DF"/>
     <text class="chip" text-anchor="middle" x="721.5" y="22.5">
-      <tspan class="dot" fill="#28A745">●</tspan><tspan class="value" dx="7">118</tspan><tspan class="label" dx="5">tests passing</tspan>
+      <tspan class="dot" fill="#28A745">●</tspan><tspan class="value" dx="7">179</tspan><tspan class="label" dx="5">tests passing</tspan>
     </text>
   </g>
 
