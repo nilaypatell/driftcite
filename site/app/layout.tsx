@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/components/SiteNav";
@@ -37,9 +37,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const MARK =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 112'%3E%3Cg transform='scale(1.12 1)'%3E%3Cpolygon fill='%233D5AFE' points='10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55'/%3E%3Cpolygon fill='%230D1220' points='0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112'/%3E%3C/g%3E%3C/svg%3E";
-
 const DESCRIPTION =
   "You should be shipping, not tracking which model a provider retired last quarter. driftcite finds the API identifiers in your source that are already dead — models, endpoints, parameters — and opens the pull request that replaces them, citing the provider that published the change.";
 
@@ -60,7 +57,28 @@ export const metadata: Metadata = {
   creator: "driftcite",
   publisher: "driftcite",
   category: "technology",
-  icons: { icon: MARK },
+  /* app/icon.svg, app/apple-icon.png and app/favicon.ico are picked up by
+     file convention; this adds the raster ladder beside them. The large
+     sizes are not redundant — Google's result tile takes the biggest icon
+     it is offered and scales it down, so declaring only 32px is how a
+     search listing ends up with a blurry tile on a retina screen.
+
+     All of them are the mark on a plate. The bare mark used to be the icon,
+     inline as a data URI, and because that drawing is full-bleed by design
+     it arrived on every surface with no margin at all — a shape jammed
+     edge to edge in a square. See app/icon.svg. */
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/icons/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/favicon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -82,6 +100,15 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+};
+
+/* The colour the browser paints its own chrome with — the address bar on
+   Android, the notch area on iOS. Left unset it picks white, which is a
+   shade off the site's ground and shows as a seam above the page. */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#FBFCFE",
 };
 
 /* Two graphs, not one. The SoftwareApplication is the product; the
