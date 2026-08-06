@@ -26,7 +26,13 @@ const CHIP_BASE: React.CSSProperties = {
    class covers: the H1's tighter clamp below 980px, and the pill's hover
    border. Neither can be expressed as an inline style. */
 const LOCAL_CSS = `
-[data-hero-pill]:hover { border-color: var(--color-accent); }
+[data-hero-pill] {
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .3s ease;
+}
+[data-hero-pill]:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 9%, transparent);
+}
 @media (max-width: 980px) {
   [data-hero-h1] { font-size: clamp(34px, 7vw, 56px) !important; }
 }`;
@@ -37,18 +43,27 @@ export default function Hero() {
       data-stagger="100"
       style={{
         position: "relative",
+        /* the ground and the haze drift a little; this keeps both inside
+           the hero rather than over the bar above and the figure below */
+        overflow: "hidden",
         padding: "96px 0 72px",
         textAlign: "center",
-        background:
-          "radial-gradient(circle at 1px 1px, var(--color-neutral-300) 1px, transparent 0) 0 0 / 26px 26px",
       }}
     >
       <style dangerouslySetInnerHTML={{ __html: LOCAL_CSS }} />
+
+      {/* The ground and the haze, as layers rather than as a background on
+          the section. A background paints with the element it belongs to and
+          cannot lag behind the words sitting on it; these can, by a dozen
+          pixels, which is the whole of the parallax here. */}
+      <div className="dc-hero-grid" data-parallax="26" aria-hidden="true" />
+      <div className="dc-hero-glow" data-parallax="-16" aria-hidden="true" />
 
       {CHIPS.map((chip) => (
         <span
           key={chip.text}
           className="dc-hero-chip"
+          data-parallax="14"
           aria-hidden="true"
           style={{ ...CHIP_BASE, ...chip.pos }}
         >
@@ -107,12 +122,13 @@ export default function Hero() {
           margin: "30px auto 0",
         }}
       >
-        Providers retire endpoints, parameters and models — and your lockfile
-        never moves, so no dependency tool notices. driftcite reads your call
-        sites, finds what already stopped working, and opens the pull request
-        that fixes it.{" "}
+        You should be shipping, not tracking which model a provider retired
+        last quarter. driftcite reads your source for the API identifiers that
+        are already dead — models, endpoints, parameters — and opens the pull
+        request that replaces them, citing the provider that published the
+        change.{" "}
         <a target="_blank" rel="noopener" href={LINKS.repo} style={{ color: "var(--color-accent-700)" }}>
-          It’s all open source.
+          Free and open source.
         </a>
       </p>
 

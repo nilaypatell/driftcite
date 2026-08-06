@@ -1,15 +1,17 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Column, Kicker } from "@/components/primitives";
 import { LINKS, PRECISION } from "@/lib/data";
 import { ArrowRight } from "@/components/icons";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/how-it-works",
   title: "How it works",
   description:
     "A manifest asserts. A scanner locates. The record is public. No language model sits anywhere in the detection or fix path — the polling runs as public CI, the record is git history, and the scanner is one auditable file.",
-};
+});
 
 /* ── shared inline values, read straight off the handoff ────────────── */
 
@@ -18,7 +20,10 @@ const MUTED = "color-mix(in srgb, var(--color-ink) 78%, transparent)";
 const LINK_STYLE: CSSProperties = { color: "var(--color-accent-700)" };
 
 /** inline code inside prose */
-const CODE: CSSProperties = { fontFamily: "var(--font-mono)", fontSize: "0.9em" };
+const CODE: CSSProperties = {
+  fontFamily: "var(--font-mono)",
+  fontSize: "0.9em",
+};
 
 /** code inside a table cell */
 const CODE_CELL: CSSProperties = {
@@ -128,46 +133,47 @@ const STEPS: { n: string; title: string; body: ReactNode }[] = [
 
 /* ── the cadence table ──────────────────────────────────────────────── */
 
-const CADENCE: { source: ReactNode; mechanism: ReactNode; cadence: string }[] = [
-  {
-    source: "Spec repos in git",
-    mechanism: (
-      <>
-        <code style={CODE_CELL}>releases.atom</code> conditional GET — 304s cost
-        nothing
-      </>
-    ),
-    cadence: "5 min",
-  },
-  {
-    source: "Spec repos, fallback",
-    mechanism: "GitHub REST, conditional requests",
-    cadence: "hourly",
-  },
-  {
-    source: "npm — 4,230,819 packages",
-    mechanism: (
-      <>
-        one <code style={CODE_CELL}>_changes</code> sequence cursor, keyless
-      </>
-    ),
-    cadence: "5 min",
-  },
-  {
-    source: "PyPI",
-    mechanism: (
-      <>
-        one <code style={CODE_CELL}>X-PyPI-Last-Serial</code> header
-      </>
-    ),
-    cadence: "10 min",
-  },
-  {
-    source: "Docs without a spec",
-    mechanism: "fetch plus content hash",
-    cadence: "daily",
-  },
-];
+const CADENCE: { source: ReactNode; mechanism: ReactNode; cadence: string }[] =
+  [
+    {
+      source: "Spec repos in git",
+      mechanism: (
+        <>
+          <code style={CODE_CELL}>releases.atom</code> conditional GET — 304s
+          cost nothing
+        </>
+      ),
+      cadence: "5 min",
+    },
+    {
+      source: "Spec repos, fallback",
+      mechanism: "GitHub REST, conditional requests",
+      cadence: "hourly",
+    },
+    {
+      source: "npm — 4,230,819 packages",
+      mechanism: (
+        <>
+          one <code style={CODE_CELL}>_changes</code> sequence cursor, keyless
+        </>
+      ),
+      cadence: "5 min",
+    },
+    {
+      source: "PyPI",
+      mechanism: (
+        <>
+          one <code style={CODE_CELL}>X-PyPI-Last-Serial</code> header
+        </>
+      ),
+      cadence: "10 min",
+    },
+    {
+      source: "Docs without a spec",
+      mechanism: "fetch plus content hash",
+      cadence: "daily",
+    },
+  ];
 
 /* ── the match-shape table ──────────────────────────────────────────── */
 
@@ -244,7 +250,12 @@ export default function HowItWorks() {
           stage below is observable: the polling runs as public CI, the record
           is git history, and the scanner is one auditable file. The numbers
           come from{" "}
-          <a target="_blank" rel="noopener" href={LINKS.architecture} style={LINK_STYLE}>
+          <a
+            target="_blank"
+            rel="noopener"
+            href={LINKS.architecture}
+            style={LINK_STYLE}
+          >
             ARCHITECTURE.md
           </a>
           , each verified against a live endpoint.
@@ -302,8 +313,7 @@ export default function HowItWorks() {
           <Kicker n={1} total={3} label="The cadence" />
         </div>
         <h2 style={H2}>
-          Set by what each source{" "}
-          <span style={ACCENT}>actually supports.</span>
+          Set by what each source <span style={ACCENT}>actually supports.</span>
         </h2>
         <table className="dc-table" style={TABLE}>
           <thead>
@@ -415,11 +425,22 @@ export default function HowItWorks() {
             flexWrap: "wrap",
           }}
         >
-          <a target="_blank" rel="noopener" className="dc-btn dc-btn-primary" href={LINKS.app}>
+          <a
+            target="_blank"
+            rel="noopener"
+            className="dc-btn dc-btn-primary"
+            href={LINKS.app}
+          >
             Install the App
           </a>
-          <a target="_blank" rel="noopener" className="dc-btn dc-btn-ghost" href={LINKS.architecture}>
-            Read ARCHITECTURE.md<ArrowRight className="dc-arrow" size={14} />
+          <a
+            target="_blank"
+            rel="noopener"
+            className="dc-btn dc-btn-ghost"
+            href={LINKS.architecture}
+          >
+            Read ARCHITECTURE.md
+            <ArrowRight className="dc-arrow" size={14} />
           </a>
         </div>
       </section>

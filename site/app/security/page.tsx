@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Column, Kicker } from "@/components/primitives";
 import { LINKS } from "@/lib/data";
 
@@ -13,11 +14,12 @@ import { LINKS } from "@/lib/data";
    has to change here in the same commit.
    ═══════════════════════════════════════════════════════════════════════ */
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/security",
   title: "Security & privacy",
   description:
     "Your source code is never transmitted: the scan runs entirely on your machine, with no account, no upload and no telemetry. The three optional network requests, what --fix may write, and the two permissions the GitHub App asks for.",
-};
+});
 
 const MUTED = "color-mix(in srgb, var(--color-ink) 78%, transparent)";
 
@@ -55,7 +57,10 @@ export default function Security() {
       <header
         className="dc-rise"
         data-stagger="120"
-        style={{ padding: "70px 0 42px", borderBottom: "1px solid var(--color-divider)" }}
+        style={{
+          padding: "70px 0 42px",
+          borderBottom: "1px solid var(--color-divider)",
+        }}
       >
         <span
           className="dc-mono dc-rise"
@@ -81,7 +86,8 @@ export default function Security() {
             letterSpacing: "-0.02em",
           }}
         >
-          Worth <span style={{ color: "var(--color-accent)" }}>stating plainly.</span>
+          Worth{" "}
+          <span style={{ color: "var(--color-accent)" }}>stating plainly.</span>
         </h1>
         <p
           className="dc-rise"
@@ -93,8 +99,8 @@ export default function Security() {
             marginTop: 20,
           }}
         >
-          You are being asked to run a scanner over a private codebase. Here is exactly
-          what it does with your code — and what it never does.
+          You are being asked to run a scanner over a private codebase. Here is
+          exactly what it does with your code — and what it never does.
         </p>
       </header>
 
@@ -105,13 +111,16 @@ export default function Security() {
         </div>
         <h2 style={H2}>
           Your source code is{" "}
-          <span style={{ color: "var(--color-accent)" }}>never transmitted.</span>
+          <span style={{ color: "var(--color-accent)" }}>
+            never transmitted.
+          </span>
         </h2>
         <p style={{ ...LEDE, maxWidth: "62ch" }}>
-          The scan runs entirely on your machine. There is no account, no upload, and no
-          telemetry. The CLI makes exactly three kinds of network request, all of them
-          optional — and registry requests send package names only: public identifiers,
-          never file contents, paths, or repository names.
+          The scan runs entirely on your machine. There is no account, no
+          upload, and no telemetry. The CLI makes exactly three kinds of network
+          request, all of them optional — and registry requests send package
+          names only: public identifiers, never file contents, paths, or
+          repository names.
         </p>
 
         <table className="dc-table" style={{ marginTop: 28, maxWidth: 880 }}>
@@ -201,12 +210,13 @@ export default function Security() {
             <Kicker n={2} total={4} label="The dependencies" />
           </div>
           <h2 style={H2}>
-            Zero, <span style={{ color: "var(--color-accent)" }}>by design.</span>
+            Zero,{" "}
+            <span style={{ color: "var(--color-accent)" }}>by design.</span>
           </h2>
           <p style={{ ...LEDE, maxWidth: "52ch" }}>
-            The CLI runs on a stranger’s machine and reads their source, so it should be
-            auditable in one sitting and pull nothing in. The entire scanner is a single
-            file:{" "}
+            The CLI runs on a stranger’s machine and reads their source, so it
+            should be auditable in one sitting and pull nothing in. The entire
+            scanner is a single file:{" "}
             <a
               target="_blank"
               rel="noopener"
@@ -217,8 +227,8 @@ export default function Security() {
                 bin/driftcite.mjs
               </code>
             </a>
-            . The Action ships the CLI inside itself — nothing is fetched from npm at run
-            time.
+            . The Action ships the CLI inside itself — nothing is fetched from
+            npm at run time.
           </p>
         </div>
 
@@ -249,17 +259,18 @@ export default function Security() {
               ; run without it first to see the exact diff.
             </li>
             <li style={RULE}>
-              Only the lines the scan already reported may change, inside the existing
-              quoting, swapping one literal for the replacement the provider itself named.
+              Only the lines the scan already reported may change, inside the
+              existing quoting, swapping one literal for the replacement the
+              provider itself named.
             </li>
             <li style={RULE}>Comment lines are never edited.</li>
             <li style={RULE}>
-              If an edit would change any other line, the file is left untouched rather
-              than partially written.
+              If an edit would change any other line, the file is left untouched
+              rather than partially written.
             </li>
             <li style={RULE}>
-              Replacements that are prose rather than a drop-in token are refused and
-              reported as needing a human.
+              Replacements that are prose rather than a drop-in token are
+              refused and reported as needing a human.
             </li>
           </ul>
         </div>
@@ -274,7 +285,9 @@ export default function Security() {
         </div>
         <h2 style={H2}>
           Two permissions.{" "}
-          <span style={{ color: "var(--color-accent)" }}>A few hundred strings.</span>
+          <span style={{ color: "var(--color-accent)" }}>
+            A few hundred strings.
+          </span>
         </h2>
         <p style={{ ...LEDE, maxWidth: "62ch" }}>
           The GitHub App asks for exactly{" "}
@@ -285,11 +298,11 @@ export default function Security() {
           <code className="dc-mono" style={CODE_EM}>
             Pull requests: write
           </code>
-          . No admin, no org-wide read, no workflow scope. It stores the artifact IDs your
-          code matched and the repositories it saw them in — never file contents, never
-          paths — opens one pull request per repository, serially, only against
-          repositories it is installed in, and never reopens a pull request you have
-          closed.
+          . No admin, no org-wide read, no workflow scope. It stores the
+          artifact IDs your code matched and the repositories it saw them in —
+          never file contents, never paths — opens one pull request per
+          repository, serially, only against repositories it is installed in,
+          and never reopens a pull request you have closed.
         </p>
       </section>
 
@@ -297,7 +310,10 @@ export default function Security() {
 
       {/* ── reporting ────────────────────────────────────────────────── */}
       <section className="dc-rv" style={{ padding: "70px 0 84px" }}>
-        <div className="dc-card" style={{ maxWidth: 720, padding: "27.6px 28px" }}>
+        <div
+          className="dc-card"
+          style={{ maxWidth: 720, padding: "27.6px 28px" }}
+        >
           <span
             style={{
               fontSize: 10,
@@ -309,9 +325,9 @@ export default function Security() {
             Reporting a vulnerability
           </span>
           <p style={{ fontSize: 14.5, lineHeight: "25px", color: MUTED }}>
-            Open a private security advisory — please do not open a public issue for a
-            vulnerability. Expect a first response within 72 hours. Fixes land on the
-            latest release; please upgrade before reporting.
+            Open a private security advisory — please do not open a public issue
+            for a vulnerability. Expect a first response within 72 hours. Fixes
+            land on the latest release; please upgrade before reporting.
           </p>
           <div style={{ marginTop: 8 }}>
             <a

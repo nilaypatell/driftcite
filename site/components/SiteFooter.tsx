@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { Mark } from "@/components/primitives";
+import { GitHub, Npm } from "@/components/icons";
 import { LINKS, SHOW_PRICING } from "@/lib/data";
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -14,7 +15,7 @@ import { LINKS, SHOW_PRICING } from "@/lib/data";
 /* 74% ink, accent-700 on hover. Both states have to be utilities — an
    inline colour would outrank the hover rule. */
 const LINK_CLASS =
-  "text-[14px] no-underline " +
+  "dc-flink text-[14px] no-underline " +
   "text-[color:color-mix(in_srgb,var(--color-ink)_74%,transparent)] " +
   "hover:text-accent-700";
 
@@ -103,7 +104,7 @@ export default function SiteFooter() {
                 maxWidth: "15ch",
               }}
             >
-              The easiest way to catch what providers retire.
+              The API maintenance nobody should be doing by hand.
             </p>
             <p
               style={{
@@ -193,18 +194,49 @@ export default function SiteFooter() {
         <div
           style={{
             display: "flex",
-            alignItems: "baseline",
+            alignItems: "center",
             gap: 24,
             flexWrap: "wrap",
-            paddingTop: 22,
+            paddingTop: 16,
             fontSize: 12.5,
             color: "color-mix(in srgb, var(--color-ink) 55%, transparent)",
           }}
         >
           <span>© 2026 driftcite · Apache-2.0</span>
           <span>Runs on your machine. Nothing is uploaded. No account.</span>
-          <span style={{ marginLeft: "auto" }}>
-            The feed is public and free to read.
+          <span>The feed is public and free to read.</span>
+
+          {/* The two places the project actually lives. Marks, not words:
+              the column above already spells both out as links, and this row
+              is the one that has to survive being glanced at. Each carries
+              its own label for anyone who cannot see the glyph. */}
+          <span
+            style={{
+              marginLeft: "auto",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 2,
+              marginBlock: -8,
+            }}
+          >
+            <a
+              className="dc-social"
+              href={LINKS.repo}
+              target="_blank"
+              rel="noopener"
+              aria-label="driftcite on GitHub"
+            >
+              <GitHub size={17} />
+            </a>
+            <a
+              className="dc-social"
+              href={LINKS.npm}
+              target="_blank"
+              rel="noopener"
+              aria-label="driftcite on npm"
+            >
+              <Npm size={17} />
+            </a>
           </span>
         </div>
       </div>

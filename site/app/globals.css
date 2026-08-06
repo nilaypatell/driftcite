@@ -191,17 +191,6 @@
   transform: translateY(1px);
   box-shadow: inset 0 1px 2px color-mix(in srgb, var(--color-accent-900) 30%, transparent);
 }
-/* A single light pass across the fill on hover — the only ornament on the
-   page that is purely decorative, kept to one 700ms sweep so it reads as a
-   material catching the light rather than as a thing that is still moving. */
-.dc-btn-primary::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(105deg,
-    transparent 34%,
-    rgba(255, 255, 255, .26) 50%,
-    transparent 66%);
-  transform: translateX(-130%);
-}
 .dc-btn-secondary {
   border-color: var(--color-divider); background: var(--color-surface);
   box-shadow: var(--shadow-sm);
@@ -294,11 +283,19 @@ a:hover .dc-arrow, button:hover .dc-arrow { transform: translateX(3px); }
   -webkit-backdrop-filter: blur(10px) saturate(1.4);
   transition: background-color .3s ease, box-shadow .3s ease;
 }
+/* Scrolled, the bar gets *less* see-through, not more. The fashionable
+   move is the opposite — drop the opacity and lean on a heavier blur — but
+   a blur is a rendering hint, not a guarantee: it is unsupported in some
+   browsers and dropped under others' compositing pressure, and when it goes
+   the header is left as thin tint over moving text. Measured at 78% here
+   the corpus figures scrolling underneath collided with the nav links. So
+   the blur stays as the enhancement and the opacity carries the legibility,
+   and what changes on scroll is the shadow that lifts the bar off the page. */
 html[data-scrolled] .dc-nav {
-  background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  background: color-mix(in srgb, var(--color-bg) 97%, transparent);
   backdrop-filter: blur(16px) saturate(1.6);
   -webkit-backdrop-filter: blur(16px) saturate(1.6);
-  box-shadow: 0 6px 24px color-mix(in srgb, #1A2033 7%, transparent);
+  box-shadow: 0 6px 24px color-mix(in srgb, #1A2033 8%, transparent);
 }
 
 /* How far down the page you are, drawn on the header's own bottom rule.
@@ -355,7 +352,7 @@ html[data-scrolled] .dc-progress { opacity: 1; }
 .dc-card:hover {
   border-color: color-mix(in srgb, var(--color-accent) 38%, transparent);
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 .dc-plate {
   border: 1px solid var(--color-neutral-300);
@@ -438,15 +435,103 @@ html[data-scrolled] .dc-progress { opacity: 1; }
 .dc-muted { color: color-mix(in srgb, var(--color-ink) 55%, transparent); }
 .dc-hr { height: 1px; border: 0; background: var(--color-divider); }
 
+/* ── things motion animates, in their finished state ──────────────
+   Written here first, unconditionally, so the page is correct with
+   JavaScript off, with reduced motion on, and in the instant before
+   Motion mounts. The block below only ever takes these away and gives
+   them back — nothing on the page depends on it to arrive. */
+
+/* A measured bar. The width is data, passed in as --w. */
+[data-bar] { width: var(--w); }
+
+/* Anything that drifts against the scroll. --py is the offset Motion
+   computes per frame; at rest it is zero and the element is where the
+   layout put it. */
+[data-parallax] { transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
+
+/* The hero's dotted ground, as its own layer rather than a background on
+   the section — a background cannot be moved independently of the words
+   sitting on it, and this one has to lag behind them. */
+.dc-hero-grid {
+  /* inset, not overhanging: the layer sits later in the DOM than the
+     announcement bar above it, so anything that spills past the hero's top
+     edge paints dots across the banner. The mask, not the bleed, is what
+     makes the ground fade out. */
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 1px 1px,
+    var(--color-neutral-300) 1px, transparent 0) 0 0 / 26px 26px;
+  /* fade the grid out at the edges so it ends rather than gets cut off */
+  mask-image: radial-gradient(ellipse 78% 62% at 50% 42%, #000 42%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 42%, #000 42%, transparent 100%);
+  pointer-events: none;
+}
+
+/* The accent haze behind the headline. One soft ellipse, well under the
+   text contrast floor, doing the job a photograph would do on a site that
+   had one. */
+.dc-hero-glow {
+  position: absolute; left: 50%; top: 4%;
+  width: min(880px, 92%); aspect-ratio: 2 / 1;
+  translate: -50% 0;
+  background: radial-gradient(ellipse at center,
+    color-mix(in srgb, var(--color-accent) 13%, transparent) 0%,
+    transparent 68%);
+  pointer-events: none;
+}
+
 /* ── motion ───────────────────────────────────────────────────────
-   Additive only: the markup is complete and visible without it. */
+   Additive only: the markup is complete and visible without it. Every
+   rule in here is gated on `html.anim`, which Motion adds on mount and
+   only when the reader has not asked for reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
-  html.anim .dc-rise { animation: dc-rise .55s cubic-bezier(.22,.7,.3,1) both; }
+
+  /* entry: the page's own first paint */
+  html.anim .dc-rise { animation: dc-rise .6s cubic-bezier(.22, .7, .3, 1) both; }
+
+  /* reveal on scroll. The blur is what separates this from a fade — it
+     reads as the block resolving into focus rather than turning up. Kept
+     at 5px: enough to feel, small enough that the compositing lasts one
+     transition and never lands on text that has to stay readable. */
   html.anim .dc-rv {
-    opacity: 0; transform: translateY(14px);
-    transition: opacity .55s cubic-bezier(.22,.7,.3,1), transform .55s cubic-bezier(.22,.7,.3,1);
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: blur(4px);
+    transition: opacity .62s cubic-bezier(.22, .7, .3, 1),
+                transform .62s cubic-bezier(.22, .7, .3, 1),
+                filter .62s cubic-bezier(.22, .7, .3, 1);
   }
-  html.anim .dc-rv.in { opacity: 1; transform: none; }
+  html.anim .dc-rv.in { opacity: 1; transform: none; filter: none; }
+
+  /* every hairline on the site draws itself from the left. The page is
+     one ruled sheet; this is the ruling being drawn. */
+  html.anim .dc-hr,
+  html.anim .dc-kick-lead {
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .9s cubic-bezier(.22, .7, .3, 1);
+  }
+  html.anim .dc-hr.in,
+  html.anim .dc-kick-lead.in { transform: none; }
+
+  /* bars grow out of their axis as they arrive, in step with the count-up
+     running beside them */
+  html.anim [data-bar] {
+    width: 0;
+    transition: width 1s cubic-bezier(.22, .7, .3, 1);
+  }
+  html.anim [data-bar].in { width: var(--w); }
+
+  /* one pass of light down the transcript the first time it is seen —
+     the panel claims to be a scan, so it runs once and stops */
+  html.anim .dc-term.in::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-term-prompt) 10%, transparent) 46%,
+      color-mix(in srgb, var(--color-term-prompt) 10%, transparent) 54%,
+      transparent 100%);
+    animation: dc-scan 1.5s cubic-bezier(.4, 0, .25, 1) .15s both;
+  }
+
   .dc-cursor { animation: dc-blink 1.1s steps(1) infinite; }
 }
 
@@ -457,15 +542,19 @@ html[data-scrolled] .dc-progress { opacity: 1; }
     border-left: none; padding-left: 0;
     border-top: 1px solid var(--color-divider); padding-top: 27.6px;
   }
-  .dc-hero-chip, .dc-kick-right { display: none; }
+  .dc-hero-chip, .dc-kick-right, .dc-kick-lead { display: none; }
 }
 
 } /* end @layer components */
 
 @keyframes dc-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes dc-blink { 50% { opacity: 0; } }
+@keyframes dc-scan { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
+  /* parallax is a transform, not a transition — turning transitions off
+     does not stop it, so it has to be pinned explicitly */
+  [data-parallax] { transform: none !important; will-change: auto; }
 }

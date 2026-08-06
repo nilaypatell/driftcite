@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Column } from "@/components/primitives";
 import { LINKS } from "@/lib/data";
 
+/* Kept out of the index as well as out of the sitemap: the page builds and
+   is reachable by URL, but while SHOW_PRICING is off nothing links to it and
+   none of the tiers on it can actually be bought yet. */
 export const metadata: Metadata = {
-  title: "Pricing",
-  description:
-    "Per-org flat, never per-seat. The scanner, the Action and the feed are open source and free, forever. Paid tiers buy the hosted watch: private repositories, feed freshness, and the pull request that just arrives.",
+  ...pageMeta({
+    path: "/pricing",
+    title: "Pricing",
+    description:
+      "Per-org flat, never per-seat. The scanner, the Action and the feed are open source and free, forever. Paid tiers buy the hosted watch: private repositories, feed freshness, and the pull request that just arrives.",
+  }),
+  robots: { index: false, follow: true },
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -351,7 +359,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>Is driftcite free?</summary>
           <p style={ANSWER}>
@@ -364,7 +375,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>Do you ever see my code?</summary>
           <p style={ANSWER}>
@@ -380,7 +394,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>
             Why flat per organization instead of per seat?
@@ -395,7 +412,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>What exactly do the paid tiers add?</summary>
           <p style={ANSWER}>
@@ -408,7 +428,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>Can I self-host the whole thing?</summary>
           <p style={ANSWER}>
@@ -421,7 +444,10 @@ export default function Pricing() {
 
         <details
           data-faq="1"
-          style={{ borderTop: "1px solid var(--color-divider)", padding: "4px 0" }}
+          style={{
+            borderTop: "1px solid var(--color-divider)",
+            padding: "4px 0",
+          }}
         >
           <summary style={SUMMARY}>What is the license on the feed?</summary>
           <p style={ANSWER}>

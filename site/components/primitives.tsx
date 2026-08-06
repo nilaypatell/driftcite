@@ -36,9 +36,14 @@ export function Kicker({
         [ <span className="n">{pad(n)}</span> / {pad(total)} ] &nbsp;·&nbsp; {label}
       </span>
       {twin ? (
-        <span className="dc-kick-right" aria-hidden="true">
-          // {twin} //
-        </span>
+        <>
+          {/* the leader that joins the two ends of the row, drawn from the
+              left as the section arrives */}
+          <span className="dc-kick-lead" aria-hidden="true" />
+          <span className="dc-kick-right" aria-hidden="true">
+            // {twin} //
+          </span>
+        </>
       ) : null}
     </div>
   );
@@ -58,16 +63,30 @@ export function Ref({ n }: { n: number }) {
   );
 }
 
-/** The wordmark: accent and ink polygons, x-scaled 1.12. */
+/**
+ * The wordmark: accent and ink polygons, x-scaled 1.12.
+ *
+ * The halves are named so the header can pull them apart on hover — see
+ * `.dc-brand:hover .dc-mark` in globals.css. Nothing else reads the classes,
+ * and the mark is unchanged wherever no rule targets them.
+ */
 export function Mark({ size = 22 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 112 112" width={size} height={size} aria-hidden="true">
+    <svg
+      className="dc-mark"
+      viewBox="0 0 112 112"
+      width={size}
+      height={size}
+      aria-hidden="true"
+    >
       <g transform="scale(1.12 1)">
         <polygon
+          className="up"
           fill="#3D5AFE"
           points="10,0 72,0 100,28 100,55 74,55 74,40 60,26 34,26 34,55 10,55"
         />
         <polygon
+          className="dn"
           fill="#0D1220"
           points="0,57 24,57 24,86 50,86 64,72 64,57 90,57 90,84 62,112 0,112"
         />

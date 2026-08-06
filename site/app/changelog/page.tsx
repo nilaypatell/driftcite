@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Column } from "@/components/primitives";
 import { CORPUS, LINKS, PRECISION, TOTAL_ARTIFACTS } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/changelog",
   title: "Changelog",
   description:
     "Releases of the driftcite scanner, Action and GitHub App — what changed, and when. The drift manifests are a separate record, regenerated daily by a scheduled workflow.",
-};
+});
 
 /** Inline code, the handoff's treatment: mono, 0.92em of its own line. */
 function C({ children }: { children: ReactNode }) {
@@ -77,11 +79,13 @@ const RELEASES: readonly Release[] = [
         ones. Delete an entry once you fix it.
       </>,
       <>
-        <C>.driftciteignore</C> with path, artifact, and{" "}
-        <C>path :: artifact</C> scoping. Suppressed findings are counted and
-        reported, never silently dropped.
+        <C>.driftciteignore</C> with path, artifact, and <C>path :: artifact</C>{" "}
+        scoping. Suppressed findings are counted and reported, never silently
+        dropped.
       </>,
-      <>The Action writes findings, with evidence links, into the job summary.</>,
+      <>
+        The Action writes findings, with evidence links, into the job summary.
+      </>,
     ],
   },
   {
@@ -199,7 +203,8 @@ export default function Changelog() {
             letterSpacing: "-0.02em",
           }}
         >
-          What changed, <span style={{ color: "var(--color-accent)" }}>and when.</span>
+          What changed,{" "}
+          <span style={{ color: "var(--color-accent)" }}>and when.</span>
         </h1>
         <p
           className="dc-rise"

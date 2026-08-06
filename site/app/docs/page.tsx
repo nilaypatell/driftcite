@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Column } from "@/components/primitives";
 import { LINKS } from "@/lib/data";
@@ -13,11 +14,12 @@ import { ArrowRight } from "@/components/icons";
    touches is the shared Motion observer, via .dc-rise / .dc-rv.
    ═══════════════════════════════════════════════════════════════════════ */
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/docs",
   title: "Docs",
   description:
     "Everything here runs on your machine with zero dependencies. Node 18 or newer is the only requirement. Nothing is uploaded, and there is no account to create.",
-};
+});
 
 /* The handoff's TOC hover state and its ≤980px collapse cannot be
    expressed inline — the media query has to beat the inline
@@ -68,7 +70,11 @@ const ACTION_INPUTS = [
     "true",
     "Also check whether installed versions were deprecated by their maintainer.",
   ],
-  ["offline", "false", "Use the bundled feed instead of fetching the live one."],
+  [
+    "offline",
+    "false",
+    "Use the bundled feed instead of fetching the live one.",
+  ],
 ] as const;
 
 const h2: CSSProperties = {
@@ -267,7 +273,8 @@ export default function Docs() {
                     margin: 0,
                     fontSize: 13.5,
                     lineHeight: "22px",
-                    color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                    color:
+                      "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                   }}
                 >
                   Removed endpoints, dropped parameters, retired enum values,
@@ -292,7 +299,8 @@ export default function Docs() {
                     margin: 0,
                     fontSize: 13.5,
                     lineHeight: "22px",
-                    color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                    color:
+                      "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                   }}
                 >
                   npm carries a per-version <C>deprecated</C> string, PyPI a{" "}
@@ -362,7 +370,8 @@ export default function Docs() {
               <dd
                 style={{
                   margin: 0,
-                  color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                  color:
+                    "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                 }}
               >
                 The identifier that drifted, in a stable three-part form you can
@@ -377,7 +386,8 @@ export default function Docs() {
               <dd
                 style={{
                   margin: 0,
-                  color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                  color:
+                    "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                 }}
               >
                 Severity is computed against today. The same entry reports as{" "}
@@ -393,7 +403,8 @@ export default function Docs() {
               <dd
                 style={{
                   margin: 0,
-                  color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                  color:
+                    "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                 }}
               >
                 The provider’s own page or spec diff. Every finding carries one;
@@ -408,7 +419,8 @@ export default function Docs() {
               <dd
                 style={{
                   margin: 0,
-                  color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                  color:
+                    "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                 }}
               >
                 Your call site — file, line, and the code that matched.
@@ -463,7 +475,8 @@ export default function Docs() {
                   margin: 0,
                   fontSize: 14,
                   lineHeight: "24px",
-                  color: "color-mix(in srgb, var(--color-ink) 78%, transparent)",
+                  color:
+                    "color-mix(in srgb, var(--color-ink) 78%, transparent)",
                 }}
               >
                 Comment lines are never edited. Only the lines the scan reported
@@ -604,7 +617,8 @@ export default function Docs() {
                 href={LINKS.pr}
                 style={{ textDecoration: "none" }}
               >
-                See a real PR it opened<ArrowRight className="dc-arrow" size={14} />
+                See a real PR it opened
+                <ArrowRight className="dc-arrow" size={14} />
               </a>
             </div>
             <h3 style={{ ...h3, margin: "36px 0 0" }}>

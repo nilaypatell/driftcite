@@ -27,7 +27,7 @@ const NAV: { href: string; label: string; when?: boolean }[] = [
 /* inherit the ink, take the accent on hover and on the current page —
    the hover/aria states cannot be inline, so they are utilities. */
 const LINK_CLASS =
-  "whitespace-nowrap text-[14px] text-inherit no-underline " +
+  "dc-navlink whitespace-nowrap text-[14px] text-inherit no-underline " +
   "hover:text-accent aria-[current=page]:text-accent max-[920px]:hidden";
 
 export default function SiteNav({ stars }: { stars: number | null }) {
@@ -36,27 +36,16 @@ export default function SiteNav({ stars }: { stars: number | null }) {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <nav
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--space-6)",
-        paddingTop: 15,
-        paddingBottom: 15,
-        paddingInline:
-          "max(clamp(20px, 5vw, 72px), calc((100% - 1200px) / 2 + clamp(20px, 5vw, 72px)))",
-        borderBottom: "1px solid var(--color-divider)",
-        background: "color-mix(in srgb, var(--color-bg) 93%, transparent)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)",
-      }}
-    >
+    /* The bar's own styles moved to `.dc-nav` in globals.css. They were
+       inline, and an inline style has no scrolled state — there is no way
+       to write "and when the page has moved, tighten" next to it. */
+    <nav className="dc-nav">
+      {/* how far down the page you are, drawn along the bar's bottom rule */}
+      <span className="dc-progress" aria-hidden="true" />
+
       <Link
         href="/"
-        className="whitespace-nowrap"
+        className="dc-brand whitespace-nowrap"
         style={{
           display: "inline-flex",
           alignItems: "center",
