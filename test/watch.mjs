@@ -452,7 +452,7 @@ function fakeApi() {
   const fixed = shell(root, "git", "--git-dir", origin, "show",
     "driftcite/2026-08-05:app.js");
   check("the pushed branch carries the provider-named fix",
-    fixed.includes("gpt-3.5-turbo-instruct") && !fixed.includes("text-davinci-003"));
+    fixed.includes("gpt-5.6-terra") && !fixed.includes("text-davinci-003"));
 
   // The scanner never descends into dot-directories, so nothing under
   // .github/ can be edited by our own fix path; splitWorkflowEdits is the

@@ -9,6 +9,15 @@
       ],
       "sha256": "5a44fde1df25c995a8725107374d87a240b9f7b3e4223294a7fbf453e125b609"
     },
+    "https://ai.google.dev/gemini-api/docs/deprecations": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "google-models.yaml"
+      ],
+      "sha256": "2de65b9a66e1a198e2527bd9432ffeb7652b1a0789aeee22b7437112466a2334"
+    },
     "https://console.groq.com/docs/deprecations": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
@@ -26,6 +35,60 @@
         "openai-models.yaml"
       ],
       "sha256": "bf457baeb74075c0ffaf5d0a1e83e85415867c4bb3e5ba3e4d12a840a8dedabb"
+    },
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "bedrock-models.yaml"
+      ],
+      "sha256": "ff7ca4408d6f90b1b53cdaf162d764decb6b4640c5cdcf6983d25df77b7dc57e"
+    },
+    "https://docs.cohere.com/docs/deprecations": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "cohere-models.yaml"
+      ],
+      "sha256": "d7dcd083b9ac4847318c8efd4035c66d7d87e1bd13889308e7774cd52e2d3e2e"
+    },
+    "https://docs.mistral.ai/getting-started/models/models_overview/": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "mistral-models.yaml"
+      ],
+      "sha256": "d4b69e81f405dc0f54c9e4af74732001ee815e2b63c739f56ad34830f5efd5b0"
+    },
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "azure-models.yaml"
+      ],
+      "sha256": "330391f2a86e84a26cab59b9e0b79c9392c2a115fca4be1722132edb3c3c475b"
+    },
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "azure-models.yaml"
+      ],
+      "sha256": "5a25c7e8bbb9a9ca59e451042876473fcf176e1b03fb19a14fca1d8913fac14b"
+    },
+    "https://platform.claude.com/docs/en/about-claude/model-deprecations": {
+      "first_seen": "2026-08-06",
+      "last_changed": "2026-08-06",
+      "last_checked": "2026-08-06",
+      "manifests": [
+        "anthropic.yaml"
+      ],
+      "sha256": "8c4d258af815015718ffb4eee5ea234ed57f4ee6cd5cdccac6a3064fea5b5390"
     },
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md": {
       "first_seen": "2026-08-06",

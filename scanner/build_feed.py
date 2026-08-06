@@ -154,6 +154,29 @@ def build():
         print("one artifact per path; a curated duplicate has to be merged by hand.")
         return 1
 
+    # A replacement must not be something this feed already knows is dying.
+    # The page sent text-davinci-003 to gpt-3.5-turbo-instruct, which the same
+    # page shuts down on 2026-09-28, and the autofix bot rewrote real
+    # repositories from a model that was dead to one with seven weeks left.
+    # Worse, no artifact covered the destination, so the next scan saw nothing
+    # and driftcite could not flag its own output. A manifest must follow the
+    # chain to the end of the line; the hops are all on the provider's page.
+    dying = {}
+    for art in artifacts:
+        for lit in (art.get("match") or {}).get("literals") or []:
+            dying[lit] = art["id"]
+    onward = []
+    for art in artifacts:
+        rep = art.get("replacement")
+        if rep and rep in dying and dying[rep] != art["id"]:
+            onward.append((art["id"], rep, dying[rep]))
+    if onward:
+        print("refusing to build: a replacement is itself scheduled to die")
+        for who, rep, target in sorted(onward):
+            print(f"  {who}\n    recommends {rep!r}, which this feed carries as {target}")
+        print("Follow the provider's chain to a model it is not also retiring.")
+        return 1
+
     # Two providers claiming the same literal put two different death dates on
     # one line of somebody's code. Azure shipped o1-pro retiring 2026-10-21
     # while OpenAI's manifest already had it retiring 2026-10-23, and because

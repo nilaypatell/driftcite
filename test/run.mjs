@@ -189,10 +189,10 @@ function runFix(files, write) {
 {
   const r = runFix({ "a.js": `const m = 'text-davinci-003';` }, true);
   check("applies the replacement the provider named",
-    r.files["a.js"].includes("gpt-3.5-turbo-instruct"));
+    r.files["a.js"].includes("gpt-5.6-terra"));
   check("removes the retired literal", !r.files["a.js"].includes("text-davinci-003"));
   check("preserves the original quote style",
-    r.files["a.js"].includes("'gpt-3.5-turbo-instruct'"),
+    r.files["a.js"].includes("'gpt-5.6-terra'"),
     `got: ${r.files["a.js"].trim()}`);
 }
 
@@ -200,7 +200,7 @@ function runFix(files, write) {
   const src = `const a = "text-davinci-003";\n// keep 'text-davinci-003' here\n`;
   const r = runFix({ "b.js": src }, true);
   check("fixes double-quoted code without touching the comment",
-    r.files["b.js"].includes('"gpt-3.5-turbo-instruct"') &&
+    r.files["b.js"].includes('"gpt-5.6-terra"') &&
     r.files["b.js"].includes("// keep 'text-davinci-003' here"));
 }
 
@@ -236,7 +236,7 @@ function runFix(files, write) {
     "stuck.js": `// stripe\nconst url = "/v1/invoices/upcoming";`,
   }, true);
   check("--write still applies the fixes it has",
-    r.files["fixable.js"].includes("gpt-3.5-turbo-instruct"));
+    r.files["fixable.js"].includes("gpt-5.6-terra"));
   check("--fix --write exits 1 while a breaking finding it refused remains",
     r.code === 1, `got exit ${r.code}`);
   check("says why the build is still red", /remain after --write/.test(r.out));
@@ -358,7 +358,7 @@ console.log("\nfinding context");
     "// openai",
     "const prices = {",
     "  'text-davinci-003': { in: 1 },",
-    "  'gpt-3.5-turbo-instruct': { in: 2 },",
+    "  'gpt-5.6-terra': { in: 2 },",
     "};",
   ].join("\n");
   const r = runFix({ "prices.js": src }, true);
@@ -372,7 +372,7 @@ console.log("\nfinding context");
   // The same artifact in a file without the collision is still fixed.
   const r = runFix({ "call.js": `const m = 'text-davinci-003';` }, true);
   check("still fixes when there is no collision",
-    r.files["call.js"].includes("gpt-3.5-turbo-instruct"));
+    r.files["call.js"].includes("gpt-5.6-terra"));
 }
 
 {

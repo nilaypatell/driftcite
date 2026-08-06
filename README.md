@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 15 providers · 235 artifacts · zero dependencies · 179 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 15 providers · 331 artifacts · zero dependencies · 179 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -28,7 +28,7 @@ feed: live | 0 dependencies resolved
 
 [BREAKING] openai/model_id/text-davinci-003 -- retired (DIED 945 days ago, 2024-01-04)
   Shut down. Requests fail.
-  use instead: gpt-3.5-turbo-instruct
+  use instead: gpt-5.6-terra
   evidence: https://developers.openai.com/api/docs/deprecations
     models.py:6  LEGACY = "text-davinci-003"
 
@@ -231,7 +231,7 @@ provider itself named, and opens the same pull request from inside your repo.
 
 ```diff
 - const MODEL  = "text-davinci-003";
-+ const MODEL  = "gpt-3.5-turbo-instruct";
++ const MODEL  = "gpt-5.6-terra";
 - const VISION = "gpt-4-vision-preview";
 + const VISION = "gpt-4o";
 ```
@@ -294,6 +294,7 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
+| **OpenAI** | `openai/openai-openapi` + deprecations page | 108 |
 | **Square** | `square/connect-api-specification` | 41 |
 | **Mistral** | model docs deprecation table, curated | 40 |
 | **Cloudflare** | `cloudflare/api-schemas` | 33 |
@@ -301,7 +302,6 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 | **Bedrock** | AWS model lifecycle page, curated | 17 |
 | **Anthropic** | model deprecations page, curated | 15 |
 | **Cohere** | deprecations page, curated | 15 |
-| **OpenAI** | `openai/openai-openapi` + deprecations page | 12 |
 | **Datadog** | `DataDog/datadog-api-client-python` | 12 |
 | **Google** | Gemini deprecations page and changelog, curated | 8 |
 | **Stripe** | `stripe/openapi` · tags v1200 through v2375 | 8 |
@@ -309,7 +309,7 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 | Twilio · Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Fifteen providers in the published feed, 235 artifacts, every one carrying the
+Fifteen providers in the published feed, 331 artifacts, every one carrying the
 provider's own evidence URL. Nineteen are tracked in total: Twilio, Asana and
 Box are polled and have produced nothing yet, and Azure is held back below.
 

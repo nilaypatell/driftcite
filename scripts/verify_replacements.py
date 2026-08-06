@@ -40,7 +40,8 @@ CATALOG = "https://openrouter.ai/api/v1/models"
 # Model types a chat catalog does not carry. Absence proves nothing for these.
 UNVERIFIABLE = re.compile(
     r"embedding|embed|whisper|tts|moderation|imagen|dall"
-    r"|rerank|ocr|document-ai|image|voxtral|transcribe|timegpt",
+    r"|rerank|ocr|document-ai|image|voxtral|transcribe|timegpt"
+    r"|realtime|audio|sora",
     re.I,
 )
 

@@ -150,7 +150,7 @@
     "https://developers.openai.com/api/docs/deprecations",
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
    ],
-   "artifact_count": 12
+   "artifact_count": 108
   },
   {
    "provider": "plaid",
@@ -3798,7 +3798,7 @@
    },
    "status": "retired",
    "retires_on": "2024-01-04",
-   "replacement": "gpt-3.5-turbo-instruct",
+   "replacement": "gpt-5.6-terra",
    "severity": "breaking",
    "note": "Shut down. Requests fail.",
    "evidence": "https://developers.openai.com/api/docs/deprecations",
@@ -3927,6 +3927,2023 @@
    "replacement": "gpt-5.6-sol",
    "severity": "warning",
    "note": "Shutdown announced for 2026-10-23. The replacement uses reasoning mode.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-cushman-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-cushman-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2023-03-23",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-cushman-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-cushman-002"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2023-03-23",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-davinci-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-davinci-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2023-03-23",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-davinci-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-davinci-002"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-davinci-edit-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-davinci-edit-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-search-ada-code-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-search-ada-code-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-search-ada-text-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-search-ada-text-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-search-babbage-code-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-search-babbage-code-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/code-search-babbage-text-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "code-search-babbage-text-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-ada-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-ada-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-babbage-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-babbage-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-curie-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-curie-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-davinci-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-davinci-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-davinci-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-davinci-002"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-davinci-edit-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-davinci-edit-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-ada-doc-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-ada-doc-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-ada-query-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-ada-query-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-babbage-doc-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-babbage-doc-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-babbage-query-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-babbage-query-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-curie-doc-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-curie-doc-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-curie-query-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-curie-query-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-davinci-doc-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-davinci-doc-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-search-davinci-query-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-search-davinci-query-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-similarity-ada-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-similarity-ada-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-similarity-babbage-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-similarity-babbage-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-similarity-curie-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-similarity-curie-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-similarity-davinci-001",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-similarity-davinci-001"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-01-04",
+   "replacement": "text-embedding-3-small",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-3.5-turbo-0613",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-3.5-turbo-0613"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-09-13",
+   "replacement": "gpt-3.5-turbo",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-3.5-turbo-16k-0613",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-3.5-turbo-16k-0613"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-09-13",
+   "replacement": "gpt-3.5-turbo",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-1106-vision-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-1106-vision-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-12-06",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-32k",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-32k"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-06-06",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-32k-0314",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-32k-0314"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-06-06",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-32k-0613",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-32k-0613"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-06-06",
+   "replacement": "gpt-4o",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4.5-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.5-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-07-14",
+   "replacement": "gpt-4.1",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/o1-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o1-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-07-28",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-audio-preview-2024-10-01",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-audio-preview-2024-10-01"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-10",
+   "replacement": "gpt-audio-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-realtime-preview-2024-10-01",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-realtime-preview-2024-10-01"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-10",
+   "replacement": "gpt-realtime-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/o1-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o1-mini"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-27",
+   "replacement": "o4-mini",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/text-moderation-007",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "text-moderation-007"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-27",
+   "replacement": "omni-moderation",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/chatgpt-4o-latest",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "chatgpt-4o-latest"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-02-17",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-0314",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-0314"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-03-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-audio-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-audio-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-audio-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-audio-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-audio-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-audio-mini",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-realtime-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-realtime-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-realtime-mini",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-realtime-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-realtime-preview"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-realtime-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-realtime-preview-2024-12-17",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-realtime-preview-2024-12-17"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-realtime-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-realtime-preview-2025-06-03",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-realtime-preview-2025-06-03"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-07",
+   "replacement": "gpt-realtime-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/dall-e-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "dall-e-2"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/dall-e-3",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "dall-e-3"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-search-preview-2025-03-11",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-search-preview-2025-03-11"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-search-preview-2025-03-11",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-search-preview-2025-03-11"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-chat-latest",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-chat-latest"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-codex",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-codex"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.1-chat-latest",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-chat-latest"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.1-codex",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-codex"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.1-codex-max",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-codex-max"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.1-codex-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-codex-mini"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.2-codex",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.2-codex"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-audio-mini-2025-10-06",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-audio-mini-2025-10-06"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-audio-1.5",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-realtime-mini-2025-10-06",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-realtime-mini-2025-10-06"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-23",
+   "replacement": "gpt-realtime-2.1-mini",
+   "severity": "breaking",
+   "note": "Shut down. Requests fail.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.2-chat-latest",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.2-chat-latest"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-10",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-08-10.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5.3-chat-latest",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.3-chat-latest"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-10",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-08-10.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/sora-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sora-2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-24",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-24.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/sora-2-2025-10-06",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sora-2-2025-10-06"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-24",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-24.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/sora-2-2025-12-08",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sora-2-2025-12-08"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-24",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-24.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/sora-2-pro",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sora-2-pro"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-24",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-24.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/sora-2-pro-2025-10-06",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sora-2-pro-2025-10-06"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-24",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-24.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/babbage-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "babbage-002"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-28",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-28.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/davinci-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "davinci-002"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-28",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-28.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-3.5-turbo-1106",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-3.5-turbo-1106"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-28",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-28.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-3.5-turbo-instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-3.5-turbo-instruct"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-28",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-09-28.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-babbage-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-babbage-002"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-davinci-002",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-davinci-002"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-gpt-3.5-turbo",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-gpt-3.5-turbo"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-gpt-4",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-gpt-4"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-gpt-4.1-nano-2025-04-14",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-gpt-4.1-nano-2025-04-14"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-luna",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/ft-o4-mini-2025-04-16",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ft-o4-mini-2025-04-16"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-3.5-turbo-completions",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-3.5-turbo-completions"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-0613-completions",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-0613-completions",
+     "gpt-4-completions"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-1106-preview",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-1106-preview"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4-turbo-completions",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4-turbo-completions"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-2024-05-13",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-2024-05-13"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-image-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-image-1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-23",
+   "replacement": "gpt-image-2",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-10-23.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-image-1-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-image-1-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-01",
+   "replacement": "gpt-image-2",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-01.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-image-1.5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-image-1.5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-01",
+   "replacement": "gpt-image-2",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-01.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-2025-08-07",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-2025-08-07"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-mini-2025-08-07",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-mini-2025-08-07"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-terra",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-nano-2025-08-07",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-nano-2025-08-07"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-luna",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-5-pro-2025-10-06",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-pro-2025-10-06"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/o3-2025-04-16",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o3-2025-04-16"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/o3-pro-2025-06-10",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o3-pro-2025-06-10"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-12-11",
+   "replacement": "gpt-5.6-sol",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-12-11.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-audio",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-audio"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-01-20",
+   "replacement": "gpt-audio-1.5",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2027-01-20.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-audio",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-audio"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-01-20",
+   "replacement": "gpt-audio-1.5",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2027-01-20.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-realtime",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-realtime"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-01-20",
+   "replacement": "gpt-realtime-2.1-mini",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2027-01-20.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-mini-transcribe-2025-03-20",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini-transcribe-2025-03-20"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-01-20",
+   "replacement": "gpt-4o-mini-transcribe-2025-12-15",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2027-01-20.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/model_id/gpt-4o-realtime",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-realtime"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-01-20",
+   "replacement": "gpt-realtime-2.1",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2027-01-20.",
    "evidence": "https://developers.openai.com/api/docs/deprecations",
    "provider": "openai",
    "file_markers": [
