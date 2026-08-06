@@ -1,0 +1,195 @@
+provider: cohere
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://docs.cohere.com/docs/deprecations
+
+# Cohere publishes a dated deprecation history page, prose only, so this file
+# is curated by hand. Every date and every replacement below is stated on that
+# page.
+#
+# Two IDs the page deprecates are deliberately absent: the bare aliases
+# "command" and "summarize". Both are ordinary English words that appear as
+# quoted literals in codebases that have never called Cohere, and a wrong
+# finding costs more than a missing one. The dated IDs and the hyphenated
+# aliases cover the same retirements without the noise.
+context:
+  file_markers:
+    - cohere
+    - CO_API_KEY
+    - COHERE_API_KEY
+    - api.cohere
+
+artifacts:
+  # ---- retired 2026-04-04: Embed v2.0 and Aya models. Calls fail. ----
+  - id: cohere/model_id/embed-english-v2.0
+    kind: model_id
+    match:
+      literals: ["embed-english-v2.0"]
+    status: retired
+    retires_on: 2026-04-04
+    replacement: embed-english-v3.0
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/embed-english-light-v2.0
+    kind: model_id
+    match:
+      literals: ["embed-english-light-v2.0"]
+    status: retired
+    retires_on: 2026-04-04
+    replacement: embed-english-v3.0
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/embed-multilingual-v2.0
+    kind: model_id
+    match:
+      literals: ["embed-multilingual-v2.0"]
+    status: retired
+    retires_on: 2026-04-04
+    replacement: embed-multilingual-v3.0
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/c4ai-aya-expanse-8b
+    kind: model_id
+    match:
+      literals: ["c4ai-aya-expanse-8b"]
+    status: retired
+    retires_on: 2026-04-04
+    replacement: command-a-03-2025
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/c4ai-aya-vision-8b
+    kind: model_id
+    match:
+      literals: ["c4ai-aya-vision-8b"]
+    status: retired
+    retires_on: 2026-04-04
+    replacement: command-a-03-2025
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  # ---- retired 2025-04-30: Rerank v2.0, announced 2024-12-02 ----
+  - id: cohere/model_id/rerank-english-v2.0
+    kind: model_id
+    match:
+      literals: ["rerank-english-v2.0"]
+    status: retired
+    announced_on: 2024-12-02
+    retires_on: 2025-04-30
+    replacement: rerank-v3.5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/rerank-multilingual-v2.0
+    kind: model_id
+    match:
+      literals: ["rerank-multilingual-v2.0"]
+    status: retired
+    announced_on: 2024-12-02
+    retires_on: 2025-04-30
+    replacement: rerank-v3.5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  # ---- deprecated 2025-09-15: older command models. Still served, no
+  # shutdown date published, so these carry warning severity until Cohere
+  # states a date. ----
+  - id: cohere/model_id/command-r-03-2024
+    kind: model_id
+    match:
+      literals: ["command-r-03-2024", "command-r"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: command-r-08-2024
+    severity: warning
+    note: Deprecated, no shutdown date published.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/command-r-plus-04-2024
+    kind: model_id
+    match:
+      literals: ["command-r-plus-04-2024", "command-r-plus"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: command-r-plus-08-2024
+    severity: warning
+    note: Deprecated, no shutdown date published.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/model_id/command-light
+    kind: model_id
+    match:
+      literals: ["command-light"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: command-a-03-2025
+    severity: warning
+    note: Deprecated, no shutdown date published.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  # ---- deprecated 2025-09-15: legacy endpoints and parameters ----
+  - id: cohere/endpoint//v1/generate
+    kind: endpoint
+    match:
+      literals: ["/v1/generate"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: /v1/chat
+    severity: warning
+    note: Legacy generative endpoint, deprecated.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/endpoint//v1/summarize
+    kind: endpoint
+    match:
+      literals: ["/v1/summarize"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: /v1/chat
+    severity: warning
+    note: Legacy summarization endpoint, deprecated.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/endpoint//v1/classify
+    kind: endpoint
+    match:
+      literals: ["/v1/classify"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: null
+    severity: warning
+    note: Deprecated. Cohere recommends fine-tuned Embed models instead.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/endpoint//v1/connectors
+    kind: endpoint
+    match:
+      literals: ["/v1/connectors"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: null
+    severity: warning
+    note: Managed RAG connectors, deprecated.
+    evidence: https://docs.cohere.com/docs/deprecations
+
+  - id: cohere/request_param/search_queries_only
+    kind: request_param
+    match:
+      literals: ["search_queries_only"]
+    status: deprecated
+    announced_on: 2025-09-15
+    replacement: null
+    severity: warning
+    note: Deprecated /v1/chat parameter.
+    evidence: https://docs.cohere.com/docs/deprecations

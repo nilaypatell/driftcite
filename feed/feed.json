@@ -1,6 +1,6 @@
 {
  "feed_version": 1,
- "generated_on": "2026-07-27",
+ "generated_on": "2026-08-06",
  "providers": [
   {
    "provider": "anthropic",
@@ -26,6 +26,18 @@
     "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849"
    ],
    "artifact_count": 42
+  },
+  {
+   "provider": "cohere",
+   "manifests": [
+    "cohere-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.cohere.com/docs/deprecations"
+   ],
+   "artifact_count": 15
   },
   {
    "provider": "github",
@@ -62,6 +74,18 @@
     "https://console.groq.com/docs/deprecations"
    ],
    "artifact_count": 2
+  },
+  {
+   "provider": "mistral",
+   "manifests": [
+    "mistral-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.mistral.ai/getting-started/models/models_overview/"
+   ],
+   "artifact_count": 40
   },
   {
    "provider": "openai",
@@ -1204,6 +1228,340 @@
    ]
   },
   {
+   "id": "cohere/model_id/embed-english-v2.0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "embed-english-v2.0"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-04",
+   "replacement": "embed-english-v3.0",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/embed-english-light-v2.0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "embed-english-light-v2.0"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-04",
+   "replacement": "embed-english-v3.0",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/embed-multilingual-v2.0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "embed-multilingual-v2.0"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-04",
+   "replacement": "embed-multilingual-v3.0",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/c4ai-aya-expanse-8b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "c4ai-aya-expanse-8b"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-04",
+   "replacement": "command-a-03-2025",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/c4ai-aya-vision-8b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "c4ai-aya-vision-8b"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-04",
+   "replacement": "command-a-03-2025",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/rerank-english-v2.0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "rerank-english-v2.0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-12-02",
+   "retires_on": "2025-04-30",
+   "replacement": "rerank-v3.5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/rerank-multilingual-v2.0",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "rerank-multilingual-v2.0"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-12-02",
+   "retires_on": "2025-04-30",
+   "replacement": "rerank-v3.5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/command-r-03-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "command-r-03-2024",
+     "command-r"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": "command-r-08-2024",
+   "severity": "warning",
+   "note": "Deprecated, no shutdown date published.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/command-r-plus-04-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "command-r-plus-04-2024",
+     "command-r-plus"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": "command-r-plus-08-2024",
+   "severity": "warning",
+   "note": "Deprecated, no shutdown date published.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/model_id/command-light",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "command-light"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": "command-a-03-2025",
+   "severity": "warning",
+   "note": "Deprecated, no shutdown date published.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/endpoint//v1/generate",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/generate"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": "/v1/chat",
+   "severity": "warning",
+   "note": "Legacy generative endpoint, deprecated.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/endpoint//v1/summarize",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/summarize"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": "/v1/chat",
+   "severity": "warning",
+   "note": "Legacy summarization endpoint, deprecated.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/endpoint//v1/classify",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/classify"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": null,
+   "severity": "warning",
+   "note": "Deprecated. Cohere recommends fine-tuned Embed models instead.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/endpoint//v1/connectors",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/v1/connectors"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": null,
+   "severity": "warning",
+   "note": "Managed RAG connectors, deprecated.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/request_param/search_queries_only",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "search_queries_only"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2025-09-15",
+   "replacement": null,
+   "severity": "warning",
+   "note": "Deprecated /v1/chat parameter.",
+   "evidence": "https://docs.cohere.com/docs/deprecations",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
    "id": "github/endpoint//applications/grants/{grant_id}",
    "kind": "endpoint",
    "match": {
@@ -2294,6 +2652,886 @@
     "groq",
     "GROQ_API_KEY",
     "api.groq.com"
+   ]
+  },
+  {
+   "id": "mistral/model_id/labs-leanstral-2603",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "labs-leanstral-2603"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-06-30",
+   "replacement": "labs-leanstral-1-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-medium-2508",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-medium-2508"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-08-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-08-31.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-small-2506",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-small-2506"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-04-30",
+   "retires_on": "2026-07-31",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/voxtral-mini-2507",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "voxtral-mini-2507"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "voxtral-mini-2602",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/devstral-2512",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "devstral-2512"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-07-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-medium-2507",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-medium-2507"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-10-31",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/labs-mistral-small-creative",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "labs-mistral-small-creative"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-03-31",
+   "retires_on": "2026-04-30",
+   "replacement": "ministral-8b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/labs-devstral-small-2512",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "labs-devstral-small-2512"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-03-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-medium-2509",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-medium-2509"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-07-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-small-2509",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-small-2509"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-04-30",
+   "retires_on": "2026-07-31",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-small-2507",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-small-2507"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-10-31",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/devstral-medium-2507",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "devstral-medium-2507"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/devstral-small-2507",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "devstral-small-2507"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-medium-2506",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-medium-2506"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-10-31",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/magistral-small-2506",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "magistral-small-2506"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-10-31",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-ocr-2505",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-ocr-2505"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "mistral-ocr-4-0",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/devstral-small-2505",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "devstral-small-2505"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-10-31",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-medium-2505",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-medium-2505"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-08-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Shutdown announced for 2026-08-31.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-small-2503",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-small-2503"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-11-06",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-ocr-2503",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-ocr-2503"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-12-02",
+   "retires_on": "2025-12-31",
+   "replacement": "mistral-ocr-4-0",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-saba-2502",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-saba-2502"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-06-10",
+   "retires_on": "2025-09-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-small-2501",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-small-2501"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-11-06",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/codestral-2501",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "codestral-2501"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-11-06",
+   "retires_on": "2025-11-30",
+   "replacement": "codestral-2508",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-large-2411",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-large-2411"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/pixtral-large-2411",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "pixtral-large-2411"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-02-27",
+   "retires_on": "2026-05-31",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-moderation-2411",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-moderation-2411"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-03-31",
+   "retires_on": "2026-06-30",
+   "replacement": "mistral-moderation-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/ministral-3b-2410",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ministral-3b-2410"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-12-02",
+   "retires_on": "2025-12-31",
+   "replacement": "ministral-3b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/ministral-8b-2410",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "ministral-8b-2410"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-12-02",
+   "retires_on": "2025-12-31",
+   "replacement": "ministral-8b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-small-2409",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-small-2409"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-11-06",
+   "retires_on": "2025-11-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/pixtral-12b-2409",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "pixtral-12b-2409"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-12-02",
+   "retires_on": "2025-12-31",
+   "replacement": "ministral-14b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-large-2407",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-large-2407"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-03-30",
+   "replacement": "mistral-large-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/open-mistral-nemo-2407",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "open-mistral-nemo-2407"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2026-05-22",
+   "retires_on": "2026-07-31",
+   "replacement": "ministral-8b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/open-codestral-mamba",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "open-codestral-mamba"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-06-06",
+   "retires_on": "2025-06-06",
+   "replacement": "codestral-2508",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/codestral-2405",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "codestral-2405"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-12-02",
+   "retires_on": "2025-06-16",
+   "replacement": "codestral-2508",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/open-mistral-7b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "open-mistral-7b"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-03-30",
+   "replacement": "ministral-8b-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/open-mixtral-8x22b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "open-mixtral-8x22b"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-03-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-small-2402",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-small-2402"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-06-16",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-large-2402",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-large-2402"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-06-16",
+   "replacement": "mistral-large-2512",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/mistral-medium-2312",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-medium-2312"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-06-16",
+   "replacement": "mistral-medium-3-5",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/model_id/open-mixtral-8x7b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "open-mixtral-8x7b"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2024-11-30",
+   "retires_on": "2025-03-30",
+   "replacement": "mistral-small-2603",
+   "severity": "breaking",
+   "note": "Retired. Requests fail.",
+   "evidence": "https://docs.mistral.ai/getting-started/models/models_overview/",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
    ]
   },
   {

@@ -1,0 +1,502 @@
+provider: mistral
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://docs.mistral.ai/getting-started/models/models_overview/
+
+# Mistral publishes a "Deprecated & retired models" table in its model
+# documentation with a deprecation date and a retirement date per model, and
+# never in a machine-readable spec, so this file is curated by hand. Every
+# date below is stated by the provider; every replacement is the API name the
+# provider's own model card gives for the model the table points to.
+#
+# voxtral-mini-2507 appears twice in the provider's table (Voxtral Mini and
+# Voxtral Mini Transcribe share the ID) and once here. open-mistral-7b is
+# listed for each of its three weight versions and once here: the served ID
+# is what code contains, and it is gone either way.
+context:
+  file_markers:
+    - mistral
+    - MISTRAL_API_KEY
+    - api.mistral.ai
+
+artifacts:
+  - id: mistral/model_id/labs-leanstral-2603
+    kind: model_id
+    match:
+      literals: ["labs-leanstral-2603"]
+    status: retired
+    announced_on: 2026-05-22
+    retires_on: 2026-06-30
+    replacement: labs-leanstral-1-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-medium-2508
+    kind: model_id
+    match:
+      literals: ["mistral-medium-2508"]
+    status: deprecated
+    announced_on: 2026-05-22
+    retires_on: 2026-08-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Shutdown announced for 2026-08-31.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-small-2506
+    kind: model_id
+    match:
+      literals: ["mistral-small-2506"]
+    status: retired
+    announced_on: 2026-04-30
+    retires_on: 2026-07-31
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/voxtral-mini-2507
+    kind: model_id
+    match:
+      literals: ["voxtral-mini-2507"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: voxtral-mini-2602
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/devstral-2512
+    kind: model_id
+    match:
+      literals: ["devstral-2512"]
+    status: retired
+    announced_on: 2026-05-22
+    retires_on: 2026-07-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-medium-2507
+    kind: model_id
+    match:
+      literals: ["magistral-medium-2507"]
+    status: retired
+    announced_on: 2025-10-31
+    retires_on: 2025-11-30
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/labs-mistral-small-creative
+    kind: model_id
+    match:
+      literals: ["labs-mistral-small-creative"]
+    status: retired
+    announced_on: 2026-03-31
+    retires_on: 2026-04-30
+    replacement: ministral-8b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/labs-devstral-small-2512
+    kind: model_id
+    match:
+      literals: ["labs-devstral-small-2512"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-03-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-medium-2509
+    kind: model_id
+    match:
+      literals: ["magistral-medium-2509"]
+    status: retired
+    announced_on: 2026-05-22
+    retires_on: 2026-07-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-small-2509
+    kind: model_id
+    match:
+      literals: ["magistral-small-2509"]
+    status: retired
+    announced_on: 2026-04-30
+    retires_on: 2026-07-31
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-small-2507
+    kind: model_id
+    match:
+      literals: ["magistral-small-2507"]
+    status: retired
+    announced_on: 2025-10-31
+    retires_on: 2025-11-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/devstral-medium-2507
+    kind: model_id
+    match:
+      literals: ["devstral-medium-2507"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/devstral-small-2507
+    kind: model_id
+    match:
+      literals: ["devstral-small-2507"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-medium-2506
+    kind: model_id
+    match:
+      literals: ["magistral-medium-2506"]
+    status: retired
+    announced_on: 2025-10-31
+    retires_on: 2025-11-30
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/magistral-small-2506
+    kind: model_id
+    match:
+      literals: ["magistral-small-2506"]
+    status: retired
+    announced_on: 2025-10-31
+    retires_on: 2025-11-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-ocr-2505
+    kind: model_id
+    match:
+      literals: ["mistral-ocr-2505"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: mistral-ocr-4-0
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/devstral-small-2505
+    kind: model_id
+    match:
+      literals: ["devstral-small-2505"]
+    status: retired
+    announced_on: 2025-10-31
+    retires_on: 2025-11-30
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-medium-2505
+    kind: model_id
+    match:
+      literals: ["mistral-medium-2505"]
+    status: deprecated
+    announced_on: 2026-05-22
+    retires_on: 2026-08-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Shutdown announced for 2026-08-31.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-small-2503
+    kind: model_id
+    match:
+      literals: ["mistral-small-2503"]
+    status: retired
+    announced_on: 2025-11-06
+    retires_on: 2025-11-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-ocr-2503
+    kind: model_id
+    match:
+      literals: ["mistral-ocr-2503"]
+    status: retired
+    announced_on: 2025-12-02
+    retires_on: 2025-12-31
+    replacement: mistral-ocr-4-0
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-saba-2502
+    kind: model_id
+    match:
+      literals: ["mistral-saba-2502"]
+    status: retired
+    announced_on: 2025-06-10
+    retires_on: 2025-09-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-small-2501
+    kind: model_id
+    match:
+      literals: ["mistral-small-2501"]
+    status: retired
+    announced_on: 2025-11-06
+    retires_on: 2025-11-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/codestral-2501
+    kind: model_id
+    match:
+      literals: ["codestral-2501"]
+    status: retired
+    announced_on: 2025-11-06
+    retires_on: 2025-11-30
+    replacement: codestral-2508
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-large-2411
+    kind: model_id
+    match:
+      literals: ["mistral-large-2411"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/pixtral-large-2411
+    kind: model_id
+    match:
+      literals: ["pixtral-large-2411"]
+    status: retired
+    announced_on: 2026-02-27
+    retires_on: 2026-05-31
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-moderation-2411
+    kind: model_id
+    match:
+      literals: ["mistral-moderation-2411"]
+    status: retired
+    announced_on: 2026-03-31
+    retires_on: 2026-06-30
+    replacement: mistral-moderation-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/ministral-3b-2410
+    kind: model_id
+    match:
+      literals: ["ministral-3b-2410"]
+    status: retired
+    announced_on: 2025-12-02
+    retires_on: 2025-12-31
+    replacement: ministral-3b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/ministral-8b-2410
+    kind: model_id
+    match:
+      literals: ["ministral-8b-2410"]
+    status: retired
+    announced_on: 2025-12-02
+    retires_on: 2025-12-31
+    replacement: ministral-8b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-small-2409
+    kind: model_id
+    match:
+      literals: ["mistral-small-2409"]
+    status: retired
+    announced_on: 2025-11-06
+    retires_on: 2025-11-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/pixtral-12b-2409
+    kind: model_id
+    match:
+      literals: ["pixtral-12b-2409"]
+    status: retired
+    announced_on: 2025-12-02
+    retires_on: 2025-12-31
+    replacement: ministral-14b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-large-2407
+    kind: model_id
+    match:
+      literals: ["mistral-large-2407"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-03-30
+    replacement: mistral-large-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/open-mistral-nemo-2407
+    kind: model_id
+    match:
+      literals: ["open-mistral-nemo-2407"]
+    status: retired
+    announced_on: 2026-05-22
+    retires_on: 2026-07-31
+    replacement: ministral-8b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/open-codestral-mamba
+    kind: model_id
+    match:
+      literals: ["open-codestral-mamba"]
+    status: retired
+    announced_on: 2025-06-06
+    retires_on: 2025-06-06
+    replacement: codestral-2508
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/codestral-2405
+    kind: model_id
+    match:
+      literals: ["codestral-2405"]
+    status: retired
+    announced_on: 2024-12-02
+    retires_on: 2025-06-16
+    replacement: codestral-2508
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/open-mistral-7b
+    kind: model_id
+    match:
+      literals: ["open-mistral-7b"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-03-30
+    replacement: ministral-8b-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/open-mixtral-8x22b
+    kind: model_id
+    match:
+      literals: ["open-mixtral-8x22b"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-03-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-small-2402
+    kind: model_id
+    match:
+      literals: ["mistral-small-2402"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-06-16
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-large-2402
+    kind: model_id
+    match:
+      literals: ["mistral-large-2402"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-06-16
+    replacement: mistral-large-2512
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/mistral-medium-2312
+    kind: model_id
+    match:
+      literals: ["mistral-medium-2312"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-06-16
+    replacement: mistral-medium-3-5
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+
+  - id: mistral/model_id/open-mixtral-8x7b
+    kind: model_id
+    match:
+      literals: ["open-mixtral-8x7b"]
+    status: retired
+    announced_on: 2024-11-30
+    retires_on: 2025-03-30
+    replacement: mistral-small-2603
+    severity: breaking
+    note: Retired. Requests fail.
+    evidence: https://docs.mistral.ai/getting-started/models/models_overview/
