@@ -173,6 +173,28 @@
 .dc-btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
 .dc-btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
 
+/* The quiet chip. A bordered button beside the primary CTA made the header
+   read as two calls to action of equal weight, and the star count sat in it
+   behind a vertical rule — a lone number with nothing saying what it counted.
+   No chrome at rest, a soft fill on hover; the footprint is identical either
+   way, so nothing shifts when the pointer arrives. */
+.dc-btn-quiet {
+  border-color: transparent; background: transparent; box-shadow: none;
+  transition: background-color .15s ease;
+}
+.dc-btn-quiet:hover { background: color-mix(in srgb, var(--color-ink) 7%, transparent); }
+/* the count is secondary to the label it follows, and the star says what
+   the number is so the number doesn't have to */
+.dc-stars {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: color-mix(in srgb, var(--color-ink) 52%, transparent);
+  font-feature-settings: 'tnum' 1;
+}
+.dc-btn-quiet:hover .dc-stars { color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
+/* StarCount renders a hidden <b> until a real number arrives; when it is
+   hidden the star and its gap go with it, rather than leaving a bare mark. */
+.dc-stars:has(b[hidden]) { display: none; }
+
 /* the dark copy-command button, paired with the primary in every CTA row */
 .dc-cmd {
   display: inline-flex; align-items: center; gap: 14px;
