@@ -81,6 +81,78 @@ providers:
     path: .generator/schemas/v2/openapi.yaml
     markers: [datadog, DD_API_KEY, DATADOG_API_KEY, "datadoghq.com"]
 
+  # The 2026-08-07 expansion. Every repo below was verified the same day:
+  # official org, path answers 200 at HEAD with an openapi/swagger header,
+  # pushed within the last five months. Deliberately left out: Microsoft
+  # Graph (spec is ~42 MB, unproven against the refresh pipeline), HubSpot
+  # (paths embed rollout ids and move), Dropbox (Stone format, not OpenAPI),
+  # and everything with no first-party spec repo at all — Notion, Linear,
+  # Airtable, Zoom, Mailchimp, Auth0, Fastly, Vercel, Render, Supabase,
+  # Twitch, Spotify, X.
+
+  discord:
+    repo: discord/discord-api-spec
+    path: specs/openapi.json
+    markers: [discord, DISCORD_BOT_TOKEN, "discord.com/api"]
+    track: commits
+
+  sendgrid:
+    repo: twilio/sendgrid-oai
+    path: spec/json/tsg_mail_v3.json
+    markers: [sendgrid, SENDGRID_API_KEY, "api.sendgrid.com"]
+
+  intercom:
+    # Path pins API version 2.16; Intercom cuts new versions as new
+    # directories and old ones stay, so this goes quiet rather than wrong
+    # when 2.17 lands — bump it then, the way Adyen's is bumped.
+    repo: intercom/Intercom-OpenAPI
+    path: descriptions/2.16/api.intercom.io.yaml
+    markers: [intercom, INTERCOM_ACCESS_TOKEN, "api.intercom.io"]
+    track: commits
+
+  docusign:
+    repo: docusign/OpenAPI-Specifications
+    path: esignature.rest.swagger-v2.1.json
+    markers: [docusign, DOCUSIGN_INTEGRATION_KEY, "docusign.net"]
+
+  pagerduty:
+    repo: PagerDuty/api-schema
+    path: reference/REST/openapiv3.json
+    markers: [pagerduty, PAGERDUTY_API_KEY, "api.pagerduty.com", pdpyras]
+    track: commits
+
+  ngrok:
+    repo: ngrok/ngrok-openapi
+    path: ngrok.yaml
+    markers: [ngrok, NGROK_API_KEY, NGROK_AUTHTOKEN, "api.ngrok.com"]
+    track: commits
+
+  okta:
+    repo: okta/okta-management-openapi-spec
+    path: dist/current/management-minimal.yaml
+    markers: [okta, OKTA_CLIENT_TOKEN, OKTA_OAUTH2_ISSUER]
+
+  algolia:
+    repo: algolia/api-clients-automation
+    path: specs/bundled/search.yml
+    markers: [algolia, ALGOLIA_API_KEY, ALGOLIA_APP_ID, "algolia.net"]
+
+  elastic:
+    repo: elastic/elasticsearch-specification
+    path: output/openapi/elasticsearch-openapi.json
+    markers: [elasticsearch, ELASTICSEARCH_URL, ELASTIC_CLOUD_ID]
+    track: commits
+
+  netlify:
+    repo: netlify/open-api
+    path: swagger.yml
+    markers: [netlify, NETLIFY_AUTH_TOKEN, "api.netlify.com"]
+
+  kubernetes:
+    repo: kubernetes/kubernetes
+    path: api/openapi-spec/swagger.json
+    markers: [kubernetes, kubeconfig, "k8s.io", kubectl]
+
 # Providers whose changes are not in a machine-readable spec are curated by
 # hand in manifests/<name>.yaml instead. Model retirements are the usual case:
 # they are published as prose in documentation and never appear in the spec.

@@ -27,9 +27,22 @@ observations:
     - '''crawl'''
     - '''env'''
     - '''starting'''
+- repo: cloudflare/api-schemas
+  from: f0422271d15f
+  to: b1a6d110fb16
+  from_api_version: 4.0.0
+  to_api_version: 4.0.0
+  observed_on: '2026-08-07'
+  withheld:
+  - reason: parameter name is not distinctive enough to match safely
+    count: 2
+    examples:
+    - '''direction'' at GET /accounts/{account_id}/email/sending/suppressions'
+    - '''order'' at GET /accounts/{account_id}/email/sending/suppressions'
 sources:
 - https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849
 - https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- https://github.com/cloudflare/api-schemas/compare/f0422271d15f...b1a6d110fb16
 context:
   file_markers:
   - cloudflare
@@ -113,6 +126,17 @@ artifacts:
     was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06;
     the spec's own version stayed 4.0.0.
   evidence: https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8
+- id: cloudflare/endpoint//accounts/{account_id}/email/sending/feedback
+  kind: endpoint
+  match:
+    literals:
+    - /accounts/{account_id}/email/sending/feedback
+  status: removed
+  severity: breaking
+  note: GET /accounts/{account_id}/email/sending/feedback existed in f0422271d15f
+    and is gone in b1a6d110fb16. Observed 2026-08-07; the spec's own version stayed
+    4.0.0.
+  evidence: https://github.com/cloudflare/api-schemas/compare/f0422271d15f...b1a6d110fb16
 - id: cloudflare/endpoint//accounts/{account_id}/email/sending/suppression
   kind: endpoint
   match:

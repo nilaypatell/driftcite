@@ -1,0 +1,314 @@
+provider: kubernetes
+spec_version: 1
+source_license: Apache-2.0
+source_notice: https://github.com/kubernetes/kubernetes/blob/master/LICENSE
+observations:
+- repo: kubernetes/kubernetes
+  from: v1.35.0-rc.1
+  to: v1.38.0-alpha.0
+  from_api_version: unversioned
+  to_api_version: unversioned
+  observed_on: '2026-08-07'
+  withheld: []
+sources:
+- https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+context:
+  file_markers:
+  - kubernetes
+  - kubeconfig
+  - k8s.io
+  - kubectl
+artifacts:
+- id: kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/
+  kind: endpoint
+  match:
+    literals:
+    - /apis/certificates.k8s.io/v1alpha1/
+  status: removed
+  severity: breaking
+  note: GET /apis/certificates.k8s.io/v1alpha1/ existed in v1.35.0-rc.1 and is gone
+    in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/clustertrustbundles
+  kind: endpoint
+  match:
+    literals:
+    - /apis/certificates.k8s.io/v1alpha1/clustertrustbundles
+  status: removed
+  severity: breaking
+  note: DELETE, GET, POST /apis/certificates.k8s.io/v1alpha1/clustertrustbundles existed
+    in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's
+    own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH, PUT /apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles
+  kind: endpoint
+  match:
+    literals:
+    - /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles
+  status: removed
+  severity: breaking
+  note: GET /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles existed in
+    v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own
+    version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name}
+  status: removed
+  severity: breaking
+  note: GET /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name} existed
+    in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's
+    own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/
+  status: removed
+  severity: breaking
+  note: GET /apis/networking.k8s.io/v1beta1/ existed in v1.35.0-rc.1 and is gone in
+    v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/ipaddresses
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/ipaddresses
+  status: removed
+  severity: breaking
+  note: DELETE, GET, POST /apis/networking.k8s.io/v1beta1/ipaddresses existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/ipaddresses/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/ipaddresses/{name}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/ipaddresses/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/servicecidrs
+  status: removed
+  severity: breaking
+  note: DELETE, GET, POST /apis/networking.k8s.io/v1beta1/servicecidrs existed in
+    v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own
+    version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/servicecidrs/{name}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/servicecidrs/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status
+  status: removed
+  severity: breaking
+  note: GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/ipaddresses
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/watch/ipaddresses
+  status: removed
+  severity: breaking
+  note: GET /apis/networking.k8s.io/v1beta1/watch/ipaddresses existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name}
+  status: removed
+  severity: breaking
+  note: GET /apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name} existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/servicecidrs
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/watch/servicecidrs
+  status: removed
+  severity: breaking
+  note: GET /apis/networking.k8s.io/v1beta1/watch/servicecidrs existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name}
+  status: removed
+  severity: breaking
+  note: GET /apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name} existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/
+  status: removed
+  severity: breaking
+  note: GET /apis/scheduling.k8s.io/v1alpha1/ existed in v1.35.0-rc.1 and is gone
+    in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads
+  status: removed
+  severity: breaking
+  note: DELETE, GET, POST /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH, PUT /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads
+  status: removed
+  severity: breaking
+  note: GET /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name}
+  status: removed
+  severity: breaking
+  note: GET /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/workloads
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/watch/workloads
+  status: removed
+  severity: breaking
+  note: GET /apis/scheduling.k8s.io/v1alpha1/watch/workloads existed in v1.35.0-rc.1
+    and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/workloads
+  kind: endpoint
+  match:
+    literals:
+    - /apis/scheduling.k8s.io/v1alpha1/workloads
+  status: removed
+  severity: breaking
+  note: GET /apis/scheduling.k8s.io/v1alpha1/workloads existed in v1.35.0-rc.1 and
+    is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed
+    unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/storage.k8s.io/v1beta1/
+  kind: endpoint
+  match:
+    literals:
+    - /apis/storage.k8s.io/v1beta1/
+  status: removed
+  severity: breaking
+  note: GET /apis/storage.k8s.io/v1beta1/ existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0.
+    Observed 2026-08-07; the spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/storage.k8s.io/v1beta1/volumeattributesclasses
+  kind: endpoint
+  match:
+    literals:
+    - /apis/storage.k8s.io/v1beta1/volumeattributesclasses
+  status: removed
+  severity: breaking
+  note: DELETE, GET, POST /apis/storage.k8s.io/v1beta1/volumeattributesclasses existed
+    in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's
+    own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH, PUT /apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name}
+    existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the
+    spec's own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses
+  kind: endpoint
+  match:
+    literals:
+    - /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses
+  status: removed
+  severity: breaking
+  note: GET /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses existed in
+    v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own
+    version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0
+- id: kubernetes/endpoint//apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name}
+  kind: endpoint
+  match:
+    literals:
+    - /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name}
+  status: removed
+  severity: breaking
+  note: GET /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name} existed
+    in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's
+    own version stayed unversioned.
+  evidence: https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0

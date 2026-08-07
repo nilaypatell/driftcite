@@ -5,6 +5,11 @@
       "last_change": "2026-08-06",
       "ref": "f0d0bd47b721"
     },
+    "algolia": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "v4.0.0"
+    },
     "asana": {
       "first_seen": "2026-08-06",
       "last_change": "2026-08-06",
@@ -18,7 +23,7 @@
     "cloudflare": {
       "first_seen": "2026-07-26",
       "last_change": "2026-08-07",
-      "ref": "f0422271d15f"
+      "ref": "b1a6d110fb16"
     },
     "datadog": {
       "first_seen": "2026-08-06",
@@ -30,20 +35,70 @@
       "last_change": "2026-08-06",
       "ref": "87e82da6548b"
     },
+    "discord": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "e2bb9417565d"
+    },
+    "docusign": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "20.1.00"
+    },
+    "elastic": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "c96ea25a1d1f"
+    },
     "github": {
       "first_seen": "2026-07-26",
       "last_change": "2026-07-26",
       "ref": "v2.1.0"
+    },
+    "intercom": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "5662b2ec2ab3"
+    },
+    "kubernetes": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "v1.38.0-alpha.0"
+    },
+    "netlify": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "v2.57.0"
+    },
+    "ngrok": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "2fc69c986352"
+    },
+    "okta": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "openapi-3.0.0"
     },
     "openai": {
       "first_seen": "2026-07-26",
       "last_change": "2026-07-26",
       "ref": "2.0.0"
     },
+    "pagerduty": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "38daa03ecede"
+    },
     "plaid": {
       "first_seen": "2026-08-06",
       "last_change": "2026-08-06",
       "ref": "1.20.6"
+    },
+    "sendgrid": {
+      "first_seen": "2026-08-07",
+      "last_change": "2026-08-07",
+      "ref": "1.0.0-rc.13"
     },
     "square": {
       "first_seen": "2026-08-06",
@@ -53,7 +108,7 @@
     "stripe": {
       "first_seen": "2026-07-26",
       "last_change": "2026-08-07",
-      "ref": "v2384"
+      "ref": "v2386"
     },
     "twilio": {
       "first_seen": "2026-07-26",

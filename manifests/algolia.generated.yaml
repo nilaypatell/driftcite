@@ -1,0 +1,255 @@
+provider: algolia
+spec_version: 1
+source_license: MIT
+source_notice: https://github.com/algolia/api-clients-automation/blob/main/LICENSE.md
+observations:
+- repo: algolia/api-clients-automation
+  from: released-2026-01-20-eccb9c778
+  to: v4.0.0
+  from_api_version: 1.0.0
+  to_api_version: 1.0.0
+  observed_on: '2026-08-07'
+  withheld:
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 12
+    examples:
+    - '''created'''
+    - '''critical'''
+    - '''failed'''
+  - reason: parameter name is not distinctive enough to match safely
+    count: 4
+    examples:
+    - '''scopes'' at GET /replaceAllObjects'
+    - '''batchSize'' at GET /saveObjects'
+    - '''batchSize'' at POST /deleteObjects'
+sources:
+- https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+context:
+  file_markers:
+  - algolia
+  - ALGOLIA_API_KEY
+  - ALGOLIA_APP_ID
+  - algolia.net
+artifacts:
+- id: algolia/endpoint//accountCopyIndex
+  kind: endpoint
+  match:
+    literals:
+    - /accountCopyIndex
+  status: removed
+  severity: breaking
+  note: GET /accountCopyIndex existed in released-2026-01-20-eccb9c778 and is gone
+    in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//browseObjects
+  kind: endpoint
+  match:
+    literals:
+    - /browseObjects
+  status: removed
+  severity: breaking
+  note: GET /browseObjects existed in released-2026-01-20-eccb9c778 and is gone in
+    v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//indexExists
+  kind: endpoint
+  match:
+    literals:
+    - /indexExists
+  status: removed
+  severity: breaking
+  note: GET /indexExists existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0.
+    Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//partialUpdateObjectsWithTransformation
+  kind: endpoint
+  match:
+    literals:
+    - /partialUpdateObjectsWithTransformation
+  status: removed
+  severity: breaking
+  note: POST /partialUpdateObjectsWithTransformation existed in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//replaceAllObjectsWithTransformation
+  kind: endpoint
+  match:
+    literals:
+    - /replaceAllObjectsWithTransformation
+  status: removed
+  severity: breaking
+  note: GET /replaceAllObjectsWithTransformation existed in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//saveObjectsWithTransformation
+  kind: endpoint
+  match:
+    literals:
+    - /saveObjectsWithTransformation
+  status: removed
+  severity: breaking
+  note: GET /saveObjectsWithTransformation existed in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//setClientApiKey
+  kind: endpoint
+  match:
+    literals:
+    - /setClientApiKey
+  status: removed
+  severity: breaking
+  note: GET /setClientApiKey existed in released-2026-01-20-eccb9c778 and is gone
+    in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//waitForAppTask
+  kind: endpoint
+  match:
+    literals:
+    - /waitForAppTask
+  status: removed
+  severity: breaking
+  note: GET /waitForAppTask existed in released-2026-01-20-eccb9c778 and is gone in
+    v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/endpoint//waitForTask
+  kind: endpoint
+  match:
+    literals:
+    - /waitForTask
+  status: removed
+  severity: breaking
+  note: GET /waitForTask existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0.
+    Observed 2026-08-07; the spec's own version stayed 1.0.0.
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/altCorrection1
+  kind: enum_value
+  match:
+    literals:
+    - altCorrection1
+  status: removed
+  severity: breaking
+  note: 'Enum value ''altCorrection1'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07;
+    the spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/altCorrection2
+  kind: enum_value
+  match:
+    literals:
+    - altCorrection2
+  status: removed
+  severity: breaking
+  note: 'Enum value ''altCorrection2'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07;
+    the spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/ignoreConjugations
+  kind: enum_value
+  match:
+    literals:
+    - ignoreConjugations
+  status: removed
+  severity: breaking
+  note: 'Enum value ''ignoreConjugations'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.alternativesAsExact. Observed
+    2026-08-07; the spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluPrediction
+  kind: enum_value
+  match:
+    literals:
+    - nluPrediction
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluPrediction'' was valid in released-2026-01-20-eccb9c778 and
+    is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluReadAnswers
+  kind: enum_value
+  match:
+    literals:
+    - nluReadAnswers
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluReadAnswers'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluReadEntity
+  kind: enum_value
+  match:
+    literals:
+    - nluReadEntity
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluReadEntity'' was valid in released-2026-01-20-eccb9c778 and
+    is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluReadIntent
+  kind: enum_value
+  match:
+    literals:
+    - nluReadIntent
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluReadIntent'' was valid in released-2026-01-20-eccb9c778 and
+    is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluReadProject
+  kind: enum_value
+  match:
+    literals:
+    - nluReadProject
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluReadProject'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluWriteEntity
+  kind: enum_value
+  match:
+    literals:
+    - nluWriteEntity
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluWriteEntity'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluWriteIntent
+  kind: enum_value
+  match:
+    literals:
+    - nluWriteIntent
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluWriteIntent'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/nluWriteProject
+  kind: enum_value
+  match:
+    literals:
+    - nluWriteProject
+  status: removed
+  severity: breaking
+  note: 'Enum value ''nluWriteProject'' was valid in released-2026-01-20-eccb9c778
+    and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0
+- id: algolia/enum_value/oneWaySynonym
+  kind: enum_value
+  match:
+    literals:
+    - oneWaySynonym
+  status: removed
+  severity: breaking
+  note: 'Enum value ''oneWaySynonym'' was valid in released-2026-01-20-eccb9c778 and
+    is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07;
+    the spec''s own version stayed 1.0.0.'
+  evidence: https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0

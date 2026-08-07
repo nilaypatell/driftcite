@@ -1,0 +1,25 @@
+provider: pagerduty
+spec_version: 1
+source_license: none published
+source_notice: https://github.com/PagerDuty/api-schema
+observations:
+- repo: PagerDuty/api-schema
+  from: 8956dadbfe70
+  to: 38daa03ecede
+  from_api_version: 2.0.0
+  to_api_version: 2.0.0
+  observed_on: '2026-08-07'
+  withheld:
+  - reason: path still served by another method, so the literal is still live
+    count: 1
+    examples:
+    - /status_pages/{id}/posts/{post_id}/postmortem at POST removed
+sources:
+- https://github.com/PagerDuty/api-schema/compare/8956dadbfe70...38daa03ecede
+context:
+  file_markers:
+  - pagerduty
+  - PAGERDUTY_API_KEY
+  - api.pagerduty.com
+  - pdpyras
+artifacts: []

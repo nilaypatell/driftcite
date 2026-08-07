@@ -1,0 +1,24 @@
+provider: netlify
+spec_version: 1
+source_license: MIT
+source_notice: https://github.com/netlify/open-api/blob/master/LICENSE
+observations:
+- repo: netlify/open-api
+  from: v2.36.0
+  to: v2.57.0
+  from_api_version: 2.36.0
+  to_api_version: 2.57.0
+  observed_on: '2026-08-07'
+  withheld:
+  - reason: parameter name is not distinctive enough to match safely
+    count: 1
+    examples:
+    - '''build'' at POST /sites/{site_id}/builds'
+sources:
+- https://github.com/netlify/open-api/compare/v2.36.0...v2.57.0
+context:
+  file_markers:
+  - netlify
+  - NETLIFY_AUTH_TOKEN
+  - api.netlify.com
+artifacts: []

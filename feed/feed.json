@@ -15,6 +15,18 @@
    "artifact_count": 1
   },
   {
+   "provider": "algolia",
+   "manifests": [
+    "algolia.generated.yaml"
+   ],
+   "source_license": "MIT",
+   "source_notice": "https://github.com/algolia/api-clients-automation/blob/main/LICENSE.md",
+   "sources": [
+    "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0"
+   ],
+   "artifact_count": 21
+  },
+  {
    "provider": "anthropic",
    "manifests": [
     "anthropic-api.yaml",
@@ -30,6 +42,32 @@
    "artifact_count": 21
   },
   {
+   "provider": "assemblyai",
+   "manifests": [
+    "assemblyai-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://www.assemblyai.com/changelog"
+   ],
+   "artifact_count": 3
+  },
+  {
+   "provider": "aws",
+   "manifests": [
+    "aws-lambda-runtimes.yaml",
+    "aws-sdk.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+    "https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-javascript-v2/"
+   ],
+   "artifact_count": 21
+  },
+  {
    "provider": "azure",
    "manifests": [
     "azure-models.yaml"
@@ -40,7 +78,7 @@
     "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
     "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements"
    ],
-   "artifact_count": 41
+   "artifact_count": 38
   },
   {
    "provider": "bedrock",
@@ -63,9 +101,10 @@
    "source_notice": "https://github.com/cloudflare/api-schemas/blob/main/LICENSE",
    "sources": [
     "https://github.com/cloudflare/api-schemas/compare/c166647800fb...d3a1cc521849",
-    "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8"
+    "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+    "https://github.com/cloudflare/api-schemas/compare/f0422271d15f...b1a6d110fb16"
    ],
-   "artifact_count": 33
+   "artifact_count": 34
   },
   {
    "provider": "cohere",
@@ -95,6 +134,18 @@
    "artifact_count": 36
   },
   {
+   "provider": "deepseek",
+   "manifests": [
+    "deepseek-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://api-docs.deepseek.com/updates/"
+   ],
+   "artifact_count": 2
+  },
+  {
    "provider": "digitalocean",
    "manifests": [
     "digitalocean.generated.yaml"
@@ -105,6 +156,55 @@
     "https://github.com/digitalocean/openapi/compare/7e5b46e1d90a...87e82da6548b"
    ],
    "artifact_count": 4
+  },
+  {
+   "provider": "elevenlabs",
+   "manifests": [
+    "elevenlabs-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://elevenlabs.io/docs/overview/models",
+    "https://elevenlabs.io/docs/changelog/2026/6/8"
+   ],
+   "artifact_count": 5
+  },
+  {
+   "provider": "firebase",
+   "manifests": [
+    "firebase-sdk.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://firebase.google.com/docs/web/modular-upgrade"
+   ],
+   "artifact_count": 1
+  },
+  {
+   "provider": "fireworks",
+   "manifests": [
+    "fireworks-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.fireworks.ai/updates/changelog"
+   ],
+   "artifact_count": 2
+  },
+  {
+   "provider": "gcp",
+   "manifests": [
+    "gcp-runtimes.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.cloud.google.com/functions/docs/runtime-support"
+   ],
+   "artifact_count": 11
   },
   {
    "provider": "github",
@@ -135,6 +235,19 @@
    "artifact_count": 23
   },
   {
+   "provider": "googleads",
+   "manifests": [
+    "googleads-api.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://developers.google.com/google-ads/api/docs/sunset-dates",
+    "https://ads-developers.googleblog.com/"
+   ],
+   "artifact_count": 4
+  },
+  {
    "provider": "groq",
    "manifests": [
     "groq-models.yaml"
@@ -145,6 +258,44 @@
     "https://console.groq.com/docs/deprecations"
    ],
    "artifact_count": 2
+  },
+  {
+   "provider": "heroku",
+   "manifests": [
+    "heroku-stacks.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://devcenter.heroku.com/changelog-items/3230",
+    "https://devcenter.heroku.com/changelog-items/3705"
+   ],
+   "artifact_count": 2
+  },
+  {
+   "provider": "kubernetes",
+   "manifests": [
+    "kubernetes.generated.yaml"
+   ],
+   "source_license": "Apache-2.0",
+   "source_notice": "https://github.com/kubernetes/kubernetes/blob/master/LICENSE",
+   "sources": [
+    "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0"
+   ],
+   "artifact_count": 27
+  },
+  {
+   "provider": "meta",
+   "manifests": [
+    "meta-graph-api.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://developers.facebook.com/docs/graph-api/changelog/",
+    "https://developers.facebook.com/docs/graph-api/guides/versioning"
+   ],
+   "artifact_count": 6
   },
   {
    "provider": "mistral",
@@ -166,6 +317,7 @@
    "manifests": [
     "openai-api.yaml",
     "openai-models.yaml",
+    "openai-sdk.yaml",
     "openai.generated.yaml"
    ],
    "source_license": "MIT",
@@ -180,9 +332,22 @@
     "https://developers.openai.com/api/docs/guides/evals",
     "https://developers.openai.com/api/reference/resources/chat.md",
     "https://developers.openai.com/api/reference/resources/responses.md",
+    "https://github.com/openai/openai-python/discussions/742",
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
    ],
-   "artifact_count": 117
+   "artifact_count": 120
+  },
+  {
+   "provider": "perplexity",
+   "manifests": [
+    "perplexity-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.perplexity.ai/changelog/changelog"
+   ],
+   "artifact_count": 8
   },
   {
    "provider": "plaid",
@@ -197,6 +362,31 @@
    "artifact_count": 1
   },
   {
+   "provider": "salesforce",
+   "manifests": [
+    "salesforce-api.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm"
+   ],
+   "artifact_count": 2
+  },
+  {
+   "provider": "shopify",
+   "manifests": [
+    "shopify-api.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://shopify.dev/docs/api/usage/versioning",
+    "https://shopify.dev/docs/apps/build/graphql/migrate"
+   ],
+   "artifact_count": 2
+  },
+  {
    "provider": "square",
    "manifests": [
     "square.generated.yaml"
@@ -209,6 +399,18 @@
    "artifact_count": 41
   },
   {
+   "provider": "stability",
+   "manifests": [
+    "stability-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://platform.stability.ai/docs/release-notes"
+   ],
+   "artifact_count": 7
+  },
+  {
    "provider": "stripe",
    "manifests": [
     "stripe.generated.yaml"
@@ -218,6 +420,44 @@
    "sources": [
     "https://github.com/stripe/openapi/compare/v1200...v2345",
     "https://github.com/stripe/openapi/compare/v2345...v2375"
+   ],
+   "artifact_count": 8
+  },
+  {
+   "provider": "together",
+   "manifests": [
+    "together-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.together.ai/docs/deprecations"
+   ],
+   "artifact_count": 8
+  },
+  {
+   "provider": "twilio",
+   "manifests": [
+    "twilio-api.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://www.twilio.com/en-us/changelog/notify-api-end-of-life-further-extension-notice",
+    "https://www.twilio.com/en-us/changelog/programmable-chat-in-flex-reaching-end-of-life-on-june-1--2026",
+    "https://www.twilio.com/en-us/changelog/programmable-chat-end-of-life-notice"
+   ],
+   "artifact_count": 3
+  },
+  {
+   "provider": "xai",
+   "manifests": [
+    "xai-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://docs.x.ai/developers/migration/may-15-retirement"
    ],
    "artifact_count": 8
   }
@@ -240,6 +480,426 @@
     "adyen",
     "ADYEN_API_KEY",
     "checkout.adyen.com"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//accountCopyIndex",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accountCopyIndex"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /accountCopyIndex existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//browseObjects",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/browseObjects"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /browseObjects existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//indexExists",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/indexExists"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /indexExists existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//partialUpdateObjectsWithTransformation",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/partialUpdateObjectsWithTransformation"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "POST /partialUpdateObjectsWithTransformation existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//replaceAllObjectsWithTransformation",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/replaceAllObjectsWithTransformation"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /replaceAllObjectsWithTransformation existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//saveObjectsWithTransformation",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/saveObjectsWithTransformation"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /saveObjectsWithTransformation existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//setClientApiKey",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/setClientApiKey"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /setClientApiKey existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//waitForAppTask",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/waitForAppTask"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /waitForAppTask existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/endpoint//waitForTask",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/waitForTask"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /waitForTask existed in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/altCorrection1",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "altCorrection1"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'altCorrection1' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/altCorrection2",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "altCorrection2"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'altCorrection2' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/ignoreConjugations",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "ignoreConjugations"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'ignoreConjugations' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.alternativesAsExact. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluPrediction",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluPrediction"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluPrediction' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluReadAnswers",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluReadAnswers"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluReadAnswers' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluReadEntity",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluReadEntity"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluReadEntity' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluReadIntent",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluReadIntent"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluReadIntent' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluReadProject",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluReadProject"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluReadProject' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluWriteEntity",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluWriteEntity"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluWriteEntity' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluWriteIntent",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluWriteIntent"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluWriteIntent' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/nluWriteProject",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "nluWriteProject"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'nluWriteProject' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.acl. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
+   ]
+  },
+  {
+   "id": "algolia/enum_value/oneWaySynonym",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "oneWaySynonym"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "Enum value 'oneWaySynonym' was valid in released-2026-01-20-eccb9c778 and is gone in v4.0.0. Seen at: components.schemas.SynonymType. Observed 2026-08-07; the spec's own version stayed 1.0.0.",
+   "evidence": "https://github.com/algolia/api-clients-automation/compare/released-2026-01-20-eccb9c778...v4.0.0",
+   "provider": "algolia",
+   "file_markers": [
+    "algolia",
+    "ALGOLIA_API_KEY",
+    "ALGOLIA_APP_ID",
+    "algolia.net"
    ]
   },
   {
@@ -677,6 +1337,510 @@
    ]
   },
   {
+   "id": "assemblyai/model_id/universal-3-pro",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "universal-3-pro"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-02",
+   "announced_on": "2026-08-01",
+   "replacement": "universal-3-5-pro",
+   "severity": "warning",
+   "note": "Deprecated; the API's own error text says to use speech_models [\"universal-3-5-pro\", \"universal-2\"]. Blocked for new and inactive accounts since 2026-07-10; errors for all accounts from 2026-09-02.",
+   "evidence": "https://www.assemblyai.com/changelog",
+   "provider": "assemblyai",
+   "file_markers": [
+    "assemblyai",
+    "ASSEMBLYAI_API_KEY",
+    "api.assemblyai.com",
+    "streaming.assemblyai.com"
+   ]
+  },
+  {
+   "id": "assemblyai/model_id/u3-pro-rt",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "u3-pro-rt"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-08-01",
+   "replacement": "universal-3-5-pro",
+   "severity": "warning",
+   "note": "Deprecated streaming model; from 2026-09-02 requests are redirected to universal-3-5-pro rather than failing, so no deadline is carried.",
+   "evidence": "https://www.assemblyai.com/changelog",
+   "provider": "assemblyai",
+   "file_markers": [
+    "assemblyai",
+    "ASSEMBLYAI_API_KEY",
+    "api.assemblyai.com",
+    "streaming.assemblyai.com"
+   ]
+  },
+  {
+   "id": "assemblyai/request_param/speech_model",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "speech_model"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-07-10",
+   "replacement": "speech_models",
+   "severity": "warning",
+   "note": "The singular async speech_model parameter is deprecated as of 2026-07-10; passing a current model name to it returns a 400. Use the plural speech_models list.",
+   "evidence": "https://www.assemblyai.com/changelog",
+   "provider": "assemblyai",
+   "file_markers": [
+    "assemblyai",
+    "ASSEMBLYAI_API_KEY",
+    "api.assemblyai.com",
+    "streaming.assemblyai.com"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs20.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs20.x"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2026-04-30; security updates may have stopped then. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs18.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs18.x"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2025-09-01. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs16.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs16.x"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2024-06-12. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs14.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs14.x"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2023-12-04; creation has been blocked since 2024-01-09. Code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs12.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs12.x"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2023-04-30",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2023-03-31; creation and updates have been blocked since 2023-04-30. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/nodejs10.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs10.x"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2022-02-14",
+   "severity": "warning",
+   "replacement": "nodejs22.x",
+   "note": "Deprecated 2021-07-30; creation and updates have long been blocked. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/python3.9",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python3.9"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "python3.13",
+   "note": "Deprecated 2025-12-15. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/python3.8",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python3.8"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "python3.13",
+   "note": "Deprecated 2024-10-14. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/python3.7",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python3.7"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "python3.13",
+   "note": "Deprecated 2023-12-04; creation has been blocked since 2024-01-09. Code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/python3.6",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python3.6"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2022-08-29",
+   "severity": "warning",
+   "replacement": "python3.13",
+   "note": "Deprecated 2022-07-18; creation and updates have been blocked since 2022-08-29. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/python2.7",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python2.7"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2022-05-30",
+   "severity": "warning",
+   "replacement": "python3.13",
+   "note": "Deprecated 2021-07-15; creation and updates have long been blocked. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/ruby3.2",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "ruby3.2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "ruby3.4",
+   "note": "Deprecated 2026-03-31. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/ruby2.7",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "ruby2.7"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "ruby3.4",
+   "note": "Deprecated 2023-12-07; creation has been blocked since 2024-01-09. Code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/ruby2.5",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "ruby2.5"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2022-03-31",
+   "severity": "warning",
+   "replacement": "ruby3.4",
+   "note": "Deprecated 2021-07-30; creation and updates have long been blocked. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/go1.x",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "go1.x"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "provided.al2023",
+   "note": "Deprecated 2024-01-08; creation has been blocked since 2024-02-08. Go functions run on the provided.al2023 OS-only runtime now. Code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/java8",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "java8"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "java21",
+   "note": "Deprecated 2024-01-08; creation has been blocked since 2024-02-08. Code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/provided.al2",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "provided.al2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "provided.al2023",
+   "note": "Deprecated 2026-07-31, alongside Amazon Linux 2's scheduled end of life on 2026-06-30. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/dotnet6",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "dotnet6"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-03-03",
+   "severity": "warning",
+   "replacement": "dotnet8",
+   "note": "Deprecated 2024-12-20. Function creation blocks 2027-02-01 and code/config updates block 2027-03-03; invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/dotnetcore3.1",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "dotnetcore3.1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2023-05-03",
+   "severity": "warning",
+   "replacement": "dotnet8",
+   "note": "Deprecated 2023-04-03; creation and updates have been blocked since 2023-05-03. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/runtime/dotnetcore2.1",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "dotnetcore2.1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2022-04-13",
+   "severity": "warning",
+   "replacement": "dotnet8",
+   "note": "Deprecated 2022-01-05; creation and updates have long been blocked. Invocations continue.",
+   "evidence": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+   "provider": "aws",
+   "file_markers": [
+    "aws",
+    "lambda"
+   ]
+  },
+  {
+   "id": "aws/package/aws-sdk",
+   "kind": "package",
+   "match": {
+    "literals": [
+     "aws-sdk"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "End of support since 2025-09-08 (maintenance mode began 2024-09-08); no updates or releases of any kind, including security fixes. AWS's named successor is the modular AWS SDK for JavaScript v3 (@aws-sdk/* packages). The npm registry marks the package deprecated, so the dependency check flags lockfiles too; this artifact covers the require and import sites.",
+   "evidence": "https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-javascript-v2/",
+   "provider": "aws",
+   "file_markers": [
+    "aws"
+   ]
+  },
+  {
    "id": "azure/model_id/gpt-5-chat",
    "kind": "model_id",
    "match": {
@@ -845,83 +2009,11 @@
    ]
   },
   {
-   "id": "azure/model_id/grok-3",
-   "kind": "model_id",
-   "match": {
-    "literals": [
-     "grok-3"
-    ]
-   },
-   "status": "retired",
-   "retires_on": "2026-05-01",
-   "replacement": "grok-4",
-   "severity": "breaking",
-   "note": "Retired on Azure. Inference returns 410 Gone.",
-   "require_context": true,
-   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
-   "provider": "azure",
-   "file_markers": [
-    "azure",
-    "AZURE_OPENAI",
-    "openai.azure.com",
-    "azure-ai",
-    "AZURE_AI"
-   ]
-  },
-  {
    "id": "azure/model_id/grok-3-mini",
    "kind": "model_id",
    "match": {
     "literals": [
      "grok-3-mini"
-    ]
-   },
-   "status": "retired",
-   "retires_on": "2026-05-01",
-   "replacement": "grok-4-1-fast-reasoning",
-   "severity": "breaking",
-   "note": "Retired on Azure. Inference returns 410 Gone.",
-   "require_context": true,
-   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
-   "provider": "azure",
-   "file_markers": [
-    "azure",
-    "AZURE_OPENAI",
-    "openai.azure.com",
-    "azure-ai",
-    "AZURE_AI"
-   ]
-  },
-  {
-   "id": "azure/model_id/grok-4-fast-non-reasoning",
-   "kind": "model_id",
-   "match": {
-    "literals": [
-     "grok-4-fast-non-reasoning"
-    ]
-   },
-   "status": "retired",
-   "retires_on": "2026-05-01",
-   "replacement": "grok-4-1-fast-non-reasoning",
-   "severity": "breaking",
-   "note": "Retired on Azure. Inference returns 410 Gone.",
-   "require_context": true,
-   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
-   "provider": "azure",
-   "file_markers": [
-    "azure",
-    "AZURE_OPENAI",
-    "openai.azure.com",
-    "azure-ai",
-    "AZURE_AI"
-   ]
-  },
-  {
-   "id": "azure/model_id/grok-4-fast-reasoning",
-   "kind": "model_id",
-   "match": {
-    "literals": [
-     "grok-4-fast-reasoning"
     ]
    },
    "status": "retired",
@@ -2177,6 +3269,25 @@
    "severity": "warning",
    "note": "DELETE, GET /accounts/{account_id}/email/routing/suppression/{suppression_id} was marked deprecated between d3a1cc521849 and cadacbb547e8. Observed 2026-08-06; the spec's own version stayed 4.0.0.",
    "evidence": "https://github.com/cloudflare/api-schemas/compare/d3a1cc521849...cadacbb547e8",
+   "provider": "cloudflare",
+   "file_markers": [
+    "cloudflare",
+    "CLOUDFLARE_API",
+    "CF_API"
+   ]
+  },
+  {
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/sending/feedback",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/accounts/{account_id}/email/sending/feedback"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /accounts/{account_id}/email/sending/feedback existed in f0422271d15f and is gone in b1a6d110fb16. Observed 2026-08-07; the spec's own version stayed 4.0.0.",
+   "evidence": "https://github.com/cloudflare/api-schemas/compare/f0422271d15f...b1a6d110fb16",
    "provider": "cloudflare",
    "file_markers": [
     "cloudflare",
@@ -3817,6 +4928,50 @@
    ]
   },
   {
+   "id": "deepseek/model_id/deepseek-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "deepseek-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-24",
+   "announced_on": "2026-04-24",
+   "replacement": "deepseek-v4-flash",
+   "severity": "warning",
+   "note": "Discontinued 2026-07-24, announced 2026-04-24. DeepSeek's named target is deepseek-v4-flash (non-thinking mode); deepseek-v4-pro is the larger option.",
+   "evidence": "https://api-docs.deepseek.com/updates/",
+   "provider": "deepseek",
+   "file_markers": [
+    "deepseek",
+    "DEEPSEEK_API_KEY",
+    "api.deepseek.com"
+   ]
+  },
+  {
+   "id": "deepseek/model_id/deepseek-reasoner",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "deepseek-reasoner"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-24",
+   "announced_on": "2026-04-24",
+   "replacement": "deepseek-v4-flash",
+   "severity": "warning",
+   "note": "Discontinued 2026-07-24, announced 2026-04-24. DeepSeek's named target is deepseek-v4-flash in thinking mode; deepseek-v4-pro is the larger option.",
+   "evidence": "https://api-docs.deepseek.com/updates/",
+   "provider": "deepseek",
+   "file_markers": [
+    "deepseek",
+    "DEEPSEEK_API_KEY",
+    "api.deepseek.com"
+   ]
+  },
+  {
    "id": "digitalocean/endpoint//v2/security/secrets",
    "kind": "endpoint",
    "match": {
@@ -3890,6 +5045,427 @@
     "digitalocean",
     "DIGITALOCEAN_TOKEN",
     "api.digitalocean.com"
+   ]
+  },
+  {
+   "id": "elevenlabs/model_id/eleven_monolingual_v1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "eleven_monolingual_v1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-09",
+   "announced_on": "2026-06-08",
+   "replacement": "eleven_multilingual_v2",
+   "severity": "warning",
+   "note": "Removed 2026-07-09, announced 2026-06-08.",
+   "evidence": "https://elevenlabs.io/docs/changelog/2026/6/8",
+   "provider": "elevenlabs",
+   "file_markers": [
+    "elevenlabs",
+    "ELEVENLABS_API_KEY",
+    "ELEVEN_API_KEY",
+    "api.elevenlabs.io",
+    "xi-api-key"
+   ]
+  },
+  {
+   "id": "elevenlabs/model_id/eleven_multilingual_v1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "eleven_multilingual_v1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-09",
+   "announced_on": "2026-06-08",
+   "replacement": "eleven_multilingual_v2",
+   "severity": "warning",
+   "note": "Removed 2026-07-09, announced 2026-06-08.",
+   "evidence": "https://elevenlabs.io/docs/changelog/2026/6/8",
+   "provider": "elevenlabs",
+   "file_markers": [
+    "elevenlabs",
+    "ELEVENLABS_API_KEY",
+    "ELEVEN_API_KEY",
+    "api.elevenlabs.io",
+    "xi-api-key"
+   ]
+  },
+  {
+   "id": "elevenlabs/model_id/scribe_v1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "scribe_v1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-09",
+   "announced_on": "2026-06-08",
+   "replacement": "scribe_v2",
+   "severity": "warning",
+   "note": "Removed 2026-07-09, announced 2026-06-08. scribe_v2_realtime is the streaming variant.",
+   "evidence": "https://elevenlabs.io/docs/changelog/2026/6/8",
+   "provider": "elevenlabs",
+   "file_markers": [
+    "elevenlabs",
+    "ELEVENLABS_API_KEY",
+    "ELEVEN_API_KEY",
+    "api.elevenlabs.io",
+    "xi-api-key"
+   ]
+  },
+  {
+   "id": "elevenlabs/model_id/eleven_turbo_v2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "eleven_turbo_v2"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "eleven_flash_v2",
+   "severity": "warning",
+   "note": "Listed as deprecated on the models page (\"First generation low-latency model\") with no removal date announced.",
+   "evidence": "https://elevenlabs.io/docs/overview/models",
+   "provider": "elevenlabs",
+   "file_markers": [
+    "elevenlabs",
+    "ELEVENLABS_API_KEY",
+    "ELEVEN_API_KEY",
+    "api.elevenlabs.io",
+    "xi-api-key"
+   ]
+  },
+  {
+   "id": "elevenlabs/model_id/eleven_turbo_v2_5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "eleven_turbo_v2_5"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "eleven_flash_v2_5",
+   "severity": "warning",
+   "note": "Listed as deprecated on the models page with no removal date announced.",
+   "evidence": "https://elevenlabs.io/docs/overview/models",
+   "provider": "elevenlabs",
+   "file_markers": [
+    "elevenlabs",
+    "ELEVENLABS_API_KEY",
+    "ELEVEN_API_KEY",
+    "api.elevenlabs.io",
+    "xi-api-key"
+   ]
+  },
+  {
+   "id": "firebase/sdk_symbol/firebase-compat",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "firebase/compat"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "The compat libraries are a migration bridge Firebase says \"will be removed completely in a future major SDK version\", with no date announced. The named successor is the modular API (import { initializeApp } from \"firebase/app\").",
+   "evidence": "https://firebase.google.com/docs/web/modular-upgrade",
+   "provider": "firebase",
+   "file_markers": [
+    "firebase"
+   ]
+  },
+  {
+   "id": "fireworks/model_id/kimi-k2p5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "accounts/fireworks/models/kimi-k2p5",
+     "kimi-k2p5"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-06-26",
+   "replacement": "accounts/fireworks/models/kimi-k2p6",
+   "severity": "warning",
+   "note": "Deprecated from Fireworks serverless, announced 2026-06-26 with no shutdown date. Dedicated deployments are unaffected.",
+   "evidence": "https://docs.fireworks.ai/updates/changelog",
+   "provider": "fireworks",
+   "file_markers": [
+    "fireworks",
+    "FIREWORKS_API_KEY",
+    "api.fireworks.ai"
+   ]
+  },
+  {
+   "id": "fireworks/model_id/qwen3p6-plus",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "accounts/fireworks/models/qwen3p6-plus",
+     "qwen3p6-plus"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-06-26",
+   "replacement": "accounts/fireworks/models/qwen3p7-plus",
+   "severity": "warning",
+   "note": "Deprecated from Fireworks serverless, announced 2026-06-26 with no shutdown date. Dedicated deployments are unaffected.",
+   "evidence": "https://docs.fireworks.ai/updates/changelog",
+   "provider": "fireworks",
+   "file_markers": [
+    "fireworks",
+    "FIREWORKS_API_KEY",
+    "api.fireworks.ai"
+   ]
+  },
+  {
+   "id": "gcp/runtime/nodejs20",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs20"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-30",
+   "severity": "warning",
+   "note": "Deprecated 2026-04-30; decommissions 2026-10-30, after which deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/nodejs18",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs18"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-30",
+   "severity": "warning",
+   "note": "Deprecated 2025-04-30 and decommissioned 2025-10-30; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/python39",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "python39"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-05",
+   "severity": "warning",
+   "note": "Deprecated 2025-10-05 and decommissioned 2026-04-05; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/go122",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "go122"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-28",
+   "severity": "warning",
+   "note": "Deprecated 2026-01-28 and decommissioned 2026-07-28; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/go121",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "go121"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-03-03",
+   "severity": "warning",
+   "note": "Deprecated 2025-09-03 and decommissioned 2026-03-03; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/go120",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "go120"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-05-01",
+   "severity": "warning",
+   "note": "Deprecated 2024-05-01 and decommissioned 2025-05-01; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/java11",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "java11"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-10-31",
+   "severity": "warning",
+   "note": "Deprecated 2024-10-31 and decommissioned 2025-10-31; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/ruby32",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "ruby32"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-09-30",
+   "severity": "warning",
+   "note": "Deprecated 2026-03-31; decommissions 2026-09-30, after which deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/ruby30",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "ruby30"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-03-31",
+   "severity": "warning",
+   "note": "Deprecated 2024-03-31 and decommissioned 2025-03-31; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/php81",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "php81"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-30",
+   "severity": "warning",
+   "note": "Deprecated 2025-12-31 and decommissioned 2026-06-30; deploys and updates of functions on this runtime fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
+   ]
+  },
+  {
+   "id": "gcp/runtime/decommissioned-2025-01-30",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "nodejs16",
+     "nodejs14",
+     "nodejs12",
+     "nodejs10",
+     "python38",
+     "python37",
+     "go119",
+     "go118",
+     "go116",
+     "go113",
+     "ruby27",
+     "ruby26",
+     "php74",
+     "dotnet3"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-01-30",
+   "severity": "warning",
+   "note": "This generation was deprecated 2024-01-30 (go119 on 2024-04-30) and decommissioned 2025-01-30; deploys and updates of functions on these runtimes fail.",
+   "evidence": "https://docs.cloud.google.com/functions/docs/runtime-support",
+   "provider": "gcp",
+   "file_markers": [
+    "gcloud",
+    "cloudfunctions",
+    "cloud-functions"
    ]
   },
   {
@@ -4883,6 +6459,98 @@
    ]
   },
   {
+   "id": "googleads/endpoint/v18",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "google.ads.googleads.v18",
+     "googleads.googleapis.com/v18",
+     "//googleads.googleapis.com/v18"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-08-20",
+   "severity": "warning",
+   "note": "Sunset 2025-08-20; all v18 requests fail.",
+   "evidence": "https://ads-developers.googleblog.com/2025/07/google-ads-api-v18-sunset-reminder.html",
+   "provider": "googleads",
+   "file_markers": [
+    "googleads",
+    "google-ads",
+    "google_ads",
+    "GOOGLE_ADS_DEVELOPER_TOKEN"
+   ]
+  },
+  {
+   "id": "googleads/endpoint/v19",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "google.ads.googleads.v19",
+     "googleads.googleapis.com/v19",
+     "//googleads.googleapis.com/v19"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-02-11",
+   "severity": "warning",
+   "note": "Sunset 2026-02-11; all v19 requests fail.",
+   "evidence": "https://ads-developers.googleblog.com/2025/12/google-ads-api-v19-sunset-reminder.html",
+   "provider": "googleads",
+   "file_markers": [
+    "googleads",
+    "google-ads",
+    "google_ads",
+    "GOOGLE_ADS_DEVELOPER_TOKEN"
+   ]
+  },
+  {
+   "id": "googleads/endpoint/v20",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "google.ads.googleads.v20",
+     "googleads.googleapis.com/v20",
+     "//googleads.googleapis.com/v20"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-10",
+   "severity": "warning",
+   "note": "Sunset 2026-06-10; all v20 requests fail.",
+   "evidence": "https://ads-developers.googleblog.com/2026/04/google-ads-api-v20-sunset-reminder.html",
+   "provider": "googleads",
+   "file_markers": [
+    "googleads",
+    "google-ads",
+    "google_ads",
+    "GOOGLE_ADS_DEVELOPER_TOKEN"
+   ]
+  },
+  {
+   "id": "googleads/endpoint/v21",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "google.ads.googleads.v21",
+     "googleads.googleapis.com/v21",
+     "//googleads.googleapis.com/v21"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-08-05",
+   "severity": "warning",
+   "note": "Sunset 2026-08-05; all v21 requests fail.",
+   "evidence": "https://ads-developers.googleblog.com/2026/06/google-ads-api-v21-sunset-reminder.html",
+   "provider": "googleads",
+   "file_markers": [
+    "googleads",
+    "google-ads",
+    "google_ads",
+    "GOOGLE_ADS_DEVELOPER_TOKEN"
+   ]
+  },
+  {
    "id": "groq/model_id/llama-3.1-8b-instant",
    "kind": "model_id",
    "match": {
@@ -4922,6 +6590,702 @@
     "groq",
     "GROQ_API_KEY",
     "api.groq.com"
+   ]
+  },
+  {
+   "id": "heroku/runtime/heroku-20",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "heroku-20"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-05-01",
+   "replacement": "heroku-24",
+   "severity": "warning",
+   "note": "Deprecated 2024-06-24 and end-of-life effective 2025-05-01: apps keep running without security updates and no new builds can be performed until the app moves to a newer stack.",
+   "evidence": "https://devcenter.heroku.com/changelog-items/3230",
+   "provider": "heroku",
+   "file_markers": [
+    "heroku"
+   ]
+  },
+  {
+   "id": "heroku/runtime/heroku-22",
+   "kind": "runtime",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "heroku-22"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-30",
+   "replacement": "heroku-24",
+   "severity": "warning",
+   "note": "Deprecation effective 2026-05-20; reaches end of life 2027-04-30 and \"Starting May 1st 2027, builds will no longer be allowed for Heroku-22 apps.\" heroku-24 is supported through April 2029.",
+   "evidence": "https://devcenter.heroku.com/changelog-items/3705",
+   "provider": "heroku",
+   "file_markers": [
+    "heroku"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/certificates.k8s.io/v1alpha1/"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/certificates.k8s.io/v1alpha1/ existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/clustertrustbundles",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/certificates.k8s.io/v1alpha1/clustertrustbundles"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, POST /apis/certificates.k8s.io/v1alpha1/clustertrustbundles existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, PATCH, PUT /apis/certificates.k8s.io/v1alpha1/clustertrustbundles/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/certificates.k8s.io/v1alpha1/watch/clustertrustbundles/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/networking.k8s.io/v1beta1/ existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/ipaddresses",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/ipaddresses"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, POST /apis/networking.k8s.io/v1beta1/ipaddresses existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/ipaddresses/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/ipaddresses/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/ipaddresses/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/servicecidrs"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, POST /apis/networking.k8s.io/v1beta1/servicecidrs existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/servicecidrs/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/servicecidrs/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET, PATCH, PUT /apis/networking.k8s.io/v1beta1/servicecidrs/{name}/status existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/ipaddresses",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/watch/ipaddresses"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/networking.k8s.io/v1beta1/watch/ipaddresses existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/networking.k8s.io/v1beta1/watch/ipaddresses/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/servicecidrs",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/watch/servicecidrs"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/networking.k8s.io/v1beta1/watch/servicecidrs existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/networking.k8s.io/v1beta1/watch/servicecidrs/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/scheduling.k8s.io/v1alpha1/ existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, POST /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, PATCH, PUT /apis/scheduling.k8s.io/v1alpha1/namespaces/{namespace}/workloads/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/scheduling.k8s.io/v1alpha1/watch/namespaces/{namespace}/workloads/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/watch/workloads",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/watch/workloads"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/scheduling.k8s.io/v1alpha1/watch/workloads existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/scheduling.k8s.io/v1alpha1/workloads",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/scheduling.k8s.io/v1alpha1/workloads"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/scheduling.k8s.io/v1alpha1/workloads existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/storage.k8s.io/v1beta1/",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/storage.k8s.io/v1beta1/"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/storage.k8s.io/v1beta1/ existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/storage.k8s.io/v1beta1/volumeattributesclasses",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/storage.k8s.io/v1beta1/volumeattributesclasses"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, POST /apis/storage.k8s.io/v1beta1/volumeattributesclasses existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "DELETE, GET, PATCH, PUT /apis/storage.k8s.io/v1beta1/volumeattributesclasses/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "kubernetes/endpoint//apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name}",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name}"
+    ]
+   },
+   "status": "removed",
+   "severity": "breaking",
+   "note": "GET /apis/storage.k8s.io/v1beta1/watch/volumeattributesclasses/{name} existed in v1.35.0-rc.1 and is gone in v1.38.0-alpha.0. Observed 2026-08-07; the spec's own version stayed unversioned.",
+   "evidence": "https://github.com/kubernetes/kubernetes/compare/v1.35.0-rc.1...v1.38.0-alpha.0",
+   "provider": "kubernetes",
+   "file_markers": [
+    "kubernetes",
+    "kubeconfig",
+    "k8s.io",
+    "kubectl"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v19.0",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v19.0",
+     "//graph.facebook.com/v19.0"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "v19.0 expired 2026-05-21. Calls are defaulted to the next oldest usable version rather than failing, so responses follow that version's changelog, not v19.0's.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v18.0",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v18.0",
+     "//graph.facebook.com/v18.0"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "v18.0 expired 2026-01-26. Calls are defaulted to the next oldest usable version rather than failing.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v13-v17",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v17.0",
+     "//graph.facebook.com/v17.0",
+     "graph.facebook.com/v16.0",
+     "//graph.facebook.com/v16.0",
+     "graph.facebook.com/v15.0",
+     "//graph.facebook.com/v15.0",
+     "graph.facebook.com/v14.0",
+     "//graph.facebook.com/v14.0",
+     "graph.facebook.com/v13.0",
+     "//graph.facebook.com/v13.0"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "v13.0 through v17.0 are past their expiration dates on the changelog. Calls are defaulted to the next oldest usable version rather than failing.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v20.0",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v20.0",
+     "//graph.facebook.com/v20.0"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "v20.0 expires 2026-09-24 per the changelog. After that, calls default to the next oldest usable version rather than failing.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v21.0",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v21.0",
+     "//graph.facebook.com/v21.0"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "v21.0 expires 2027-01-21 per the changelog. After that, calls default to the next oldest usable version rather than failing.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
+   ]
+  },
+  {
+   "id": "meta/endpoint/graph-v22.0",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "graph.facebook.com/v22.0",
+     "//graph.facebook.com/v22.0"
+    ]
+   },
+   "status": "deprecated",
+   "severity": "warning",
+   "note": "v22.0 expires 2027-05-20 per the changelog. After that, calls default to the next oldest usable version rather than failing.",
+   "evidence": "https://developers.facebook.com/docs/graph-api/changelog/",
+   "provider": "meta",
+   "file_markers": [
+    "facebook"
    ]
   },
   {
@@ -8261,6 +10625,63 @@
    ]
   },
   {
+   "id": "openai/sdk_symbol/openai.ChatCompletion.create",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "openai.ChatCompletion.create",
+     "openai.ChatCompletion.acreate"
+    ]
+   },
+   "status": "removed",
+   "replacement": "client.chat.completions.create",
+   "severity": "warning",
+   "note": "Removed in openai-python v1.0.0 (November 2023); on v1+ this raises instead of calling. The v1 form is client.chat.completions.create() on an OpenAI() client. Runs only while pinned to openai<1.",
+   "evidence": "https://github.com/openai/openai-python/discussions/742",
+   "provider": "openai",
+   "file_markers": [
+    "openai"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/openai.Completion.create",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "openai.Completion.create",
+     "openai.Completion.acreate"
+    ]
+   },
+   "status": "removed",
+   "replacement": "client.completions.create",
+   "severity": "warning",
+   "note": "Removed in openai-python v1.0.0 (November 2023); on v1+ this raises instead of calling. Runs only while pinned to openai<1.",
+   "evidence": "https://github.com/openai/openai-python/discussions/742",
+   "provider": "openai",
+   "file_markers": [
+    "openai"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/openai.Embedding.create",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "openai.Embedding.create",
+     "openai.Embedding.acreate"
+    ]
+   },
+   "status": "removed",
+   "replacement": "client.embeddings.create",
+   "severity": "warning",
+   "note": "Removed in openai-python v1.0.0 (November 2023); on v1+ this raises instead of calling. Runs only while pinned to openai<1.",
+   "evidence": "https://github.com/openai/openai-python/discussions/742",
+   "provider": "openai",
+   "file_markers": [
+    "openai"
+   ]
+  },
+  {
    "id": "openai/endpoint//answers",
    "kind": "endpoint",
    "match": {
@@ -8356,6 +10777,184 @@
    ]
   },
   {
+   "id": "perplexity/model_id/llama-3.1-sonar-small-128k-online",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "llama-3.1-sonar-small-128k-online"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-02-22",
+   "replacement": "sonar",
+   "severity": "warning",
+   "note": "Retired 2025-02-22. Perplexity's named successor for the small online tier is sonar.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/llama-3.1-sonar-large-128k-online",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "llama-3.1-sonar-large-128k-online"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-02-22",
+   "replacement": "sonar-pro",
+   "severity": "warning",
+   "note": "Retired 2025-02-22. Perplexity's named successor for the large online tier is sonar-pro.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/llama-3.1-sonar-huge-128k-online",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "llama-3.1-sonar-huge-128k-online"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-02-22",
+   "replacement": "sonar-pro",
+   "severity": "warning",
+   "note": "Retired 2025-02-22. Perplexity's named successor for the huge online tier is sonar-pro.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/r1-1776",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "r1-1776"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-08-01",
+   "replacement": "sonar-reasoning-pro",
+   "severity": "warning",
+   "note": "Retired 2025-08-01. Perplexity: \"R1 has been a popular option for a while, but it hasn't kept pace with recent improvements.\"",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/sonar-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sonar-reasoning"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-12-15",
+   "replacement": "sonar-reasoning-pro",
+   "severity": "warning",
+   "note": "Retired 2025-12-15 in favour of sonar-reasoning-pro.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/llama-3-sonar-small-32k-online",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "llama-3-sonar-small-32k-online",
+     "llama-3-sonar-small-32k-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-08-12",
+   "replacement": "sonar",
+   "severity": "warning",
+   "note": "Retired 2024-08-12 with the rest of the llama-3 sonar generation.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/llama-3-sonar-large-32k-online",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "llama-3-sonar-large-32k-online",
+     "llama-3-sonar-large-32k-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-08-12",
+   "replacement": "sonar-pro",
+   "severity": "warning",
+   "note": "Retired 2024-08-12 with the rest of the llama-3 sonar generation.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
+   "id": "perplexity/model_id/pplx-7b-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "pplx-7b-chat",
+     "pplx-7b-online"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-05-14",
+   "severity": "warning",
+   "note": "Retired 2024-05-14. Perplexity named no current successor for the pplx-7b line; the live catalogue is the sonar family.",
+   "evidence": "https://docs.perplexity.ai/changelog/changelog",
+   "provider": "perplexity",
+   "file_markers": [
+    "perplexity",
+    "PERPLEXITY_API_KEY",
+    "PPLX_API_KEY",
+    "api.perplexity.ai"
+   ]
+  },
+  {
    "id": "plaid/endpoint//income/verification/paystub/get",
    "kind": "endpoint",
    "match": {
@@ -8372,6 +10971,100 @@
     "plaid",
     "PLAID_CLIENT_ID",
     "PLAID_SECRET"
+   ]
+  },
+  {
+   "id": "salesforce/endpoint/rest-v21-v30",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/services/data/v21.0",
+     "/services/data/v22.0",
+     "/services/data/v23.0",
+     "/services/data/v24.0",
+     "/services/data/v25.0",
+     "/services/data/v26.0",
+     "/services/data/v27.0",
+     "/services/data/v28.0",
+     "/services/data/v29.0",
+     "/services/data/v30.0"
+    ]
+   },
+   "status": "retired",
+   "severity": "breaking",
+   "note": "\"As of Summer '25, these versions are retired and unavailable.\" Retired REST versions return 410 GONE. Move the version segment to a current one; Salesforce's current version is v67.0.",
+   "evidence": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm",
+   "provider": "salesforce",
+   "file_markers": [
+    "salesforce",
+    "jsforce",
+    "restforce",
+    "SFDC"
+   ]
+  },
+  {
+   "id": "salesforce/endpoint/rest-v20",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/services/data/v20.0"
+    ]
+   },
+   "status": "retired",
+   "severity": "breaking",
+   "note": "\"As of Summer '22, these versions are retired and unavailable.\" Retired REST versions return 410 GONE.",
+   "evidence": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm",
+   "provider": "salesforce",
+   "file_markers": [
+    "salesforce",
+    "jsforce",
+    "restforce",
+    "SFDC"
+   ]
+  },
+  {
+   "id": "shopify/endpoint/admin-api-2025-07",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/admin/api/2025-07"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "Version 2025-07 became inaccessible on 2026-07-16 (15:00 UTC). Requests fall forward to the oldest accessible version instead of failing, so responses now come from a different API version than the code targets. The oldest supported version is 2025-10.",
+   "evidence": "https://shopify.dev/docs/api/usage/versioning",
+   "provider": "shopify",
+   "file_markers": [
+    "shopify",
+    "myshopify.com",
+    "SHOPIFY_API_KEY",
+    "X-Shopify-Access-Token"
+   ]
+  },
+  {
+   "id": "shopify/endpoint/admin-api-2024-2025-early",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "/admin/api/2025-04",
+     "/admin/api/2025-01",
+     "/admin/api/2024-10",
+     "/admin/api/2024-07",
+     "/admin/api/2024-04",
+     "/admin/api/2024-01"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "These versions are absent from Shopify's supported-versions table; each was supported for twelve months from release. Requests fall forward to the oldest accessible version instead of failing, so responses come from a different API version than the code targets.",
+   "evidence": "https://shopify.dev/docs/api/usage/versioning",
+   "provider": "shopify",
+   "file_markers": [
+    "shopify",
+    "myshopify.com",
+    "SHOPIFY_API_KEY",
+    "X-Shopify-Access-Token"
    ]
   },
   {
@@ -9154,6 +11847,167 @@
    ]
   },
   {
+   "id": "stability/model_id/stable-diffusion-512-v2-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "stable-diffusion-512-v2-1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-10-11",
+   "announced_on": "2024-10-11",
+   "severity": "warning",
+   "note": "Removed 2024-10-11 with the older v1 engines. Stability's current line is Stable Image Core/Ultra and the SD3.5 family.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/stable-diffusion-xl-beta-v2-2-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "stable-diffusion-xl-beta-v2-2-2"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-10-11",
+   "announced_on": "2024-10-11",
+   "severity": "warning",
+   "note": "Removed 2024-10-11 with the older v1 engines.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/stable-diffusion-xl-1024-v0-9",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "stable-diffusion-xl-1024-v0-9"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-10-11",
+   "announced_on": "2024-10-11",
+   "severity": "warning",
+   "note": "Removed 2024-10-11 with the older v1 engines.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/esrgan-v1-x2plus",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "esrgan-v1-x2plus"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2024-10-11",
+   "announced_on": "2024-10-11",
+   "severity": "warning",
+   "note": "Removed 2024-10-11. The v2beta conservative and creative upscale endpoints are the current upscalers.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/sd3-large",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sd3-large"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-04-17",
+   "replacement": "sd3.5-large",
+   "severity": "warning",
+   "note": "Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5 APIs at no extra cost, so no deadline is carried.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/sd3-large-turbo",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sd3-large-turbo"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-04-17",
+   "replacement": "sd3.5-large-turbo",
+   "severity": "warning",
+   "note": "Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5 APIs at no extra cost, so no deadline is carried.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
+   "id": "stability/model_id/sd3-medium",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "sd3-medium"
+    ]
+   },
+   "status": "retired",
+   "announced_on": "2025-04-17",
+   "replacement": "sd3.5-medium",
+   "severity": "warning",
+   "note": "Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5 APIs at no extra cost, so no deadline is carried.",
+   "evidence": "https://platform.stability.ai/docs/release-notes",
+   "provider": "stability",
+   "file_markers": [
+    "stability",
+    "STABILITY_API_KEY",
+    "STABILITY_KEY",
+    "api.stability.ai",
+    "grpc.stability.ai"
+   ]
+  },
+  {
    "id": "stripe/endpoint//v1/invoices/upcoming",
    "kind": "endpoint",
    "match": {
@@ -9303,6 +12157,442 @@
     "stripe",
     "STRIPE_SECRET",
     "STRIPE_API"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-08-04",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "meta-llama/Llama-Guard-4-12B",
+     "google/gemma-3n-E4B-it"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-08-04",
+   "severity": "warning",
+   "note": "Removed from Together serverless 2026-08-04. Dedicated endpoints are unaffected; Together's migration options are on the deprecations page.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-07-10",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+     "meta-llama/Meta-Llama-3-8B-Instruct-Lite",
+     "zai-org/GLM-5.1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-10",
+   "severity": "warning",
+   "note": "Removed from Together serverless 2026-07-10. Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-06",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "Qwen/Qwen3.5-397B-A17B",
+     "zai-org/GLM-5",
+     "mistralai/Voxtral-Mini-3B-2507",
+     "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "severity": "warning",
+   "note": "Removed from Together serverless in June 2026 (GLM-5 on 06-22, Voxtral Mini on 06-11, Qwen3-Coder-480B on 06-04, Qwen3.5-397B on 06-29). Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-05",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "black-forest-labs/FLUX.1-krea-dev",
+     "moonshotai/Kimi-K2.5",
+     "deepseek-ai/DeepSeek-R1",
+     "deepseek-ai/DeepSeek-V3.1",
+     "Qwen/Qwen3-Coder-Next-FP8"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-27",
+   "severity": "warning",
+   "note": "Removed from Together serverless in May 2026 (DeepSeek-R1, DeepSeek-V3.1 and Qwen3-Coder-Next on 05-14, Kimi-K2.5 on 05-21, FLUX.1-krea-dev on 05-27). Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-04",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "Qwen/Qwen3-VL-8B-Instruct",
+     "Qwen/Qwen3-235B-A22B-Thinking-2507",
+     "mistralai/Mixtral-8x7B-Instruct-v0.1",
+     "ServiceNow-AI/Apriel-1.5-15b-Thinker",
+     "ServiceNow-AI/Apriel-1.6-15b-Thinker",
+     "zai-org/GLM-4.5-Air-FP8",
+     "zai-org/GLM-4.7",
+     "mistralai/Mistral-Small-24B-Instruct-2501",
+     "Qwen/Qwen3-Next-80B-A3B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-04-16",
+   "severity": "warning",
+   "note": "Removed from Together serverless in April 2026 (GLM-4.5-Air, GLM-4.7, Mistral-Small-2501 and Qwen3-Next-80B-Instruct on 04-02, the Apriel Thinkers on 04-03, the rest on 04-16). Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-03",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+     "mixedbread-ai/Mxbai-Rerank-Large-V2",
+     "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+     "moonshotai/Kimi-K2-Thinking",
+     "moonshotai/Kimi-K2-Instruct-0905",
+     "meta-llama/Llama-3.2-3B-Instruct-Turbo"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-03-06",
+   "severity": "warning",
+   "note": "Removed from Together serverless in March 2026 (most on 03-06, Llama-4-Maverick on 03-31). Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-02-25",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "black-forest-labs/FLUX.1-dev",
+     "black-forest-labs/FLUX.1-dev-lora",
+     "black-forest-labs/FLUX.1-Kontext-dev",
+     "Qwen/Qwen3-VL-32B-Instruct",
+     "meta-llama/Llama-3.2-3B-Instruct-Turbo-Classifier",
+     "mistralai/Ministral-3-14B-Instruct",
+     "Qwen/Qwen3-Next-80B-A3B-Thinking",
+     "Alibaba-NLP/gte-modernbert-base",
+     "BAAI/bge-base-en-v1.5-vllm",
+     "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+     "meta-llama/Llama-Guard-3-11B-Vision-Turbo",
+     "meta-llama/LlamaGuard-2-8b",
+     "marin-community/Marin-8B-Instruct",
+     "nvidia/Nvidia-Nemotron-Nano-9B-v2",
+     "meta-llama/Meta-Llama-3-70B-Instruct-Turbo"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-02-25",
+   "severity": "warning",
+   "note": "Removed from Together serverless 2026-02-25. Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "together/model_id/serverless-removed-2026-01-02",
+   "kind": "model_id",
+   "require_context": true,
+   "match": {
+    "literals": [
+     "togethercomputer/m2-bert-80M-32k-retrieval",
+     "Salesforce/Llama-Rank-V1",
+     "togethercomputer/Refuel-Llm-V2",
+     "togethercomputer/Refuel-Llm-V2-Small",
+     "Qwen/Qwen3-235B-A22B-fp8-tput",
+     "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+     "Qwen/Qwen2.5-72B-Instruct-Turbo",
+     "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+     "BAAI/bge-large-en-v1.5",
+     "deepseek-ai/DeepSeek-R1-0528-tput",
+     "Qwen/Qwen2.5-VL-72B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-02-06",
+   "severity": "warning",
+   "note": "Removed from Together serverless in early 2026 (Qwen2.5-VL-72B on 01-05, DeepSeek-R1-0528-tput on 02-03, the rest on 02-06). Dedicated endpoints are unaffected.",
+   "evidence": "https://docs.together.ai/docs/deprecations",
+   "provider": "together",
+   "file_markers": [
+    "together",
+    "TOGETHER_API_KEY",
+    "api.together"
+   ]
+  },
+  {
+   "id": "twilio/endpoint/notify.twilio.com",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "notify.twilio.com",
+     "//notify.twilio.com"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2025-12-31",
+   "severity": "warning",
+   "note": "Twilio Notify reached end of life on 2025-12-31. Twilio named no replacement product: \"We will update you via our Twilio Blog as soon as we have an alternative solution.\"",
+   "evidence": "https://www.twilio.com/en-us/changelog/notify-api-end-of-life-further-extension-notice",
+   "provider": "twilio",
+   "file_markers": [
+    "twilio",
+    "TWILIO_ACCOUNT_SID",
+    "TWILIO_AUTH_TOKEN"
+   ]
+  },
+  {
+   "id": "twilio/endpoint/chat.twilio.com",
+   "kind": "endpoint",
+   "match": {
+    "literals": [
+     "chat.twilio.com",
+     "//chat.twilio.com"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-01",
+   "severity": "warning",
+   "note": "Programmable Chat reached end of life (standalone 2022-07-25, in Flex 2026-06-01); after that it \"may stop working as expected and won't receive any more enhancements, bug fixes, or security updates.\" Twilio's named successor is Conversations (Flex Conversations inside Flex).",
+   "evidence": "https://www.twilio.com/en-us/changelog/programmable-chat-in-flex-reaching-end-of-life-on-june-1--2026",
+   "provider": "twilio",
+   "file_markers": [
+    "twilio",
+    "TWILIO_ACCOUNT_SID",
+    "TWILIO_AUTH_TOKEN"
+   ]
+  },
+  {
+   "id": "twilio/package/twilio-chat",
+   "kind": "package",
+   "match": {
+    "literals": [
+     "twilio-chat"
+    ]
+   },
+   "status": "retired",
+   "severity": "warning",
+   "note": "The twilio-chat SDK belongs to Programmable Chat, which reached end of life (standalone 2022-07-25, in Flex 2026-06-01). Twilio's named successor is Conversations (\"a unified API for cross-channel group messaging\").",
+   "evidence": "https://www.twilio.com/en-us/changelog/programmable-chat-end-of-life-notice",
+   "provider": "twilio",
+   "file_markers": [
+    "twilio",
+    "TWILIO_ACCOUNT_SID",
+    "TWILIO_AUTH_TOKEN"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-3",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-3"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort none) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-4-0709",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-0709"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort low) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-4-fast-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-reasoning"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort low) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-4-fast-non-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-non-reasoning"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort none) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-4-1-fast-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-1-fast-reasoning"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort low) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-4-1-fast-non-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-1-fast-non-reasoning"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-4.3",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning effort none) and are billed at grok-4.3 pricing.",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-code-fast-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-code-fast-1"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-build-0.1",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; \"After May 15, requests to grok-code-fast-1 are routed to grok-build-0.1.\"",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
+   ]
+  },
+  {
+   "id": "xai/model_id/grok-imagine-image-pro",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-imagine-image-pro"
+    ]
+   },
+   "status": "retired",
+   "replacement": "grok-imagine-image-quality",
+   "severity": "warning",
+   "note": "Retired 2026-05-15; \"grok-imagine-image-pro will be redirected to grok-imagine-image-quality.\"",
+   "evidence": "https://docs.x.ai/developers/migration/may-15-retirement",
+   "provider": "xai",
+   "file_markers": [
+    "xai",
+    "XAI_API_KEY",
+    "api.x.ai"
    ]
   }
  ]
