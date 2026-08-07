@@ -77,8 +77,13 @@ const SITE = /export const SITE = "([^"]+)"/.exec(SEO)?.[1];
 check("lib/seo.ts declares the site origin", Boolean(SITE));
 if (SITE && skill.length) {
   const digest = "sha256:" + createHash("sha256").update(skill).digest("hex");
+  // The $schema string is the discriminator the skills CLI switches on —
+  // verified against the shipped parser (skills 1.5.18, WellKnownProvider.
+  // normalizeIndex): no $schema means the legacy files-array shape, and an
+  // entry like this one is silently dropped. Learned by running the real
+  // CLI against production, not by trusting a spec writeup.
   const index = {
-    version: "0.2.0",
+    $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
     skills: [
       {
         name: "driftcite",
