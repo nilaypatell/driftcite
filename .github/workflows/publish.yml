@@ -45,9 +45,13 @@ jobs:
           if [ "$tag" != "$pkg" ]; then
             echo "tag v$tag does not match package.json $pkg"; exit 1
           fi
-          if ! grep -q "driftcite@$pkg" site/lib/agent-setup.ts; then
-            echo "site/lib/agent-setup.ts does not pin driftcite@$pkg — the"
-            echo "published setup prompt would teach a version npm cannot serve"
+          # The setup prompt lives in the site's own repository now, so the
+          # release gate checks the artifact users actually copy: the live
+          # file. Publishing a version the published prompt does not pin
+          # would teach agents a spec npm cannot serve.
+          if ! curl -fsS https://driftcite.vercel.app/setup.md | grep -q "driftcite@$pkg"; then
+            echo "the live setup prompt does not pin driftcite@$pkg —"
+            echo "update PIN in driftcite-landing and redeploy before tagging"
             exit 1
           fi
 

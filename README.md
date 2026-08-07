@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 19 providers · 411 artifacts · zero dependencies · 199 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 19 providers · 411 artifacts · zero dependencies · 218 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>

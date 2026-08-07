@@ -43,7 +43,7 @@
   <g>
     <rect x="630" y="0" width="183" height="36" rx="18" fill="#121829" stroke="#1E2740"/>
     <text class="chip" text-anchor="middle" x="721.5" y="22.5">
-      <tspan class="dot" fill="#3FB950">●</tspan><tspan class="value" dx="7">199</tspan><tspan class="label" dx="5">tests passing</tspan>
+      <tspan class="dot" fill="#3FB950">●</tspan><tspan class="value" dx="7">218</tspan><tspan class="label" dx="5">tests passing</tspan>
     </text>
   </g>
 
