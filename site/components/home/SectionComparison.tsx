@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Kicker } from "@/components/primitives";
-import { TOTAL_ARTIFACTS } from "@/lib/data";
+import { TOTAL_ARTIFACTS, TOTAL_PROVIDERS } from "@/lib/data";
+import { numberWord } from "@/lib/format";
 import { Check } from "@/components/icons";
 
 /* 06 / 06 — The comparison. Not a scoreboard: a different layer. Lockfiles
@@ -92,7 +93,7 @@ export default function SectionComparison() {
                 <td style={none}>&#8212;</td>
                 <td style={none}>&#8212;</td>
                 <td style={ours}>
-                  <Tick /> {TOTAL_ARTIFACTS} artifacts, nineteen providers
+                  <Tick /> {TOTAL_ARTIFACTS} artifacts, {numberWord(TOTAL_PROVIDERS)} providers
                 </td>
               </tr>
               <tr>

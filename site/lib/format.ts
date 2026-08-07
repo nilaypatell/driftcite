@@ -40,3 +40,24 @@ export function formatMonth(iso: string): string {
   const month = m ? MONTHS[Number(m[2]) - 1] : undefined;
   return month ? `${month} ${m![1]}` : iso;
 }
+
+/** Spelled-out small numbers, for prose that names a count the data file
+ *  owns. The words drifted from the numbers once — three components said
+ *  "eighteen" for a feed that had moved to nineteen — so prose derives
+ *  from the same constant the figures use, or it does not name a count. */
+const WORDS = [
+  "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+  "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+  "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+] as const;
+
+export function numberWord(n: number): string {
+  return WORDS[n] ?? String(n);
+}
+
+/** Whole days from an ISO date to now. Runs at build on the server and
+ *  again after hydration on the client, so the served page carries the
+ *  build day's count and a long-lived tab corrects itself. */
+export function daysSince(iso: string, now: number = Date.now()): number {
+  return Math.floor((now - new Date(`${iso}T00:00:00Z`).getTime()) / 86_400_000);
+}

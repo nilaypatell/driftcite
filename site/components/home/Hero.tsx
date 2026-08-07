@@ -1,8 +1,17 @@
 import Link from "next/link";
 import CopyCommand from "@/components/CopyCommand";
 import SetupForAgents from "@/components/SetupForAgents";
+import DaysSince from "@/components/DaysSince";
 import { LINKS } from "@/lib/data";
+import { daysSince } from "@/lib/format";
 import { ArrowRight } from "@/components/icons";
+
+/* The day text-davinci-003 stopped answering, per OpenAI's own page — the
+   one date on the hero, so the one place its count is computed. It was a
+   hardcoded "935" for a while, which on this site is self-parody; now the
+   build stamps the day it ships and DaysSince keeps a long-lived tab true. */
+const DAVINCI_DIED = "2024-01-04";
+const DAYS_AT_BUILD = daysSince(DAVINCI_DIED);
 
 /* The four decorative corner chips. Pure ornament — read by nobody, hidden
    below 980px by `.dc-hero-chip`, and each one a scrap of the scanner's own
@@ -11,7 +20,7 @@ const CHIPS: { text: string; pos: React.CSSProperties }[] = [
   { text: "[ exit 1 ]", pos: { top: 32, left: 8 } },
   { text: "[ BREAKING ]", pos: { top: 32, right: 8 } },
   { text: "[ .PR ]", pos: { bottom: 28, left: 8 } },
-  { text: "[ +935 DAYS ]", pos: { bottom: 28, right: 8 } },
+  { text: `[ +${DAYS_AT_BUILD} DAYS ]`, pos: { bottom: 28, right: 8 } },
 ];
 
 const CHIP_BASE: React.CSSProperties = {
@@ -94,7 +103,9 @@ export default function Hero() {
           transition: "border-color .15s ease",
         }}
       >
-        {"text‑davinci‑003 died 935 days ago"}
+        {"text‑davinci‑003 died "}
+        <DaysSince since={DAVINCI_DIED} initial={DAYS_AT_BUILD} />
+        {" days ago"}
         <ArrowRight className="dc-arrow" size={14} />
       </Link>
 

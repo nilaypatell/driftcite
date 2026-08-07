@@ -1,8 +1,16 @@
 import type { CSSProperties } from "react";
 import { Kicker, Ref } from "@/components/primitives";
+import { daysSince } from "@/lib/format";
 
 /* 02 / 06 — The rules. The trust model, in three hairline-ruled columns:
    cited, dated against today, and it refuses to guess. */
+
+/* The two sort-phrase examples, computed from the same provider dates the
+   terminal figure records. The figure above is a captioned July recording
+   and keeps its numbers; the rule is live, so its examples move with the
+   build — which is itself the rule this column is stating. */
+const DIED_DAYS = daysSince("2024-01-04");
+const BREAKS_DAYS = -daysSince("2026-10-23");
 
 const h2: CSSProperties = {
   fontFamily: "var(--font-display)",
@@ -57,7 +65,8 @@ export default function SectionRules() {
               An entry reading &#8220;deprecated, retires 2026-10-23&#8221; is a
               countdown, not a footnote, and becomes retired the moment that date
               passes. Findings sort by how long you have left:{" "}
-              <i>breaks in 88 days</i> before, <i>died 935 days ago</i> after. No
+              <i>breaks in {BREAKS_DAYS} days</i> before,{" "}
+              <i>died {DIED_DAYS} days ago</i> after. No
               dependency tool has a field for time remaining.
             </p>
           </div>

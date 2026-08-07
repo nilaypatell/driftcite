@@ -1,7 +1,12 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Kicker } from "@/components/primitives";
-import { LINKS, TOTAL_ARTIFACTS } from "@/lib/data";
+import { LINKS, TOTAL_ARTIFACTS, COMMAND, TOTAL_PROVIDERS } from "@/lib/data";
+import { numberWord } from "@/lib/format";
+
+const providersWord =
+  numberWord(TOTAL_PROVIDERS).charAt(0).toUpperCase() +
+  numberWord(TOTAL_PROVIDERS).slice(1);
 import { ArrowRight } from "@/components/icons";
 
 /* 03 / 06 — How it arrives. Three rungs of the same ladder: the CLI, the
@@ -102,12 +107,12 @@ export default function SectionArrives() {
             </span>
             <h3 style={cardTitle}>Scan, right now</h3>
             <p style={cardBody}>
-              Zero dependencies, nothing leaves your machine, no account. Eighteen
-              providers, {TOTAL_ARTIFACTS} retired artifacts, plus every npm and
+              Zero dependencies, nothing leaves your machine, no account.
+              {providersWord} providers, {TOTAL_ARTIFACTS} retired artifacts, plus every npm and
               PyPI package your lockfiles pin.
             </p>
             <pre className="dc-mono" style={snippet}>
-              npx driftcite .
+              {COMMAND}
             </pre>
             <Link href="/docs" style={arrow}>
               Getting started<ArrowRight className="dc-arrow" size={14} />

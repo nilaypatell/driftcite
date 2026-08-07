@@ -1,5 +1,6 @@
 import { Ref } from "@/components/primitives";
-import { CORPUS, TOTAL_ARTIFACTS } from "@/lib/data";
+import { CORPUS, TOTAL_ARTIFACTS, TOTAL_PROVIDERS } from "@/lib/data";
+import { numberWord } from "@/lib/format";
 
 const VALUE: React.CSSProperties = {
   fontFamily: "var(--font-display)",
@@ -92,7 +93,7 @@ export default function Stats() {
             <p style={VALUE}>
               <span data-count={TOTAL_ARTIFACTS}>{TOTAL_ARTIFACTS}</span>
             </p>
-            <p style={LABEL}>artifacts under daily watch, nineteen providers</p>
+            <p style={LABEL}>artifacts under daily watch, {numberWord(TOTAL_PROVIDERS)} providers</p>
           </div>
         </div>
       </section>

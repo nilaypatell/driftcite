@@ -11,6 +11,7 @@ import {
   TOTAL_ARTIFACTS,
   TOTAL_PROVIDERS,
 } from "@/lib/data";
+import { numberWord } from "@/lib/format";
 
 /* ═══════════════════════════════════════════════════════════════════════
    Coverage — "Eighteen providers under daily watch."
@@ -29,23 +30,8 @@ export const metadata: Metadata = pageMeta({
 
 /* The headline says "Ten", not "10". Spelling it out of the constant keeps
    the sentence from quietly disagreeing with the data if a provider lands. */
-const NUMBER_WORD: Record<number, string> = {
-  7: "Seven",
-  8: "Eight",
-  9: "Nine",
-  10: "Ten",
-  11: "Eleven",
-  12: "Twelve",
-  13: "Thirteen",
-  14: "Fourteen",
-  15: "Fifteen",
-  16: "Sixteen",
-  17: "Seventeen",
-  18: "Eighteen",
-  19: "Nineteen",
-  20: "Twenty",
-};
-const providersWord = NUMBER_WORD[TOTAL_PROVIDERS] ?? String(TOTAL_PROVIDERS);
+const w = numberWord(TOTAL_PROVIDERS);
+const providersWord = w.charAt(0).toUpperCase() + w.slice(1);
 
 /* Two evidence URLs the page needs that lib/data.ts does not carry. */
 const MANIFESTS_DIR =
