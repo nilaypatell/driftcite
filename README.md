@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 19 providers · 411 artifacts · zero dependencies · 218 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 35 providers · 579 artifacts · zero dependencies · 230 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -332,25 +332,46 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
-| **OpenAI** | `openai/openai-openapi`, deprecations page and Responses migration guide | 117 |
+| **OpenAI** | `openai/openai-openapi`, deprecations page, Responses migration guide and the v1 SDK migration | 120 |
 | **Mistral** | model docs and SDK migration guide, curated | 45 |
-| **Azure** | Foundry model retirement schedule, curated | 41 |
 | **Square** | `square/connect-api-specification` | 41 |
-| **Cloudflare** | `cloudflare/api-schemas` | 33 |
+| **Azure** | Foundry model retirement schedule, curated | 38 |
+| **Datadog** | `DataDog/datadog-api-client-python` | 36 |
+| **Cloudflare** | `cloudflare/api-schemas` | 34 |
+| **Kubernetes** | `kubernetes/kubernetes` API spec diffs | 27 |
 | **GitHub** | `github/rest-api-description` | 26 |
 | **Google** | Gemini deprecations, changelog and SDK migration guide | 23 |
 | **Anthropic** | model deprecations and migration guide, curated | 21 |
+| **AWS** | Lambda runtime schedule and the SDK v2 end-of-support notice, curated | 21 |
 | **Cohere** | deprecations page and v1-to-v2 guide, curated | 19 |
 | **Bedrock** | AWS model lifecycle page, curated | 17 |
-| **Datadog** | `DataDog/datadog-api-client-python` | 12 |
+| **Algolia** | `algolia/api-clients-automation` | 21 |
+| **Google Cloud** | Cloud Functions runtime schedule, curated | 11 |
+| **Perplexity** · **Together** · **xAI** | deprecation pages and changelogs, curated | 24 |
+| **Stability** · **ElevenLabs** · **AssemblyAI** · **Fireworks** · **DeepSeek** | deprecation pages and changelogs, curated | 19 |
 | **Stripe** | `stripe/openapi` · tags v1200 through v2375 | 8 |
+| **Meta** · **Salesforce** · **Google Ads** · **Shopify** | API version sunset schedules, curated | 14 |
+| Twilio · Heroku · Firebase | product EOLs, stack retirements, compat deprecation | 6 |
 | DigitalOcean · Groq · Adyen · Plaid | specs and deprecation pages | 8 |
-| Twilio · Asana · Box | tracked, currently no drift | 0 |
+| Discord · SendGrid · Intercom · DocuSign · PagerDuty · ngrok · Okta · Elastic · Netlify | specs tracked, no drift observed yet | 0 |
+| Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Sixteen providers in the published feed, 411 artifacts, every one carrying the
-provider's own evidence URL. Nineteen are tracked in total: Twilio, Asana and
-Box are polled and have produced nothing yet, and Azure is held back below.
+Thirty-five providers in the published feed, 579 artifacts, every one carrying
+the provider's own evidence URL. Forty-six are tracked in total. Of the eleven
+spec repositories added on 2026-08-07, two produced artifacts on their very
+first historical diff — Kubernetes and Algolia — and the other nine are polled
+and quiet, which is what a fresh spec under watch looks like.
+
+Coverage grows where findings fire, not where rows are cheap. Measured across
+467 real repositories, model IDs and SDK renames produce almost all true
+findings, so the 2026-08-07 expansion went there first: eight AI providers'
+model retirements, the API-version sunset schedules of Shopify, Meta,
+Salesforce and Google Ads, the Lambda and Cloud Functions runtime retirement
+calendars, and the SDK breaks no lockfile tool can see (openai-python v0,
+aws-sdk v2, Firebase compat). Where a provider retires by redirect or
+fall-forward — xAI, Shopify, Meta — the artifact says so and carries no
+deadline, because nothing hard-fails on the date.
 
 Azure's rows are in the feed again. They were withheld while the published
 client predated `require_context`, because a reseller's retirement date
@@ -363,9 +384,12 @@ recognise, and AWS states the same thing outright: *"only the dates on this
 page apply."* The two are handled differently because they name models
 differently. Bedrock's IDs carry the reseller in the literal —
 `anthropic.claude-3-5-sonnet-20240620-v1:0` cannot be a direct Anthropic call
-— so those 17 report anywhere. Azure serves the bare vendor ID, so all 42 of
-its artifacts set `require_context` and are reported only in files that name
-Azure. A right answer delivered to the wrong caller is a wrong answer.
+— so those 17 report anywhere. Azure serves the bare vendor ID, so every one
+of its artifacts sets `require_context` and is reported only in files that
+name Azure. A right answer delivered to the wrong caller is a wrong answer.
+The same gate guards Together's artifacts, whose HuggingFace-style ids are
+also how vLLM configs and relays spell models, and the runtime artifacts,
+because "python3.9" is only a finding in a file that names its platform.
 
 The registries are the cheapest coverage in software: one cursor covers every npm package, one header covers every PyPI project.
 
@@ -383,6 +407,26 @@ Providers live in [`providers.yaml`](providers.yaml), not in code, so adding one
 `markers` matter more than they look. They are what stops a retired parameter named `refund` from flagging every codebase that has ever mentioned a refund.
 
 Full guide in **[CONTRIBUTING.md](CONTRIBUTING.md)**. Pull requests welcome.
+
+### Tracking an API we don't — including your own
+
+```console
+npx driftcite . --init-local
+```
+
+This writes `.driftcite-local.json` at your repo root. Put feed-shaped
+artifacts in it — same fields, same rules — and the next scan reports them
+alongside the public feed. It exists for the APIs the public feed cannot
+carry: your internal services, a vendor too small for the feed, or a provider
+whose pull request here hasn't merged yet.
+
+The rules are not relaxed because the file is yours. Every artifact needs an
+evidence URL (your wiki counts), distinctive literals, and `file_markers` for
+any kind other than a model ID; an artifact that fails validation is skipped
+and named, and a literal the public feed already carries loses to the feed —
+two death dates on one line of code is the bug, whoever writes the second
+one. If the API is public, upstream it: a spec repo is four lines in
+`providers.yaml`, a deprecations page is a curated manifest.
 
 <br>
 
