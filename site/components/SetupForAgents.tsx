@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 import { Check, Copy } from "@/components/icons";
 import { AGENT_SETUP_PROMPT } from "@/lib/agent-setup";
 import { copyText } from "@/lib/clipboard";
@@ -31,6 +32,7 @@ export default function SetupForAgents() {
     // the click and the clipboard write. See lib/clipboard.ts for why.
     copyText(AGENT_SETUP_PROMPT).then((ok) => {
       if (!ok) return;
+      track("agent_setup_copied");
       setCopied(true);
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(() => setCopied(false), 2000);

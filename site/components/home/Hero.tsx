@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CopyCommand from "@/components/CopyCommand";
 import SetupForAgents from "@/components/SetupForAgents";
+import TrackedLink from "@/components/TrackedLink";
 import DaysSince from "@/components/DaysSince";
 import { LINKS } from "@/lib/data";
 import { daysSince } from "@/lib/format";
@@ -160,7 +161,8 @@ export default function Hero() {
             it — and the agent prompt cannot be clicked through by a human
             in a hurry. Every shipped precedent (Firecrawl, Clerk, Convex)
             keeps both; removing either closes a door. */}
-        <a
+        <TrackedLink
+          event="start_for_free_clicked"
           target="_blank"
           rel="noopener"
           className="dc-btn dc-btn-primary"
@@ -168,7 +170,7 @@ export default function Hero() {
           style={{ minHeight: 44, paddingInline: 24, fontSize: 15 }}
         >
           Start for free
-        </a>
+        </TrackedLink>
         <SetupForAgents />
         <CopyCommand />
         <span

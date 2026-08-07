@@ -22,6 +22,7 @@ const BODY = `# driftcite
 ## Setup
 
 - [Agent setup instructions](${SITE}/setup.md): paste-ready steps for a coding agent
+- [Agent skill](${SITE}/skill.md): durable skill, installable via: npx -y skills add ${SITE}
 - [README](https://raw.githubusercontent.com/nilaypatell/driftcite/main/README.md)
 
 ## Docs

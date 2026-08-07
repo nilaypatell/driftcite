@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import {
   Space_Grotesk,
   Hanken_Grotesk,
@@ -188,6 +189,12 @@ export default async function RootLayout({
         {children}
         <SiteFooter />
         <Motion />
+        {/* Cookieless pageview counting, plus the two hero copy events.
+            The research behind the agents button ended at "nobody knows
+            which shape converts — instrument it"; this is the instrument.
+            Nothing here touches the scanner's privacy claims: the CLI
+            still uploads nothing, and this page sets no cookies. */}
+        <Analytics />
       </body>
     </html>
   );

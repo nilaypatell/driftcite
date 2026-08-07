@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 import { Check, Copy } from "@/components/icons";
 import { COMMAND } from "@/lib/data";
 import { copyText } from "@/lib/clipboard";
@@ -28,6 +29,7 @@ export default function CopyCommand() {
   const copy = () => {
     copyText(COMMAND).then((ok) => {
       if (!ok) return;
+      track("command_copied");
       setCopied(true);
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(() => setCopied(false), 2000);

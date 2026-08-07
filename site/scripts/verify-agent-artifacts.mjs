@@ -12,8 +12,9 @@
  * root is site/ and the repository is not uploaded, so those two skip
  * there by design and run on every local and CI build.
  */
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -57,6 +58,48 @@ const llms = existsSync(llmsPath) ? readFileSync(llmsPath, "utf8") : "";
 check("llms.txt opens with the H1", llms.startsWith("# driftcite"));
 check("llms.txt links the setup file", llms.includes("/setup.md"));
 
+/* ── skill.md + the .well-known index it is discovered through ──────── */
+const skillPath = path.join(OUT, "skill.md");
+check("out/skill.md exists", existsSync(skillPath));
+const skill = existsSync(skillPath) ? readFileSync(skillPath) : Buffer.alloc(0);
+const skillText = skill.toString("utf8");
+check("skill.md opens with its frontmatter", skillText.startsWith("---\nname: driftcite\n"));
+check("skill.md carries a description line", /^description: .+$/m.test(skillText));
+const skillBad = [...skillText].filter((c) => !/[\x20-\x7E\n]/.test(c));
+check("skill.md is printable ASCII plus newline only", skillBad.length === 0,
+  [...new Set(skillBad)].map((c) => "U+" + c.codePointAt(0).toString(16)).join(", "));
+
+// The index is WRITTEN here, from the emitted bytes, not authored by hand:
+// a digest computed over anything but the served file would be a published
+// identifier that no longer matches the artifact behind it.
+const SEO = readFileSync(path.join(HERE, "..", "lib", "seo.ts"), "utf8");
+const SITE = /export const SITE = "([^"]+)"/.exec(SEO)?.[1];
+check("lib/seo.ts declares the site origin", Boolean(SITE));
+if (SITE && skill.length) {
+  const digest = "sha256:" + createHash("sha256").update(skill).digest("hex");
+  const index = {
+    version: "0.2.0",
+    skills: [
+      {
+        name: "driftcite",
+        type: "skill-md",
+        description:
+          "Find API identifiers in source that providers already retired, each finding cited to the provider's own page.",
+        url: `${SITE}/skill.md`,
+        digest,
+      },
+    ],
+  };
+  const wkDir = path.join(OUT, ".well-known", "agent-skills");
+  mkdirSync(wkDir, { recursive: true });
+  writeFileSync(path.join(wkDir, "index.json"), JSON.stringify(index, null, 2) + "\n");
+  const written = JSON.parse(readFileSync(path.join(wkDir, "index.json"), "utf8"));
+  check(".well-known index digest matches the emitted skill.md",
+    written.skills[0].digest ===
+      "sha256:" + createHash("sha256").update(readFileSync(skillPath)).digest("hex"));
+  console.log(`  ok   wrote .well-known/agent-skills/index.json (${digest.slice(0, 19)}...)`);
+}
+
 /* ── against the repository, when it is present ─────────────────────── */
 const rootPkgPath = path.join(HERE, "..", "..", "package.json");
 const cliPath = path.join(HERE, "..", "..", "bin", "driftcite.mjs");
@@ -68,6 +111,11 @@ if (existsSync(rootPkgPath)) {
     setup.includes(`driftcite@${version}`),
     "bump site/lib/agent-setup.ts PIN when the CLI version changes",
   );
+  check(
+    `skill.md pins the repository's version (driftcite@${version})`,
+    skillText.includes(`driftcite@${version}`),
+    "bump site/lib/skill.ts PIN when the CLI version changes",
+  );
 } else {
   console.log("  skip version pin check (no ../package.json here)");
 }
@@ -75,13 +123,15 @@ if (existsSync(rootPkgPath)) {
 if (existsSync(cliPath)) {
   const help = execFileSync("node", [cliPath, "--help"], { encoding: "utf8" });
   const helpFlags = new Set(help.match(/--[a-z][a-z-]*/g) || []);
-  const named = [...new Set(setup.match(/--[a-z][a-z-]*/g) || [])];
-  const missing = named.filter((f) => !helpFlags.has(f));
-  check(
-    "every flag setup.md names exists in the CLI's --help",
-    missing.length === 0,
-    `setup.md names flags --help lacks: ${missing.join(", ")}`,
-  );
+  for (const [label, text] of [["setup.md", setup], ["skill.md", skillText]]) {
+    const named = [...new Set(text.match(/--[a-z][a-z-]*/g) || [])];
+    const missing = named.filter((f) => !helpFlags.has(f));
+    check(
+      `every flag ${label} names exists in the CLI's --help`,
+      missing.length === 0,
+      `${label} names flags --help lacks: ${missing.join(", ")}`,
+    );
+  }
 } else {
   console.log("  skip flag check (no ../bin/driftcite.mjs here)");
 }
