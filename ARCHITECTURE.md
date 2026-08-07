@@ -57,21 +57,33 @@ That single decision means:
 - **Deployment** is nothing. No servers, no database, no ops.
 - **Cost** is zero. Scheduled Actions are free on public repositories.
 - **Trust** is meant to be automatic: a fact in the feed should trace to a
-  commit produced by a public CI run whose logs anyone can read. For a product
-  whose entire pitch is "we cite the provider instead of guessing," an
-  auditable pipeline is the argument rather than a nice-to-have.
+  commit produced by a run whose logs anyone can read. For a product whose
+  entire pitch is "we cite the provider instead of guessing," an auditable
+  pipeline is the argument rather than a nice-to-have.
 
-  > **This is not true yet, and the gap is the point.** As of 2026-08-06 the
-  > scheduled workflow has never completed a run: Actions is unbilled on this
-  > account, and the local fallback cannot read the repository's directory.
-  > The manifests were produced by hand-run sweeps. Every artifact still
-  > carries the provider's own `evidence` URL, so the *facts* are checkable —
-  > but the *pipeline* is not yet the witness this section claims. Until a
-  > scheduled run has committed on its own, treat this bullet as a design
-  > intention, not a description.
+  > **Where the clock actually runs, as of 2026-08-07.** Not in Actions. The
+  > account is locked over a billing dispute, so a scheduled workflow never
+  > starts — `workflow_dispatch` returns "the job was not started because your
+  > account is locked". The clock is a LaunchAgent on the maintainer's machine
+  > (`com.driftcite.refresh`, daily), running a second checkout at
+  > `~/.driftcite/clock`, which commits and pushes as `driftcite clock`. First
+  > successful unattended run: **a148308, 2026-08-07**.
+  >
+  > That is worse than CI in the way that matters here: the run is not public,
+  > so the pipeline is not yet the witness this section wants it to be. The
+  > *facts* stay checkable regardless — every artifact carries the provider's
+  > own `evidence` URL, which is the guarantee that does not depend on where
+  > the job ran. Moving it back to Actions is a billing fix, not an
+  > engineering one.
+  >
+  > It does not run on the Desktop working copy, and that is not arbitrary: a
+  > LaunchAgent cannot read `~/Desktop` without a GUI Full Disk Access grant,
+  > and pointing at it failed with exit 127 every morning while looking like a
+  > missing file. `$HOME` outside the protected directories is readable, so a
+  > separate checkout there is the whole fix.
 
-- **The clock starts when the schedule first runs**, not when this document
-  was written. See above: it has not started.
+- **The clock has started.** It first committed on its own on 2026-08-07, which
+  is the date this project's history actually begins.
 
 The feed is then just files served from the repo or fronted by a CDN.
 
