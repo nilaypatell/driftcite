@@ -1,0 +1,2732 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//driftcite//feed//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:driftcite — API shutdowns
+X-WR-CALDESC:Every event is a provider-announced API shutdown\, with the pr
+ ovider's own page as the source. Built from feed.json; nothing here is a 
+ guess.
+BEGIN:VEVENT
+UID:openai/model_id/code-cushman-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20230323
+DTEND;VALUE=DATE:20230324
+SUMMARY:openai: code-cushman-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-cushman-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20230323
+DTEND;VALUE=DATE:20230324
+SUMMARY:openai: code-cushman-002 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-davinci-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20230323
+DTEND;VALUE=DATE:20230324
+SUMMARY:openai: code-davinci-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-davinci-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-davinci-002 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-davinci-edit-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-davinci-edit-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-search-ada-code-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-search-ada-code-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-search-ada-text-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-search-ada-text-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-search-babbage-code-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-search-babbage-code-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/code-search-babbage-text-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: code-search-babbage-text-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-ada-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-ada-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-babbage-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-babbage-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-curie-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-curie-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-davinci-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-davinci-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-davinci-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-davinci-002 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-davinci-003@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-davinci-003 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-davinci-edit-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-davinci-edit-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-ada-doc-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-ada-doc-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-ada-query-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-ada-query-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-babbage-doc-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-babbage-doc-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-babbage-query-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-babbage-query-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-curie-doc-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-curie-doc-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-curie-query-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-curie-query-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-davinci-doc-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-davinci-doc-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-search-davinci-query-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-search-davinci-query-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-similarity-ada-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-similarity-ada-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-similarity-babbage-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-similarity-babbage-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-similarity-curie-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-similarity-curie-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-similarity-davinci-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240104
+DTEND;VALUE=DATE:20240105
+SUMMARY:openai: text-similarity-davinci-001 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: text-embedding-3-small\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-0301@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240913
+DTEND;VALUE=DATE:20240914
+SUMMARY:openai: gpt-3.5-turbo-0301 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-3.5-turbo\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-0613@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240913
+DTEND;VALUE=DATE:20240914
+SUMMARY:openai: gpt-3.5-turbo-0613 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-3.5-turbo\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-16k-0613@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20240913
+DTEND;VALUE=DATE:20240914
+SUMMARY:openai: gpt-3.5-turbo-16k-0613 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-3.5-turbo\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-1106-vision-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20241206
+DTEND;VALUE=DATE:20241207
+SUMMARY:openai: gpt-4-1106-vision-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-vision-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20241206
+DTEND;VALUE=DATE:20241207
+SUMMARY:openai: gpt-4-vision-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/sdk_symbol/openai-beta-assistants-v1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20241218
+DTEND;VALUE=DATE:20241219
+SUMMARY:openai: openai-beta-assistants-v1 shut down
+DESCRIPTION:v1 beta was cut off in 2024 and the whole Assistants API follow
+ s on 2026-08-26.\nEvidence: https://developers.openai.com/api/docs/deprec
+ ations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-1.0-pro@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250218
+DTEND;VALUE=DATE:20250219
+SUMMARY:google: gemini-1.0-pro shut down
+DESCRIPTION:Shut down. Requests fail. Google names no replacement.\nEvidenc
+ e: https://ai.google.dev/gemini-api/docs/changelog
+URL:https://ai.google.dev/gemini-api/docs/changelog
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-large-2407@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250330
+DTEND;VALUE=DATE:20250331
+SUMMARY:mistral: mistral-large-2407 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-large-2512\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/open-mistral-7b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250330
+DTEND;VALUE=DATE:20250331
+SUMMARY:mistral: open-mistral-7b shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-8b-2512\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/open-mixtral-8x22b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250330
+DTEND;VALUE=DATE:20250331
+SUMMARY:mistral: open-mixtral-8x22b shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/open-mixtral-8x7b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250330
+DTEND;VALUE=DATE:20250331
+SUMMARY:mistral: open-mixtral-8x7b shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/rerank-english-v2.0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250430
+DTEND;VALUE=DATE:20250501
+SUMMARY:cohere: rerank-english-v2.0 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: rerank-v3.5\nEvidence: ht
+ tps://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/rerank-multilingual-v2.0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250430
+DTEND;VALUE=DATE:20250501
+SUMMARY:cohere: rerank-multilingual-v2.0 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: rerank-v3.5\nEvidence: ht
+ tps://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/open-codestral-mamba@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+SUMMARY:mistral: open-codestral-mamba shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: codestral-2508\nEvidence:
+  https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-32k@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+SUMMARY:openai: gpt-4-32k shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-32k-0314@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+SUMMARY:openai: gpt-4-32k-0314 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-32k-0613@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+SUMMARY:openai: gpt-4-32k-0613 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4o\nEvidence: https
+ ://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/codestral-2405@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250616
+DTEND;VALUE=DATE:20250617
+SUMMARY:mistral: codestral-2405 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: codestral-2508\nEvidence:
+  https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-large-2402@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250616
+DTEND;VALUE=DATE:20250617
+SUMMARY:mistral: mistral-large-2402 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-large-2512\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-medium-2312@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250616
+DTEND;VALUE=DATE:20250617
+SUMMARY:mistral: mistral-medium-2312 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-small-2402@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250616
+DTEND;VALUE=DATE:20250617
+SUMMARY:mistral: mistral-small-2402 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4.5-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250714
+DTEND;VALUE=DATE:20250715
+SUMMARY:openai: gpt-4.5-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-4.1\nEvidence: http
+ s://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-sonnet-20240229@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250721
+DTEND;VALUE=DATE:20250722
+SUMMARY:anthropic: claude-3-sonnet-20240229 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-sonnet-4-6\nEvi
+ dence: https://platform.claude.com/docs/en/about-claude/model-deprecation
+ s
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/o1-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250728
+DTEND;VALUE=DATE:20250729
+SUMMARY:openai: o1-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nEvidence: https://developers.openai.
+ com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-1.5-flash@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250929
+DTEND;VALUE=DATE:20250930
+SUMMARY:google: gemini-1.5-flash shut down
+DESCRIPTION:Shut down. Requests fail. Google names no replacement.\nEvidenc
+ e: https://ai.google.dev/gemini-api/docs/changelog
+URL:https://ai.google.dev/gemini-api/docs/changelog
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-1.5-flash-8b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250929
+DTEND;VALUE=DATE:20250930
+SUMMARY:google: gemini-1.5-flash-8b shut down
+DESCRIPTION:Shut down. Requests fail. Google names no replacement.\nEvidenc
+ e: https://ai.google.dev/gemini-api/docs/changelog
+URL:https://ai.google.dev/gemini-api/docs/changelog
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-1.5-pro@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250929
+DTEND;VALUE=DATE:20250930
+SUMMARY:google: gemini-1.5-pro shut down
+DESCRIPTION:Shut down. Requests fail. Google names no replacement.\nEvidenc
+ e: https://ai.google.dev/gemini-api/docs/changelog
+URL:https://ai.google.dev/gemini-api/docs/changelog
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-saba-2502@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20250930
+DTEND;VALUE=DATE:20251001
+SUMMARY:mistral: mistral-saba-2502 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-audio-preview-2024-10-01@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251010
+DTEND;VALUE=DATE:20251011
+SUMMARY:openai: gpt-4o-audio-preview-2024-10-01 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-audio-1.5\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-realtime-preview-2024-10-01@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251010
+DTEND;VALUE=DATE:20251011
+SUMMARY:openai: gpt-4o-realtime-preview-2024-10-01 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-1.5\nEvide
+ nce: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/o1-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251027
+DTEND;VALUE=DATE:20251028
+SUMMARY:openai: o1-mini shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: o4-mini\nEvidence: http
+ s://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/text-moderation-007@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251027
+DTEND;VALUE=DATE:20251028
+SUMMARY:openai: text-moderation-007 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: omni-moderation\nEviden
+ ce: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-5-sonnet-20240620@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251028
+DTEND;VALUE=DATE:20251029
+SUMMARY:anthropic: claude-3-5-sonnet-20240620 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-sonnet-4-6\nEvi
+ dence: https://platform.claude.com/docs/en/about-claude/model-deprecation
+ s
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-5-sonnet-20241022@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251028
+DTEND;VALUE=DATE:20251029
+SUMMARY:anthropic: claude-3-5-sonnet-20241022 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-sonnet-4-6\nEvi
+ dence: https://platform.claude.com/docs/en/about-claude/model-deprecation
+ s
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/codestral-2501@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: codestral-2501 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: codestral-2508\nEvidence:
+  https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/devstral-small-2505@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: devstral-small-2505 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-medium-2506@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: magistral-medium-2506 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-medium-2507@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: magistral-medium-2507 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-small-2506@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: magistral-small-2506 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-small-2507@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: magistral-small-2507 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-small-2409@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: mistral-small-2409 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-small-2501@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: mistral-small-2501 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-small-2503@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251130
+DTEND;VALUE=DATE:20251201
+SUMMARY:mistral: mistral-small-2503 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/ministral-3b-2410@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251231
+DTEND;VALUE=DATE:20260101
+SUMMARY:mistral: ministral-3b-2410 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-3b-2512\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/ministral-8b-2410@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251231
+DTEND;VALUE=DATE:20260101
+SUMMARY:mistral: ministral-8b-2410 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-8b-2512\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-ocr-2503@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251231
+DTEND;VALUE=DATE:20260101
+SUMMARY:mistral: mistral-ocr-2503 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-ocr-4-0\nEvidence
+ : https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/pixtral-12b-2409@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20251231
+DTEND;VALUE=DATE:20260101
+SUMMARY:mistral: pixtral-12b-2409 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-14b-2512\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-opus-20240229@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260105
+DTEND;VALUE=DATE:20260106
+SUMMARY:anthropic: claude-3-opus-20240229 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-opus-4-8\nEvide
+ nce: https://platform.claude.com/docs/en/about-claude/model-deprecations
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/text-embedding-004@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260114
+DTEND;VALUE=DATE:20260115
+SUMMARY:google: text-embedding-004 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gemini-embedding-2\nEvi
+ dence: https://ai.google.dev/gemini-api/docs/deprecations
+URL:https://ai.google.dev/gemini-api/docs/deprecations
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/chatgpt-4o-latest@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260217
+DTEND;VALUE=DATE:20260218
+SUMMARY:openai: chatgpt-4o-latest shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-5-haiku-20241022@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260219
+DTEND;VALUE=DATE:20260220
+SUMMARY:anthropic: claude-3-5-haiku-20241022 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-haiku-4-5-20251
+ 001\nEvidence: https://platform.claude.com/docs/en/about-claude/model-dep
+ recations
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-7-sonnet-20250219@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260219
+DTEND;VALUE=DATE:20260220
+SUMMARY:anthropic: claude-3-7-sonnet-20250219 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-sonnet-4-6\nEvi
+ dence: https://platform.claude.com/docs/en/about-claude/model-deprecation
+ s
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-0314@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260326
+DTEND;VALUE=DATE:20260327
+SUMMARY:openai: gpt-4-0314 shut down
+DESCRIPTION:Shut down. Requests fail.\nEvidence: https://developers.openai.
+ com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/labs-devstral-small-2512@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260331
+DTEND;VALUE=DATE:20260401
+SUMMARY:mistral: labs-devstral-small-2512 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/c4ai-aya-expanse-8b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+SUMMARY:cohere: c4ai-aya-expanse-8b shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: command-a-03-2025\nEviden
+ ce: https://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/c4ai-aya-vision-8b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+SUMMARY:cohere: c4ai-aya-vision-8b shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: command-a-03-2025\nEviden
+ ce: https://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/embed-english-light-v2.0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+SUMMARY:cohere: embed-english-light-v2.0 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: embed-english-v3.0\nEvide
+ nce: https://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/embed-english-v2.0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+SUMMARY:cohere: embed-english-v2.0 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: embed-english-v3.0\nEvide
+ nce: https://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:cohere/model_id/embed-multilingual-v2.0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+SUMMARY:cohere: embed-multilingual-v2.0 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: embed-multilingual-v3.0\n
+ Evidence: https://docs.cohere.com/docs/deprecations
+URL:https://docs.cohere.com/docs/deprecations
+CATEGORIES:cohere
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-3-haiku-20240307@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260420
+DTEND;VALUE=DATE:20260421
+SUMMARY:anthropic: claude-3-haiku-20240307 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-haiku-4-5-20251
+ 001\nEvidence: https://platform.claude.com/docs/en/about-claude/model-dep
+ recations
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/labs-mistral-small-creative@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:mistral: labs-mistral-small-creative shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-8b-2512\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/grok-3@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:azure: grok-3 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gro
+ k-4\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/openai/con
+ cepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/grok-3-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:azure: grok-3-mini shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gro
+ k-4-1-fast-reasoning\nEvidence: https://learn.microsoft.com/en-us/azure/f
+ oundry/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/grok-4-fast-non-reasoning@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:azure: grok-4-fast-non-reasoning shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gro
+ k-4-1-fast-non-reasoning\nEvidence: https://learn.microsoft.com/en-us/azu
+ re/foundry/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/grok-4-fast-reasoning@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:azure: grok-4-fast-reasoning shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gro
+ k-4-1-fast-reasoning\nEvidence: https://learn.microsoft.com/en-us/azure/f
+ oundry/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-audio-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-audio-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-audio-1.5\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-audio-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-mini-audio-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-audio-mini\nEvidenc
+ e: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-realtime-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-mini-realtime-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-mini\nEvid
+ ence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-realtime-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-realtime-preview shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-1.5\nEvide
+ nce: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-realtime-preview-2024-12-17@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-realtime-preview-2024-12-17 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-1.5\nEvide
+ nce: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-realtime-preview-2025-06-03@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:openai: gpt-4o-realtime-preview-2025-06-03 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-1.5\nEvide
+ nce: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Cohere-command-r-08-2024@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:azure: Cohere-command-r-08-2024 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Cohere-command-r-plus-08-2024@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:azure: Cohere-command-r-plus-08-2024 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/dall-e-2@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:openai: dall-e-2 shut down
+DESCRIPTION:Shut down. Requests fail.\nEvidence: https://developers.openai.
+ com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/dall-e-3@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:openai: dall-e-3 shut down
+DESCRIPTION:Shut down. Requests fail.\nEvidence: https://developers.openai.
+ com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/sdk_symbol/openai-beta-realtime-v1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:openai: openai-beta-realtime-v1 shut down
+DESCRIPTION:Realtime beta header. Remove it — the GA interface also renam
+ ed session and event shapes.\nEvidence: https://developers.openai.com/api
+ /docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Cohere-rerank-v3.5@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260515
+SUMMARY:azure: Cohere-rerank-v3.5 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: Coh
+ ere-rerank-v4.0-pro\nEvidence: https://learn.microsoft.com/en-us/azure/fo
+ undry/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/devstral-medium-2507@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: devstral-medium-2507 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/devstral-small-2507@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: devstral-small-2507 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-large-2411@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: mistral-large-2411 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-ocr-2505@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: mistral-ocr-2505 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-ocr-4-0\nEvidence
+ : https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/pixtral-large-2411@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: pixtral-large-2411 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/voxtral-mini-2507@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260531
+DTEND;VALUE=DATE:20260601
+SUMMARY:mistral: voxtral-mini-2507 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: voxtral-mini-2602\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-2.0-flash@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:google: gemini-2.0-flash shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gemini-3.6-flash\nEvide
+ nce: https://ai.google.dev/gemini-api/docs/deprecations
+URL:https://ai.google.dev/gemini-api/docs/deprecations
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/gemini-2.0-flash-lite@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:google: gemini-2.0-flash-lite shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gemini-3.1-flash-lite\n
+ Evidence: https://ai.google.dev/gemini-api/docs/deprecations
+URL:https://ai.google.dev/gemini-api/docs/deprecations
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Llama-3.2-11B-Vision-Instruct@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:azure: Llama-3.2-11B-Vision-Instruct shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Llama-3.2-90B-Vision-Instruct@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:azure: Llama-3.2-90B-Vision-Instruct shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Meta-Llama-3.1-405B-Instruct@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:azure: Meta-Llama-3.1-405B-Instruct shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Meta-Llama-3.1-8B@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:azure: Meta-Llama-3.1-8B shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Meta-Llama-3.1-8B-Instruct@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:azure: Meta-Llama-3.1-8B-Instruct shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-opus-4-20250514@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+SUMMARY:anthropic: claude-opus-4-20250514 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-opus-4-8\nEvide
+ nce: https://platform.claude.com/docs/en/about-claude/model-deprecations
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-sonnet-4-20250514@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+SUMMARY:anthropic: claude-sonnet-4-20250514 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-sonnet-4-6\nEvi
+ dence: https://platform.claude.com/docs/en/about-claude/model-deprecation
+ s
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-5-chat@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:azure: gpt-5-chat shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gpt
+ -chat-latest\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/o
+ penai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-5.1-chat@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:azure: gpt-5.1-chat shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gpt
+ -chat-latest\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/o
+ penai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-5.2-chat@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:azure: gpt-5.2-chat shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gpt
+ -chat-latest\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/o
+ penai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-5.3-chat@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:azure: gpt-5.3-chat shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: gpt
+ -chat-latest\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/o
+ penai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/labs-leanstral-2603@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:mistral: labs-leanstral-2603 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: labs-leanstral-1-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-moderation-2411@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:mistral: mistral-moderation-2411 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-moderation-2603\n
+ Evidence: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/DeepSeek-R1-0528@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:azure: DeepSeek-R1-0528 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: Dee
+ pSeek-V4-Pro\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/o
+ penai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/DeepSeek-V3-0324@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:azure: DeepSeek-V3-0324 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: Dee
+ pSeek-V4-Flash\nEvidence: https://learn.microsoft.com/en-us/azure/foundry
+ /openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/DeepSeek-V3.1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:azure: DeepSeek-V3.1 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: Dee
+ pSeek-V4-Flash\nEvidence: https://learn.microsoft.com/en-us/azure/foundry
+ /openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/mistral-document-ai-2505@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260720
+DTEND;VALUE=DATE:20260721
+SUMMARY:azure: mistral-document-ai-2505 shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nUse instead: mis
+ tral-document-ai-2512\nEvidence: https://learn.microsoft.com/en-us/azure/
+ foundry/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-search-preview-2025-03-11@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-4o-mini-search-preview-2025-03-11 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-search-preview-2025-03-11@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-4o-search-preview-2025-03-11 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-chat-latest@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5-chat-latest shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-codex@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5-codex shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.1-chat-latest@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5.1-chat-latest shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.1-codex@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5.1-codex shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.1-codex-max@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5.1-codex-max shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.1-codex-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5.1-codex-mini shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-terra\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.2-codex@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-5.2-codex shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-5.6-sol\nEvidence: 
+ https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-audio-mini-2025-10-06@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-audio-mini-2025-10-06 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-audio-1.5\nEvidence
+ : https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-realtime-mini-2025-10-06@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:openai: gpt-realtime-mini-2025-10-06 shut down
+DESCRIPTION:Shut down. Requests fail.\nUse instead: gpt-realtime-2.1-mini\n
+ Evidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-3-5-sonnet-20240620-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260730
+DTEND;VALUE=DATE:20260731
+SUMMARY:bedrock: anthropic.claude-3-5-sonnet-20240620-v1:0 shut down
+DESCRIPTION:End of life. Requests fail.\nEvidence: https://docs.aws.amazon.
+ com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-3-5-sonnet-20241022-v2:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260730
+DTEND;VALUE=DATE:20260731
+SUMMARY:bedrock: anthropic.claude-3-5-sonnet-20241022-v2:0 shut down
+DESCRIPTION:End of life. Requests fail.\nEvidence: https://docs.aws.amazon.
+ com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-3-7-sonnet-20250219-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260730
+DTEND;VALUE=DATE:20260731
+SUMMARY:bedrock: anthropic.claude-3-7-sonnet-20250219-v1:0 shut down
+DESCRIPTION:End of life. Requests fail.\nEvidence: https://docs.aws.amazon.
+ com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-3-sonnet-20240229-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260730
+DTEND;VALUE=DATE:20260731
+SUMMARY:bedrock: anthropic.claude-3-sonnet-20240229-v1:0 shut down
+DESCRIPTION:End of life. Requests fail.\nEvidence: https://docs.aws.amazon.
+ com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Stable-Diffusion-3.5-Large@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:azure: Stable-Diffusion-3.5-Large shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Stable-Image-Core@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:azure: Stable-Image-Core shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Stable-Image-Ultra@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:azure: Stable-Image-Ultra shut down
+DESCRIPTION:Retired on Azure. Inference returns 410 Gone.\nEvidence: https:
+ //learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retiremen
+ t-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/devstral-2512@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:mistral: devstral-2512 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-medium-2509@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:mistral: magistral-medium-2509 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-medium-3-5\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/magistral-small-2509@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:mistral: magistral-small-2509 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-small-2506@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:mistral: mistral-small-2506 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: mistral-small-2603\nEvide
+ nce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/open-mistral-nemo-2407@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:mistral: open-mistral-nemo-2407 shut down
+DESCRIPTION:Retired. Requests fail.\nUse instead: ministral-8b-2512\nEviden
+ ce: https://docs.mistral.ai/getting-started/models/models_overview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:anthropic/model_id/claude-opus-4-1-20250805@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260805
+DTEND;VALUE=DATE:20260806
+SUMMARY:anthropic: claude-opus-4-1-20250805 shut down
+DESCRIPTION:Retired. Calls return 404.\nUse instead: claude-opus-4-8\nEvide
+ nce: https://platform.claude.com/docs/en/about-claude/model-deprecations
+URL:https://platform.claude.com/docs/en/about-claude/model-deprecations
+CATEGORIES:anthropic
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.2-chat-latest@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+SUMMARY:openai: gpt-5.2-chat-latest shuts down
+DESCRIPTION:Shutdown announced for 2026-08-10.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5.3-chat-latest@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+SUMMARY:openai: gpt-5.3-chat-latest shuts down
+DESCRIPTION:Shutdown announced for 2026-08-10.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/DeepSeek-R1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260813
+DTEND;VALUE=DATE:20260814
+SUMMARY:azure: DeepSeek-R1 shuts down
+DESCRIPTION:Azure lifecycle Legacy. Retires 2026-08-13.\nUse instead: DeepS
+ eek-V4-Pro\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/ope
+ nai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/MAI-Image-2@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260815
+DTEND;VALUE=DATE:20260816
+SUMMARY:azure: MAI-Image-2 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-08-15.\nUse instead: MAI-
+ Image-2.5\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/open
+ ai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/MAI-Image-2e@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260815
+DTEND;VALUE=DATE:20260816
+SUMMARY:azure: MAI-Image-2e shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-08-15.\nUse instead: MAI-
+ Image-2.5-Flash\nEvidence: https://learn.microsoft.com/en-us/azure/foundr
+ y/openai/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:groq/model_id/llama-3.1-8b-instant@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260816
+DTEND;VALUE=DATE:20260817
+SUMMARY:groq: llama-3.1-8b-instant shuts down
+DESCRIPTION:Deprecated for free and developer tiers. Shuts down 2026-08-16\
+ , after which requests return errors.\nUse instead: openai/gpt-oss-20b\nE
+ vidence: https://console.groq.com/docs/deprecations
+URL:https://console.groq.com/docs/deprecations
+CATEGORIES:groq
+END:VEVENT
+BEGIN:VEVENT
+UID:groq/model_id/llama-3.3-70b-versatile@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260816
+DTEND;VALUE=DATE:20260817
+SUMMARY:groq: llama-3.3-70b-versatile shuts down
+DESCRIPTION:Deprecated for free and developer tiers. Shuts down 2026-08-16\
+ , after which requests return errors. Groq names qwen/qwen3.6-27b as a se
+ cond accepted target.\nUse instead: openai/gpt-oss-120b\nEvidence: https:
+ //console.groq.com/docs/deprecations
+URL:https://console.groq.com/docs/deprecations
+CATEGORIES:groq
+END:VEVENT
+BEGIN:VEVENT
+UID:google/model_id/imagen-4.0-generate-001@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260817
+DTEND;VALUE=DATE:20260818
+SUMMARY:google: imagen-4.0-generate-001 shuts down
+DESCRIPTION:Shutdown announced for 2026-08-17.\nUse instead: gemini-3.1-fla
+ sh-image\nEvidence: https://ai.google.dev/gemini-api/docs/deprecations
+URL:https://ai.google.dev/gemini-api/docs/deprecations
+CATEGORIES:google
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/cohere.command-r-plus-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260819
+DTEND;VALUE=DATE:20260820
+SUMMARY:bedrock: cohere.command-r-plus-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-02-19. End of life 2026-08-19.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/cohere.command-r-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260819
+DTEND;VALUE=DATE:20260820
+SUMMARY:bedrock: cohere.command-r-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-02-19. End of life 2026-08-19.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/enum_value/submit_tool_outputs@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:openai: submit_tool_outputs shuts down
+DESCRIPTION:The required_action type a polling Assistants loop compares aga
+ inst.\nEvidence: https://developers.openai.com/api/docs/assistants/tools/
+ function-calling
+URL:https://developers.openai.com/api/docs/assistants/tools/function-callin
+ g
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/enum_value/thread.run.requires_action@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:openai: thread.run.requires_action shuts down
+DESCRIPTION:Assistants streaming event name. No event by this name exists i
+ n Responses.\nEvidence: https://developers.openai.com/api/docs/assistants
+ /tools/function-calling
+URL:https://developers.openai.com/api/docs/assistants/tools/function-callin
+ g
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/request_param/max_prompt_tokens@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:openai: max_prompt_tokens shuts down
+DESCRIPTION:Assistants run parameter with no Responses counterpart. Trim in
+ put yourself.\nEvidence: https://developers.openai.com/api/docs/assistant
+ s/deep-dive
+URL:https://developers.openai.com/api/docs/assistants/deep-dive
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/sdk_symbol/AssistantEventHandler@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:openai: AssistantEventHandler shuts down
+DESCRIPTION:Python SDK base class for Assistants streaming. Responses strea
+ ms typed events instead.\nEvidence: https://developers.openai.com/api/doc
+ s/assistants/tools/function-calling
+URL:https://developers.openai.com/api/docs/assistants/tools/function-callin
+ g
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/sdk_symbol/openai-beta-assistants-v2@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:openai: openai-beta-assistants-v2 shuts down
+DESCRIPTION:OpenAI-Beta header for the Assistants API. Nothing else sends i
+ t.\nEvidence: https://developers.openai.com/api/docs/assistants/deep-dive
+URL:https://developers.openai.com/api/docs/assistants/deep-dive
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-realtime-2@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:azure: gpt-realtime-2 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-08-31.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/TimeGEN-1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:azure: TimeGEN-1 shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2026-08-31.\nUse instead: T
+ imeGPT-1\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/opena
+ i/concepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/tsuzumi-7b@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:azure: tsuzumi-7b shuts down
+DESCRIPTION:Azure lifecycle Legacy. Retires 2026-08-31.\nUse instead: tsuzu
+ mi2\nEvidence: https://learn.microsoft.com/en-us/azure/foundry/openai/con
+ cepts/model-retirement-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-medium-2505@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:mistral: mistral-medium-2505 shuts down
+DESCRIPTION:Shutdown announced for 2026-08-31.\nUse instead: mistral-medium
+ -3-5\nEvidence: https://docs.mistral.ai/getting-started/models/models_ove
+ rview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:mistral/model_id/mistral-medium-2508@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260831
+DTEND;VALUE=DATE:20260901
+SUMMARY:mistral: mistral-medium-2508 shuts down
+DESCRIPTION:Shutdown announced for 2026-08-31.\nUse instead: mistral-medium
+ -3-5\nEvidence: https://docs.mistral.ai/getting-started/models/models_ove
+ rview/
+URL:https://docs.mistral.ai/getting-started/models/models_overview/
+CATEGORIES:mistral
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-3-haiku-20240307-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260910
+DTEND;VALUE=DATE:20260911
+SUMMARY:bedrock: anthropic.claude-3-haiku-20240307-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-03-10. End of life 2026-09-10.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/amazon.nova-premier-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:bedrock: amazon.nova-premier-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-03-13. End of life 2026-09-14.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/amazon.nova-sonic-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:bedrock: amazon.nova-sonic-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-03-13. End of life 2026-09-14.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/sora-2@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:openai: sora-2 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-24.\nEvidence: https://developer
+ s.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/sora-2-2025-10-06@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:openai: sora-2-2025-10-06 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-24.\nEvidence: https://developer
+ s.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/sora-2-2025-12-08@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:openai: sora-2-2025-12-08 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-24.\nEvidence: https://developer
+ s.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/sora-2-pro@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:openai: sora-2-pro shuts down
+DESCRIPTION:Shutdown announced for 2026-09-24.\nEvidence: https://developer
+ s.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/sora-2-pro-2025-10-06@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:openai: sora-2-pro-2025-10-06 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-24.\nEvidence: https://developer
+ s.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/babbage-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:openai: babbage-002 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-28.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/davinci-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:openai: davinci-002 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-28.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-1106@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:openai: gpt-3.5-turbo-1106 shuts down
+DESCRIPTION:Shutdown announced for 2026-09-28.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-instruct@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:openai: gpt-3.5-turbo-instruct shuts down
+DESCRIPTION:Shutdown announced for 2026-09-28.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/amazon.nova-canvas-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:bedrock: amazon.nova-canvas-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-03-30. End of life 2026-09-30.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/amazon.nova-reel-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:bedrock: amazon.nova-reel-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-03-30. End of life 2026-09-30.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/amazon.nova-reel-v1:1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:bedrock: amazon.nova-reel-v1:1 shuts down
+DESCRIPTION:Legacy since 2026-03-30. End of life 2026-09-30.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/o3-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:azure: o3-mini shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2026-10-01. Azure names o4-
+ mini as the replacement and then retires that too on 2026-10-16\, naming 
+ nothing after it\, so this deliberately carries no replacement rather tha
+ n sending anyone fifteen days down a dead end.\nEvidence: https://learn.m
+ icrosoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedul
+ e
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Kimi-K2.7-Code@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:azure: Kimi-K2.7-Code shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-10-03.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/Cohere-command-a-plus-05-2026@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261014
+SUMMARY:azure: Cohere-command-a-plus-05-2026 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-10-13.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-4.1-nano@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:azure: gpt-4.1-nano shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2026-10-14.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-sonnet-4-20250514-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:bedrock: anthropic.claude-sonnet-4-20250514-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-04-14. End of life 2026-10-14.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/o4-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:azure: o4-mini shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2026-10-16.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/claude-haiku-4-5@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:azure: claude-haiku-4-5 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-10-19.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/claude-opus-4-5@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:azure: claude-opus-4-5 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-10-19.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/claude-sonnet-4-5@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:azure: claude-sonnet-4-5 shuts down
+DESCRIPTION:Azure lifecycle Preview. Retires 2026-10-19.\nEvidence: https:/
+ /learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement
+ -schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-babbage-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-babbage-002 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-davinci-002@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-davinci-002 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-gpt-3.5-turbo@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-gpt-3.5-turbo shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-gpt-4@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-gpt-4 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-gpt-4.1-nano-2025-04-14@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-gpt-4.1-nano-2025-04-14 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-luna\n
+ Evidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/ft-o4-mini-2025-04-16@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: ft-o4-mini-2025-04-16 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-0125@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-3.5-turbo-0125 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-3.5-turbo-completions@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-3.5-turbo-completions shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-0613@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4-0613 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-0613-completions@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4-0613-completions shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-1106-preview@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4-1106-preview shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-turbo@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4-turbo shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4-turbo-completions@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4-turbo-completions shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-2024-05-13@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-4o-2024-05-13 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-image-1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: gpt-image-1 shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23.\nUse instead: gpt-image-2\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/o1-pro@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:openai: o1-pro shuts down
+DESCRIPTION:Shutdown announced for 2026-10-23. The replacement uses reasoni
+ ng mode.\nUse instead: gpt-5.6-sol\nEvidence: https://developers.openai.c
+ om/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/codex-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:azure: codex-mini shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2026-11-15.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/ai21.jamba-1-5-large-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:bedrock: ai21.jamba-1-5-large-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-05-26. End of life 2026-11-26.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/ai21.jamba-1-5-mini-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:bedrock: ai21.jamba-1-5-mini-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-05-26. End of life 2026-11-26.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/twelvelabs.marengo-embed-2-7-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+SUMMARY:bedrock: twelvelabs.marengo-embed-2-7-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-05-29. End of life 2026-11-30.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/request_param/testing_criteria@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+SUMMARY:openai: testing_criteria shuts down
+DESCRIPTION:Required field of the Evals API\, which shuts down with the Eva
+ ls platform.\nEvidence: https://developers.openai.com/api/docs/guides/eva
+ ls
+URL:https://developers.openai.com/api/docs/guides/evals
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-image-1-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:openai: gpt-image-1-mini shuts down
+DESCRIPTION:Shutdown announced for 2026-12-01.\nUse instead: gpt-image-2\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-image-1.5@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:openai: gpt-image-1.5 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-01.\nUse instead: gpt-image-2\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-2025-08-07@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: gpt-5-2025-08-07 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-mini-2025-08-07@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: gpt-5-mini-2025-08-07 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-terra\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-nano-2025-08-07@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: gpt-5-nano-2025-08-07 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-luna\n
+ Evidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-5-pro-2025-10-06@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: gpt-5-pro-2025-10-06 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/o3-2025-04-16@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: o3-2025-04-16 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/o3-pro-2025-06-10@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:openai: o3-pro-2025-06-10 shuts down
+DESCRIPTION:Shutdown announced for 2026-12-11.\nUse instead: gpt-5.6-sol\nE
+ vidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:bedrock/model_id/anthropic.claude-opus-4-1-20250805-v1:0@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270108
+DTEND;VALUE=DATE:20270109
+SUMMARY:bedrock: anthropic.claude-opus-4-1-20250805-v1:0 shuts down
+DESCRIPTION:Legacy since 2026-07-08. End of life 2027-01-08.\nEvidence: htt
+ ps://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html
+URL:https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.ht
+ ml
+CATEGORIES:bedrock
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-audio@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:openai: gpt-4o-audio shuts down
+DESCRIPTION:Shutdown announced for 2027-01-20.\nUse instead: gpt-audio-1.5\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-audio@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:openai: gpt-4o-mini-audio shuts down
+DESCRIPTION:Shutdown announced for 2027-01-20.\nUse instead: gpt-audio-1.5\
+ nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-realtime@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:openai: gpt-4o-mini-realtime shuts down
+DESCRIPTION:Shutdown announced for 2027-01-20.\nUse instead: gpt-realtime-2
+ .1-mini\nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-mini-transcribe-2025-03-20@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:openai: gpt-4o-mini-transcribe-2025-03-20 shuts down
+DESCRIPTION:Shutdown announced for 2027-01-20.\nUse instead: gpt-4o-mini-tr
+ anscribe-2025-12-15\nEvidence: https://developers.openai.com/api/docs/dep
+ recations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:openai/model_id/gpt-4o-realtime@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:openai: gpt-4o-realtime shuts down
+DESCRIPTION:Shutdown announced for 2027-01-20.\nUse instead: gpt-realtime-2
+ .1\nEvidence: https://developers.openai.com/api/docs/deprecations
+URL:https://developers.openai.com/api/docs/deprecations
+CATEGORIES:openai
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-4.1@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270415
+SUMMARY:azure: gpt-4.1 shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2027-04-14.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-4.1-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270415
+SUMMARY:azure: gpt-4.1-mini shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2027-04-14.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+BEGIN:VEVENT
+UID:azure/model_id/gpt-4o-mini@driftcite
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270415
+SUMMARY:azure: gpt-4o-mini shuts down
+DESCRIPTION:Azure lifecycle Deprecated. Retires 2027-04-14.\nEvidence: http
+ s://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirem
+ ent-schedule
+URL:https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-r
+ etirement-schedule
+CATEGORIES:azure
+END:VEVENT
+END:VCALENDAR

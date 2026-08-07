@@ -1251,6 +1251,60 @@ async function scanRegistry(root, { collectOnly = false } = {}) {
   };
 }
 
+// -------------------------------------------------------------------- notify
+
+/**
+ * One message to a Slack incoming webhook, only when something breaking was
+ * found. A quiet scan posts nothing: a daily "all clean" is noise that gets
+ * the channel muted, and a muted channel misses the day that matters. Pair a
+ * scheduled scan with a committed baseline and the webhook only ever fires
+ * for drift that is new.
+ *
+ * The webhook URL is a secret and comes from the environment, never argv,
+ * so it cannot land in shell history or a process listing.
+ */
+function slackMessage(findings, root) {
+  const breaking = findings.filter((f) => f.severity === "breaking");
+  if (!breaking.length) return null;
+
+  const byArtifact = new Map();
+  for (const f of breaking) {
+    if (!byArtifact.has(f.artifact)) byArtifact.set(f.artifact, []);
+    byArtifact.get(f.artifact).push(f);
+  }
+
+  const lines = [
+    `:rotating_light: *driftcite: ${byArtifact.size} breaking artifact(s) in ${path.basename(root)}*`,
+  ];
+  const MAX_ARTIFACTS = 10;
+  let shown = 0;
+  for (const [id, hits] of byArtifact) {
+    if (shown === MAX_ARTIFACTS) {
+      lines.push(`…and ${byArtifact.size - shown} more artifact(s); run \`npx driftcite\` for the full report`);
+      break;
+    }
+    shown++;
+    const f = hits[0];
+    const when =
+      f.status === "deprecated" && f.retires_on ? `breaks ${f.retires_on}` : f.status;
+    const swap = f.replacement ? ` → use \`${f.replacement}\`` : "";
+    lines.push(`• *${id}* — ${when}${swap}`);
+    if (f.evidence) lines.push(`    <${f.evidence}|evidence>`);
+    const places = hits.slice(0, 5).map((h) => `${h.file}:${h.line}`).join(", ");
+    lines.push(`    ${places}${hits.length > 5 ? ` +${hits.length - 5} more` : ""}`);
+  }
+  return lines.join("\n");
+}
+
+async function postSlack(url, text) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ text }),
+  });
+  if (!res.ok) throw new Error(`slack webhook returned ${res.status}`);
+}
+
 // -------------------------------------------------------------------- report
 
 const BOLD = "[1m", DIM = "[2m", RED = "[31m",
@@ -1356,7 +1410,14 @@ async function main() {
   npx driftcite . --fix --write   apply them
   npx driftcite . --list-deps every dependency version resolved, no network
   npx driftcite . --write-baseline  accept today's findings, fail on new ones
+  npx driftcite . --slack     post breaking findings to a Slack webhook
   npx driftcite --version     print the version
+
+--slack reads the webhook URL from DRIFTCITE_SLACK_WEBHOOK (environment, not
+argv, so it stays out of shell history). It posts only when something breaking
+was found; a clean scan posts nothing. It runs anywhere the CLI runs — GitHub,
+GitLab, Bitbucket, Jenkins, a cron job on a laptop. Schedule it with a
+committed baseline and the channel only ever hears about drift that is new.
 
 Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
 berry), pinned requirements.txt, Cargo.lock, Gemfile.lock, and go.sum.
@@ -1387,7 +1448,7 @@ Your source code is never sent anywhere.`);
   // false success is the one failure mode a scanner must not have.
   const KNOWN_FLAGS = new Set([
     "--offline", "--json", "--no-deps", "--fix", "--write",
-    "--list-deps", "--write-baseline",
+    "--list-deps", "--write-baseline", "--slack",
   ]);
   const unknown = argv.filter((a) => a.startsWith("-") && !KNOWN_FLAGS.has(a));
   if (unknown.length) {
@@ -1402,6 +1463,15 @@ Your source code is never sent anywhere.`);
   const noDeps = argv.includes("--no-deps");
   const fix = argv.includes("--fix");
   const write = argv.includes("--write");
+  const slack = argv.includes("--slack");
+
+  // Misconfiguration fails before the scan, not after it. A scheduled job
+  // that scans for ten minutes and then discovers it cannot deliver is a
+  // job that looked green in the log while alerting nobody.
+  if (slack && !process.env.DRIFTCITE_SLACK_WEBHOOK) {
+    console.error("--slack needs DRIFTCITE_SLACK_WEBHOOK set to a Slack incoming-webhook URL");
+    return 2;
+  }
 
   if (argv.includes("--list-deps")) {
     // Parse every dependency manifest and print what resolved, no network.
@@ -1482,6 +1552,20 @@ Your source code is never sent anywhere.`);
       && !repaired.has(`${f.file}:${f.line}:${f.artifact}`));
   };
 
+  if (slack) {
+    const text = slackMessage(findings, root);
+    if (text) {
+      try {
+        await postSlack(process.env.DRIFTCITE_SLACK_WEBHOOK, text);
+      } catch (err) {
+        // The scan's own result still decides the exit code; a failed post is
+        // named, not fatal, because the findings are also in the log and the
+        // build is already red whenever there was anything worth posting.
+        console.error(`driftcite: slack notify failed: ${err.message}`);
+      }
+    }
+  }
+
   if (asJson) {
     // schema counts the shape of this object, not the tool's version. Agents
     // and CI paste-prompts key on these field names; renaming or removing
@@ -1525,6 +1609,7 @@ export const __test = {
   checkNpm, checkPypi, checkCrates, checkRubygems, checkGoModule,
   parseGoMod, cmpGoVersion, verifyFeedSignature,
   resolveFlagged, scanRegistry,
+  slackMessage, postSlack,
 };
 
 // Only run when invoked as a command. The scanner is Apache 2.0 so that it

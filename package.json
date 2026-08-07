@@ -17,7 +17,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node test/run.mjs && node test/watch.mjs",
+    "test": "node test/run.mjs && node test/watch.mjs && node test/extras.mjs",
     "deploy:site": "vercel deploy --cwd site --prod"
   },
   "keywords": [

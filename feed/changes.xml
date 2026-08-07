@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>driftcite — provider drift</title>
+<link>https://github.com/nilaypatell/driftcite</link>
+<description>Third-party API surface dying, as the providers announce it. Every entry cites the provider's own page.</description>
+<lastBuildDate>Fri, 07 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+<title>stripe/enum_value/usage_record_summary — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/enum_value/usage_record_summary|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'usage_record_summary' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record_summary.properties.object.</description>
+</item>
+<item>
+<title>stripe/enum_value/usage_record — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/enum_value/usage_record|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'usage_record' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.usage_record.properties.object.</description>
+</item>
+<item>
+<title>stripe/enum_value/last_ever — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/enum_value/last_ever|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'last_ever' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage.</description>
+</item>
+<item>
+<title>stripe/enum_value/last_during_period — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/enum_value/last_during_period|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'last_during_period' was valid in 2024-06-20 and is gone in 2026-06-24.dahlia. Seen at: components.schemas.plan.properties.aggregate_usage.</description>
+</item>
+<item>
+<title>stripe/endpoint//v1/subscription_items/{subscription_item}/usage_records — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/endpoint//v1/subscription_items/{subscription_item}/usage_records|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v1/subscription_items/{subscription_item}/usage_records existed in 2024-06-20 and is gone in 2026-06-24.dahlia.</description>
+</item>
+<item>
+<title>stripe/endpoint//v1/subscription_items/{subscription_item}/usage_record_summaries — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/endpoint//v1/subscription_items/{subscription_item}/usage_record_summaries|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/subscription_items/{subscription_item}/usage_record_summaries existed in 2024-06-20 and is gone in 2026-06-24.dahlia.</description>
+</item>
+<item>
+<title>stripe/endpoint//v1/invoices/upcoming/lines — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/endpoint//v1/invoices/upcoming/lines|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/invoices/upcoming/lines existed in 2024-06-20 and is gone in 2026-06-24.dahlia.</description>
+</item>
+<item>
+<title>stripe/endpoint//v1/invoices/upcoming — removed</title>
+<link>https://github.com/stripe/openapi/compare/v1200...v2345</link>
+<guid isPermaLink="false">stripe/endpoint//v1/invoices/upcoming|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.dahlia.</description>
+</item>
+<item>
+<title>square/enum_value/SQUARE_CARD — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/SQUARE_CARD|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'SQUARE_CARD' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/SQUARE_CAPITAL_ADVANCE — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/SQUARE_CAPITAL_ADVANCE|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'SQUARE_CAPITAL_ADVANCE' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/SQUARE_275 — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/SQUARE_275|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'SQUARE_275' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/RETURNED_SQUARE_275 — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/RETURNED_SQUARE_275|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'RETURNED_SQUARE_275' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/RETURNED_ACH_ENTRY — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/RETURNED_ACH_ENTRY|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'RETURNED_ACH_ENTRY' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/INCENTED_PAYMENT — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/INCENTED_PAYMENT|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'INCENTED_PAYMENT' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/GIFT_CARD_UNKNOWN — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/GIFT_CARD_UNKNOWN|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'GIFT_CARD_UNKNOWN' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/GIFT_CARD_RELOAD — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/GIFT_CARD_RELOAD|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'GIFT_CARD_RELOAD' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/GIFT_CARD_ACTIVATION — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/GIFT_CARD_ACTIVATION|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'GIFT_CARD_ACTIVATION' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1PaymentItemizationItemizationType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/enum_value/BALANCE_CHARGE — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/enum_value/BALANCE_CHARGE|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Enum value 'BALANCE_CHARGE' was valid in 53f476ccbf13 and is gone in e695f0162c05. Seen at: definitions.V1SettlementEntryType. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/loyalty/programs — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/loyalty/programs|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/loyalty/programs was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/locations/{location_id}/transactions/{transaction_id}/void was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/locations/{location_id}/transactions/{transaction_id}/capture was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/locations/{location_id}/transactions/{transaction_id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/locations/{location_id}/transactions/{transaction_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/locations/{location_id}/transactions — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/locations/{location_id}/transactions|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/locations/{location_id}/transactions was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/locations/{location_id}/checkouts — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/locations/{location_id}/checkouts|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/locations/{location_id}/checkouts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/labor/shifts/{id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/labor/shifts/{id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>DELETE, GET, PUT /v2/labor/shifts/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/labor/shifts/search — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/labor/shifts/search|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/labor/shifts/search was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/labor/shifts — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/labor/shifts|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/labor/shifts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/labor/employee-wages/{id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/labor/employee-wages/{id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/labor/employee-wages/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/labor/employee-wages — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/labor/employee-wages|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/labor/employee-wages was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/{catalog_object_id}/changes — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/{catalog_object_id}/changes|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/inventory/{catalog_object_id}/changes was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/transfers/{transfer_id} — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/transfers/{transfer_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/inventory/transfers/{transfer_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/physical-count/{physical_count_id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/physical-count/{physical_count_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/inventory/physical-count/{physical_count_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/batch-retrieve-counts — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/batch-retrieve-counts|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/inventory/batch-retrieve-counts was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/batch-retrieve-changes — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/batch-retrieve-changes|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/inventory/batch-retrieve-changes was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/batch-change — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/batch-change|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/inventory/batch-change was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/inventory/adjustment/{adjustment_id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/inventory/adjustment/{adjustment_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/inventory/adjustment/{adjustment_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/employees/{id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/employees/{id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/employees/{id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/employees — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/employees|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v2/employees was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/customers/{customer_id}/cards/{card_id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/customers/{customer_id}/cards/{card_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>DELETE /v2/customers/{customer_id}/cards/{card_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v2/customers/{customer_id}/cards — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v2/customers/{customer_id}/cards|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /v2/customers/{customer_id}/cards was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/settlements/{settlement_id} — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/settlements/{settlement_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/{location_id}/settlements/{settlement_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/settlements — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/settlements|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/{location_id}/settlements existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/refunds — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/refunds|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET, POST /v1/{location_id}/refunds existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/payments/{payment_id} — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/payments/{payment_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/{location_id}/payments/{payment_id} existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/payments — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/payments|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/{location_id}/payments existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/orders/{order_id} — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/orders/{order_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET, PUT /v1/{location_id}/orders/{order_id} was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//v1/{location_id}/orders — deprecated</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//v1/{location_id}/orders|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /v1/{location_id}/orders was marked deprecated between 53f476ccbf13 and e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//oauth2/clients/{client_id}/access-token/renew — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//oauth2/clients/{client_id}/access-token/renew|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /oauth2/clients/{client_id}/access-token/renew existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>square/endpoint//mobile/authorization-code — removed</title>
+<link>https://github.com/square/connect-api-specification/compare/53f476ccbf13...e695f0162c05</link>
+<guid isPermaLink="false">square/endpoint//mobile/authorization-code|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /mobile/authorization-code existed in 53f476ccbf13 and is gone in e695f0162c05. Observed 2026-08-06; the spec's own version stayed 2.0.</description>
+</item>
+<item>
+<title>plaid/endpoint//income/verification/paystub/get — removed</title>
+<link>https://github.com/plaid/plaid-openapi/compare/1.5.0-beta...1.20.6</link>
+<guid isPermaLink="false">plaid/endpoint//income/verification/paystub/get|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /income/verification/paystub/get existed in 2020-09-14_1.5.0 and is gone in 2020-09-14_1.20.6.</description>
+</item>
+<item>
+<title>openai/endpoint//engines/{engine_id}/search — removed</title>
+<link>https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0</link>
+<guid isPermaLink="false">openai/endpoint//engines/{engine_id}/search|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /engines/{engine_id}/search existed in 1.3.0 and is gone in 2.0.0.</description>
+</item>
+<item>
+<title>openai/endpoint//engines/{engine_id} — removed</title>
+<link>https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0</link>
+<guid isPermaLink="false">openai/endpoint//engines/{engine_id}|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /engines/{engine_id} existed in 1.3.0 and is gone in 2.0.0.</description>
+</item>
+<item>
+<title>openai/endpoint//engines — removed</title>
+<link>https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0</link>
+<guid isPermaLink="false">openai/endpoint//engines|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>GET /engines existed in 1.3.0 and is gone in 2.0.0.</description>
+</item>
+<item>
+<title>openai/endpoint//classifications — removed</title>
+<link>https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0</link>
+<guid isPermaLink="false">openai/endpoint//classifications|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /classifications existed in 1.3.0 and is gone in 2.0.0.</description>
+</item>
+<item>
+<title>openai/endpoint//answers — removed</title>
+<link>https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0</link>
+<guid isPermaLink="false">openai/endpoint//answers|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>POST /answers existed in 1.3.0 and is gone in 2.0.0.</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-realtime — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-realtime|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2027-01-20. Use instead: gpt-realtime-2.1</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-mini-transcribe-2025-03-20 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-mini-transcribe-2025-03-20|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2027-01-20. Use instead: gpt-4o-mini-transcribe-2025-12-15</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-mini-realtime — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-mini-realtime|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2027-01-20. Use instead: gpt-realtime-2.1-mini</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-mini-audio — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-mini-audio|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2027-01-20. Use instead: gpt-audio-1.5</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-audio — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-audio|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2027-01-20. Use instead: gpt-audio-1.5</description>
+</item>
+<item>
+<title>openai/model_id/o3-pro-2025-06-10 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/o3-pro-2025-06-10|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/o3-2025-04-16 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/o3-2025-04-16|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-pro-2025-10-06 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-pro-2025-10-06|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-nano-2025-08-07 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-nano-2025-08-07|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-luna</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-mini-2025-08-07 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-mini-2025-08-07|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-2025-08-07 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-2025-08-07|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-11. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-image-1.5 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-image-1.5|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-01. Use instead: gpt-image-2</description>
+</item>
+<item>
+<title>openai/model_id/gpt-image-1-mini — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-image-1-mini|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-12-01. Use instead: gpt-image-2</description>
+</item>
+<item>
+<title>openai/model_id/gpt-image-1 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-image-1|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-image-2</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4o-2024-05-13 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4o-2024-05-13|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4-turbo-completions — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4-turbo-completions|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4-1106-preview — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4-1106-preview|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-4-0613-completions — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-4-0613-completions|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-3.5-turbo-completions — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-3.5-turbo-completions|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/ft-o4-mini-2025-04-16 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-o4-mini-2025-04-16|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/ft-gpt-4.1-nano-2025-04-14 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-gpt-4.1-nano-2025-04-14|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-luna</description>
+</item>
+<item>
+<title>openai/model_id/ft-gpt-4 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-gpt-4|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/ft-gpt-3.5-turbo — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-gpt-3.5-turbo|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/ft-davinci-002 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-davinci-002|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/ft-babbage-002 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/ft-babbage-002|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-10-23. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/gpt-3.5-turbo-instruct — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-3.5-turbo-instruct|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-28. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/gpt-3.5-turbo-1106 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-3.5-turbo-1106|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-28. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/davinci-002 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/davinci-002|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-28. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/babbage-002 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/babbage-002|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-28. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/sora-2-pro-2025-10-06 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/sora-2-pro-2025-10-06|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-24.</description>
+</item>
+<item>
+<title>openai/model_id/sora-2-pro — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/sora-2-pro|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-24.</description>
+</item>
+<item>
+<title>openai/model_id/sora-2-2025-12-08 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/sora-2-2025-12-08|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-24.</description>
+</item>
+<item>
+<title>openai/model_id/sora-2-2025-10-06 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/sora-2-2025-10-06|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-24.</description>
+</item>
+<item>
+<title>openai/model_id/sora-2 — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/sora-2|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-09-24.</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.3-chat-latest — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.3-chat-latest|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-08-10. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.2-chat-latest — deprecated</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.2-chat-latest|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shutdown announced for 2026-08-10. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-realtime-mini-2025-10-06 — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-realtime-mini-2025-10-06|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-realtime-2.1-mini</description>
+</item>
+<item>
+<title>openai/model_id/gpt-audio-mini-2025-10-06 — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-audio-mini-2025-10-06|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-audio-1.5</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.2-codex — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.2-codex|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.1-codex-mini — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.1-codex-mini|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-terra</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.1-codex-max — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.1-codex-max|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.1-codex — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.1-codex|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5.1-chat-latest — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5.1-chat-latest|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-codex — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-codex|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+<item>
+<title>openai/model_id/gpt-5-chat-latest — retired</title>
+<link>https://developers.openai.com/api/docs/deprecations</link>
+<guid isPermaLink="false">openai/model_id/gpt-5-chat-latest|appeared|2026-08-07</guid>
+<pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+<description>Shut down. Requests fail. Use instead: gpt-5.6-sol</description>
+</item>
+</channel>
+</rss>

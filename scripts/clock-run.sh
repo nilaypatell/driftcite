@@ -65,6 +65,11 @@ git fetch -q origin && git reset -q --hard origin/main
 # rather than publishing an update nobody will use.
 node scripts/sign_feed.mjs   || { echo "! feed signing failed; nothing committed"; exit 1; }
 
+# The calendar and RSS faces of the feed. Not signed (clients verify
+# feed.json; these are conveniences derived from it) and not fatal: a broken
+# calendar should never hold back a correct feed.
+node scripts/build_feed_extras.mjs || echo "! feed extras failed"
+
 git add manifests/ feed/
 if git diff --staged --quiet; then
   echo "nothing moved today"

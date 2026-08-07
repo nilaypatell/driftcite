@@ -23,6 +23,12 @@ inputs:
     description: Use the bundled feed instead of fetching the live one.
     required: false
     default: "false"
+  slack-webhook:
+    description: >-
+      Slack incoming-webhook URL (pass a secret). Breaking findings are posted
+      to it; a clean scan posts nothing.
+    required: false
+    default: ""
 
 outputs:
   findings:
@@ -37,6 +43,8 @@ runs:
   steps:
     - id: scan
       shell: bash
+      env:
+        DRIFTCITE_SLACK_WEBHOOK: ${{ inputs.slack-webhook }}
       run: |
         # The CLI ships inside this action, so nothing is fetched from npm.
         # An action that installed itself from a registry at run time would
@@ -47,9 +55,14 @@ runs:
         [ "${{ inputs.check-dependencies }}" = "true" ] || args="$args --no-deps"
         [ "${{ inputs.offline }}" = "false" ] || args="$args --offline"
 
+        # Only the first invocation notifies; the CLI runs twice below and a
+        # webhook that fired on both would page everyone in duplicate.
+        notify=""
+        [ -z "$DRIFTCITE_SLACK_WEBHOOK" ] || notify="--slack"
+
         # Human-readable in the log, machine-readable for downstream steps.
         set +e
-        node "$cli" $args
+        node "$cli" $args $notify
         code=$?
         node "$cli" $args --json > /tmp/driftcite.json 2>/dev/null
         set -e

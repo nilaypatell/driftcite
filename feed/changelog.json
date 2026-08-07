@@ -1,0 +1,4357 @@
+{
+ "note": "Appended by scripts/build_feed_extras.mjs on each sweep. state is the last-seen shape per artifact; events is every change since this file began. changes.xml is built from events.",
+ "state": {
+  "adyen/enum_value/moneybookers": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/fine-grained-tool-streaming-2025-05-14": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/token-efficient-tools-2025-02-19": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/output-128k-2025-02-19": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/code-execution-2025-05-22": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/tool_type/code_execution_20250522": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/enum_value/code_execution_result": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/model_id/claude-3-opus-20240229": {
+   "status": "retired",
+   "retires_on": "2026-01-05"
+  },
+  "anthropic/model_id/claude-3-7-sonnet-20250219": {
+   "status": "retired",
+   "retires_on": "2026-02-19"
+  },
+  "anthropic/model_id/claude-3-5-haiku-20241022": {
+   "status": "retired",
+   "retires_on": "2026-02-19"
+  },
+  "anthropic/model_id/claude-3-5-sonnet-20241022": {
+   "status": "retired",
+   "retires_on": "2025-10-28"
+  },
+  "anthropic/model_id/claude-3-5-sonnet-20240620": {
+   "status": "retired",
+   "retires_on": "2025-10-28"
+  },
+  "anthropic/model_id/claude-3-sonnet-20240229": {
+   "status": "retired",
+   "retires_on": "2025-07-21"
+  },
+  "anthropic/model_id/claude-3-haiku-20240307": {
+   "status": "retired",
+   "retires_on": "2026-04-20"
+  },
+  "anthropic/model_id/claude-opus-4-1-20250805": {
+   "status": "retired",
+   "retires_on": "2026-08-05"
+  },
+  "anthropic/model_id/claude-opus-4-20250514": {
+   "status": "retired",
+   "retires_on": "2026-06-15"
+  },
+  "anthropic/model_id/claude-sonnet-4-20250514": {
+   "status": "retired",
+   "retires_on": "2026-06-15"
+  },
+  "anthropic/request_param/budget_tokens": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "anthropic/request_param/output_format": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "anthropic/tool_type/text_editor_20250124": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/effort-2025-11-24": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "anthropic/sdk_symbol/interleaved-thinking-2025-05-14": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "azure/model_id/gpt-5-chat": {
+   "status": "retired",
+   "retires_on": "2026-06-29"
+  },
+  "azure/model_id/gpt-5.1-chat": {
+   "status": "retired",
+   "retires_on": "2026-06-29"
+  },
+  "azure/model_id/gpt-5.2-chat": {
+   "status": "retired",
+   "retires_on": "2026-06-29"
+  },
+  "azure/model_id/gpt-5.3-chat": {
+   "status": "retired",
+   "retires_on": "2026-06-29"
+  },
+  "azure/model_id/DeepSeek-R1-0528": {
+   "status": "retired",
+   "retires_on": "2026-07-13"
+  },
+  "azure/model_id/DeepSeek-V3-0324": {
+   "status": "retired",
+   "retires_on": "2026-07-13"
+  },
+  "azure/model_id/DeepSeek-V3.1": {
+   "status": "retired",
+   "retires_on": "2026-07-13"
+  },
+  "azure/model_id/grok-3": {
+   "status": "retired",
+   "retires_on": "2026-05-01"
+  },
+  "azure/model_id/grok-3-mini": {
+   "status": "retired",
+   "retires_on": "2026-05-01"
+  },
+  "azure/model_id/grok-4-fast-non-reasoning": {
+   "status": "retired",
+   "retires_on": "2026-05-01"
+  },
+  "azure/model_id/grok-4-fast-reasoning": {
+   "status": "retired",
+   "retires_on": "2026-05-01"
+  },
+  "azure/model_id/Cohere-command-r-08-2024": {
+   "status": "retired",
+   "retires_on": "2026-05-12"
+  },
+  "azure/model_id/Cohere-command-r-plus-08-2024": {
+   "status": "retired",
+   "retires_on": "2026-05-12"
+  },
+  "azure/model_id/Cohere-rerank-v3.5": {
+   "status": "retired",
+   "retires_on": "2026-05-14"
+  },
+  "azure/model_id/Llama-3.2-11B-Vision-Instruct": {
+   "status": "retired",
+   "retires_on": "2026-06-13"
+  },
+  "azure/model_id/Llama-3.2-90B-Vision-Instruct": {
+   "status": "retired",
+   "retires_on": "2026-06-13"
+  },
+  "azure/model_id/Meta-Llama-3.1-405B-Instruct": {
+   "status": "retired",
+   "retires_on": "2026-06-13"
+  },
+  "azure/model_id/Meta-Llama-3.1-8B": {
+   "status": "retired",
+   "retires_on": "2026-06-13"
+  },
+  "azure/model_id/Meta-Llama-3.1-8B-Instruct": {
+   "status": "retired",
+   "retires_on": "2026-06-13"
+  },
+  "azure/model_id/mistral-document-ai-2505": {
+   "status": "retired",
+   "retires_on": "2026-07-20"
+  },
+  "azure/model_id/Stable-Diffusion-3.5-Large": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "azure/model_id/Stable-Image-Core": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "azure/model_id/Stable-Image-Ultra": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "azure/model_id/DeepSeek-R1": {
+   "status": "deprecated",
+   "retires_on": "2026-08-13"
+  },
+  "azure/model_id/TimeGEN-1": {
+   "status": "deprecated",
+   "retires_on": "2026-08-31"
+  },
+  "azure/model_id/tsuzumi-7b": {
+   "status": "deprecated",
+   "retires_on": "2026-08-31"
+  },
+  "azure/model_id/o3-mini": {
+   "status": "deprecated",
+   "retires_on": "2026-10-01"
+  },
+  "azure/model_id/gpt-4.1-nano": {
+   "status": "deprecated",
+   "retires_on": "2026-10-14"
+  },
+  "azure/model_id/o4-mini": {
+   "status": "deprecated",
+   "retires_on": "2026-10-16"
+  },
+  "azure/model_id/codex-mini": {
+   "status": "deprecated",
+   "retires_on": "2026-11-15"
+  },
+  "azure/model_id/gpt-4.1": {
+   "status": "deprecated",
+   "retires_on": "2027-04-14"
+  },
+  "azure/model_id/gpt-4.1-mini": {
+   "status": "deprecated",
+   "retires_on": "2027-04-14"
+  },
+  "azure/model_id/gpt-4o-mini": {
+   "status": "deprecated",
+   "retires_on": "2027-04-14"
+  },
+  "azure/model_id/MAI-Image-2": {
+   "status": "deprecated",
+   "retires_on": "2026-08-15"
+  },
+  "azure/model_id/MAI-Image-2e": {
+   "status": "deprecated",
+   "retires_on": "2026-08-15"
+  },
+  "azure/model_id/gpt-realtime-2": {
+   "status": "deprecated",
+   "retires_on": "2026-08-31"
+  },
+  "azure/model_id/Kimi-K2.7-Code": {
+   "status": "deprecated",
+   "retires_on": "2026-10-03"
+  },
+  "azure/model_id/Cohere-command-a-plus-05-2026": {
+   "status": "deprecated",
+   "retires_on": "2026-10-13"
+  },
+  "azure/model_id/claude-haiku-4-5": {
+   "status": "deprecated",
+   "retires_on": "2026-10-19"
+  },
+  "azure/model_id/claude-opus-4-5": {
+   "status": "deprecated",
+   "retires_on": "2026-10-19"
+  },
+  "azure/model_id/claude-sonnet-4-5": {
+   "status": "deprecated",
+   "retires_on": "2026-10-19"
+  },
+  "bedrock/model_id/anthropic.claude-3-sonnet-20240229-v1:0": {
+   "status": "retired",
+   "retires_on": "2026-07-30"
+  },
+  "bedrock/model_id/anthropic.claude-3-5-sonnet-20240620-v1:0": {
+   "status": "retired",
+   "retires_on": "2026-07-30"
+  },
+  "bedrock/model_id/anthropic.claude-3-5-sonnet-20241022-v2:0": {
+   "status": "retired",
+   "retires_on": "2026-07-30"
+  },
+  "bedrock/model_id/anthropic.claude-3-7-sonnet-20250219-v1:0": {
+   "status": "retired",
+   "retires_on": "2026-07-30"
+  },
+  "bedrock/model_id/cohere.command-r-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-08-19"
+  },
+  "bedrock/model_id/cohere.command-r-plus-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-08-19"
+  },
+  "bedrock/model_id/anthropic.claude-3-haiku-20240307-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-09-10"
+  },
+  "bedrock/model_id/amazon.nova-premier-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-09-14"
+  },
+  "bedrock/model_id/amazon.nova-sonic-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-09-14"
+  },
+  "bedrock/model_id/amazon.nova-canvas-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-09-30"
+  },
+  "bedrock/model_id/amazon.nova-reel-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-09-30"
+  },
+  "bedrock/model_id/amazon.nova-reel-v1:1": {
+   "status": "deprecated",
+   "retires_on": "2026-09-30"
+  },
+  "bedrock/model_id/anthropic.claude-sonnet-4-20250514-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-10-14"
+  },
+  "bedrock/model_id/ai21.jamba-1-5-large-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-11-26"
+  },
+  "bedrock/model_id/ai21.jamba-1-5-mini-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-11-26"
+  },
+  "bedrock/model_id/twelvelabs.marengo-embed-2-7-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2026-11-30"
+  },
+  "bedrock/model_id/anthropic.claude-opus-4-1-20250805-v1:0": {
+   "status": "deprecated",
+   "retires_on": "2027-01-08"
+  },
+  "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression/{suppression_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression/{suppression_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/paygo-usage": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//accounts/{account_id}/paygo-usage-info": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//system/accounts/{account_tag}/stores": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression/{suppression_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression/{suppression_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/endpoint//zones/{zone_id}/rate_limit_analytics": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.create": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.delete": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.list": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/enum_value/library_push": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/enum_value/stopped_with_code": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "cohere/sdk_symbol/cohere.Client": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/request_param/prompt_truncation": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/request_param/force_single_step": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/enum_value/citation-generation": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/model_id/embed-english-v2.0": {
+   "status": "retired",
+   "retires_on": "2026-04-04"
+  },
+  "cohere/model_id/embed-english-light-v2.0": {
+   "status": "retired",
+   "retires_on": "2026-04-04"
+  },
+  "cohere/model_id/embed-multilingual-v2.0": {
+   "status": "retired",
+   "retires_on": "2026-04-04"
+  },
+  "cohere/model_id/c4ai-aya-expanse-8b": {
+   "status": "retired",
+   "retires_on": "2026-04-04"
+  },
+  "cohere/model_id/c4ai-aya-vision-8b": {
+   "status": "retired",
+   "retires_on": "2026-04-04"
+  },
+  "cohere/model_id/rerank-english-v2.0": {
+   "status": "retired",
+   "retires_on": "2025-04-30"
+  },
+  "cohere/model_id/rerank-multilingual-v2.0": {
+   "status": "retired",
+   "retires_on": "2025-04-30"
+  },
+  "cohere/model_id/command-r-03-2024": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/model_id/command-r-plus-04-2024": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/model_id/command-light": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/endpoint//v1/generate": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/endpoint//v1/summarize": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/endpoint//v1/classify": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/endpoint//v1/connectors": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "cohere/request_param/search_queries_only": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/agent_versions": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/agents": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/agents/{agent_key}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/deployments": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/deployments/configure": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/deployments/upgrade": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}/cancel": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/dora/incident": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/metrics/config/bulk-tags": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/on-call/schedules/{schedule_id}/on-call": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/scorecard/outcomes/batch": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/security/assets": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/security/vulnerabilities": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/services": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/services/{service_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/slo/report": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/slo/report/{report_id}/download": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/slo/report/{report_id}/status": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/tag-policies": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/tag-policies/{policy_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/tag-policies/{policy_id}/score": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/teams": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/endpoint//api/v2/teams/{team_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/assign_agent": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/attribute_value_changed": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/case_created": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/case_review_approved": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/comment_added": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/datadog_agent_key": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/dora_incident": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/event_correlation_signal_correlated": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/execute_workflow": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/security_responses": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/enum_value/status_transitioned": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "digitalocean/endpoint//v2/security/secrets": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "digitalocean/endpoint//v2/security/secrets/{secret}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "digitalocean/endpoint//v2/security/secrets/{secret}/restore": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "digitalocean/endpoint//v2/security/secrets/{secret}/versions": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//applications/grants": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//applications/grants/{grant_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//authorizations": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//authorizations/clients/{client_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//authorizations/clients/{client_id}/{fingerprint}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//authorizations/{authorization_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//enterprises/{enterprise}/audit-log": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//enterprises/{enterprise}/settings/billing/actions": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//enterprises/{enterprise}/settings/billing/packages": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/audit-log": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/credential-authorizations": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/credential-authorizations/{credential_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/external-group/{group_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/external-groups": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/team-sync/groups": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//reactions/{reaction_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/enterprises/{enterprise}/Groups": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/enterprises/{enterprise}/Users": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/organizations/{org}/Users": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "github/endpoint//teams/{team_id}/team-sync/group-mappings": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "google/sdk_symbol/google-generativeai": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/google.generativeai": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.configure": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.GenerativeModel": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.upload_file": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.get_file": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.list_files": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.delete_file": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/genai.embed_content": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/caching.CachedContent": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/@google/generative-ai": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/GoogleAIFileManager": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/GoogleAICacheManager": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/generative-ai-go": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "google/sdk_symbol/total_reasoning_tokens": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "google/model_id/gemini-1.0-pro": {
+   "status": "retired",
+   "retires_on": "2025-02-18"
+  },
+  "google/model_id/gemini-1.5-pro": {
+   "status": "retired",
+   "retires_on": "2025-09-29"
+  },
+  "google/model_id/gemini-1.5-flash": {
+   "status": "retired",
+   "retires_on": "2025-09-29"
+  },
+  "google/model_id/gemini-1.5-flash-8b": {
+   "status": "retired",
+   "retires_on": "2025-09-29"
+  },
+  "google/model_id/gemini-2.0-flash": {
+   "status": "retired",
+   "retires_on": "2026-06-01"
+  },
+  "google/model_id/gemini-2.0-flash-lite": {
+   "status": "retired",
+   "retires_on": "2026-06-01"
+  },
+  "google/model_id/text-embedding-004": {
+   "status": "retired",
+   "retires_on": "2026-01-14"
+  },
+  "google/model_id/imagen-4.0-generate-001": {
+   "status": "deprecated",
+   "retires_on": "2026-08-17"
+  },
+  "groq/model_id/llama-3.1-8b-instant": {
+   "status": "deprecated",
+   "retires_on": "2026-08-16"
+  },
+  "groq/model_id/llama-3.3-70b-versatile": {
+   "status": "deprecated",
+   "retires_on": "2026-08-16"
+  },
+  "mistral/sdk_symbol/mistral-client": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "mistral/sdk_symbol/client-completions-stream": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "mistral/sdk_symbol/mistralai-azure-package": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "mistral/sdk_symbol/mistralai-gcp-package": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "mistral/sdk_symbol/mistral-google-cloud": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "mistral/model_id/labs-leanstral-2603": {
+   "status": "retired",
+   "retires_on": "2026-06-30"
+  },
+  "mistral/model_id/mistral-medium-2508": {
+   "status": "deprecated",
+   "retires_on": "2026-08-31"
+  },
+  "mistral/model_id/mistral-small-2506": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "mistral/model_id/voxtral-mini-2507": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/devstral-2512": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "mistral/model_id/magistral-medium-2507": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/labs-mistral-small-creative": {
+   "status": "retired",
+   "retires_on": "2026-04-30"
+  },
+  "mistral/model_id/labs-devstral-small-2512": {
+   "status": "retired",
+   "retires_on": "2026-03-31"
+  },
+  "mistral/model_id/magistral-medium-2509": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "mistral/model_id/magistral-small-2509": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "mistral/model_id/magistral-small-2507": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/devstral-medium-2507": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/devstral-small-2507": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/magistral-medium-2506": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/magistral-small-2506": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/mistral-ocr-2505": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/devstral-small-2505": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/mistral-medium-2505": {
+   "status": "deprecated",
+   "retires_on": "2026-08-31"
+  },
+  "mistral/model_id/mistral-small-2503": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/mistral-ocr-2503": {
+   "status": "retired",
+   "retires_on": "2025-12-31"
+  },
+  "mistral/model_id/mistral-saba-2502": {
+   "status": "retired",
+   "retires_on": "2025-09-30"
+  },
+  "mistral/model_id/mistral-small-2501": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/codestral-2501": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/mistral-large-2411": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/pixtral-large-2411": {
+   "status": "retired",
+   "retires_on": "2026-05-31"
+  },
+  "mistral/model_id/mistral-moderation-2411": {
+   "status": "retired",
+   "retires_on": "2026-06-30"
+  },
+  "mistral/model_id/ministral-3b-2410": {
+   "status": "retired",
+   "retires_on": "2025-12-31"
+  },
+  "mistral/model_id/ministral-8b-2410": {
+   "status": "retired",
+   "retires_on": "2025-12-31"
+  },
+  "mistral/model_id/mistral-small-2409": {
+   "status": "retired",
+   "retires_on": "2025-11-30"
+  },
+  "mistral/model_id/pixtral-12b-2409": {
+   "status": "retired",
+   "retires_on": "2025-12-31"
+  },
+  "mistral/model_id/mistral-large-2407": {
+   "status": "retired",
+   "retires_on": "2025-03-30"
+  },
+  "mistral/model_id/open-mistral-nemo-2407": {
+   "status": "retired",
+   "retires_on": "2026-07-31"
+  },
+  "mistral/model_id/open-codestral-mamba": {
+   "status": "retired",
+   "retires_on": "2025-06-06"
+  },
+  "mistral/model_id/codestral-2405": {
+   "status": "retired",
+   "retires_on": "2025-06-16"
+  },
+  "mistral/model_id/open-mistral-7b": {
+   "status": "retired",
+   "retires_on": "2025-03-30"
+  },
+  "mistral/model_id/open-mixtral-8x22b": {
+   "status": "retired",
+   "retires_on": "2025-03-30"
+  },
+  "mistral/model_id/mistral-small-2402": {
+   "status": "retired",
+   "retires_on": "2025-06-16"
+  },
+  "mistral/model_id/mistral-large-2402": {
+   "status": "retired",
+   "retires_on": "2025-06-16"
+  },
+  "mistral/model_id/mistral-medium-2312": {
+   "status": "retired",
+   "retires_on": "2025-06-16"
+  },
+  "mistral/model_id/open-mixtral-8x7b": {
+   "status": "retired",
+   "retires_on": "2025-03-30"
+  },
+  "openai/sdk_symbol/openai-beta-assistants-v2": {
+   "status": "deprecated",
+   "retires_on": "2026-08-26"
+  },
+  "openai/sdk_symbol/openai-beta-assistants-v1": {
+   "status": "removed",
+   "retires_on": "2024-12-18"
+  },
+  "openai/request_param/max_prompt_tokens": {
+   "status": "deprecated",
+   "retires_on": "2026-08-26"
+  },
+  "openai/sdk_symbol/AssistantEventHandler": {
+   "status": "deprecated",
+   "retires_on": "2026-08-26"
+  },
+  "openai/enum_value/thread.run.requires_action": {
+   "status": "deprecated",
+   "retires_on": "2026-08-26"
+  },
+  "openai/enum_value/submit_tool_outputs": {
+   "status": "deprecated",
+   "retires_on": "2026-08-26"
+  },
+  "openai/sdk_symbol/openai-beta-realtime-v1": {
+   "status": "removed",
+   "retires_on": "2026-05-12"
+  },
+  "openai/request_param/prompt_cache_retention": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "openai/request_param/testing_criteria": {
+   "status": "deprecated",
+   "retires_on": "2026-11-30"
+  },
+  "openai/model_id/text-davinci-003": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/gpt-3.5-turbo-0301": {
+   "status": "retired",
+   "retires_on": "2024-09-13"
+  },
+  "openai/model_id/gpt-4-vision-preview": {
+   "status": "retired",
+   "retires_on": "2024-12-06"
+  },
+  "openai/model_id/gpt-3.5-turbo-0125": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4-0613": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4-turbo": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/o1-pro": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/code-cushman-001": {
+   "status": "retired",
+   "retires_on": "2023-03-23"
+  },
+  "openai/model_id/code-cushman-002": {
+   "status": "retired",
+   "retires_on": "2023-03-23"
+  },
+  "openai/model_id/code-davinci-001": {
+   "status": "retired",
+   "retires_on": "2023-03-23"
+  },
+  "openai/model_id/code-davinci-002": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/code-davinci-edit-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/code-search-ada-code-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/code-search-ada-text-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/code-search-babbage-code-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/code-search-babbage-text-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-ada-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-babbage-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-curie-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-davinci-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-davinci-002": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-davinci-edit-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-ada-doc-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-ada-query-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-babbage-doc-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-babbage-query-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-curie-doc-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-curie-query-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-davinci-doc-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-search-davinci-query-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-similarity-ada-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-similarity-babbage-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-similarity-curie-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/text-similarity-davinci-001": {
+   "status": "retired",
+   "retires_on": "2024-01-04"
+  },
+  "openai/model_id/gpt-3.5-turbo-0613": {
+   "status": "retired",
+   "retires_on": "2024-09-13"
+  },
+  "openai/model_id/gpt-3.5-turbo-16k-0613": {
+   "status": "retired",
+   "retires_on": "2024-09-13"
+  },
+  "openai/model_id/gpt-4-1106-vision-preview": {
+   "status": "retired",
+   "retires_on": "2024-12-06"
+  },
+  "openai/model_id/gpt-4-32k": {
+   "status": "retired",
+   "retires_on": "2025-06-06"
+  },
+  "openai/model_id/gpt-4-32k-0314": {
+   "status": "retired",
+   "retires_on": "2025-06-06"
+  },
+  "openai/model_id/gpt-4-32k-0613": {
+   "status": "retired",
+   "retires_on": "2025-06-06"
+  },
+  "openai/model_id/gpt-4.5-preview": {
+   "status": "retired",
+   "retires_on": "2025-07-14"
+  },
+  "openai/model_id/o1-preview": {
+   "status": "retired",
+   "retires_on": "2025-07-28"
+  },
+  "openai/model_id/gpt-4o-audio-preview-2024-10-01": {
+   "status": "retired",
+   "retires_on": "2025-10-10"
+  },
+  "openai/model_id/gpt-4o-realtime-preview-2024-10-01": {
+   "status": "retired",
+   "retires_on": "2025-10-10"
+  },
+  "openai/model_id/o1-mini": {
+   "status": "retired",
+   "retires_on": "2025-10-27"
+  },
+  "openai/model_id/text-moderation-007": {
+   "status": "retired",
+   "retires_on": "2025-10-27"
+  },
+  "openai/model_id/chatgpt-4o-latest": {
+   "status": "retired",
+   "retires_on": "2026-02-17"
+  },
+  "openai/model_id/gpt-4-0314": {
+   "status": "retired",
+   "retires_on": "2026-03-26"
+  },
+  "openai/model_id/gpt-4o-audio-preview": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/gpt-4o-mini-audio-preview": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/gpt-4o-mini-realtime-preview": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/gpt-4o-realtime-preview": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/gpt-4o-realtime-preview-2024-12-17": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/gpt-4o-realtime-preview-2025-06-03": {
+   "status": "retired",
+   "retires_on": "2026-05-07"
+  },
+  "openai/model_id/dall-e-2": {
+   "status": "retired",
+   "retires_on": "2026-05-12"
+  },
+  "openai/model_id/dall-e-3": {
+   "status": "retired",
+   "retires_on": "2026-05-12"
+  },
+  "openai/model_id/gpt-4o-mini-search-preview-2025-03-11": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-4o-search-preview-2025-03-11": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5-chat-latest": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5-codex": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.1-chat-latest": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.1-codex": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.1-codex-max": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.1-codex-mini": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.2-codex": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-audio-mini-2025-10-06": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-realtime-mini-2025-10-06": {
+   "status": "retired",
+   "retires_on": "2026-07-23"
+  },
+  "openai/model_id/gpt-5.2-chat-latest": {
+   "status": "deprecated",
+   "retires_on": "2026-08-10"
+  },
+  "openai/model_id/gpt-5.3-chat-latest": {
+   "status": "deprecated",
+   "retires_on": "2026-08-10"
+  },
+  "openai/model_id/sora-2": {
+   "status": "deprecated",
+   "retires_on": "2026-09-24"
+  },
+  "openai/model_id/sora-2-2025-10-06": {
+   "status": "deprecated",
+   "retires_on": "2026-09-24"
+  },
+  "openai/model_id/sora-2-2025-12-08": {
+   "status": "deprecated",
+   "retires_on": "2026-09-24"
+  },
+  "openai/model_id/sora-2-pro": {
+   "status": "deprecated",
+   "retires_on": "2026-09-24"
+  },
+  "openai/model_id/sora-2-pro-2025-10-06": {
+   "status": "deprecated",
+   "retires_on": "2026-09-24"
+  },
+  "openai/model_id/babbage-002": {
+   "status": "deprecated",
+   "retires_on": "2026-09-28"
+  },
+  "openai/model_id/davinci-002": {
+   "status": "deprecated",
+   "retires_on": "2026-09-28"
+  },
+  "openai/model_id/gpt-3.5-turbo-1106": {
+   "status": "deprecated",
+   "retires_on": "2026-09-28"
+  },
+  "openai/model_id/gpt-3.5-turbo-instruct": {
+   "status": "deprecated",
+   "retires_on": "2026-09-28"
+  },
+  "openai/model_id/ft-babbage-002": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/ft-davinci-002": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/ft-gpt-3.5-turbo": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/ft-gpt-4": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/ft-gpt-4.1-nano-2025-04-14": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/ft-o4-mini-2025-04-16": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-3.5-turbo-completions": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4-0613-completions": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4-1106-preview": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4-turbo-completions": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-4o-2024-05-13": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-image-1": {
+   "status": "deprecated",
+   "retires_on": "2026-10-23"
+  },
+  "openai/model_id/gpt-image-1-mini": {
+   "status": "deprecated",
+   "retires_on": "2026-12-01"
+  },
+  "openai/model_id/gpt-image-1.5": {
+   "status": "deprecated",
+   "retires_on": "2026-12-01"
+  },
+  "openai/model_id/gpt-5-2025-08-07": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/gpt-5-mini-2025-08-07": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/gpt-5-nano-2025-08-07": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/gpt-5-pro-2025-10-06": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/o3-2025-04-16": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/o3-pro-2025-06-10": {
+   "status": "deprecated",
+   "retires_on": "2026-12-11"
+  },
+  "openai/model_id/gpt-4o-audio": {
+   "status": "deprecated",
+   "retires_on": "2027-01-20"
+  },
+  "openai/model_id/gpt-4o-mini-audio": {
+   "status": "deprecated",
+   "retires_on": "2027-01-20"
+  },
+  "openai/model_id/gpt-4o-mini-realtime": {
+   "status": "deprecated",
+   "retires_on": "2027-01-20"
+  },
+  "openai/model_id/gpt-4o-mini-transcribe-2025-03-20": {
+   "status": "deprecated",
+   "retires_on": "2027-01-20"
+  },
+  "openai/model_id/gpt-4o-realtime": {
+   "status": "deprecated",
+   "retires_on": "2027-01-20"
+  },
+  "openai/endpoint//answers": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "openai/endpoint//classifications": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "openai/endpoint//engines": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "openai/endpoint//engines/{engine_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "openai/endpoint//engines/{engine_id}/search": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "plaid/endpoint//income/verification/paystub/get": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//mobile/authorization-code": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//oauth2/clients/{client_id}/access-token/renew": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/orders": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/orders/{order_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/payments": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/payments/{payment_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/refunds": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/settlements": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v1/{location_id}/settlements/{settlement_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v2/customers/{customer_id}/cards": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/customers/{customer_id}/cards/{card_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/employees": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/employees/{id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/adjustment/{adjustment_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/batch-change": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/batch-retrieve-changes": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/batch-retrieve-counts": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/physical-count/{physical_count_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/transfers/{transfer_id}": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/endpoint//v2/inventory/{catalog_object_id}/changes": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/labor/employee-wages": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/labor/employee-wages/{id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/labor/shifts": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/labor/shifts/search": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/labor/shifts/{id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/locations/{location_id}/checkouts": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/locations/{location_id}/transactions": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/endpoint//v2/loyalty/programs": {
+   "status": "deprecated",
+   "retires_on": null
+  },
+  "square/enum_value/BALANCE_CHARGE": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/GIFT_CARD_ACTIVATION": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/GIFT_CARD_RELOAD": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/GIFT_CARD_UNKNOWN": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/INCENTED_PAYMENT": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/RETURNED_ACH_ENTRY": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/RETURNED_SQUARE_275": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/SQUARE_275": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/SQUARE_CAPITAL_ADVANCE": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "square/enum_value/SQUARE_CARD": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/endpoint//v1/invoices/upcoming": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/endpoint//v1/invoices/upcoming/lines": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/endpoint//v1/subscription_items/{subscription_item}/usage_record_summaries": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/endpoint//v1/subscription_items/{subscription_item}/usage_records": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/enum_value/last_during_period": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/enum_value/last_ever": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/enum_value/usage_record": {
+   "status": "removed",
+   "retires_on": null
+  },
+  "stripe/enum_value/usage_record_summary": {
+   "status": "removed",
+   "retires_on": null
+  }
+ },
+ "events": [
+  {
+   "date": "2026-08-07",
+   "id": "adyen/enum_value/moneybookers",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/fine-grained-tool-streaming-2025-05-14",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/token-efficient-tools-2025-02-19",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/output-128k-2025-02-19",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/code-execution-2025-05-22",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/tool_type/code_execution_20250522",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/enum_value/code_execution_result",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-opus-20240229",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-7-sonnet-20250219",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-5-haiku-20241022",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-5-sonnet-20241022",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-5-sonnet-20240620",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-sonnet-20240229",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-3-haiku-20240307",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-opus-4-1-20250805",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-opus-4-20250514",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/model_id/claude-sonnet-4-20250514",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/request_param/budget_tokens",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/request_param/output_format",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/tool_type/text_editor_20250124",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/effort-2025-11-24",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "anthropic/sdk_symbol/interleaved-thinking-2025-05-14",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-5-chat",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-5.1-chat",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-5.2-chat",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-5.3-chat",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/DeepSeek-R1-0528",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/DeepSeek-V3-0324",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/DeepSeek-V3.1",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/grok-3",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/grok-3-mini",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/grok-4-fast-non-reasoning",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/grok-4-fast-reasoning",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Cohere-command-r-08-2024",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Cohere-command-r-plus-08-2024",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Cohere-rerank-v3.5",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Llama-3.2-11B-Vision-Instruct",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Llama-3.2-90B-Vision-Instruct",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Meta-Llama-3.1-405B-Instruct",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Meta-Llama-3.1-8B",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Meta-Llama-3.1-8B-Instruct",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/mistral-document-ai-2505",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Stable-Diffusion-3.5-Large",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Stable-Image-Core",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Stable-Image-Ultra",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/DeepSeek-R1",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/TimeGEN-1",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/tsuzumi-7b",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/o3-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-4.1-nano",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/o4-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/codex-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-4.1",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-4.1-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-4o-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/MAI-Image-2",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/MAI-Image-2e",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/gpt-realtime-2",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Kimi-K2.7-Code",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/Cohere-command-a-plus-05-2026",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/claude-haiku-4-5",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/claude-opus-4-5",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "azure/model_id/claude-sonnet-4-5",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-3-sonnet-20240229-v1:0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-3-5-sonnet-20240620-v1:0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-3-5-sonnet-20241022-v2:0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-3-7-sonnet-20250219-v1:0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/cohere.command-r-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/cohere.command-r-plus-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-3-haiku-20240307-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/amazon.nova-premier-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/amazon.nova-sonic-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/amazon.nova-canvas-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/amazon.nova-reel-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/amazon.nova-reel-v1:1",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-sonnet-4-20250514-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/ai21.jamba-1-5-large-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/ai21.jamba-1-5-mini-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/twelvelabs.marengo-embed-2-7-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "bedrock/model_id/anthropic.claude-opus-4-1-20250805-v1:0",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/cloudforce-one/exemptions",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/exec",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/containers/applications/{application_id}/instances/{instance_id}/fetch",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/routing/suppression/{suppression_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/email/sending/suppression/{suppression_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/paygo-usage",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//accounts/{account_id}/paygo-usage-info",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//system/accounts/{account_tag}/stores/{store_id}/secrets/{secret_id}/duplicate",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/routing/suppression/{suppression_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//zones/{zone_id}/email/sending/suppression/{suppression_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/endpoint//zones/{zone_id}/rate_limit_analytics",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.create",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.delete",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/enum_value/#com.cloudflare.api.account.secrets-store.secret.list",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/enum_value/library_push",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/enum_value/stopped_with_code",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}#store_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets#store_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#secret_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}#store_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#secret_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cloudflare/request_param//accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate#store_id",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/sdk_symbol/cohere.Client",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/request_param/prompt_truncation",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/request_param/force_single_step",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/enum_value/citation-generation",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/embed-english-v2.0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/embed-english-light-v2.0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/embed-multilingual-v2.0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/c4ai-aya-expanse-8b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/c4ai-aya-vision-8b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/rerank-english-v2.0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/rerank-multilingual-v2.0",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/command-r-03-2024",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/command-r-plus-04-2024",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/model_id/command-light",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/endpoint//v1/generate",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/endpoint//v1/summarize",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/endpoint//v1/classify",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/endpoint//v1/connectors",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "cohere/request_param/search_queries_only",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/agent_versions",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/agents",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/agents/{agent_key}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/deployments",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/deployments/configure",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/deployments/upgrade",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}/cancel",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/dora/incident",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/metrics/config/bulk-tags",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/on-call/schedules/{schedule_id}/on-call",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/scorecard/outcomes/batch",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/security/assets",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/security/vulnerabilities",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/services",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/services/{service_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/slo/report",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/slo/report/{report_id}/download",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/slo/report/{report_id}/status",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/tag-policies",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/tag-policies/{policy_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/tag-policies/{policy_id}/score",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/teams",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/endpoint//api/v2/teams/{team_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/assign_agent",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/attribute_value_changed",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/case_created",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/case_review_approved",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/comment_added",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/datadog_agent_key",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/dora_incident",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/event_correlation_signal_correlated",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/execute_workflow",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/security_responses",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/enum_value/status_transitioned",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "digitalocean/endpoint//v2/security/secrets",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}/restore",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "digitalocean/endpoint//v2/security/secrets/{secret}/versions",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//applications/grants",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//applications/grants/{grant_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//authorizations",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//authorizations/clients/{client_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//authorizations/clients/{client_id}/{fingerprint}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//authorizations/{authorization_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//enterprises/{enterprise}/audit-log",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/actions",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/packages",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//enterprises/{enterprise}/settings/billing/shared-storage",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/audit-log",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/credential-authorizations",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/credential-authorizations/{credential_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/external-group/{group_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/external-groups",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/team-sync/groups",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/external-groups",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//reactions/{reaction_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//scim/v2/organizations/{org}/Users/{scim_user_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "github/endpoint//teams/{team_id}/team-sync/group-mappings",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/google-generativeai",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/google.generativeai",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.configure",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.GenerativeModel",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.upload_file",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.get_file",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.list_files",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.delete_file",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/genai.embed_content",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/caching.CachedContent",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/@google/generative-ai",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/GoogleAIFileManager",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/GoogleAICacheManager",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/generative-ai-go",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/sdk_symbol/total_reasoning_tokens",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-1.0-pro",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-1.5-pro",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-1.5-flash",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-1.5-flash-8b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-2.0-flash",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/gemini-2.0-flash-lite",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/text-embedding-004",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "google/model_id/imagen-4.0-generate-001",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "groq/model_id/llama-3.1-8b-instant",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "groq/model_id/llama-3.3-70b-versatile",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/sdk_symbol/mistral-client",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/sdk_symbol/client-completions-stream",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/sdk_symbol/mistralai-azure-package",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/sdk_symbol/mistralai-gcp-package",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/sdk_symbol/mistral-google-cloud",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/labs-leanstral-2603",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-medium-2508",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-small-2506",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/voxtral-mini-2507",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/devstral-2512",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-medium-2507",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/labs-mistral-small-creative",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/labs-devstral-small-2512",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-medium-2509",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-small-2509",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-small-2507",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/devstral-medium-2507",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/devstral-small-2507",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-medium-2506",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/magistral-small-2506",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-ocr-2505",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/devstral-small-2505",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-medium-2505",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-small-2503",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-ocr-2503",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-saba-2502",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-small-2501",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/codestral-2501",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-large-2411",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/pixtral-large-2411",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-moderation-2411",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/ministral-3b-2410",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/ministral-8b-2410",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-small-2409",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/pixtral-12b-2409",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-large-2407",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/open-mistral-nemo-2407",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/open-codestral-mamba",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/codestral-2405",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/open-mistral-7b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/open-mixtral-8x22b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-small-2402",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-large-2402",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/mistral-medium-2312",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "mistral/model_id/open-mixtral-8x7b",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/sdk_symbol/openai-beta-assistants-v2",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/sdk_symbol/openai-beta-assistants-v1",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/request_param/max_prompt_tokens",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/sdk_symbol/AssistantEventHandler",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/enum_value/thread.run.requires_action",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/enum_value/submit_tool_outputs",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/sdk_symbol/openai-beta-realtime-v1",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/request_param/prompt_cache_retention",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/request_param/testing_criteria",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-davinci-003",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-0301",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-vision-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-0125",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-0613",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-turbo",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/o1-pro",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-cushman-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-cushman-002",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-davinci-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-davinci-002",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-davinci-edit-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-search-ada-code-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-search-ada-text-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-search-babbage-code-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/code-search-babbage-text-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-ada-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-babbage-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-curie-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-davinci-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-davinci-002",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-davinci-edit-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-ada-doc-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-ada-query-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-babbage-doc-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-babbage-query-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-curie-doc-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-curie-query-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-davinci-doc-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-search-davinci-query-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-similarity-ada-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-similarity-babbage-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-similarity-curie-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-similarity-davinci-001",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-0613",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-16k-0613",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-1106-vision-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-32k",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-32k-0314",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-32k-0613",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4.5-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/o1-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-audio-preview-2024-10-01",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-realtime-preview-2024-10-01",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/o1-mini",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/text-moderation-007",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/chatgpt-4o-latest",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-0314",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-audio-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-audio-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-realtime-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-realtime-preview",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-realtime-preview-2024-12-17",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-realtime-preview-2025-06-03",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/dall-e-2",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/dall-e-3",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-search-preview-2025-03-11",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-search-preview-2025-03-11",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-chat-latest",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-codex",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.1-chat-latest",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.1-codex",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.1-codex-max",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.1-codex-mini",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.2-codex",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-audio-mini-2025-10-06",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-realtime-mini-2025-10-06",
+   "type": "appeared",
+   "status": "retired"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.2-chat-latest",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5.3-chat-latest",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/sora-2",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/sora-2-2025-10-06",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/sora-2-2025-12-08",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/sora-2-pro",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/sora-2-pro-2025-10-06",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/babbage-002",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/davinci-002",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-1106",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-instruct",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-babbage-002",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-davinci-002",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-gpt-3.5-turbo",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-gpt-4",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-gpt-4.1-nano-2025-04-14",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/ft-o4-mini-2025-04-16",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-3.5-turbo-completions",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-0613-completions",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-1106-preview",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4-turbo-completions",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-2024-05-13",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-image-1",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-image-1-mini",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-image-1.5",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-2025-08-07",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-mini-2025-08-07",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-nano-2025-08-07",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-5-pro-2025-10-06",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/o3-2025-04-16",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/o3-pro-2025-06-10",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-audio",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-audio",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-realtime",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-mini-transcribe-2025-03-20",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/model_id/gpt-4o-realtime",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/endpoint//answers",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/endpoint//classifications",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/endpoint//engines",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/endpoint//engines/{engine_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "openai/endpoint//engines/{engine_id}/search",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "plaid/endpoint//income/verification/paystub/get",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//mobile/authorization-code",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//oauth2/clients/{client_id}/access-token/renew",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/orders",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/orders/{order_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/payments",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/payments/{payment_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/refunds",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/settlements",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v1/{location_id}/settlements/{settlement_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/customers/{customer_id}/cards",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/customers/{customer_id}/cards/{card_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/employees",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/employees/{id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/adjustment/{adjustment_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/batch-change",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/batch-retrieve-changes",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/batch-retrieve-counts",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/physical-count/{physical_count_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/transfers/{transfer_id}",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/inventory/{catalog_object_id}/changes",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/labor/employee-wages",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/labor/employee-wages/{id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/labor/shifts",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/labor/shifts/search",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/labor/shifts/{id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/locations/{location_id}/checkouts",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/locations/{location_id}/transactions",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/capture",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/locations/{location_id}/transactions/{transaction_id}/void",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/endpoint//v2/loyalty/programs",
+   "type": "appeared",
+   "status": "deprecated"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/BALANCE_CHARGE",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/GIFT_CARD_ACTIVATION",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/GIFT_CARD_RELOAD",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/GIFT_CARD_UNKNOWN",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/INCENTED_PAYMENT",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/RETURNED_ACH_ENTRY",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/RETURNED_SQUARE_275",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/SQUARE_275",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/SQUARE_CAPITAL_ADVANCE",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "square/enum_value/SQUARE_CARD",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/endpoint//v1/invoices/upcoming",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/endpoint//v1/invoices/upcoming/lines",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/endpoint//v1/subscription_items/{subscription_item}/usage_record_summaries",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/endpoint//v1/subscription_items/{subscription_item}/usage_records",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/enum_value/last_during_period",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/enum_value/last_ever",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/enum_value/usage_record",
+   "type": "appeared",
+   "status": "removed"
+  },
+  {
+   "date": "2026-08-07",
+   "id": "stripe/enum_value/usage_record_summary",
+   "type": "appeared",
+   "status": "removed"
+  }
+ ]
+}

@@ -14,7 +14,7 @@
 
 <br><br>
 
-**[Why](#why-this-exists)** · **[Rules](#two-rules)** · **[Checks](#what-it-checks)** · **[Fix](#fixing-it)** · **[CI](#in-ci)** · **[Precision](#precision-is-the-product)** · **[Coverage](#coverage)**
+**[Why](#why-this-exists)** · **[Rules](#two-rules)** · **[Checks](#what-it-checks)** · **[Fix](#fixing-it)** · **[CI](#in-ci)** · **[Alerts](#hearing-about-it-without-running-anything)** · **[Precision](#precision-is-the-product)** · **[Coverage](#coverage)**
 
 </div>
 
@@ -211,7 +211,45 @@ dropped. A tool that hides things is worse than one that annoys.
 - uses: nilaypatell/driftcite@v0.2.1
 ```
 
-Fails the build on breaking drift and writes the findings, with evidence links, into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`, `offline`.
+Fails the build on breaking drift and writes the findings, with evidence links, into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`, `offline`, `slack-webhook`.
+
+Not on GitHub? The Action is a thin wrapper; the CLI is the product and runs in any CI. GitLab:
+
+```yaml
+driftcite:
+  image: node:22
+  script: [npx driftcite .]
+```
+
+The same one-liner works in Bitbucket Pipelines, Jenkins, or a plain cron job on a server. Exit 1 on breaking drift is the whole interface.
+
+## Hearing about it without running anything
+
+**Slack.** `--slack` posts breaking findings to a Slack incoming webhook, with the evidence links and the provider-named replacements in the message. The URL is read from `DRIFTCITE_SLACK_WEBHOOK` — environment, not argv, so it never lands in shell history. Only breaking findings post; a clean scan says nothing, because a daily "all clear" is how a channel gets muted. Schedule it with a [baseline](#adopting-it-in-a-codebase-that-already-has-drift) committed and the channel only ever hears about drift that is *new*:
+
+```yaml
+- uses: nilaypatell/driftcite@v0.2.1
+  with:
+    slack-webhook: ${{ secrets.DRIFTCITE_SLACK_WEBHOOK }}
+```
+
+```console
+$ DRIFTCITE_SLACK_WEBHOOK=https://hooks.slack.com/… npx driftcite . --slack
+```
+
+**Calendar.** Every dated shutdown in the feed, as an all-day event. Subscribe once, in any calendar app:
+
+```
+https://raw.githubusercontent.com/nilaypatell/driftcite/main/feed/calendar.ics
+```
+
+**RSS.** Every artifact that appears, every status that moves, and — because providers really do this — every time a shutdown date itself is moved:
+
+```
+https://raw.githubusercontent.com/nilaypatell/driftcite/main/feed/changes.xml
+```
+
+All three carry the same evidence links as the scan output. Nothing in an alert is a guess.
 
 ## Getting a pull request instead of a report
 
