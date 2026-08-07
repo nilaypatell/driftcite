@@ -17,3 +17,10 @@ watch-state.json
 
 # editor
 .vscode/
+
+# Loose screenshots from checking the site by eye. The ones the repo actually
+# ships live under .github/ and site/public/; anything dropped at the root is
+# a working file, and a 260KB PNG nobody references is not history.
+/*.png
+/*.jpeg
+/*.jpg
