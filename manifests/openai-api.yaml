@@ -1,0 +1,183 @@
+provider: openai
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://developers.openai.com/api/docs/deprecations
+  - https://developers.openai.com/api/docs/assistants/migration
+  - https://developers.openai.com/api/docs/assistants/deep-dive
+  - https://developers.openai.com/api/docs/assistants/tools/function-calling
+  - https://developers.openai.com/api/docs/guides/migrate-to-responses
+  - https://developers.openai.com/api/docs/guides/realtime
+  - https://developers.openai.com/api/docs/guides/evals
+  - https://developers.openai.com/api/reference/resources/chat.md
+  - https://developers.openai.com/api/reference/resources/responses.md
+
+# OpenAI API SHAPE. Model IDs live in openai-models.yaml; nothing here is a
+# model. This file is the request parameters, beta headers, SDK classes and
+# event names that a caller types by hand and that OpenAI has said out loud it
+# is taking away.
+#
+# It exists because of a measurement. Across 467 scanned repositories the
+# spec-diff endpoint pipeline produced one repo-hit; five hand-written
+# API-shape artifacts mined from a single Anthropic migration guide produced
+# fifty-seven. OpenAI publishes five such guides and none of them had been
+# read. This is that read.
+#
+# The deadline that matters is 2026-08-26. The Assistants API shuts down
+# twenty days after this file was written, and an Assistants integration is
+# recognisable from a single line of source without knowing anything else
+# about the repository.
+context:
+  file_markers:
+    - openai
+    - OPENAI_API_KEY
+    - "gpt-"
+
+# ---------------------------------------------------------------------------
+# WHAT WAS LEFT OUT, AND WHY. A candidate dropped silently is indistinguishable
+# from one never seen, so the rejections are written down next to the keeps.
+#
+#   response_format  Not deprecated. The Responses API spells it text.format,
+#                    but Chat Completions still accepts response_format and
+#                    OpenAI's own reference does not mark it deprecated. A
+#                    rename is only a rename for code that moved. Flagging it
+#                    would fire on working code, which is the one thing this
+#                    project cannot do.
+#   functions        Provider-stated deprecated in favour of tools, and still
+#                    banned: no separator, no digit, nine characters. It is an
+#                    ordinary word and matches unrelated code.
+#   function_call    Provider-stated deprecated in favour of tool_choice, but
+#                    "function_call" is a LIVE item type in the Responses API.
+#                    Correct modern code writes item.type == "function_call"
+#                    and request_param matches quoted strings. Every hit would
+#                    be on the new API, not the old one.
+#   thread_id        Every Assistants call carries it, and so does every Slack,
+#                    Discord and forum bot that also happens to call OpenAI.
+#   requires_action  The Assistants run status — and also the Stripe
+#                    PaymentIntent status. One SaaS file holds both.
+#   tool_outputs     Plausible as a plain variable name in a Responses tool
+#                    loop, which is the code we would be telling to migrate.
+#   file_ids         Real Assistants parameter, but too ordinary a name.
+#   prompt_id        v1/prompts shuts down 2026-11-30 and this is genuinely
+#                    lost yield, but the only literal a caller writes is
+#                    "prompt" (banned) or "prompt_id", which is what every
+#                    homegrown prompt registry calls its primary key.
+#   temperature,     Reasoning models reject them, but no OpenAI page states
+#   top_p            that in prose we could cite, and both are banned anyway.
+#   endpoints        No /v1/... paths. The literal only fires when the path is
+#                    written as its own quoted string, and real code builds
+#                    URLs from a base plus a suffix. The corpus measured one
+#                    endpoint hit in 467 repositories; five such artifacts are
+#                    already in openai.generated.yaml and that is enough.
+#   realtime beta    The GA guide names the new event names and not the old
+#   event names      ones. The old names are inferable and inference is not
+#                    evidence, so they are not here.
+# ---------------------------------------------------------------------------
+artifacts:
+  # ---- Assistants API. Shuts down 2026-08-26. Replaced by Responses +
+  # Conversations, which is two APIs and a rewrite, so replacement is null
+  # rather than a token the CLI would offer to substitute. ----
+  - id: openai/sdk_symbol/openai-beta-assistants-v2
+    kind: sdk_symbol
+    match:
+      literals: ["assistants=v2"]
+    status: deprecated
+    retires_on: 2026-08-26
+    replacement: null
+    severity: breaking
+    note: OpenAI-Beta header for the Assistants API. Nothing else sends it.
+    evidence: https://developers.openai.com/api/docs/assistants/deep-dive
+
+  - id: openai/sdk_symbol/openai-beta-assistants-v1
+    kind: sdk_symbol
+    match:
+      literals: ["assistants=v1"]
+    status: removed
+    announced_on: 2024-10-02
+    retires_on: 2024-12-18
+    replacement: null
+    severity: breaking
+    note: v1 beta was cut off in 2024 and the whole Assistants API follows on 2026-08-26.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  - id: openai/request_param/max_prompt_tokens
+    kind: request_param
+    match:
+      literals: ["max_prompt_tokens"]
+    status: deprecated
+    retires_on: 2026-08-26
+    replacement: null
+    severity: breaking
+    note: Assistants run parameter with no Responses counterpart. Trim input yourself.
+    evidence: https://developers.openai.com/api/docs/assistants/deep-dive
+
+  - id: openai/sdk_symbol/AssistantEventHandler
+    kind: sdk_symbol
+    match:
+      literals: ["AssistantEventHandler"]
+    status: deprecated
+    retires_on: 2026-08-26
+    replacement: null
+    severity: breaking
+    note: Python SDK base class for Assistants streaming. Responses streams typed events instead.
+    evidence: https://developers.openai.com/api/docs/assistants/tools/function-calling
+
+  - id: openai/enum_value/thread.run.requires_action
+    kind: enum_value
+    match:
+      literals: ["thread.run.requires_action"]
+    status: deprecated
+    retires_on: 2026-08-26
+    replacement: null
+    severity: breaking
+    note: Assistants streaming event name. No event by this name exists in Responses.
+    evidence: https://developers.openai.com/api/docs/assistants/tools/function-calling
+
+  - id: openai/enum_value/submit_tool_outputs
+    kind: enum_value
+    match:
+      literals: ["submit_tool_outputs"]
+    status: deprecated
+    retires_on: 2026-08-26
+    replacement: null
+    severity: breaking
+    note: The required_action type a polling Assistants loop compares against.
+    evidence: https://developers.openai.com/api/docs/assistants/tools/function-calling
+
+  # ---- Realtime API beta. The header was removed on 2026-05-12; sending it
+  # today is already wrong. ----
+  - id: openai/sdk_symbol/openai-beta-realtime-v1
+    kind: sdk_symbol
+    match:
+      literals: ["realtime=v1"]
+    status: removed
+    announced_on: 2025-09-15
+    retires_on: 2026-05-12
+    replacement: null
+    severity: breaking
+    note: Realtime beta header. Remove it — the GA interface also renamed session and event shapes.
+    evidence: https://developers.openai.com/api/docs/deprecations
+
+  # ---- Request parameters OpenAI marks deprecated in its own reference. ----
+  - id: openai/request_param/prompt_cache_retention
+    kind: request_param
+    match:
+      literals: ["prompt_cache_retention"]
+    status: deprecated
+    replacement: prompt_cache_options.ttl
+    severity: warning
+    note: Deprecated on both Chat Completions and Responses.
+    evidence: https://developers.openai.com/api/reference/resources/chat.md
+
+  - id: openai/request_param/testing_criteria
+    kind: request_param
+    match:
+      literals: ["testing_criteria"]
+    status: deprecated
+    announced_on: 2026-06-03
+    retires_on: 2026-11-30
+    replacement: null
+    severity: warning
+    note: Required field of the Evals API, which shuts down with the Evals platform.
+    evidence: https://developers.openai.com/api/docs/guides/evals
+

@@ -1,0 +1,131 @@
+provider: mistral
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://docs.mistral.ai/getting-started/clients.md
+  - https://github.com/mistralai/client-python/blob/main/MIGRATION.md
+
+# Mistral's API shape. The model list lives in mistral-models.yaml; this file
+# is everything else, and "everything else" is smaller than it looks.
+#
+# Mistral publishes no API changelog and no endpoint deprecation page. The
+# closest thing is one sentence in the models overview telling readers to be
+# prepared for the deprecation of certain endpoints in the coming months,
+# which names no endpoint and no date. Nothing can be mined from that, so
+# there is not a single endpoint or request_param artifact in this file.
+#
+# What Mistral does document, twice, is the Python SDK. There is a "Migrate
+# from V1" tab on the SDK Clients page and a MIGRATION.md in the client repo.
+# Every artifact below is one of those two pages, and nothing below is a
+# rename inferred from reading the SDK source.
+#
+# The evidence URL for the docs page is the .md, not the rendered page. The
+# rendered page keeps the migration behind a JavaScript tab and ships HTML
+# containing none of these literals; the .md Mistral serves at the same path
+# contains all of them. Cite the copy a reader can actually check.
+#
+# Two generations of break, and they do not carry the same severity.
+#
+#   v0 to v1 removed the flat client class and the flat method names. Both
+#   installs Mistral documents today resolve to 1.x or later, so v0 code
+#   cannot run on any version you can install. Those are breaking.
+#
+#   v1 to v2 folded the Azure and GCP clients into the main package. Mistral
+#   still documents the v1 pin as a supported install, so pinned v1 code still
+#   runs. Those are warnings. Calling them breaking would be inventing an
+#   outage that has not happened.
+#
+# DELIBERATELY EXCLUDED. All of these are real renames Mistral documents, and
+# every one of them was dropped for the same reason -- written the way the
+# provider writes it, the literal also matches working code.
+#
+#   The v0 chat and embeddings methods. Character for character they are the
+#   Ollama Python client's methods, and the most copied Ollama snippet in
+#   existence passes mistral as the model name -- so the file marker that is
+#   supposed to prove this is Mistral code gets satisfied by the false
+#   positive itself. The v0 streaming chat method is Cohere's ClientV2 method
+#   name, and this feed already ships Cohere. The v0 file-create method is a
+#   live OpenAI method. The v0 model-delete method is a live boto3 SageMaker
+#   method, reached through a variable everyone names client. Each of these
+#   would fire on healthy code in exactly the multi-provider files this feed
+#   is scanned against.
+#
+#   The MistralAzure constructor keyword arguments. The endpoint one is the
+#   OpenAI Azure client's own parameter name; matched as an object key it
+#   would flag every Azure OpenAI call site in any file mentioning Mistral.
+#   The API-key one appears only in the same constructor call as the endpoint
+#   one, so shipping it alone would report half a rename and miss the half
+#   that fails first.
+#
+#   The 42 schema renames listed in MIGRATION.md. Mistral says exactly one of
+#   them is user-facing, and that one is an ordinary English word five
+#   characters long, which the distinctiveness rule bans for precisely the
+#   reason the rule exists. The other 41 are internal request and response
+#   types no caller constructs.
+#
+#   The v0 chat-message class. It is on the page, but it shares its name with
+#   the message class in LangChain and in LlamaIndex, and a file importing
+#   langchain_mistralai satisfies the Mistral marker while containing the
+#   LangChain one. That is a guaranteed false positive, not a risk of one.
+#
+#   The fine-tuning dry-run argument, which a docs FAQ says will be removed in
+#   September without naming a year. No year means no retires_on, and the name
+#   is a scripting idiom that appears in deploy code everywhere.
+context:
+  file_markers:
+    - mistral
+    - MISTRAL_API_KEY
+    - api.mistral.ai
+
+artifacts:
+  # ---- v0 to v1: absent from every version you can install today ----
+  - id: mistral/sdk_symbol/mistral-client
+    kind: sdk_symbol
+    match:
+      literals: ["MistralClient", "MistralAsyncClient"]
+    status: deprecated
+    replacement: Mistral
+    severity: warning
+    note: Both v0 client classes were consolidated into one Mistral class.
+    evidence: https://github.com/mistralai/client-python/blob/main/MIGRATION.md
+
+  - id: mistral/sdk_symbol/client-completions-stream
+    kind: sdk_symbol
+    match:
+      literals: ["client.completions_stream"]
+    status: deprecated
+    replacement: client.fim.stream
+    severity: warning
+    note: The v0 streaming fill-in-the-middle method. Gone in the v1 rewrite.
+    evidence: https://github.com/mistralai/client-python/blob/main/MIGRATION.md
+
+  # ---- v1 to v2: the v1 pin is still a documented install, so not breaking ----
+  - id: mistral/sdk_symbol/mistralai-azure-package
+    kind: sdk_symbol
+    match:
+      literals: ["mistralai_azure"]
+    status: deprecated
+    replacement: mistralai.azure.client
+    severity: warning
+    note: The separate Azure package became a namespace sub-package in SDK v2.
+    evidence: https://docs.mistral.ai/getting-started/clients.md
+
+  - id: mistral/sdk_symbol/mistralai-gcp-package
+    kind: sdk_symbol
+    match:
+      literals: ["mistralai_gcp"]
+    status: deprecated
+    replacement: mistralai.gcp.client
+    severity: warning
+    note: The separate GCP package became a namespace sub-package in SDK v2.
+    evidence: https://docs.mistral.ai/getting-started/clients.md
+
+  - id: mistral/sdk_symbol/mistral-google-cloud
+    kind: sdk_symbol
+    match:
+      literals: ["MistralGoogleCloud"]
+    status: deprecated
+    replacement: MistralGCP
+    severity: warning
+    note: The GCP client class was renamed in SDK v2.
+    evidence: https://docs.mistral.ai/getting-started/clients.md

@@ -1,0 +1,242 @@
+provider: google
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://ai.google.dev/gemini-api/docs/libraries
+  - https://ai.google.dev/gemini-api/docs/migrate
+  - https://ai.google.dev/gemini-api/docs/changelog
+
+# Google's API shape, as opposed to its model IDs, which live in
+# manifests/google-models.yaml. Almost everything here is one migration: the
+# legacy Gemini libraries (google-generativeai, @google/generative-ai,
+# generative-ai-go) to the Google GenAI SDK (google-genai, @google/genai,
+# google.golang.org/genai). The libraries page dates that deprecation to
+# November 30th, 2025 and the migrate page prints the before-and-after for every
+# call, which is what makes these literals citable rather than remembered.
+#
+# The legacy libraries still work. Google says "not actively maintained", not
+# "shut down", and they still reach a live v1beta endpoint, so every legacy
+# symbol below is deprecated/warning. Calling them breaking would be a louder
+# claim than the page supports, and the page is the whole trust model.
+#
+# The one breaking artifact is total_reasoning_tokens, which Google renamed
+# outright in v1beta on 2025-12-19. Code reading that field gets nothing back.
+#
+# WHAT WAS DELIBERATELY LEFT OUT, and why:
+#
+# temperature, top_p, top_k. The changelog entry of 2026-07-21 deprecates all
+# three by name. "temperature" is an ordinary word with no separator and no
+# digit and is banned outright. top_p and top_k clear the letter of the
+# distinctiveness rule on their underscore and fail its purpose: every provider
+# on earth accepts both, so a file that calls OpenAI and mentions Gemini would
+# be told its OpenAI sampling parameters are dying on Google's authority. They
+# are deprecated, not removed, with no shutdown date and no replacement token.
+#
+# response_mime_type, response_modalities, image_config. The Interactions API
+# breaking-changes guide removes all three, and they are distinctive enough to
+# match cleanly. They are also still correct in generateContent — the SDK
+# migration guide's own "After" block passes response_mime_type to
+# types.GenerateContentConfig. One name, alive on one API and dead on another,
+# and nothing in a file tells the scanner which one is being called. A finding
+# that is right half the time is a false finding half the time.
+#
+# outputs -> steps, from the same guide. "outputs" is an ordinary word.
+#
+# The GMP Contextual View tool, shut down 2026-06-15. The changelog announces it
+# in prose and never prints the tool string, so there is no literal to match.
+#
+# Tuning. The changelog says tuning is no longer supported on any model
+# (2025-05-27) while the migrate page still shows client.tunings.tune() in its
+# After column. Two Google pages disagree; neither goes in.
+#
+# The Dart, Swift and Android legacy libraries. Google lists them as not
+# actively maintained, but the CLI scans no .dart or .swift files, and the
+# Android import path is nowhere on these pages — only the repo name is.
+#
+# getGenerativeModel, the legacy JavaScript model handle. It is deprecated and
+# it is distinctive, and it still cannot go in: the word shape is
+# (?<![\w./-])literal(?![\w.-]), and this symbol is only ever written as
+# genAI.getGenerativeModel(...), so the dot in front of it defeats the
+# lookbehind every time. An artifact that can never fire is not a safe
+# artifact, it is a number in a coverage count with nothing behind it. Every
+# literal in this file was run through the real matcher before it was kept;
+# that check is also why caching.CachedContent carries its .create suffix.
+# Files importing the legacy JS SDK are already caught by GoogleGenerativeAI.
+#
+# The same lookbehind means total_reasoning_tokens is found in
+# usage["total_reasoning_tokens"] and in a TypeScript field declaration, but
+# not in resp.usage.total_reasoning_tokens. It is kept because the forms it
+# does match are real and its precision is total. Partial reach is a smaller
+# problem than a wrong answer.
+context:
+  file_markers:
+    - gemini
+    - generativeai
+    - generative-ai
+    - generativelanguage
+
+artifacts:
+  # ---- the legacy Python library ----
+  # Two artifacts, not one, because the two spellings are proved by different
+  # pages. The libraries page names the distribution and dates its deprecation;
+  # the import path only ever appears in the migrate page's Before column. An
+  # artifact whose literal is absent from its own evidence URL is exactly the
+  # claim a reader cannot check in one click.
+  - id: google/sdk_symbol/google-generativeai
+    kind: sdk_symbol
+    match:
+      literals: ["google-generativeai"]
+    status: deprecated
+    replacement: google-genai
+    severity: warning
+    note: Legacy Python distribution, deprecated and not actively maintained.
+    evidence: https://ai.google.dev/gemini-api/docs/libraries
+
+  - id: google/sdk_symbol/google.generativeai
+    kind: sdk_symbol
+    match:
+      literals: ["google.generativeai"]
+    status: deprecated
+    replacement: google.genai
+    severity: warning
+    note: Legacy Python import path. The new SDK imports genai from google.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.configure
+    kind: sdk_symbol
+    match:
+      literals: ["genai.configure"]
+    status: deprecated
+    replacement: genai.Client
+    severity: warning
+    note: Legacy module-level auth. The new SDK takes the key on the client.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.GenerativeModel
+    kind: sdk_symbol
+    match:
+      literals: ["genai.GenerativeModel"]
+    status: deprecated
+    replacement: client.models.generate_content
+    severity: warning
+    note: Legacy model object. The new SDK calls through one genai.Client().
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.upload_file
+    kind: sdk_symbol
+    match:
+      literals: ["genai.upload_file"]
+    status: deprecated
+    replacement: client.files.upload
+    severity: warning
+    note: Legacy module-level Files helper, now a service on the client.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.get_file
+    kind: sdk_symbol
+    match:
+      literals: ["genai.get_file"]
+    status: deprecated
+    replacement: client.files.get
+    severity: warning
+    note: Legacy module-level Files helper, now a service on the client.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.list_files
+    kind: sdk_symbol
+    match:
+      literals: ["genai.list_files"]
+    status: deprecated
+    replacement: client.files.list
+    severity: warning
+    note: Legacy module-level Files helper, now a service on the client.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.delete_file
+    kind: sdk_symbol
+    match:
+      literals: ["genai.delete_file"]
+    status: deprecated
+    replacement: client.files.delete
+    severity: warning
+    note: Legacy module-level Files helper, now a service on the client.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/genai.embed_content
+    kind: sdk_symbol
+    match:
+      literals: ["genai.embed_content"]
+    status: deprecated
+    replacement: client.models.embed_content
+    severity: warning
+    note: Legacy module-level embedding call, now a method on client.models.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  # The literal carries .create because the word shape refuses a token followed
+  # by a dot, and this class is never written without one.
+  - id: google/sdk_symbol/caching.CachedContent
+    kind: sdk_symbol
+    match:
+      literals: ["caching.CachedContent.create"]
+    status: deprecated
+    replacement: client.caches.create
+    severity: warning
+    note: Legacy context-caching class from google.generativeai.caching.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  # ---- the legacy JavaScript library ----
+  - id: google/sdk_symbol/@google/generative-ai
+    kind: sdk_symbol
+    match:
+      literals: ["@google/generative-ai"]
+    status: deprecated
+    replacement: "@google/genai"
+    severity: warning
+    note: Legacy JavaScript SDK, deprecated and not actively maintained.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/GoogleAIFileManager
+    kind: sdk_symbol
+    match:
+      literals: ["GoogleAIFileManager"]
+    status: deprecated
+    replacement: ai.files.upload
+    severity: warning
+    note: Separate file client from @google/generative-ai/server, now ai.files.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  - id: google/sdk_symbol/GoogleAICacheManager
+    kind: sdk_symbol
+    match:
+      literals: ["GoogleAICacheManager"]
+    status: deprecated
+    replacement: ai.caches.create
+    severity: warning
+    note: Separate cache client from @google/generative-ai/server, now ai.caches.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  # ---- the legacy Go library ----
+  - id: google/sdk_symbol/generative-ai-go
+    kind: sdk_symbol
+    match:
+      literals: ["github.com/google/generative-ai-go"]
+    status: deprecated
+    replacement: google.golang.org/genai
+    severity: warning
+    note: Legacy Go SDK, deprecated and not actively maintained.
+    evidence: https://ai.google.dev/gemini-api/docs/migrate
+
+  # ---- renamed outright, not part of the SDK migration ----
+  # The only breaking artifact in this file. Google renamed the field in v1beta
+  # on 2025-12-19; the old name is not returned any more, so code reading it
+  # gets a KeyError or an undefined, depending on the language.
+  - id: google/sdk_symbol/total_reasoning_tokens
+    kind: sdk_symbol
+    match:
+      literals: ["total_reasoning_tokens"]
+    status: removed
+    announced_on: 2025-12-19
+    replacement: total_thought_tokens
+    severity: breaking
+    note: Renamed in the v1beta Interactions API. The old field is gone.
+    evidence: https://ai.google.dev/gemini-api/docs/changelog

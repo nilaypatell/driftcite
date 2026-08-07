@@ -49,7 +49,10 @@ def contradicted_notes(artifacts, today=None):
     today = today or datetime.date.today()
     stale = []
     for art in artifacts:
-        if not art.get("retires_on") or art.get("status") == "retired":
+        # `removed` is as terminal as `retired` — a parameter or header the
+        # provider stopped accepting is not counting down to anything. Only
+        # the statuses that still imply a future event can be overtaken.
+        if not art.get("retires_on") or art.get("status") in ("retired", "removed"):
             continue
         try:
             when = datetime.date.fromisoformat(str(art["retires_on"]))

@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 15 providers · 331 artifacts · zero dependencies · 179 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 15 providers · 331 artifacts · zero dependencies · 185 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -294,22 +294,22 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 
 | Provider | Source | Artifacts |
 |:--|:--|--:|
-| **OpenAI** | `openai/openai-openapi` + deprecations page | 108 |
+| **OpenAI** | `openai/openai-openapi`, deprecations page and Responses migration guide | 117 |
+| **Mistral** | model docs and SDK migration guide, curated | 45 |
 | **Square** | `square/connect-api-specification` | 41 |
-| **Mistral** | model docs deprecation table, curated | 40 |
 | **Cloudflare** | `cloudflare/api-schemas` | 33 |
 | **GitHub** | `github/rest-api-description` | 26 |
+| **Google** | Gemini deprecations, changelog and SDK migration guide | 23 |
+| **Anthropic** | model deprecations and migration guide, curated | 21 |
+| **Cohere** | deprecations page and v1-to-v2 guide, curated | 19 |
 | **Bedrock** | AWS model lifecycle page, curated | 17 |
-| **Anthropic** | model deprecations page, curated | 15 |
-| **Cohere** | deprecations page, curated | 15 |
 | **Datadog** | `DataDog/datadog-api-client-python` | 12 |
-| **Google** | Gemini deprecations page and changelog, curated | 8 |
 | **Stripe** | `stripe/openapi` · tags v1200 through v2375 | 8 |
 | DigitalOcean · Groq · Adyen · Plaid | specs and deprecation pages | 8 |
 | Twilio · Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Fifteen providers in the published feed, 331 artifacts, every one carrying the
+Fifteen providers in the published feed, 370 artifacts, every one carrying the
 provider's own evidence URL. Nineteen are tracked in total: Twilio, Asana and
 Box are polled and have produced nothing yet, and Azure is held back below.
 

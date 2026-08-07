@@ -1,0 +1,118 @@
+provider: cohere
+spec_version: 1
+updated: 2026-08-06
+sources:
+  - https://docs.cohere.com/docs/migrating-v1-to-v2
+
+# Cohere's v1-to-v2 migration guide, mined for API shape rather than model IDs.
+# The dated deprecation page is already covered by cohere-models.yaml; this file
+# is the other half — the parameters, the tool schema and the stream event names
+# that changed when /v1/chat became /v2/chat.
+#
+# What these findings mean. /v1/chat is not deprecated. Cohere deprecated
+# /v1/generate, /v1/summarize, /v1/classify and /v1/connectors on 2025-09-15 and
+# left /v1/chat alone. So nothing here is breaking today, and nothing here gets
+# a breaking severity. What it is instead is a migration blocker — v2/chat
+# rejects every literal below, and the guide's own "Unsupported features in v2"
+# list is where four of them come from. Code carrying these is on the v1 shape
+# and cannot move without an edit.
+#
+# WHAT WAS DELIBERATELY LEFT OUT, and why. The guide names about fifteen
+# candidates. Six survived. The rest were dropped for one of two reasons.
+#
+# Banned by the distinctiveness rule — no separator, no digit, under twelve
+# characters, so they would match ordinary code in any file that happens to say
+# cohere: "preamble", "message", "connectors", "chatbot" (the v1 role name,
+# renamed to assistant in v2), "documents", "citations". "connectors" is a real
+# deprecation with a real date and is still not worth matching as a bare word;
+# the /v1/connectors endpoint artifact in cohere-models.yaml covers the same
+# migration without the noise.
+#
+# Distinctive enough to pass the mechanical rule, and dropped anyway because
+# measurement said they collide. GitHub code search, restricted to Python:
+#
+#   chat_history — 11,744 files also say cohere, but 2,564 of those contain the
+#     LangChain prompt literal {chat_history} and 1,198 contain
+#     MessagesPlaceholder, whose variable_name="chat_history" is a quoted match.
+#     Only 782 cohere files call co.chat at all. langchain_cohere satisfies the
+#     cohere file marker on its own, so the false positives would outnumber the
+#     true ones. This is the single most common v1 parameter and it is still not
+#     safe to match.
+#   conversation_id — 3,840 files say both, against those same 782 that call
+#     co.chat. The name was never Cohere's coinage; every chatbot with a session
+#     table has one, and conversation_id= in such a file is that table, not a
+#     retired parameter.
+#   tool_results — 3,968 files say both, 1,150 of them also LangChain. As an
+#     object key the shape tool_results = [] fires on any agent loop, including
+#     one already migrated to v2. Telling a migrated caller they are on v1 is
+#     the worst failure this tool has.
+#   text-generation — the v1 stream event type, replaced by content-delta. It is
+#     also the HuggingFace pipeline task name, and 146 files carry cohere,
+#     transformers and this string together. citation-generation below is the
+#     same kind of artifact with none of the collision, which is why one is here
+#     and the other is not.
+#   event_type, document_ids — the first is a generic field name in any
+#     event-driven code; the second appears only inside printed output on the
+#     page, never as a stated change, so there is no claim to cite.
+#
+# parameter_definitions was nearly dropped on the same grounds — 18,688 Python
+# files use the name and only 9% mention cohere — until the sample was read.
+# Inside cohere-marked files it is real every time: Oracle's cohere_tool.py,
+# litellm and agno's Cohere adapters, langchain_cohere's cohere_agent.py, the
+# Command-R tool-use chat template. The base rate lives in files the marker gate
+# already excludes. Counting is not the same as looking.
+context:
+  file_markers:
+    - cohere
+    - CO_API_KEY
+    - COHERE_API_KEY
+    - api.cohere
+
+artifacts:
+  # ---- the v1 client itself ----
+  # Not breaking, not dated, and by far the highest-yield literal here: roughly
+  # 11.5k Python files construct it. The regex excludes ClientV2 because the
+  # word shape refuses a trailing word character, so a migrated caller is quiet.
+  # It is carried at info severity as the anchor that makes the five findings
+  # below legible — on its own, nothing is wrong with it.
+  - id: cohere/sdk_symbol/cohere.Client
+    kind: sdk_symbol
+    match:
+      literals: ["cohere.Client"]
+    status: deprecated
+    replacement: cohere.ClientV2
+    severity: info
+    note: Cohere's migration guide calls this the old client. ClientV2 is the v2 standard.
+    evidence: https://docs.cohere.com/docs/migrating-v1-to-v2
+
+  # ---- listed under "Unsupported features in v2" ----
+  - id: cohere/request_param/prompt_truncation
+    kind: request_param
+    match:
+      literals: ["prompt_truncation"]
+    status: deprecated
+    replacement: null
+    severity: warning
+    note: v1-only RAG parameter. v2/chat does not support it and names no equivalent.
+    evidence: https://docs.cohere.com/docs/migrating-v1-to-v2
+
+  - id: cohere/request_param/force_single_step
+    kind: request_param
+    match:
+      literals: ["force_single_step"]
+    status: deprecated
+    replacement: null
+    severity: info
+    note: Unsupported in v2, where all tool calls are multi-step. Cohere still recommends v1 for it.
+    evidence: https://docs.cohere.com/docs/migrating-v1-to-v2
+
+  # ---- renamed or restructured between v1 and v2 ----
+  - id: cohere/enum_value/citation-generation
+    kind: enum_value
+    match:
+      literals: ["citation-generation"]
+    status: deprecated
+    replacement: citation-start
+    severity: warning
+    note: v1 stream event type. A v2 stream never emits it, so the branch goes dead silently.
+    evidence: https://docs.cohere.com/docs/migrating-v1-to-v2

@@ -1,0 +1,116 @@
+provider: anthropic
+spec_version: 1
+updated: 2026-08-06
+
+# The API shape of Anthropic's surface, as opposed to its model IDs.
+#
+# manifests/anthropic.yaml holds the models and the handful of API-shape
+# artifacts mined from the migration guide's Opus 4.6 section. This file is the
+# rest of that seam. It comes from the migration guide and, where the guide
+# says "update tool versions" and links out, from the two tool pages it links
+# to. Every literal here was checked against the raw page it cites.
+#
+# What is in here is one shape and one shape only. A date-stamped tool type
+# (text_editor_20241022) or a beta header (output-128k-2025-02-19) cannot
+# collide with English, cannot belong to another vendor, and is either the
+# current one or it is dead. That is the whole reason these are worth carrying.
+#
+# Deliberately left out, each for a reason worth writing down:
+#
+#   temperature, top_p, top_k. The deprecations page carries an explicit "API
+#   parameter deprecations" row for these — 400 on Claude Opus 4.7 and later.
+#   It is the strongest evidence class this project has and it still does not
+#   earn an entry. temperature fails the distinctiveness bar outright. top_p
+#   and top_k pass it and fail on two other counts. They still work on Opus
+#   4.6, Sonnet 4.6 and Haiku 4.5, which are current models Anthropic still
+#   recommends, so most hits would be on code that is fine. And they are not
+#   Anthropic's words — every other provider's request body has a top_p, and
+#   the feed refuses to build when one literal has two owners with two death
+#   dates. A parameter this ordinary is a model-ID problem wearing a parameter
+#   costume, and the model IDs already catch it.
+#
+#   web_search_20250305, web_fetch_20250910, computer_20250124,
+#   code_execution_20250825, text_editor_20250429, and the
+#   computer-use-2025-01-24 beta header. These look exactly like the artifacts
+#   below and are not artifacts at all. The tool reference page says so in as
+#   many words — for web search, web fetch and code execution, "both the new
+#   and old versions are current"; the old one is a capability choice, not a
+#   deprecation. code_execution_20250825 is the version Anthropic's own Haiku
+#   4.5 migration steps tell you to move *to*. Matching on version shape alone
+#   would have flagged six live tool types as dead.
+#
+#   The v1 preview fallback shapes (on_partial, fallback_primary,
+#   server-side-fallback-2026-06-02). Not on any published page. A literal
+#   nobody can look up is a claim, not a citation.
+#
+# The four beta headers are recorded as deprecated rather than removed. The
+# request still succeeds; the header is dead weight, not a 400. Calling that
+# "removed" would tell someone their build is broken when it is not.
+context:
+  file_markers:
+    - anthropic
+    - "claude-"
+    - ANTHROPIC_API_KEY
+
+artifacts:
+  # ---- beta headers that went GA and now do nothing ----
+  - id: anthropic/sdk_symbol/fine-grained-tool-streaming-2025-05-14
+    kind: sdk_symbol
+    match:
+      literals: ["fine-grained-tool-streaming-2025-05-14"]
+    status: deprecated
+    replacement: null
+    severity: info
+    note: Beta header. Fine-grained tool streaming is GA. Safe to delete.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/sdk_symbol/token-efficient-tools-2025-02-19
+    kind: sdk_symbol
+    match:
+      literals: ["token-efficient-tools-2025-02-19"]
+    status: deprecated
+    replacement: null
+    severity: info
+    note: Beta header. Built into every Claude 4 model, so it has no effect.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/sdk_symbol/output-128k-2025-02-19
+    kind: sdk_symbol
+    match:
+      literals: ["output-128k-2025-02-19"]
+    status: deprecated
+    replacement: null
+    severity: info
+    note: Beta header. Built into every Claude 4 model, so it has no effect.
+    evidence: https://platform.claude.com/docs/en/about-claude/models/migration-guide.md
+
+  - id: anthropic/sdk_symbol/code-execution-2025-05-22
+    kind: sdk_symbol
+    match:
+      literals: ["code-execution-2025-05-22"]
+    status: deprecated
+    replacement: null
+    severity: info
+    note: Beta header for the legacy Python-only code execution tool. None is required now.
+    evidence: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md
+
+  # ---- tool type versions the provider has moved off ----
+  - id: anthropic/tool_type/code_execution_20250522
+    kind: tool_type
+    match:
+      literals: ["code_execution_20250522"]
+    status: deprecated
+    replacement: code_execution_20250825
+    severity: warning
+    note: Legacy Python-only code execution. Anthropic's upgrade step names this replacement.
+    evidence: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md
+
+  - id: anthropic/enum_value/code_execution_result
+    kind: enum_value
+    match:
+      literals: ["code_execution_result"]
+    status: deprecated
+    replacement: bash_code_execution_result
+    severity: warning
+    note: Legacy code execution response block. Current tool versions send the replacement instead.
+    evidence: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md

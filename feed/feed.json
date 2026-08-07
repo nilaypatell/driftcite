@@ -17,6 +17,7 @@
   {
    "provider": "anthropic",
    "manifests": [
+    "anthropic-api.yaml",
     "anthropic.yaml"
    ],
    "source_license": null,
@@ -26,7 +27,7 @@
     "https://platform.claude.com/docs/en/about-claude/models/overview.md",
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md"
    ],
-   "artifact_count": 15
+   "artifact_count": 21
   },
   {
    "provider": "bedrock",
@@ -56,14 +57,16 @@
   {
    "provider": "cohere",
    "manifests": [
+    "cohere-api.yaml",
     "cohere-models.yaml"
    ],
    "source_license": null,
    "source_notice": null,
    "sources": [
+    "https://docs.cohere.com/docs/migrating-v1-to-v2",
     "https://docs.cohere.com/docs/deprecations"
    ],
-   "artifact_count": 15
+   "artifact_count": 19
   },
   {
    "provider": "datadog",
@@ -104,15 +107,18 @@
   {
    "provider": "google",
    "manifests": [
+    "google-api.yaml",
     "google-models.yaml"
    ],
    "source_license": null,
    "source_notice": null,
    "sources": [
-    "https://ai.google.dev/gemini-api/docs/deprecations",
-    "https://ai.google.dev/gemini-api/docs/changelog"
+    "https://ai.google.dev/gemini-api/docs/libraries",
+    "https://ai.google.dev/gemini-api/docs/migrate",
+    "https://ai.google.dev/gemini-api/docs/changelog",
+    "https://ai.google.dev/gemini-api/docs/deprecations"
    ],
-   "artifact_count": 8
+   "artifact_count": 23
   },
   {
    "provider": "groq",
@@ -129,18 +135,22 @@
   {
    "provider": "mistral",
    "manifests": [
+    "mistral-api.yaml",
     "mistral-models.yaml"
    ],
    "source_license": null,
    "source_notice": null,
    "sources": [
+    "https://docs.mistral.ai/getting-started/clients.md",
+    "https://github.com/mistralai/client-python/blob/main/MIGRATION.md",
     "https://docs.mistral.ai/getting-started/models/models_overview/"
    ],
-   "artifact_count": 40
+   "artifact_count": 45
   },
   {
    "provider": "openai",
    "manifests": [
+    "openai-api.yaml",
     "openai-models.yaml",
     "openai.generated.yaml"
    ],
@@ -148,9 +158,17 @@
    "source_notice": "https://github.com/openai/openai-openapi/blob/main/LICENSE",
    "sources": [
     "https://developers.openai.com/api/docs/deprecations",
+    "https://developers.openai.com/api/docs/assistants/migration",
+    "https://developers.openai.com/api/docs/assistants/deep-dive",
+    "https://developers.openai.com/api/docs/assistants/tools/function-calling",
+    "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+    "https://developers.openai.com/api/docs/guides/realtime",
+    "https://developers.openai.com/api/docs/guides/evals",
+    "https://developers.openai.com/api/reference/resources/chat.md",
+    "https://developers.openai.com/api/reference/resources/responses.md",
     "https://github.com/openai/openai-openapi/compare/1.3.0...2.0.0"
    ],
-   "artifact_count": 108
+   "artifact_count": 117
   },
   {
    "provider": "plaid",
@@ -208,6 +226,126 @@
     "adyen",
     "ADYEN_API_KEY",
     "checkout.adyen.com"
+   ]
+  },
+  {
+   "id": "anthropic/sdk_symbol/fine-grained-tool-streaming-2025-05-14",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "fine-grained-tool-streaming-2025-05-14"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "info",
+   "note": "Beta header. Fine-grained tool streaming is GA. Safe to delete.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "anthropic/sdk_symbol/token-efficient-tools-2025-02-19",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "token-efficient-tools-2025-02-19"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "info",
+   "note": "Beta header. Built into every Claude 4 model, so it has no effect.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "anthropic/sdk_symbol/output-128k-2025-02-19",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "output-128k-2025-02-19"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "info",
+   "note": "Beta header. Built into every Claude 4 model, so it has no effect.",
+   "evidence": "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "anthropic/sdk_symbol/code-execution-2025-05-22",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "code-execution-2025-05-22"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "info",
+   "note": "Beta header for the legacy Python-only code execution tool. None is required now.",
+   "evidence": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "anthropic/tool_type/code_execution_20250522",
+   "kind": "tool_type",
+   "match": {
+    "literals": [
+     "code_execution_20250522"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "code_execution_20250825",
+   "severity": "warning",
+   "note": "Legacy Python-only code execution. Anthropic's upgrade step names this replacement.",
+   "evidence": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "anthropic/enum_value/code_execution_result",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "code_execution_result"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "bash_code_execution_result",
+   "severity": "warning",
+   "note": "Legacy code execution response block. Current tool versions send the replacement instead.",
+   "evidence": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool.md",
+   "provider": "anthropic",
+   "file_markers": [
+    "anthropic",
+    "claude-",
+    "ANTHROPIC_API_KEY"
    ]
   },
   {
@@ -1543,6 +1681,90 @@
    ]
   },
   {
+   "id": "cohere/sdk_symbol/cohere.Client",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "cohere.Client"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "cohere.ClientV2",
+   "severity": "info",
+   "note": "Cohere's migration guide calls this the old client. ClientV2 is the v2 standard.",
+   "evidence": "https://docs.cohere.com/docs/migrating-v1-to-v2",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/request_param/prompt_truncation",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "prompt_truncation"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "warning",
+   "note": "v1-only RAG parameter. v2/chat does not support it and names no equivalent.",
+   "evidence": "https://docs.cohere.com/docs/migrating-v1-to-v2",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/request_param/force_single_step",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "force_single_step"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": null,
+   "severity": "info",
+   "note": "Unsupported in v2, where all tool calls are multi-step. Cohere still recommends v1 for it.",
+   "evidence": "https://docs.cohere.com/docs/migrating-v1-to-v2",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
+   "id": "cohere/enum_value/citation-generation",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "citation-generation"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "citation-start",
+   "severity": "warning",
+   "note": "v1 stream event type. A v2 stream never emits it, so the branch goes dead silently.",
+   "evidence": "https://docs.cohere.com/docs/migrating-v1-to-v2",
+   "provider": "cohere",
+   "file_markers": [
+    "cohere",
+    "CO_API_KEY",
+    "COHERE_API_KEY",
+    "api.cohere"
+   ]
+  },
+  {
    "id": "cohere/model_id/embed-english-v2.0",
    "kind": "model_id",
    "match": {
@@ -2687,6 +2909,322 @@
    ]
   },
   {
+   "id": "google/sdk_symbol/google-generativeai",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "google-generativeai"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "google-genai",
+   "severity": "warning",
+   "note": "Legacy Python distribution, deprecated and not actively maintained.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/libraries",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/google.generativeai",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "google.generativeai"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "google.genai",
+   "severity": "warning",
+   "note": "Legacy Python import path. The new SDK imports genai from google.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.configure",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.configure"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "genai.Client",
+   "severity": "warning",
+   "note": "Legacy module-level auth. The new SDK takes the key on the client.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.GenerativeModel",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.GenerativeModel"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.models.generate_content",
+   "severity": "warning",
+   "note": "Legacy model object. The new SDK calls through one genai.Client().",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.upload_file",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.upload_file"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.files.upload",
+   "severity": "warning",
+   "note": "Legacy module-level Files helper, now a service on the client.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.get_file",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.get_file"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.files.get",
+   "severity": "warning",
+   "note": "Legacy module-level Files helper, now a service on the client.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.list_files",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.list_files"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.files.list",
+   "severity": "warning",
+   "note": "Legacy module-level Files helper, now a service on the client.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.delete_file",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.delete_file"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.files.delete",
+   "severity": "warning",
+   "note": "Legacy module-level Files helper, now a service on the client.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/genai.embed_content",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "genai.embed_content"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.models.embed_content",
+   "severity": "warning",
+   "note": "Legacy module-level embedding call, now a method on client.models.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/caching.CachedContent",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "caching.CachedContent.create"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.caches.create",
+   "severity": "warning",
+   "note": "Legacy context-caching class from google.generativeai.caching.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/@google/generative-ai",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "@google/generative-ai"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "@google/genai",
+   "severity": "warning",
+   "note": "Legacy JavaScript SDK, deprecated and not actively maintained.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/GoogleAIFileManager",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "GoogleAIFileManager"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "ai.files.upload",
+   "severity": "warning",
+   "note": "Separate file client from @google/generative-ai/server, now ai.files.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/GoogleAICacheManager",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "GoogleAICacheManager"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "ai.caches.create",
+   "severity": "warning",
+   "note": "Separate cache client from @google/generative-ai/server, now ai.caches.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/generative-ai-go",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "github.com/google/generative-ai-go"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "google.golang.org/genai",
+   "severity": "warning",
+   "note": "Legacy Go SDK, deprecated and not actively maintained.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/migrate",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
+   "id": "google/sdk_symbol/total_reasoning_tokens",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "total_reasoning_tokens"
+    ]
+   },
+   "status": "removed",
+   "announced_on": "2025-12-19",
+   "replacement": "total_thought_tokens",
+   "severity": "breaking",
+   "note": "Renamed in the v1beta Interactions API. The old field is gone.",
+   "evidence": "https://ai.google.dev/gemini-api/docs/changelog",
+   "provider": "google",
+   "file_markers": [
+    "gemini",
+    "generativeai",
+    "generative-ai",
+    "generativelanguage"
+   ]
+  },
+  {
    "id": "google/model_id/gemini-1.0-pro",
    "kind": "model_id",
    "match": {
@@ -2906,6 +3444,107 @@
     "groq",
     "GROQ_API_KEY",
     "api.groq.com"
+   ]
+  },
+  {
+   "id": "mistral/sdk_symbol/mistral-client",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "MistralClient",
+     "MistralAsyncClient"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "Mistral",
+   "severity": "warning",
+   "note": "Both v0 client classes were consolidated into one Mistral class.",
+   "evidence": "https://github.com/mistralai/client-python/blob/main/MIGRATION.md",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/sdk_symbol/client-completions-stream",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "client.completions_stream"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "client.fim.stream",
+   "severity": "warning",
+   "note": "The v0 streaming fill-in-the-middle method. Gone in the v1 rewrite.",
+   "evidence": "https://github.com/mistralai/client-python/blob/main/MIGRATION.md",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/sdk_symbol/mistralai-azure-package",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "mistralai_azure"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "mistralai.azure.client",
+   "severity": "warning",
+   "note": "The separate Azure package became a namespace sub-package in SDK v2.",
+   "evidence": "https://docs.mistral.ai/getting-started/clients.md",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/sdk_symbol/mistralai-gcp-package",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "mistralai_gcp"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "mistralai.gcp.client",
+   "severity": "warning",
+   "note": "The separate GCP package became a namespace sub-package in SDK v2.",
+   "evidence": "https://docs.mistral.ai/getting-started/clients.md",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "mistral/sdk_symbol/mistral-google-cloud",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "MistralGoogleCloud"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "MistralGCP",
+   "severity": "warning",
+   "note": "The GCP client class was renamed in SDK v2.",
+   "evidence": "https://docs.mistral.ai/getting-started/clients.md",
+   "provider": "mistral",
+   "file_markers": [
+    "mistral",
+    "MISTRAL_API_KEY",
+    "api.mistral.ai"
    ]
   },
   {
@@ -3786,6 +4425,197 @@
     "mistral",
     "MISTRAL_API_KEY",
     "api.mistral.ai"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/openai-beta-assistants-v2",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "assistants=v2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "OpenAI-Beta header for the Assistants API. Nothing else sends it.",
+   "evidence": "https://developers.openai.com/api/docs/assistants/deep-dive",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/openai-beta-assistants-v1",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "assistants=v1"
+    ]
+   },
+   "status": "removed",
+   "announced_on": "2024-10-02",
+   "retires_on": "2024-12-18",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "v1 beta was cut off in 2024 and the whole Assistants API follows on 2026-08-26.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/request_param/max_prompt_tokens",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "max_prompt_tokens"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Assistants run parameter with no Responses counterpart. Trim input yourself.",
+   "evidence": "https://developers.openai.com/api/docs/assistants/deep-dive",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/AssistantEventHandler",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "AssistantEventHandler"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Python SDK base class for Assistants streaming. Responses streams typed events instead.",
+   "evidence": "https://developers.openai.com/api/docs/assistants/tools/function-calling",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/enum_value/thread.run.requires_action",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "thread.run.requires_action"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Assistants streaming event name. No event by this name exists in Responses.",
+   "evidence": "https://developers.openai.com/api/docs/assistants/tools/function-calling",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/enum_value/submit_tool_outputs",
+   "kind": "enum_value",
+   "match": {
+    "literals": [
+     "submit_tool_outputs"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-26",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "The required_action type a polling Assistants loop compares against.",
+   "evidence": "https://developers.openai.com/api/docs/assistants/tools/function-calling",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/sdk_symbol/openai-beta-realtime-v1",
+   "kind": "sdk_symbol",
+   "match": {
+    "literals": [
+     "realtime=v1"
+    ]
+   },
+   "status": "removed",
+   "announced_on": "2025-09-15",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Realtime beta header. Remove it \u2014 the GA interface also renamed session and event shapes.",
+   "evidence": "https://developers.openai.com/api/docs/deprecations",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/request_param/prompt_cache_retention",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "prompt_cache_retention"
+    ]
+   },
+   "status": "deprecated",
+   "replacement": "prompt_cache_options.ttl",
+   "severity": "warning",
+   "note": "Deprecated on both Chat Completions and Responses.",
+   "evidence": "https://developers.openai.com/api/reference/resources/chat.md",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
+   ]
+  },
+  {
+   "id": "openai/request_param/testing_criteria",
+   "kind": "request_param",
+   "match": {
+    "literals": [
+     "testing_criteria"
+    ]
+   },
+   "status": "deprecated",
+   "announced_on": "2026-06-03",
+   "retires_on": "2026-11-30",
+   "replacement": null,
+   "severity": "warning",
+   "note": "Required field of the Evals API, which shuts down with the Evals platform.",
+   "evidence": "https://developers.openai.com/api/docs/guides/evals",
+   "provider": "openai",
+   "file_markers": [
+    "openai",
+    "OPENAI_API_KEY",
+    "gpt-"
    ]
   },
   {
