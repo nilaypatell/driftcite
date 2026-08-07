@@ -59,6 +59,12 @@ git fetch -q origin && git reset -q --hard origin/main
 "$PY" scanner/probe_sunset.py || echo "! sunset probe failed"
 "$PY" scanner/build_feed.py  || { echo "! feed build refused; nothing committed"; exit 1; }
 
+# Sign what was just built, against the key at ~/.driftcite/feed-key.pem.
+# An unsigned feed is one every up-to-date client will refuse and fall back
+# from, so failing to sign fails the run — visibly, with nothing committed —
+# rather than publishing an update nobody will use.
+node scripts/sign_feed.mjs   || { echo "! feed signing failed; nothing committed"; exit 1; }
+
 git add manifests/ feed/
 if git diff --staged --quiet; then
   echo "nothing moved today"

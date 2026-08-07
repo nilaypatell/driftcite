@@ -126,7 +126,7 @@ python3 scanner/openapi_diff.py \
 
 npm carries a per-version `deprecated` string, PyPI carries `yanked_reason`. Written by the maintainer, public, and unseen after install time.
 
-Lockfiles read: `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock` (classic and berry), pinned `requirements.txt`, `Cargo.lock`, and `Gemfile.lock`. A format it cannot read yet is named in the output instead of silently skipped.
+Lockfiles read: `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock` (classic and berry), pinned `requirements.txt`, `Cargo.lock`, `Gemfile.lock`, and `go.sum` — Go's `retract` directives and `// Deprecated:` module comments are read from the latest `go.mod` the proxy serves, which is where Go keeps them. A format it cannot read yet is named in the output instead of silently skipped.
 
 RubyGems publishes no yanked flag — a yanked version simply stops being served — so that finding says exactly that and never claims the maintainer deprecated anything.
 

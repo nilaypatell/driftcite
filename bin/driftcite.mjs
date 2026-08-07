@@ -14,11 +14,44 @@ import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createPublicKey, verify as cryptoVerify } from "node:crypto";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const BUNDLED_FEED = path.join(HERE, "..", "feed", "feed.json");
 const FEED_URL =
   "https://raw.githubusercontent.com/nilaypatell/driftcite/main/feed/feed.json";
+
+/**
+ * The live feed is signed, and this is the key it must verify against.
+ *
+ * "You should not have to trust us" was only mostly true while the feed
+ * was fetched from a mutable branch: whoever controls the repository
+ * controls what the feed says the providers said. The clock now signs
+ * feed.json with an Ed25519 key that never leaves the maintainer's
+ * machine, the signature travels beside it, and this pinned public key
+ * decides whether a live feed is used at all. A feed that does not verify
+ * is not an error and not a scan-stopper — the bundled copy inside the
+ * npm tarball (already integrity-checked by npm itself) takes over, and
+ * the report says so out loud. scripts/sign_feed.mjs holds the other end.
+ */
+const FEED_PUBKEY_PEM = `-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEABwzzGulmbaIQsOfrorjkpgQp2+xJFBnwYevroISVTCg=
+-----END PUBLIC KEY-----
+`;
+const FEED_SIG_URL = `${FEED_URL}.sig`;
+
+function verifyFeedSignature(bytes, sigBase64, pem = FEED_PUBKEY_PEM) {
+  try {
+    return cryptoVerify(
+      null,
+      bytes,
+      createPublicKey(pem),
+      Buffer.from(String(sigBase64).trim(), "base64"),
+    );
+  } catch {
+    return false;
+  }
+}
 
 const SKIP_DIRS = new Set([
   ".git", "node_modules", ".next", "dist", "build", "__pycache__", ".venv",
@@ -127,8 +160,33 @@ function cmp(a, b) {
 async function loadFeed({ offline }) {
   if (!offline) {
     try {
-      const res = await fetch(FEED_URL, { signal: AbortSignal.timeout(15_000) });
-      if (res.ok) return { feed: await res.json(), source: "live" };
+      const [res, sigRes] = await Promise.all([
+        fetch(FEED_URL, { signal: AbortSignal.timeout(15_000) }),
+        fetch(FEED_SIG_URL, { signal: AbortSignal.timeout(15_000) }),
+      ]);
+      if (res.ok && sigRes.ok) {
+        // Verify the exact bytes, then parse those same bytes — parsing the
+        // response twice would leave a gap for the two reads to disagree.
+        const bytes = Buffer.from(await res.arrayBuffer());
+        if (verifyFeedSignature(bytes, await sigRes.text())) {
+          return { feed: JSON.parse(bytes.toString("utf8")), source: "live" };
+        }
+        // A feed that fails verification is worth a loud line, not a quiet
+        // downgrade: this is either key rotation mid-deploy or someone
+        // else's hands on the feed, and both deserve attention.
+        return {
+          feed: JSON.parse(await readFile(BUNDLED_FEED, "utf8")),
+          source: "bundled (live feed signature did not verify)",
+        };
+      }
+      if (res.ok && sigRes.status === 404) {
+        // The window between a feed commit and its signature existing at
+        // this URL should be zero; treat absence like any other outage.
+        return {
+          feed: JSON.parse(await readFile(BUNDLED_FEED, "utf8")),
+          source: "bundled (live feed is unsigned)",
+        };
+      }
     } catch {
       /* fall through to the bundled copy */
     }
@@ -576,6 +634,7 @@ const DEP_MANIFESTS = {
   reqs: /^requirements(-.+)?\.txt$/,
   gemLock: /^Gemfile\.lock$/,
   cargoLock: /^Cargo\.lock$/,
+  goSum: /^go\.sum$/,
   pkgJson: /^package\.json$/,
 };
 
@@ -585,13 +644,12 @@ const UNSUPPORTED_MANIFESTS = [
   [/^poetry\.lock$/, "poetry.lock is not read yet; export a pinned requirements.txt for coverage"],
   [/^uv\.lock$/, "uv.lock is not read yet; export a pinned requirements.txt for coverage"],
   [/^Pipfile\.lock$/, "Pipfile.lock is not read yet"],
-  [/^go\.sum$/, "go.sum (Go modules) is not read yet; retract directives are not parsed"],
 ];
 
 async function collectDepFiles(root) {
   const files = {
     npmLock: [], pnpmLock: [], yarnLock: [], reqs: [],
-    gemLock: [], cargoLock: [], pkgJson: [],
+    gemLock: [], cargoLock: [], goSum: [], pkgJson: [],
   };
   const notes = new Set();
   for await (const file of walkAll(root)) {
@@ -819,6 +877,35 @@ async function cargoDeps(paths, root) {
 }
 
 /**
+ * go.sum. Two lines per module — `mod v1.2.3 h1:…` and `mod v1.2.3/go.mod
+ * h1:…` — and only the first shape is a dependency; the `/go.mod` twin is
+ * the checksum of a manifest Go read while resolving, present even for
+ * modules that never ship code into the build. Reading both would double
+ * every module and invent dependencies out of build-list bookkeeping.
+ *
+ * Versions are kept verbatim, pseudo-versions and +incompatible included,
+ * because the proxy answers for exactly the string the lockfile pinned.
+ */
+async function goDeps(paths, root) {
+  const found = new Map();
+  const LINE = /^(\S+)\s+(v\S+?)(\/go\.mod)?\s+h1:/;
+  for (const file of paths) {
+    let text;
+    try {
+      text = await readFile(file, "utf8");
+    } catch {
+      continue;
+    }
+    const rel = path.relative(root, file);
+    for (const line of text.split(/\r?\n/)) {
+      const m = LINE.exec(line);
+      if (m && !m[3]) found.set(`${m[1]}@${m[2]}`, rel);
+    }
+  }
+  return found;
+}
+
+/**
  * A registry answer, and the difference between "no" and "could not ask".
  *
  * Each of these lookups used to return {} from a bare catch, so a dropped
@@ -939,6 +1026,128 @@ async function checkPypi(name) {
 }
 
 /**
+ * Go's registry speaks a different shape from all the others, so its answer
+ * does too. There is no per-version yanked flag: a maintainer writes
+ * `retract` directives and a `// Deprecated:` comment into the LATEST
+ * go.mod, and clients are expected to read them from there. So this asks
+ * the module proxy two questions — what is latest, and what does its
+ * go.mod say — and returns { all, retract } for resolveFlagged to apply:
+ * `all` covers every pinned version of a module deprecated outright,
+ * `retract` is ranges the pinned version is compared against.
+ *
+ * The proxy path is case-encoded (an uppercase letter becomes '!' plus its
+ * lowercase), and both 404 and 410 mean "not known here" — the proxy uses
+ * them interchangeably — which is an answer, not an outage.
+ */
+const goEscape = (mod) => mod.replace(/[A-Z]/g, (ch) => "!" + ch.toLowerCase());
+
+function parseGoMod(text) {
+  const out = { deprecated: null, retract: [] };
+  const lines = text.split(/\r?\n/);
+
+  // "// Deprecated: reason" lives in the comment block directly above the
+  // module directive, per the go command's own convention.
+  const before = [];
+  for (const line of lines) {
+    if (/^\s*module\s/.test(line)) break;
+    const m = /^\s*\/\/\s?(.*)$/.exec(line);
+    if (m) before.push(m[1]);
+    else if (line.trim()) before.length = 0;
+  }
+  const dep = /(?:^|\s)Deprecated:\s*(.*)$/s.exec(before.join(" "));
+  if (dep) out.deprecated = dep[1].trim();
+
+  // retract, in its three spellings: bare, range, and a parenthesised block
+  // of either. The comment beside a retraction is its rationale.
+  let inBlock = false;
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (inBlock) {
+      if (line.startsWith(")")) { inBlock = false; continue; }
+      const r = parseRetractLine(line);
+      if (r) out.retract.push(r);
+      continue;
+    }
+    if (/^retract\s*\($/.test(line)) { inBlock = true; continue; }
+    const single = /^retract\s+(.+)$/.exec(line);
+    if (single) {
+      const r = parseRetractLine(single[1]);
+      if (r) out.retract.push(r);
+    }
+  }
+  return out;
+}
+
+function parseRetractLine(line) {
+  const comment = /\/\/\s*(.*)$/.exec(line);
+  const reason = comment ? comment[1].trim() : "";
+  const body = line.replace(/\/\/.*$/, "").trim();
+  const range = /^\[\s*(v\S+?)\s*,\s*(v\S+?)\s*\]$/.exec(body);
+  if (range) return { lo: range[1], hi: range[2], reason };
+  const single = /^(v\S+)$/.exec(body);
+  if (single) return { lo: single[1], hi: single[1], reason };
+  return null;
+}
+
+/**
+ * Enough semver ordering to place a pinned version inside a retract range:
+ * numeric core compared numerically, a prerelease sorts before its release,
+ * prerelease identifiers compared the way semver says. Go pseudo-versions
+ * are ordinary prereleases with fixed-width timestamps, so they order
+ * correctly under exactly these rules.
+ */
+function cmpGoVersion(a, b) {
+  const parse = (v) => {
+    const [core, pre = null] = v.replace(/^v/, "").split("+")[0].split(/-(.+)/s);
+    return { nums: core.split(".").map(Number), pre };
+  };
+  const [pa, pb] = [parse(a), parse(b)];
+  for (let i = 0; i < 3; i++) {
+    const d = (pa.nums[i] || 0) - (pb.nums[i] || 0);
+    if (d) return d;
+  }
+  if (pa.pre === null && pb.pre === null) return 0;
+  if (pa.pre === null) return 1;
+  if (pb.pre === null) return -1;
+  const as = pa.pre.split("."), bs = pb.pre.split(".");
+  for (let i = 0; i < Math.max(as.length, bs.length); i++) {
+    const [x, y] = [as[i], bs[i]];
+    if (x === undefined) return -1;
+    if (y === undefined) return 1;
+    const nx = /^\d+$/.test(x), ny = /^\d+$/.test(y);
+    if (nx && ny) { const d = Number(x) - Number(y); if (d) return d; }
+    else if (nx !== ny) return nx ? -1 : 1;
+    else if (x !== y) return x < y ? -1 : 1;
+  }
+  return 0;
+}
+
+async function checkGoModule(name) {
+  const base = `https://proxy.golang.org/${goEscape(name)}`;
+  try {
+    const latestRes = await fetch(`${base}/@latest`, {
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (latestRes.status === 404 || latestRes.status === 410) return answered({});
+    if (!latestRes.ok) return fromStatus(latestRes);
+    const latest = (await latestRes.json())?.Version;
+    if (!latest) return answered({});
+    const modRes = await fetch(`${base}/@v/${latest}.mod`, {
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (modRes.status === 404 || modRes.status === 410) return answered({});
+    if (!modRes.ok) return fromStatus(modRes);
+    const { deprecated, retract } = parseGoMod(await modRes.text());
+    const out = {};
+    if (deprecated) out.all = `Deprecated by the maintainer: ${deprecated}`;
+    if (retract.length) out.retract = retract;
+    return answered(out);
+  } catch (err) {
+    return unanswered(whyFailed(err));
+  }
+}
+
+/**
  * Ask a registry about every package a lockfile resolved, and keep count of
  * the ones it would not answer for.
  *
@@ -965,9 +1174,12 @@ async function resolveFlagged(deps, check, ecosystem) {
         const at = key.lastIndexOf("@");
         if (key.slice(0, at) !== name) continue;
         const version = key.slice(at + 1);
-        // Most registries state which versions are bad. RubyGems instead
-        // stops serving them, so it answers with the set that still exists
-        // and absence is the signal.
+        // Four answer shapes, one per way registries express "bad". Most
+        // state which versions are bad, keyed by version. RubyGems stops
+        // serving them, so it answers with the set that still exists and
+        // absence is the signal. Go answers with retract ranges the pinned
+        // version is compared against, and `all` when the maintainer
+        // deprecated the module outright.
         if (versions.served) {
           if (!versions.served.has(version)) {
             flagged.push({
@@ -975,8 +1187,20 @@ async function resolveFlagged(deps, check, ecosystem) {
               message: "not served by rubygems.org; a fresh bundle install fails",
             });
           }
+          continue;
+        }
+        const retracted = (versions.retract || []).find(
+          (r) => cmpGoVersion(version, r.lo) >= 0 && cmpGoVersion(version, r.hi) <= 0
+        );
+        if (retracted) {
+          flagged.push({
+            ecosystem, name, version, source,
+            message: `retracted by the maintainer${retracted.reason ? `: ${retracted.reason}` : ""}`,
+          });
         } else if (versions[version]) {
           flagged.push({ ecosystem, name, version, source, message: versions[version] });
+        } else if (versions.all) {
+          flagged.push({ ecosystem, name, version, source, message: versions.all });
         }
       }
     }
@@ -1001,17 +1225,19 @@ async function scanRegistry(root, { collectOnly = false } = {}) {
   const pypi = await pypiDeps(files.reqs, root);
   const gems = await gemDeps(files.gemLock, root);
   const crates = await cargoDeps(files.cargoLock, root);
+  const gomods = await goDeps(files.goSum, root);
   if (!js.size && files.pkgJson.length) {
     notes.push(
       "package.json found but no lockfile resolved; commit package-lock.json, pnpm-lock.yaml or yarn.lock so exact versions can be checked"
     );
   }
-  if (collectOnly) return { js, pypi, gems, crates, notes };
+  if (collectOnly) return { js, pypi, gems, crates, gomods, notes };
   const results = await Promise.all([
     resolveFlagged(js, checkNpm, "npm"),
     resolveFlagged(pypi, checkPypi, "pypi"),
     resolveFlagged(gems, checkRubygems, "rubygems"),
     resolveFlagged(crates, checkCrates, "crates.io"),
+    resolveFlagged(gomods, checkGoModule, "go"),
   ]);
   // A registry that would not answer is named alongside the lockfile formats
   // that are not read yet: both are things the tool could not do, and both
@@ -1019,7 +1245,7 @@ async function scanRegistry(root, { collectOnly = false } = {}) {
   for (const r of results) if (r.note) notes.push(r.note);
   return {
     flagged: results.flatMap((r) => r.flagged),
-    checked: js.size + pypi.size + gems.size + crates.size,
+    checked: js.size + pypi.size + gems.size + crates.size + gomods.size,
     unreachable: results.reduce((n, r) => n + r.unasked, 0),
     notes,
   };
@@ -1133,8 +1359,9 @@ async function main() {
   npx driftcite --version     print the version
 
 Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
-berry), pinned requirements.txt, Cargo.lock, and Gemfile.lock. Formats it
-cannot read yet are named in the output instead of silently skipped.
+berry), pinned requirements.txt, Cargo.lock, Gemfile.lock, and go.sum.
+Formats it cannot read yet are named in the output instead of silently
+skipped.
 
 Registry lookups that fail — offline, rate limited, a 500 — are counted and
 named in the output. They never fail the build, but they are never reported
@@ -1182,9 +1409,10 @@ Your source code is never sent anywhere.`);
     // Every ecosystem scanRegistry resolves is listed. Printing only npm and
     // pypi made Cargo.lock and Gemfile.lock look unread when they had in fact
     // been parsed, which is the same lie as skipping them.
-    const { js, pypi, gems, crates, notes } = await scanRegistry(root, { collectOnly: true });
+    const { js, pypi, gems, crates, gomods, notes } = await scanRegistry(root, { collectOnly: true });
     for (const [ecosystem, deps] of [
       ["npm", js], ["pypi", pypi], ["rubygems", gems], ["crates.io", crates],
+      ["go", gomods],
     ]) {
       for (const [key, source] of deps) {
         const at = key.lastIndexOf("@");
@@ -1255,7 +1483,11 @@ Your source code is never sent anywhere.`);
   };
 
   if (asJson) {
-    const payload = { root, feed: source, findings, suppressed, registry };
+    // schema counts the shape of this object, not the tool's version. Agents
+    // and CI paste-prompts key on these field names; renaming or removing
+    // one bumps this number, adding a field does not. It sits first so a
+    // human eyeballing the output sees the contract before the content.
+    const payload = { schema: 1, root, feed: source, findings, suppressed, registry };
     if (plan) payload.plan = { edits: plan.edits, unfixable: plan.unfixable };
     console.log(JSON.stringify(payload, null, 2));
     if (fix && write) return stillBreaking().length ? 1 : 0;
@@ -1289,8 +1521,9 @@ Your source code is never sent anywhere.`);
  *  else's uptime; these are called with globalThis.fetch swapped for a stub,
  *  which is also the only way to exercise a rate limit on purpose. */
 export const __test = {
-  cargoDeps, gemDeps, pypiDeps,
-  checkNpm, checkPypi, checkCrates, checkRubygems,
+  cargoDeps, gemDeps, pypiDeps, goDeps,
+  checkNpm, checkPypi, checkCrates, checkRubygems, checkGoModule,
+  parseGoMod, cmpGoVersion, verifyFeedSignature,
   resolveFlagged, scanRegistry,
 };
 

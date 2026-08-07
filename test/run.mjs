@@ -565,6 +565,47 @@ function runList(files) {
 }
 
 {
+  // The JSON is a contract now — the published setup prompt teaches agents
+  // these exact field names — so the shape carries its own version number.
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-schema-"));
+  writeFileSync(path.join(dir, "empty.js"), "export const x = 1;\n");
+  let out = "";
+  try {
+    out = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json"], {
+      encoding: "utf8",
+    });
+  } catch (err) {
+    out = err.stdout || "";
+  }
+  rmSync(dir, { recursive: true, force: true });
+  check("the JSON output declares its schema version", JSON.parse(out).schema === 1);
+}
+
+{
+  // The feed signature: the pinned-key path is exercised against feed/ in
+  // the tree; the negative paths use an ephemeral key so no test ever needs
+  // the maintainer's private half. The CLI import is block-local because
+  // this block runs before the module-scope one below is initialised.
+  const { __test } = await import(CLI);
+  const { generateKeyPairSync, sign } = await import("node:crypto");
+  const { privateKey, publicKey } = generateKeyPairSync("ed25519");
+  const pem = publicKey.export({ type: "spki", format: "pem" });
+  const bytes = Buffer.from('{"feed_version":1}');
+  const sig = sign(null, bytes, privateKey).toString("base64");
+  check("a valid signature verifies against its key",
+    __test.verifyFeedSignature(bytes, sig, pem) === true);
+  check("tampered bytes do not verify",
+    __test.verifyFeedSignature(Buffer.from('{"feed_version":2}'), sig, pem) === false);
+  check("a garbage signature is false, not a crash",
+    __test.verifyFeedSignature(bytes, "not base64!!!", pem) === false);
+  const shippedFeed = readFileSync(path.join(HERE, "..", "feed", "feed.json"));
+  const shippedSig = readFileSync(path.join(HERE, "..", "feed", "feed.json.sig"), "utf8");
+  check("the feed in the tree verifies against the pinned key",
+    __test.verifyFeedSignature(shippedFeed, shippedSig) === true,
+    "regenerate with: node scripts/sign_feed.mjs");
+}
+
+{
   // A flag this version does not know must be a loud error, not a scan that
   // quietly ignores it. 0.2.0 accepted --write-baseline, printed "No drift
   // found." and exited 0 — confident false success, the exact failure the
@@ -752,6 +793,7 @@ console.log("\nregistry failures");
   for (const [name, check_] of [
     ["checkNpm", __test.checkNpm], ["checkPypi", __test.checkPypi],
     ["checkCrates", __test.checkCrates], ["checkRubygems", __test.checkRubygems],
+    ["checkGoModule", __test.checkGoModule],
   ]) {
     const down = await withFetch(offline, () => check_("lodash"));
     check(`${name} reports a network failure as unanswered`,
@@ -776,6 +818,99 @@ console.log("\nregistry failures");
   check("the count and the reason reach the output as a note",
     /npm: 2 of 2 package\(s\) could not be checked \(HTTP 503\)/.test(res.note || ""),
     `got ${res.note}`);
+
+  // ── Go: the registry that keeps its verdicts in a manifest ──────────
+  // go.sum parsing: the /go.mod twin lines are bookkeeping, not deps.
+  {
+    const dir = mkdtempSync(path.join(tmpdir(), "driftcite-go-"));
+    writeFileSync(path.join(dir, "go.sum"), [
+      "github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=",
+      "github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=",
+      "golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c h1:qgOY6WgZOaTkIIMiVjBQcw93ERBE4m30iBm00nkL0i8=",
+      "golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=",
+    ].join("\n"));
+    const gomods = await __test.goDeps([path.join(dir, "go.sum")], dir);
+    rmSync(dir, { recursive: true, force: true });
+    check("go.sum yields one dependency per module, not one per line",
+      gomods.size === 2, `got ${[...gomods.keys()].join(", ")}`);
+    check("a pseudo-version is kept verbatim",
+      gomods.has("golang.org/x/text@v0.0.0-20170915032832-14c0d48ead0c"));
+  }
+
+  // go.mod parsing: Deprecated comment, bare/range/block retracts, reasons.
+  {
+    const mod = [
+      "// Deprecated: use example.com/newer instead.",
+      "module github.com/old/thing",
+      "",
+      "go 1.21",
+      "",
+      "retract v1.4.0 // built from the wrong branch",
+      "retract (",
+      "  v1.2.3 // leaked credentials",
+      "  [v1.0.0, v1.1.9]",
+      ")",
+    ].join("\n");
+    const parsed = __test.parseGoMod(mod);
+    check("Deprecated: is read from above the module directive",
+      parsed.deprecated === "use example.com/newer instead.");
+    check("all three retract spellings are read",
+      parsed.retract.length === 3, `got ${JSON.stringify(parsed.retract)}`);
+    check("a retraction keeps its rationale",
+      parsed.retract.some((r) => r.reason === "leaked credentials"));
+  }
+
+  // Version ordering: releases, prereleases, and pseudo-versions.
+  check("go version ordering places a version inside a range",
+    __test.cmpGoVersion("v1.1.0", "v1.0.0") > 0 &&
+    __test.cmpGoVersion("v1.1.0", "v1.1.9") < 0);
+  check("a prerelease sorts before its release",
+    __test.cmpGoVersion("v1.2.0-rc.1", "v1.2.0") < 0);
+
+  // The whole Go path: proxy answers -> retract range hit + module-wide
+  // deprecation, and a version outside every range stays clean.
+  {
+    const proxy = async (url) => {
+      const u = String(url);
+      if (u.endsWith("/@latest")) {
+        return new Response(JSON.stringify({ Version: "v1.9.0" }), { status: 200 });
+      }
+      if (u.endsWith(".mod")) {
+        return new Response([
+          "// Deprecated: maintained at example.com/two.",
+          "module github.com/old/thing",
+          "retract [v1.0.0, v1.1.9] // broken releases",
+        ].join("\n"), { status: 200 });
+      }
+      return new Response("", { status: 404 });
+    };
+    const deps = new Map([
+      ["github.com/old/thing@v1.1.5", "go.sum"],
+      ["github.com/old/thing@v1.9.0", "go.sum"],
+    ]);
+    const res = await withFetch(proxy, () =>
+      __test.resolveFlagged(deps, __test.checkGoModule, "go"));
+    const inRange = res.flagged.find((f) => f.version === "v1.1.5");
+    const outside = res.flagged.find((f) => f.version === "v1.9.0");
+    check("a version inside a retract range is flagged with the rationale",
+      /retracted by the maintainer: broken releases/.test(inRange?.message || ""),
+      `got ${inRange?.message}`);
+    check("a version outside every range still carries the module deprecation",
+      /Deprecated by the maintainer: maintained at example.com\/two\./.test(outside?.message || ""),
+      `got ${outside?.message}`);
+    check("the retract range does not swallow the whole module",
+      res.flagged.length === 2, `got ${res.flagged.length}`);
+  }
+
+  // Case-encoding: an uppercase letter in a module path becomes !lowercase
+  // on the proxy, or the lookup 404s for every mixed-case module.
+  {
+    let asked = "";
+    const capture = async (url) => { asked = String(url); return new Response("", { status: 404 }); };
+    await withFetch(capture, () => __test.checkGoModule("github.com/Azure/azure-sdk-for-go"));
+    check("uppercase module paths are case-encoded for the proxy",
+      asked.includes("github.com/!azure/azure-sdk-for-go"), `asked ${asked}`);
+  }
 
   const dir = mkdtempSync(path.join(tmpdir(), "driftcite-reg-"));
   writeFileSync(path.join(dir, "package-lock.json"), JSON.stringify({
