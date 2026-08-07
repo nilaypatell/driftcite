@@ -963,6 +963,160 @@ console.log("\nregistry failures");
     out.includes("No drift found in what could be checked."), out);
 }
 
+console.log("\nlocal manifests");
+
+// Full --json payload, for the tests that need more than findings.
+function runPayload(files, extraArgs = []) {
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-local-"));
+  for (const [name, body] of Object.entries(files)) {
+    const full = path.join(dir, name);
+    mkdirSync(path.dirname(full), { recursive: true });
+    writeFileSync(full, body);
+  }
+  let out = "";
+  try {
+    out = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json", ...extraArgs], {
+      encoding: "utf8",
+    });
+  } catch (err) {
+    out = err.stdout || "";
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+  return JSON.parse(out);
+}
+
+const localDoc = (artifacts) =>
+  JSON.stringify({ local_version: 1, artifacts });
+
+const acme = {
+  id: "acme/model_id/acme-gpt-1-legacy",
+  provider: "acme",
+  kind: "model_id",
+  match: { literals: ["acme-gpt-1-legacy"] },
+  status: "deprecated",
+  severity: "warning",
+  retires_on: "2026-01-01",
+  replacement: "acme-gpt-2",
+  note: "Deprecated 2025-10-01 by the platform team; retired 2026-01-01.",
+  evidence: "https://wiki.example.com/acme/deprecations",
+};
+
+// An artifact for an API the public feed does not track must fire like any
+// feed artifact, deadline arithmetic included.
+{
+  const p = runPayload({
+    ".driftcite-local.json": localDoc([acme]),
+    "app.js": `const model = "acme-gpt-1-legacy";`,
+  });
+  const f = p.findings.find((x) => x.artifact === acme.id);
+  check("a local artifact fires on a real call site", Boolean(f));
+  check("a local artifact's past deadline computes as retired and breaking",
+    f?.status === "retired" && f?.severity === "breaking",
+    JSON.stringify(f));
+  check("the payload says how many local artifacts loaded",
+    p.local?.artifacts === 1 && p.local?.file === ".driftcite-local.json",
+    JSON.stringify(p.local));
+}
+
+// The rules are the feed's rules: no evidence, no artifact — skipped and
+// named, never silently dropped and never silently accepted.
+{
+  const p = runPayload({
+    ".driftcite-local.json": localDoc([{ ...acme, evidence: undefined }]),
+    "app.js": `const model = "acme-gpt-1-legacy";`,
+  });
+  check("a local artifact with no evidence is skipped",
+    p.findings.length === 0);
+  check("the skip is named in the payload",
+    p.local?.problems.some((x) => x.includes("evidence")),
+    JSON.stringify(p.local));
+}
+
+// A local artifact claiming a literal the feed already carries would put two
+// death dates on one line of code; the feed wins, out loud.
+{
+  const p = runPayload({
+    ".driftcite-local.json": localDoc([{
+      ...acme,
+      id: "acme/model_id/text-davinci-003",
+      match: { literals: ["text-davinci-003"] },
+    }]),
+    "app.js": `const model = "text-davinci-003";`,
+  });
+  check("a literal collision loses to the public feed",
+    p.findings.every((f) => f.artifact.startsWith("openai/")),
+    JSON.stringify(p.findings.map((f) => f.artifact)));
+  check("the collision names the feed artifact that owns the literal",
+    p.local?.problems.some((x) => x.includes("openai/model_id/text-davinci-003")),
+    JSON.stringify(p.local));
+}
+
+// The local file contains every one of its own literals by definition.
+{
+  const p = runPayload({
+    ".driftcite-local.json": localDoc([acme]),
+    "clean.js": `export const hello = () => 'world';`,
+  });
+  check("the local manifest itself is never scanned", p.findings.length === 0,
+    JSON.stringify(p.findings.map((f) => `${f.file}:${f.artifact}`)));
+}
+
+// Kinds that need context keep needing it locally: a retired parameter named
+// like an English word must not flag unrelated code.
+{
+  const bare = { ...acme, id: "acme/request_param/legacy_flag", kind: "request_param",
+    match: { literals: ["legacy_flag"] } };
+  const noMarkers = runPayload({
+    ".driftcite-local.json": localDoc([bare]),
+    "app.js": `post({ legacy_flag: true });`,
+  });
+  check("a context-required kind without file_markers is refused",
+    noMarkers.findings.length === 0 &&
+    noMarkers.local?.problems.some((x) => x.includes("file_markers")),
+    JSON.stringify(noMarkers.local));
+
+  const withMarkers = { ...bare, file_markers: ["api.acme.internal"] };
+  const gated = runPayload({
+    ".driftcite-local.json": localDoc([withMarkers]),
+    "other.js": `post({ legacy_flag: true });`,
+    "app.js": `// api.acme.internal\npost({ legacy_flag: true });`,
+  });
+  check("local marker gating admits the marked file and refuses the bare one",
+    gated.findings.length === 1 && gated.findings[0].file === "app.js",
+    JSON.stringify(gated.findings.map((f) => f.file)));
+}
+
+// --init-local writes a template whose example is documentation, not data:
+// initialising the file must not create findings.
+{
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-init-"));
+  writeFileSync(path.join(dir, "app.js"), `const x = "/v1/users";`);
+  let out = "";
+  try {
+    execFileSync("node", [CLI, dir, "--init-local"], { encoding: "utf8" });
+    out = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json"], {
+      encoding: "utf8",
+    });
+  } catch (err) {
+    out = err.stdout || "";
+  }
+  const p = JSON.parse(out);
+  check("--init-local writes a template that creates zero findings",
+    p.findings.length === 0 && p.local?.artifacts === 0 &&
+    p.local?.problems.length === 0,
+    JSON.stringify({ findings: p.findings.length, local: p.local }));
+  let refused = 0;
+  try {
+    execFileSync("node", [CLI, dir, "--init-local"], { encoding: "utf8" });
+  } catch (err) {
+    refused = err.status;
+  }
+  rmSync(dir, { recursive: true, force: true });
+  check("--init-local refuses to overwrite an existing file", refused === 2,
+    `got exit ${refused}`);
+}
+
 console.log("\nreporting");
 check(
   "a clean repository yields no findings",

@@ -62,6 +62,9 @@ const SKIP_DIRS = new Set([
 const SCAN_EXTS = new Set([
   ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".go", ".rb", ".java",
   ".kt", ".cs", ".php", ".rs", ".sh", ".yaml", ".yml", ".json", ".toml", ".env",
+  // Terraform, because that is where Lambda and Cloud Functions runtime ids
+  // live in most infrastructure repos.
+  ".tf",
 ]);
 
 const MAX_BYTES = 2_000_000;
@@ -82,6 +85,10 @@ const MATCH_SHAPES = {
   model_id: ["quoted", "word"],
   tool_type: ["quoted", "word"],
   sdk_symbol: ["quoted", "word"],
+  // A package name only counts quoted, because the word shape would let
+  // "aws-sdk" match inside "@aws-sdk/client-s3" — the v2 artifact firing on
+  // every repo that already did the migration it recommends.
+  package: ["quoted"],
 };
 const DEFAULT_SHAPES = ["quoted", "word"];
 /**
@@ -94,6 +101,10 @@ const DEFAULT_SHAPES = ["quoted", "word"];
  */
 const CONTEXT_REQUIRED = new Set([
   "request_param", "sdk_symbol", "tool_type", "endpoint", "enum_value",
+  // A runtime identifier ("python3.9", "go1.x") or a package name is only a
+  // finding in a file that names its platform; the same string elsewhere is
+  // just a version of Python.
+  "package", "runtime",
 ]);
 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -219,6 +230,9 @@ async function* walkAll(dir) {
 /** Source files, for drift scanning. */
 async function* walk(dir) {
   for await (const file of walkAll(dir)) {
+    // The local manifest contains every one of its own literals by definition,
+    // the same reason a vendored feed is skipped by content below.
+    if (path.basename(file) === LOCAL_FILE) continue;
     if (SCAN_EXTS.has(path.extname(file).toLowerCase())) yield file;
   }
 }
@@ -286,6 +300,131 @@ const CONTEXT_RANK = { source: 0, example: 1, test: 2, doc: 3 };
  */
 const IGNORE_FILE = ".driftciteignore";
 const BASELINE_FILE = ".driftcite-baseline.json";
+
+/**
+ * A repo can carry artifacts for APIs this feed does not track: an internal
+ * service, a vendor too small for the public feed, or a provider whose PR to
+ * providers.yaml has not merged yet. They live in one JSON file at the scan
+ * root, in exactly the feed's artifact shape — same fields, same vocabulary,
+ * same rules — so nothing downstream needs to know where an artifact came
+ * from.
+ *
+ * The file is validated with the same checks the feed's own self-test runs,
+ * and an artifact that fails is skipped and named, never silently dropped and
+ * never silently accepted. The feed wins collisions: a local artifact claiming
+ * a literal the feed already carries would put two death dates on one line of
+ * code, which is the exact bug the build refuses upstream.
+ */
+const LOCAL_FILE = ".driftcite-local.json";
+const LOCAL_STATUS = new Set(["removed", "retired", "deprecated"]);
+const LOCAL_SEVERITY = new Set(["breaking", "warning", "info"]);
+
+function validateLocalArtifact(art, i, feedIds, feedLiterals) {
+  const where = art?.id || `artifacts[${i}]`;
+  if (!art || typeof art !== "object") return `${where}: not an object`;
+  if (!art.id) return `${where}: no id`;
+  if (!art.provider) return `${where}: no provider`;
+  if (!art.kind) return `${where}: no kind`;
+  const literals = art.match?.literals;
+  if (!Array.isArray(literals) || !literals.length) {
+    return `${where}: no match.literals, so it can never match anything`;
+  }
+  if (!LOCAL_STATUS.has(art.status)) {
+    return `${where}: status ${JSON.stringify(art.status)} is not one of ` +
+      `${[...LOCAL_STATUS].sort().join(", ")}`;
+  }
+  if (!LOCAL_SEVERITY.has(art.severity)) {
+    return `${where}: severity ${JSON.stringify(art.severity)} is not one of ` +
+      `${[...LOCAL_SEVERITY].sort().join(", ")}`;
+  }
+  if (!art.evidence || !String(art.evidence).startsWith("http")) {
+    return `${where}: no evidence URL; every fact cites a source, yours included`;
+  }
+  for (const key of ["retires_on", "announced_on"]) {
+    if (art[key] != null && Number.isNaN(new Date(`${art[key]}T00:00:00Z`).getTime())) {
+      return `${where}: ${key} ${JSON.stringify(art[key])} is not a date`;
+    }
+  }
+  if (CONTEXT_REQUIRED.has(art.kind) && !(art.file_markers || []).length) {
+    return `${where}: kind ${JSON.stringify(art.kind)} needs file_markers, or a ` +
+      `retired parameter named "refund" flags every codebase that mentions refunds`;
+  }
+  if (feedIds.has(art.id)) return `${where}: the public feed already carries this id`;
+  for (const lit of literals) {
+    if (feedLiterals.has(lit)) {
+      return `${where}: literal ${JSON.stringify(lit)} already belongs to ` +
+        `${feedLiterals.get(lit)} in the public feed; two artifacts on one ` +
+        `literal is two death dates on one line of code`;
+    }
+  }
+  return null;
+}
+
+async function loadLocal(root, feedArtifacts) {
+  let text;
+  try {
+    text = await readFile(path.join(root, LOCAL_FILE), "utf8");
+  } catch {
+    return null;
+  }
+  let doc;
+  try {
+    doc = JSON.parse(text);
+  } catch (err) {
+    return {
+      artifacts: [],
+      problems: [`${LOCAL_FILE} is not valid JSON: ${String(err.message).slice(0, 80)}`],
+    };
+  }
+  const feedIds = new Set(feedArtifacts.map((a) => a.id));
+  const feedLiterals = new Map();
+  for (const a of feedArtifacts) {
+    for (const lit of a.match?.literals || []) feedLiterals.set(lit, a.id);
+  }
+  const artifacts = [];
+  const problems = [];
+  const seen = new Set();
+  (Array.isArray(doc.artifacts) ? doc.artifacts : []).forEach((art, i) => {
+    const problem = validateLocalArtifact(art, i, feedIds, feedLiterals);
+    if (problem) return problems.push(problem);
+    if (seen.has(art.id)) return problems.push(`${art.id}: id appears more than once`);
+    seen.add(art.id);
+    artifacts.push({ ...art, file_markers: art.file_markers || [] });
+  });
+  return { artifacts, problems };
+}
+
+/**
+ * The $example block is data the loader never reads, which is the only way a
+ * JSON template can carry its own documentation without the act of writing it
+ * creating findings.
+ */
+const LOCAL_TEMPLATE = `{
+ "local_version": 1,
+ "$readme": [
+  "Artifacts for APIs the public driftcite feed does not track — internal",
+  "services included. Same shape and rules as the feed: distinctive literals",
+  "only, an evidence URL on every artifact, and no guessed dates. Kinds other",
+  "than model_id need file_markers naming the API, or common words would flag",
+  "unrelated code. Copy $example into artifacts to start.",
+  "Public API? Upstream it: https://github.com/nilaypatell/driftcite"
+ ],
+ "$example": {
+  "id": "acme-internal/endpoint//v1/users",
+  "provider": "acme-internal",
+  "kind": "endpoint",
+  "match": { "literals": ["/v1/users"] },
+  "status": "deprecated",
+  "severity": "warning",
+  "retires_on": "2027-01-31",
+  "replacement": "/v2/users",
+  "note": "Deprecated 2026-08-01 by the platform team; v1 shuts down 2027-01-31.",
+  "evidence": "https://wiki.example.com/platform/v1-sunset",
+  "file_markers": ["api.acme.internal", "ACME_API_TOKEN"]
+ },
+ "artifacts": []
+}
+`;
 
 function globToRe(glob) {
   const body = glob.split("*").map((p) => p.replace(/[.+?^${}()|[\]\\]/g, "\\$&")).join("[^]*");
@@ -1410,6 +1549,7 @@ async function main() {
   npx driftcite . --fix --write   apply them
   npx driftcite . --list-deps every dependency version resolved, no network
   npx driftcite . --write-baseline  accept today's findings, fail on new ones
+  npx driftcite . --init-local  start a ${LOCAL_FILE} for APIs we don't track
   npx driftcite . --slack     post breaking findings to a Slack webhook
   npx driftcite --version     print the version
 
@@ -1418,6 +1558,10 @@ argv, so it stays out of shell history). It posts only when something breaking
 was found; a clean scan posts nothing. It runs anywhere the CLI runs — GitHub,
 GitLab, Bitbucket, Jenkins, a cron job on a laptop. Schedule it with a
 committed baseline and the channel only ever hears about drift that is new.
+
+Track your own API: put feed-shaped artifacts in ${LOCAL_FILE} at the
+scan root (internal services welcome; --init-local writes a template). They
+are validated by the same rules as the public feed and scanned alongside it.
 
 Lockfiles read: package-lock.json, pnpm-lock.yaml, yarn.lock (classic and
 berry), pinned requirements.txt, Cargo.lock, Gemfile.lock, and go.sum.
@@ -1448,7 +1592,7 @@ Your source code is never sent anywhere.`);
   // false success is the one failure mode a scanner must not have.
   const KNOWN_FLAGS = new Set([
     "--offline", "--json", "--no-deps", "--fix", "--write",
-    "--list-deps", "--write-baseline", "--slack",
+    "--list-deps", "--write-baseline", "--init-local", "--slack",
   ]);
   const unknown = argv.filter((a) => a.startsWith("-") && !KNOWN_FLAGS.has(a));
   if (unknown.length) {
@@ -1473,6 +1617,18 @@ Your source code is never sent anywhere.`);
     return 2;
   }
 
+  if (argv.includes("--init-local")) {
+    const dest = path.join(root, LOCAL_FILE);
+    if (existsSync(dest)) {
+      console.error(`${LOCAL_FILE} already exists here; not overwriting it`);
+      return 2;
+    }
+    await writeFile(dest, LOCAL_TEMPLATE);
+    console.log(`wrote ${LOCAL_FILE}`);
+    console.log("copy $example into artifacts and edit; the next scan picks it up");
+    return 0;
+  }
+
   if (argv.includes("--list-deps")) {
     // Parse every dependency manifest and print what resolved, no network.
     // Exists so the lockfile parsers are testable without touching a registry.
@@ -1494,8 +1650,12 @@ Your source code is never sent anywhere.`);
   }
 
   const { feed, source } = await loadFeed({ offline });
-  const providers = new Set(feed.artifacts.map((a) => a.provider));
-  let findings = await scanRepo(root, feed.artifacts);
+  const local = await loadLocal(root, feed.artifacts);
+  const artifacts = local?.artifacts.length
+    ? feed.artifacts.concat(local.artifacts)
+    : feed.artifacts;
+  const providers = new Set(artifacts.map((a) => a.provider));
+  let findings = await scanRepo(root, artifacts);
 
   const ignores = await loadIgnores(root);
   const baseline = await loadBaseline(root);
@@ -1529,6 +1689,16 @@ Your source code is never sent anywhere.`);
     ? { flagged: [], checked: 0, unreachable: 0, notes: [] }
     : await scanRegistry(root);
 
+  // A local artifact that failed validation is a note, not a crash: the rest
+  // of the scan is sound, and hiding the skip would be the silent drop the
+  // loader promises not to do.
+  if (local?.problems.length) {
+    registry.notes.unshift(...local.problems.map((p) => `${LOCAL_FILE}: ${p}`));
+  }
+  const sourceLabel = local?.artifacts.length
+    ? `${source} + ${local.artifacts.length} local artifact(s)`
+    : source;
+
   // The plan is computed before any output path so that --json can carry it.
   // It used to be built after the --json early return, which meant the one
   // caller that most needs it could not have it: the hosted watch ran the
@@ -1538,7 +1708,7 @@ Your source code is never sent anywhere.`);
   // include everything refused for having no replacement.
   let plan = null;
   if (fix) {
-    const byId = new Map(feed.artifacts.map((a) => [a.id, a]));
+    const byId = new Map(artifacts.map((a) => [a.id, a]));
     plan = await planFixes(root, findings, byId);
     if (write) {
       for (const w of plan.writes) await writeFile(w.full, w.body, "utf8");
@@ -1571,14 +1741,18 @@ Your source code is never sent anywhere.`);
     // and CI paste-prompts key on these field names; renaming or removing
     // one bumps this number, adding a field does not. It sits first so a
     // human eyeballing the output sees the contract before the content.
-    const payload = { schema: 1, root, feed: source, findings, suppressed, registry };
+    const payload = { schema: 1, root, feed: sourceLabel, findings, suppressed, registry };
+    if (local) {
+      payload.local = { file: LOCAL_FILE, artifacts: local.artifacts.length,
+                        problems: local.problems };
+    }
     if (plan) payload.plan = { edits: plan.edits, unfixable: plan.unfixable };
     console.log(JSON.stringify(payload, null, 2));
     if (fix && write) return stillBreaking().length ? 1 : 0;
     return findings.some((f) => f.severity === "breaking") ? 1 : 0;
   }
 
-  const code = report(findings, registry, root, source, suppressed);
+  const code = report(findings, registry, root, sourceLabel, suppressed);
 
   if (fix) {
     reportFixes(plan.edits, plan.unfixable, write);

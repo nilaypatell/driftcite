@@ -32,7 +32,7 @@ context:                    # optional
     - <string>              # non-model artifacts count as findings
 artifacts:
   - id: <provider>/<kind>/<name>    # stable, globally unique
-    kind: model_id | request_param | tool_type | endpoint | sdk_symbol | enum_value
+    kind: model_id | request_param | tool_type | endpoint | sdk_symbol | enum_value | package | runtime
     match:
       literals: ["<exact string as it appears in source>"]
     status: active | deprecated | retired | removed
@@ -44,6 +44,12 @@ artifacts:
     evidence: <url>                 # the specific page proving this artifact
     require_context: true           # optional; see rule 5
 ```
+
+Two kinds carry extra restraint in the scanner: `package` matches only as a
+quoted string, because the word shape would let `aws-sdk` match inside
+`@aws-sdk/client-s3`; `runtime` ("python3.9", "heroku-20") is always gated on
+`file_markers`, because the same string in a file that never names the
+platform is just a version of Python.
 
 ### `observations`, on a generated manifest
 
