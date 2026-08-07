@@ -338,15 +338,42 @@ console.log("\npull request rules");
       evidence: "https://developers.openai.com/api/docs/deprecations" },
     { artifact: "stripe/endpoint//v1/x", severity: "warning", evidence: "https://stripe" },
   ];
-  const body = prBody(findings);
+  // The body is written from the edit plan, because a maintainer is deciding
+  // about a diff and not about a scan. The two lists differ: findings include
+  // everything the fixer refused for having no replacement.
+  const plan = {
+    edits: [
+      { file: "a.js", line: 3, from: "text-davinci-003", to: "gpt-5.6-terra",
+        artifact: "openai/model_id/text-davinci-003",
+        evidence: "https://developers.openai.com/api/docs/deprecations" },
+      { file: "b.js", line: 7, from: "text-davinci-003", to: "gpt-5.6-terra",
+        artifact: "openai/model_id/text-davinci-003",
+        evidence: "https://developers.openai.com/api/docs/deprecations" },
+    ],
+    unfixable: [
+      { artifact: "stripe/endpoint//v1/invoices/upcoming",
+        reason: "the provider named no replacement" },
+    ],
+  };
+  const body = prBody(plan, findings);
   check("pr body cites the provider's own page",
     body.includes("https://developers.openai.com/api/docs/deprecations"));
-  check("pr body lists an artifact once however many call sites it has",
+  check("pr body states one swap however many call sites it has",
     (body.match(/text-davinci-003/g) || []).length === 1);
-  check("pr body counts the days since death", body.includes("935 days"));
-  check("pr body leaves warnings out; a PR is for what is broken",
-    !body.includes("stripe/endpoint//v1/x"));
+  check("pr body shows what it changed, not what it found",
+    body.includes("gpt-5.6-terra") && body.includes("2 call sites"));
+  check("pr body counts the lines and files it actually touched",
+    body.includes("2 lines") && body.includes("2 files"));
+  check("pr body names what it refused and why",
+    body.includes("/v1/invoices/upcoming") && body.includes("named no replacement"));
   check("pr body says how to make it stop", /uninstall/i.test(body));
+
+  // A caller with no plan still gets a body rather than a crash.
+  const legacy = prBody(null, findings);
+  check("without a plan the body falls back to the findings shape",
+    legacy.includes("935 days") && legacy.includes("text-davinci-003"));
+  check("the fallback still leaves warnings out; a PR is for what is broken",
+    !legacy.includes("stripe/endpoint//v1/x"));
 }
 
 {

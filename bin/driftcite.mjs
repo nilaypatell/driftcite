@@ -1231,19 +1231,40 @@ Your source code is never sent anywhere.`);
     ? { flagged: [], checked: 0, unreachable: 0, notes: [] }
     : await scanRegistry(root);
 
+  // The plan is computed before any output path so that --json can carry it.
+  // It used to be built after the --json early return, which meant the one
+  // caller that most needs it could not have it: the hosted watch ran the
+  // fixer and threw its output away, then described the pull request from the
+  // *findings*. A maintainer opening a PR from a stranger is deciding about a
+  // diff, not about a scan, and the two are not the same list — findings
+  // include everything refused for having no replacement.
+  let plan = null;
+  if (fix) {
+    const byId = new Map(feed.artifacts.map((a) => [a.id, a]));
+    plan = await planFixes(root, findings, byId);
+    if (write) {
+      for (const w of plan.writes) await writeFile(w.full, w.body, "utf8");
+    }
+  }
+
+  // What --write repaired, and so what is still in the tree afterwards.
+  const stillBreaking = () => {
+    const repaired = new Set((plan?.edits ?? []).map((e) => `${e.file}:${e.line}:${e.artifact}`));
+    return findings.filter((f) => f.severity === "breaking"
+      && !repaired.has(`${f.file}:${f.line}:${f.artifact}`));
+  };
+
   if (asJson) {
-    console.log(JSON.stringify({ root, feed: source, findings, suppressed, registry }, null, 2));
+    const payload = { root, feed: source, findings, suppressed, registry };
+    if (plan) payload.plan = { edits: plan.edits, unfixable: plan.unfixable };
+    console.log(JSON.stringify(payload, null, 2));
+    if (fix && write) return stillBreaking().length ? 1 : 0;
     return findings.some((f) => f.severity === "breaking") ? 1 : 0;
   }
 
   const code = report(findings, registry, root, source, suppressed);
 
   if (fix) {
-    const byId = new Map(feed.artifacts.map((a) => [a.id, a]));
-    const plan = await planFixes(root, findings, byId);
-    if (write) {
-      for (const w of plan.writes) await writeFile(w.full, w.body, "utf8");
-    }
     reportFixes(plan.edits, plan.unfixable, write);
     if (write) {
       // --write repairs what it can and leaves the rest exactly where it was.
@@ -1251,9 +1272,7 @@ Your source code is never sent anywhere.`);
       // that still called a removed endpoint, which is the one outcome this
       // tool exists to prevent. What is still in the tree decides the exit
       // code, precisely as it would have without --fix.
-      const repaired = new Set(plan.edits.map((e) => `${e.file}:${e.line}:${e.artifact}`));
-      const left = findings.filter((f) => f.severity === "breaking"
-        && !repaired.has(`${f.file}:${f.line}:${f.artifact}`));
+      const left = stillBreaking();
       if (left.length) {
         console.log(c(BOLD, `${left.length} breaking finding(s) remain after --write`));
         console.log(c(DIM, "  exiting 1: these are still in your tree\n"));

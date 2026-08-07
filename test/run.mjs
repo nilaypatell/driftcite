@@ -403,6 +403,44 @@ console.log("\nfinding context");
     `two retired ids both mapping to gpt-3.5-turbo would duplicate a key`);
 }
 
+console.log("\nthe fix plan as data");
+
+// --json used to return before fixes were planned, so the one caller that
+// most needs the plan — the hosted watch, which has to describe what it
+// changed — ran the fixer and threw its output away.
+{
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-plan-"));
+  writeFileSync(path.join(dir, "a.py"),
+    'import openai\nMODEL = "text-davinci-003"\n');
+  let out = "";
+  try {
+    out = execFileSync("node",
+      [CLI, dir, "--offline", "--no-deps", "--fix", "--write", "--json"],
+      { encoding: "utf8" });
+  } catch (err) { out = err.stdout || ""; }
+  let parsed = null;
+  try { parsed = JSON.parse(out); } catch { /* reported below */ }
+
+  check("--json carries the fix plan", !!parsed?.plan?.edits);
+  check("the plan names the swap it made",
+    parsed?.plan?.edits?.[0]?.from === "text-davinci-003" &&
+    parsed?.plan?.edits?.[0]?.to === "gpt-5.6-terra");
+  check("--json --fix --write actually writes the file",
+    readFileSync(path.join(dir, "a.py"), "utf8").includes("gpt-5.6-terra"));
+
+  // A scan with no --fix must not grow a plan key; the watch keys off it.
+  let plainOut = "";
+  try {
+    plainOut = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json"],
+      { encoding: "utf8" });
+  } catch (err) { plainOut = err.stdout || ""; }
+  let plain = null;
+  try { plain = JSON.parse(plainOut); } catch { /* reported below */ }
+  check("a scan without --fix carries no plan", plain !== null && plain.plan === undefined);
+
+  rmSync(dir, { recursive: true, force: true });
+}
+
 console.log("\nlockfile parsing");
 
 function runList(files) {
@@ -587,6 +625,44 @@ function runList(files) {
   check("large --json output arrives complete through a pipe",
     parsed !== null && parsed.findings.length === 400,
     `got ${out.length} bytes, parse ${parsed ? "ok" : "FAILED"}`);
+}
+
+console.log("\nthe fix plan as data");
+
+// --json used to return before fixes were planned, so the one caller that
+// most needs the plan — the hosted watch, which has to describe what it
+// changed — ran the fixer and threw its output away.
+{
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-plan-"));
+  writeFileSync(path.join(dir, "a.py"),
+    'import openai\nMODEL = "text-davinci-003"\n');
+  let out = "";
+  try {
+    out = execFileSync("node",
+      [CLI, dir, "--offline", "--no-deps", "--fix", "--write", "--json"],
+      { encoding: "utf8" });
+  } catch (err) { out = err.stdout || ""; }
+  let parsed = null;
+  try { parsed = JSON.parse(out); } catch { /* reported below */ }
+
+  check("--json carries the fix plan", !!parsed?.plan?.edits);
+  check("the plan names the swap it made",
+    parsed?.plan?.edits?.[0]?.from === "text-davinci-003" &&
+    parsed?.plan?.edits?.[0]?.to === "gpt-5.6-terra");
+  check("--json --fix --write actually writes the file",
+    readFileSync(path.join(dir, "a.py"), "utf8").includes("gpt-5.6-terra"));
+
+  // A scan with no --fix must not grow a plan key; the watch keys off it.
+  let plainOut = "";
+  try {
+    plainOut = execFileSync("node", [CLI, dir, "--offline", "--no-deps", "--json"],
+      { encoding: "utf8" });
+  } catch (err) { plainOut = err.stdout || ""; }
+  let plain = null;
+  try { plain = JSON.parse(plainOut); } catch { /* reported below */ }
+  check("a scan without --fix carries no plan", plain !== null && plain.plan === undefined);
+
+  rmSync(dir, { recursive: true, force: true });
 }
 
 console.log("\nlockfile parsing");

@@ -59,7 +59,12 @@ export async function sweepRepo({ repo, api, token, cliPath, today, live }) {
 
     // Fix inside the clone. The clone is ours; only pushing is an act, so
     // the dry run applies the fix too and reports what it produced.
-    await runCli(cliPath, [dir, "--offline", "--no-deps", "--fix", "--write"]);
+    // --json so the plan comes back rather than being printed and dropped.
+    // What this branch CHANGED is what the pull request has to describe, and
+    // it is not the same list as what the scan found.
+    const fixRun = JSON.parse(
+      await runCli(cliPath, [dir, "--offline", "--no-deps", "--fix", "--write", "--json"]));
+    const plan = fixRun.plan ?? null;
     const changed = (await git("status", "--porcelain")).stdout
       .split("\n").filter(Boolean).map((line) => line.slice(3));
     if (!changed.length) return { action: "needs-human", entry };
@@ -81,7 +86,7 @@ export async function sweepRepo({ repo, api, token, cliPath, today, live }) {
 
     const branch = branchName(today);
 
-    const body = prBody(breaking);
+    const body = prBody(plan, breaking);
     if (!live) {
       return { action: "would-open-pr", entry, refused, files: allowed, body };
     }
