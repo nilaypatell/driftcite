@@ -1,0 +1,60 @@
+provider: googleads
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://developers.google.com/google-ads/api/docs/sunset-dates
+  - https://ads-developers.googleblog.com/
+
+# Google Ads API versions sunset on a date and then hard-fail: each sunset
+# reminder on the official blog repeats "Starting on this date, all vNN API
+# requests will begin to fail." The proto package path is the distinctive
+# literal (a bare "v20" would match half the internet); the endpoint spelling
+# is carried in both quoted and protocol forms for the same reason as the
+# Graph API manifest.
+context:
+  file_markers:
+    - googleads
+    - google-ads
+    - google_ads
+    - GOOGLE_ADS_DEVELOPER_TOKEN
+
+artifacts:
+  - id: googleads/endpoint/v18
+    kind: endpoint
+    match:
+      literals: ["google.ads.googleads.v18", "googleads.googleapis.com/v18", "//googleads.googleapis.com/v18"]
+    status: retired
+    retires_on: 2025-08-20
+    severity: warning
+    note: Sunset 2025-08-20; all v18 requests fail.
+    evidence: https://ads-developers.googleblog.com/2025/07/google-ads-api-v18-sunset-reminder.html
+
+  - id: googleads/endpoint/v19
+    kind: endpoint
+    match:
+      literals: ["google.ads.googleads.v19", "googleads.googleapis.com/v19", "//googleads.googleapis.com/v19"]
+    status: retired
+    retires_on: 2026-02-11
+    severity: warning
+    note: Sunset 2026-02-11; all v19 requests fail.
+    evidence: https://ads-developers.googleblog.com/2025/12/google-ads-api-v19-sunset-reminder.html
+
+  - id: googleads/endpoint/v20
+    kind: endpoint
+    match:
+      literals: ["google.ads.googleads.v20", "googleads.googleapis.com/v20", "//googleads.googleapis.com/v20"]
+    status: retired
+    retires_on: 2026-06-10
+    severity: warning
+    note: Sunset 2026-06-10; all v20 requests fail.
+    evidence: https://ads-developers.googleblog.com/2026/04/google-ads-api-v20-sunset-reminder.html
+
+  - id: googleads/endpoint/v21
+    kind: endpoint
+    match:
+      literals: ["google.ads.googleads.v21", "googleads.googleapis.com/v21", "//googleads.googleapis.com/v21"]
+    status: retired
+    retires_on: 2026-08-05
+    severity: warning
+    note: Sunset 2026-08-05; all v21 requests fail.
+    evidence: https://ads-developers.googleblog.com/2026/06/google-ads-api-v21-sunset-reminder.html

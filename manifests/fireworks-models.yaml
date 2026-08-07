@@ -1,0 +1,46 @@
+provider: fireworks
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://docs.fireworks.ai/updates/changelog
+
+# Fireworks announces serverless deprecations in its changelog. Only the two
+# models whose exact slugs the changelog itself links are carried
+# (app.fireworks.ai/models/fireworks/kimi-k2p5 and .../qwen3p6-plus). The
+# 2026-05-14 decommission batch ("Several legacy serverless models will be
+# decommissioned on May 14, 2026") names models by display name only —
+# DeepSeek V3.1, GLM 4.7, Llama 3.3 70B and others — and their API slugs would
+# have to be inferred from naming convention. Inferred literals are not
+# shipped; verify a slug against the models API before adding it here.
+context:
+  file_markers:
+    - fireworks
+    - FIREWORKS_API_KEY
+    - api.fireworks.ai
+
+artifacts:
+  - id: fireworks/model_id/kimi-k2p5
+    kind: model_id
+    match:
+      literals: ["accounts/fireworks/models/kimi-k2p5", "kimi-k2p5"]
+    status: deprecated
+    announced_on: 2026-06-26
+    replacement: accounts/fireworks/models/kimi-k2p6
+    severity: warning
+    note: >-
+      Deprecated from Fireworks serverless, announced 2026-06-26 with no
+      shutdown date. Dedicated deployments are unaffected.
+    evidence: https://docs.fireworks.ai/updates/changelog
+
+  - id: fireworks/model_id/qwen3p6-plus
+    kind: model_id
+    match:
+      literals: ["accounts/fireworks/models/qwen3p6-plus", "qwen3p6-plus"]
+    status: deprecated
+    announced_on: 2026-06-26
+    replacement: accounts/fireworks/models/qwen3p7-plus
+    severity: warning
+    note: >-
+      Deprecated from Fireworks serverless, announced 2026-06-26 with no
+      shutdown date. Dedicated deployments are unaffected.
+    evidence: https://docs.fireworks.ai/updates/changelog

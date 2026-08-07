@@ -1,0 +1,120 @@
+provider: xai
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://docs.x.ai/developers/migration/may-15-retirement
+
+# xAI retired these slugs on 2026-05-15 at 12:00 PT, but the retirement is a
+# redirect, not an error: "requests to the retired model slugs above will
+# automatically redirect to grok-4.3. The slugs themselves continue to
+# resolve." So none of these carry retires_on — nothing hard-fails on a date,
+# and a deadline here would fail someone's CI over calls that still succeed.
+# What actually changes is the model answering and the bill: retired slugs are
+# billed at grok-4.3 pricing.
+#
+# grok-2-image-1212, grok-2-vision-1212 and grok-3-mini are absent from the
+# models index and their doc pages 404, but no provider page states the
+# retirement, so they are not carried. A fact without a citation is not a fact
+# this feed ships.
+context:
+  file_markers:
+    - xai
+    - XAI_API_KEY
+    - api.x.ai
+
+artifacts:
+  - id: xai/model_id/grok-3
+    kind: model_id
+    match:
+      literals: ["grok-3"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort none) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-4-0709
+    kind: model_id
+    match:
+      literals: ["grok-4-0709"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort low) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-4-fast-reasoning
+    kind: model_id
+    match:
+      literals: ["grok-4-fast-reasoning"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort low) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-4-fast-non-reasoning
+    kind: model_id
+    match:
+      literals: ["grok-4-fast-non-reasoning"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort none) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-4-1-fast-reasoning
+    kind: model_id
+    match:
+      literals: ["grok-4-1-fast-reasoning"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort low) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-4-1-fast-non-reasoning
+    kind: model_id
+    match:
+      literals: ["grok-4-1-fast-non-reasoning"]
+    status: retired
+    replacement: grok-4.3
+    severity: warning
+    note: >-
+      Retired 2026-05-15; requests silently redirect to grok-4.3 (reasoning
+      effort none) and are billed at grok-4.3 pricing.
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-code-fast-1
+    kind: model_id
+    match:
+      literals: ["grok-code-fast-1"]
+    status: retired
+    replacement: grok-build-0.1
+    severity: warning
+    note: >-
+      Retired 2026-05-15; "After May 15, requests to grok-code-fast-1 are
+      routed to grok-build-0.1."
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement
+
+  - id: xai/model_id/grok-imagine-image-pro
+    kind: model_id
+    match:
+      literals: ["grok-imagine-image-pro"]
+    status: retired
+    replacement: grok-imagine-image-quality
+    severity: warning
+    note: >-
+      Retired 2026-05-15; "grok-imagine-image-pro will be redirected to
+      grok-imagine-image-quality."
+    evidence: https://docs.x.ai/developers/migration/may-15-retirement

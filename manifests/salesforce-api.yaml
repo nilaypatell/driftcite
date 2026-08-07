@@ -1,0 +1,46 @@
+provider: salesforce
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm
+
+# Salesforce retires platform API versions by release, and retired versions
+# hard-fail: the EOL document says retired REST versions return "the 410:GONE
+# error code". Salesforce dates retirements by release name ("As of Summer
+# '25, these versions are retired and unavailable"), not by a calendar day, so
+# no retires_on is carried — the note states the release instead of this
+# manifest inventing a date.
+#
+# Only the two batches the EOL document marks retired are here. Third-party
+# posts circulate a 2028 date for versions 31-40; the official document lists
+# 31.0 through 67.0 as supported, so nothing of the sort is carried.
+context:
+  file_markers:
+    - salesforce
+    - jsforce
+    - restforce
+    - SFDC
+
+artifacts:
+  - id: salesforce/endpoint/rest-v21-v30
+    kind: endpoint
+    match:
+      literals: ["/services/data/v21.0", "/services/data/v22.0", "/services/data/v23.0", "/services/data/v24.0", "/services/data/v25.0", "/services/data/v26.0", "/services/data/v27.0", "/services/data/v28.0", "/services/data/v29.0", "/services/data/v30.0"]
+    status: retired
+    severity: breaking
+    note: >-
+      "As of Summer '25, these versions are retired and unavailable." Retired
+      REST versions return 410 GONE. Move the version segment to a current
+      one; Salesforce's current version is v67.0.
+    evidence: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm
+
+  - id: salesforce/endpoint/rest-v20
+    kind: endpoint
+    match:
+      literals: ["/services/data/v20.0"]
+    status: retired
+    severity: breaking
+    note: >-
+      "As of Summer '22, these versions are retired and unavailable." Retired
+      REST versions return 410 GONE.
+    evidence: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm

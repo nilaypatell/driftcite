@@ -1,0 +1,89 @@
+provider: meta
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://developers.facebook.com/docs/graph-api/changelog/
+  - https://developers.facebook.com/docs/graph-api/guides/versioning
+
+# Graph API versions live for at least two years, then expire. Expiry is a
+# fall-forward, not an error: "once a version is no longer usable, any calls
+# made to it will be defaulted to the next oldest, usable version." So no
+# artifact carries retires_on — nothing fails on the date; the API under the
+# call changes.
+#
+# A bare "v19.0" would match version strings everywhere, so the literal is the
+# versioned host path. Two spellings each: the quoted path and the
+# protocol-suffixed one, because the word shape cannot start inside
+# "https://" and the quoted shape cannot start inside a longer URL.
+context:
+  file_markers:
+    - facebook
+
+artifacts:
+  - id: meta/endpoint/graph-v19.0
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v19.0", "//graph.facebook.com/v19.0"]
+    status: retired
+    severity: warning
+    note: >-
+      v19.0 expired 2026-05-21. Calls are defaulted to the next oldest usable
+      version rather than failing, so responses follow that version's
+      changelog, not v19.0's.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/
+
+  - id: meta/endpoint/graph-v18.0
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v18.0", "//graph.facebook.com/v18.0"]
+    status: retired
+    severity: warning
+    note: >-
+      v18.0 expired 2026-01-26. Calls are defaulted to the next oldest usable
+      version rather than failing.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/
+
+  - id: meta/endpoint/graph-v13-v17
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v17.0", "//graph.facebook.com/v17.0", "graph.facebook.com/v16.0", "//graph.facebook.com/v16.0", "graph.facebook.com/v15.0", "//graph.facebook.com/v15.0", "graph.facebook.com/v14.0", "//graph.facebook.com/v14.0", "graph.facebook.com/v13.0", "//graph.facebook.com/v13.0"]
+    status: retired
+    severity: warning
+    note: >-
+      v13.0 through v17.0 are past their expiration dates on the changelog.
+      Calls are defaulted to the next oldest usable version rather than
+      failing.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/
+
+  - id: meta/endpoint/graph-v20.0
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v20.0", "//graph.facebook.com/v20.0"]
+    status: deprecated
+    severity: warning
+    note: >-
+      v20.0 expires 2026-09-24 per the changelog. After that, calls default to
+      the next oldest usable version rather than failing.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/
+
+  - id: meta/endpoint/graph-v21.0
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v21.0", "//graph.facebook.com/v21.0"]
+    status: deprecated
+    severity: warning
+    note: >-
+      v21.0 expires 2027-01-21 per the changelog. After that, calls default to
+      the next oldest usable version rather than failing.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/
+
+  - id: meta/endpoint/graph-v22.0
+    kind: endpoint
+    match:
+      literals: ["graph.facebook.com/v22.0", "//graph.facebook.com/v22.0"]
+    status: deprecated
+    severity: warning
+    note: >-
+      v22.0 expires 2027-05-20 per the changelog. After that, calls default to
+      the next oldest usable version rather than failing.
+    evidence: https://developers.facebook.com/docs/graph-api/changelog/

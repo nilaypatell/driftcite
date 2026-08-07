@@ -1,0 +1,66 @@
+provider: assemblyai
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://www.assemblyai.com/changelog
+
+# AssemblyAI announced on 2026-08-01 that the default speech model changes to
+# Universal-3.5 Pro on 2026-09-02. universal-3-pro requests already error for
+# new and inactive accounts (since 2026-07-10) and error for everyone from
+# 2026-09-02; u3-pro-rt redirects instead of erroring, so it carries no
+# deadline.
+#
+# The legacy names "best", "nano" and "universal" are also deprecated, and are
+# deliberately not carried: they are ordinary English words, and the
+# distinctiveness rule exists precisely so a manifest never flags every
+# codebase that writes the word "best" in a string.
+context:
+  file_markers:
+    - assemblyai
+    - ASSEMBLYAI_API_KEY
+    - api.assemblyai.com
+    - streaming.assemblyai.com
+
+artifacts:
+  - id: assemblyai/model_id/universal-3-pro
+    kind: model_id
+    match:
+      literals: ["universal-3-pro"]
+    status: deprecated
+    retires_on: 2026-09-02
+    announced_on: 2026-08-01
+    replacement: universal-3-5-pro
+    severity: warning
+    note: >-
+      Deprecated; the API's own error text says to use
+      speech_models ["universal-3-5-pro", "universal-2"]. Blocked for new and
+      inactive accounts since 2026-07-10; errors for all accounts from
+      2026-09-02.
+    evidence: https://www.assemblyai.com/changelog
+
+  - id: assemblyai/model_id/u3-pro-rt
+    kind: model_id
+    match:
+      literals: ["u3-pro-rt"]
+    status: deprecated
+    announced_on: 2026-08-01
+    replacement: universal-3-5-pro
+    severity: warning
+    note: >-
+      Deprecated streaming model; from 2026-09-02 requests are redirected to
+      universal-3-5-pro rather than failing, so no deadline is carried.
+    evidence: https://www.assemblyai.com/changelog
+
+  - id: assemblyai/request_param/speech_model
+    kind: request_param
+    match:
+      literals: ["speech_model"]
+    status: deprecated
+    announced_on: 2026-07-10
+    replacement: speech_models
+    severity: warning
+    note: >-
+      The singular async speech_model parameter is deprecated as of 2026-07-10;
+      passing a current model name to it returns a 400. Use the plural
+      speech_models list.
+    evidence: https://www.assemblyai.com/changelog

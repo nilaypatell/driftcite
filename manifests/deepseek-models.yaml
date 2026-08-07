@@ -1,0 +1,49 @@
+provider: deepseek
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://api-docs.deepseek.com/updates/
+
+# DeepSeek announced on 2026-04-24 that its two legacy API model names would be
+# discontinued three months later, and they were: "The two legacy API model
+# names, deepseek-chat and deepseek-reasoner, will be discontinued in three
+# months (2026-07-24)." Calls to them now error; there is no redirect.
+#
+# The bare ids are distinctive of the direct API: relays write them with a
+# prefix (deepseek/deepseek-chat), which the word shape refuses to match
+# inside, so no marker gate is needed.
+context:
+  file_markers:
+    - deepseek
+    - DEEPSEEK_API_KEY
+    - api.deepseek.com
+
+artifacts:
+  - id: deepseek/model_id/deepseek-chat
+    kind: model_id
+    match:
+      literals: ["deepseek-chat"]
+    status: retired
+    retires_on: 2026-07-24
+    announced_on: 2026-04-24
+    replacement: deepseek-v4-flash
+    severity: warning
+    note: >-
+      Discontinued 2026-07-24, announced 2026-04-24. DeepSeek's named target is
+      deepseek-v4-flash (non-thinking mode); deepseek-v4-pro is the larger
+      option.
+    evidence: https://api-docs.deepseek.com/updates/
+
+  - id: deepseek/model_id/deepseek-reasoner
+    kind: model_id
+    match:
+      literals: ["deepseek-reasoner"]
+    status: retired
+    retires_on: 2026-07-24
+    announced_on: 2026-04-24
+    replacement: deepseek-v4-flash
+    severity: warning
+    note: >-
+      Discontinued 2026-07-24, announced 2026-04-24. DeepSeek's named target is
+      deepseek-v4-flash in thinking mode; deepseek-v4-pro is the larger option.
+    evidence: https://api-docs.deepseek.com/updates/

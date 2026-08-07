@@ -1,0 +1,60 @@
+provider: twilio
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://www.twilio.com/en-us/changelog/notify-api-end-of-life-further-extension-notice
+  - https://www.twilio.com/en-us/changelog/programmable-chat-in-flex-reaching-end-of-life-on-june-1--2026
+  - https://www.twilio.com/en-us/changelog/programmable-chat-end-of-life-notice
+
+# Twilio's dated core API version (2010-04-01) has no announced sunset and is
+# not carried. What has actually died is whole products: Notify (EOL
+# 2025-12-31) and Programmable Chat (standalone 2022-07-25, in Flex
+# 2026-06-01). Programmable Video's EOL was REVERSED — "Twilio Video Will
+# Remain a Standalone Product" (changelog, 2024-10-21) — so nothing here may
+# ever flag video.twilio.com.
+context:
+  file_markers:
+    - twilio
+    - TWILIO_ACCOUNT_SID
+    - TWILIO_AUTH_TOKEN
+
+artifacts:
+  - id: twilio/endpoint/notify.twilio.com
+    kind: endpoint
+    match:
+      literals: ["notify.twilio.com", "//notify.twilio.com"]
+    status: retired
+    retires_on: 2025-12-31
+    severity: warning
+    note: >-
+      Twilio Notify reached end of life on 2025-12-31. Twilio named no
+      replacement product: "We will update you via our Twilio Blog as soon as
+      we have an alternative solution."
+    evidence: https://www.twilio.com/en-us/changelog/notify-api-end-of-life-further-extension-notice
+
+  - id: twilio/endpoint/chat.twilio.com
+    kind: endpoint
+    match:
+      literals: ["chat.twilio.com", "//chat.twilio.com"]
+    status: retired
+    retires_on: 2026-06-01
+    severity: warning
+    note: >-
+      Programmable Chat reached end of life (standalone 2022-07-25, in Flex
+      2026-06-01); after that it "may stop working as expected and won't
+      receive any more enhancements, bug fixes, or security updates." Twilio's
+      named successor is Conversations (Flex Conversations inside Flex).
+    evidence: https://www.twilio.com/en-us/changelog/programmable-chat-in-flex-reaching-end-of-life-on-june-1--2026
+
+  - id: twilio/package/twilio-chat
+    kind: package
+    match:
+      literals: ["twilio-chat"]
+    status: retired
+    severity: warning
+    note: >-
+      The twilio-chat SDK belongs to Programmable Chat, which reached end of
+      life (standalone 2022-07-25, in Flex 2026-06-01). Twilio's named
+      successor is Conversations ("a unified API for cross-channel group
+      messaging").
+    evidence: https://www.twilio.com/en-us/changelog/programmable-chat-end-of-life-notice

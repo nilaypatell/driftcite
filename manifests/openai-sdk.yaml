@@ -1,0 +1,57 @@
+provider: openai
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://github.com/openai/openai-python/discussions/742
+
+# The openai-python v1 migration (November 2023) removed the v0 module-level
+# call surface; on v1+ these raise instead of calling. No lockfile tool sees
+# this — the package name never changed — which is exactly the gap sdk_symbol
+# artifacts exist for. No retires_on: OpenAI stated no end date for the 0.28
+# line, and code pinned to openai<1 still runs. The literals are the full
+# call paths (create/acreate) because the word shape cannot stop at
+# "ChatCompletion" when a dot follows it.
+#
+# openai.api_key is deliberately absent: v1 kept a module-level client, so
+# that spelling still works and would be a false positive.
+context:
+  file_markers:
+    - openai
+
+artifacts:
+  - id: openai/sdk_symbol/openai.ChatCompletion.create
+    kind: sdk_symbol
+    match:
+      literals: ["openai.ChatCompletion.create", "openai.ChatCompletion.acreate"]
+    status: removed
+    replacement: client.chat.completions.create
+    severity: warning
+    note: >-
+      Removed in openai-python v1.0.0 (November 2023); on v1+ this raises
+      instead of calling. The v1 form is client.chat.completions.create() on
+      an OpenAI() client. Runs only while pinned to openai<1.
+    evidence: https://github.com/openai/openai-python/discussions/742
+
+  - id: openai/sdk_symbol/openai.Completion.create
+    kind: sdk_symbol
+    match:
+      literals: ["openai.Completion.create", "openai.Completion.acreate"]
+    status: removed
+    replacement: client.completions.create
+    severity: warning
+    note: >-
+      Removed in openai-python v1.0.0 (November 2023); on v1+ this raises
+      instead of calling. Runs only while pinned to openai<1.
+    evidence: https://github.com/openai/openai-python/discussions/742
+
+  - id: openai/sdk_symbol/openai.Embedding.create
+    kind: sdk_symbol
+    match:
+      literals: ["openai.Embedding.create", "openai.Embedding.acreate"]
+    status: removed
+    replacement: client.embeddings.create
+    severity: warning
+    note: >-
+      Removed in openai-python v1.0.0 (November 2023); on v1+ this raises
+      instead of calling. Runs only while pinned to openai<1.
+    evidence: https://github.com/openai/openai-python/discussions/742

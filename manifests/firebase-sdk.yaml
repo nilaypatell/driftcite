@@ -1,0 +1,29 @@
+provider: firebase
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://firebase.google.com/docs/web/modular-upgrade
+
+# The Firebase JS compat layer is deprecated in place: "the compat libraries
+# are a temporary solution that will be removed completely in a future major
+# SDK version." No date exists — the page's own example versions (10, 11) are
+# already behind the shipping SDK and compat still ships — so no retires_on
+# and no invented one. The literal "firebase/compat" matches every
+# firebase/compat/* import path by the word shape.
+context:
+  file_markers:
+    - firebase
+
+artifacts:
+  - id: firebase/sdk_symbol/firebase-compat
+    kind: sdk_symbol
+    match:
+      literals: ["firebase/compat"]
+    status: deprecated
+    severity: warning
+    note: >-
+      The compat libraries are a migration bridge Firebase says "will be
+      removed completely in a future major SDK version", with no date
+      announced. The named successor is the modular API (import
+      { initializeApp } from "firebase/app").
+    evidence: https://firebase.google.com/docs/web/modular-upgrade

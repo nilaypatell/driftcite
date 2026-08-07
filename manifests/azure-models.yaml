@@ -126,46 +126,15 @@ artifacts:
     require_context: true
     evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
 
-  - id: azure/model_id/grok-3
-    kind: model_id
-    match:
-      literals: ["grok-3"]
-    status: retired
-    retires_on: 2026-05-01
-    replacement: grok-4
-    severity: breaking
-    note: Retired on Azure. Inference returns 410 Gone.
-    require_context: true
-    evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
-
+  # grok-3, grok-4-fast-reasoning and grok-4-fast-non-reasoning left this
+  # manifest on 2026-08-07: xAI now retires those ids on its own page, and the
+  # vendor that published an ID owns it — the same rule that removed o1-pro
+  # from here. Azure's earlier 410 date for them is real and is the cost of
+  # the rule. grok-3-mini stays because xAI's page never names it.
   - id: azure/model_id/grok-3-mini
     kind: model_id
     match:
       literals: ["grok-3-mini"]
-    status: retired
-    retires_on: 2026-05-01
-    replacement: grok-4-1-fast-reasoning
-    severity: breaking
-    note: Retired on Azure. Inference returns 410 Gone.
-    require_context: true
-    evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
-
-  - id: azure/model_id/grok-4-fast-non-reasoning
-    kind: model_id
-    match:
-      literals: ["grok-4-fast-non-reasoning"]
-    status: retired
-    retires_on: 2026-05-01
-    replacement: grok-4-1-fast-non-reasoning
-    severity: breaking
-    note: Retired on Azure. Inference returns 410 Gone.
-    require_context: true
-    evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
-
-  - id: azure/model_id/grok-4-fast-reasoning
-    kind: model_id
-    match:
-      literals: ["grok-4-fast-reasoning"]
     status: retired
     retires_on: 2026-05-01
     replacement: grok-4-1-fast-reasoning

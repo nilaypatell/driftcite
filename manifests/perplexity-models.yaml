@@ -1,0 +1,117 @@
+provider: perplexity
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://docs.perplexity.ai/changelog/changelog
+
+# Perplexity retires models by removing them: calls to a retired id fail. The
+# sonar- and pplx- prefixes are Perplexity's own, so the ids stand alone the
+# way other model ids do.
+#
+# The changelog also retires Google pass-through ids (google/gemini-2.5-flash
+# and friends). Those are deliberately not carried: a relay's lifecycle is its
+# own, and the same literal in a repo is far more often OpenRouter or LiteLLM
+# calling Google than anyone calling Perplexity. Reporting Perplexity's date
+# against those calls would be a wrong answer with a date attached.
+context:
+  file_markers:
+    - perplexity
+    - PERPLEXITY_API_KEY
+    - PPLX_API_KEY
+    - api.perplexity.ai
+
+artifacts:
+  - id: perplexity/model_id/llama-3.1-sonar-small-128k-online
+    kind: model_id
+    match:
+      literals: ["llama-3.1-sonar-small-128k-online"]
+    status: retired
+    retires_on: 2025-02-22
+    replacement: sonar
+    severity: warning
+    note: Retired 2025-02-22. Perplexity's named successor for the small online tier is sonar.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/llama-3.1-sonar-large-128k-online
+    kind: model_id
+    match:
+      literals: ["llama-3.1-sonar-large-128k-online"]
+    status: retired
+    retires_on: 2025-02-22
+    replacement: sonar-pro
+    severity: warning
+    note: Retired 2025-02-22. Perplexity's named successor for the large online tier is sonar-pro.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/llama-3.1-sonar-huge-128k-online
+    kind: model_id
+    match:
+      literals: ["llama-3.1-sonar-huge-128k-online"]
+    status: retired
+    retires_on: 2025-02-22
+    replacement: sonar-pro
+    severity: warning
+    note: Retired 2025-02-22. Perplexity's named successor for the huge online tier is sonar-pro.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/r1-1776
+    kind: model_id
+    match:
+      literals: ["r1-1776"]
+    status: retired
+    retires_on: 2025-08-01
+    replacement: sonar-reasoning-pro
+    severity: warning
+    note: >-
+      Retired 2025-08-01. Perplexity: "R1 has been a popular option for a
+      while, but it hasn't kept pace with recent improvements."
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/sonar-reasoning
+    kind: model_id
+    match:
+      literals: ["sonar-reasoning"]
+    status: retired
+    retires_on: 2025-12-15
+    replacement: sonar-reasoning-pro
+    severity: warning
+    note: Retired 2025-12-15 in favour of sonar-reasoning-pro.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  # The 2024 sonar generation. Replacements point at the current sonar family,
+  # because the models Perplexity originally named as targets (the llama-3.1
+  # sonar line) are themselves retired above, and a manifest must follow the
+  # chain to a model the provider is not also retiring.
+  - id: perplexity/model_id/llama-3-sonar-small-32k-online
+    kind: model_id
+    match:
+      literals: ["llama-3-sonar-small-32k-online", "llama-3-sonar-small-32k-chat"]
+    status: retired
+    retires_on: 2024-08-12
+    replacement: sonar
+    severity: warning
+    note: Retired 2024-08-12 with the rest of the llama-3 sonar generation.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/llama-3-sonar-large-32k-online
+    kind: model_id
+    match:
+      literals: ["llama-3-sonar-large-32k-online", "llama-3-sonar-large-32k-chat"]
+    status: retired
+    retires_on: 2024-08-12
+    replacement: sonar-pro
+    severity: warning
+    note: Retired 2024-08-12 with the rest of the llama-3 sonar generation.
+    evidence: https://docs.perplexity.ai/changelog/changelog
+
+  - id: perplexity/model_id/pplx-7b-chat
+    kind: model_id
+    match:
+      literals: ["pplx-7b-chat", "pplx-7b-online"]
+    status: retired
+    retires_on: 2024-05-14
+    severity: warning
+    note: >-
+      Retired 2024-05-14. Perplexity named no current successor for the pplx-7b
+      line; the live catalogue is the sonar family.
+    evidence: https://docs.perplexity.ai/changelog/changelog

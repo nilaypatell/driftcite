@@ -1,0 +1,289 @@
+provider: aws
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+# Lambda runtime retirement happens in three dated steps, quoted from the
+# runtimes page: at deprecation "AWS may no longer apply security updates";
+# then "Lambda begins blocking creation of new functions"; then "Lambda begins
+# blocking the update of code and configuration for existing functions". After
+# all of that, "you can continue to invoke your functions indefinitely" — so
+# what a finding here means is that the deploy pipeline breaks on the
+# block-update date, not that production calls stop. retires_on is that
+# block-update date. AWS bulk-delayed most older runtimes' block dates to
+# 2027-02-01 (create) and 2027-03-03 (update).
+#
+# Only runtimes already past their deprecation date are carried; flagging a
+# runtime AWS still patches would teach people to mute the tool. The bare
+# custom runtime id "provided" is left out because it is an ordinary English
+# word, and dotnet7/dotnet5.0 are left out because they were container-only
+# runtimes with no block dates.
+context:
+  file_markers:
+    - aws
+    - lambda
+
+artifacts:
+  - id: aws/runtime/nodejs20.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs20.x"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2026-04-30; security updates may have stopped then. Function
+      creation blocks 2027-02-01 and code/config updates block 2027-03-03;
+      invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/nodejs18.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs18.x"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2025-09-01. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/nodejs16.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs16.x"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2024-06-12. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/nodejs14.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs14.x"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2023-12-04; creation has been blocked since 2024-01-09.
+      Code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/nodejs12.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs12.x"] }
+    status: retired
+    retires_on: 2023-04-30
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2023-03-31; creation and updates have been blocked since
+      2023-04-30. Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/nodejs10.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs10.x"] }
+    status: retired
+    retires_on: 2022-02-14
+    severity: warning
+    replacement: nodejs22.x
+    note: >-
+      Deprecated 2021-07-30; creation and updates have long been blocked.
+      Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/python3.9
+    kind: runtime
+    require_context: true
+    match: { literals: ["python3.9"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: python3.13
+    note: >-
+      Deprecated 2025-12-15. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/python3.8
+    kind: runtime
+    require_context: true
+    match: { literals: ["python3.8"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: python3.13
+    note: >-
+      Deprecated 2024-10-14. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/python3.7
+    kind: runtime
+    require_context: true
+    match: { literals: ["python3.7"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: python3.13
+    note: >-
+      Deprecated 2023-12-04; creation has been blocked since 2024-01-09.
+      Code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/python3.6
+    kind: runtime
+    require_context: true
+    match: { literals: ["python3.6"] }
+    status: retired
+    retires_on: 2022-08-29
+    severity: warning
+    replacement: python3.13
+    note: >-
+      Deprecated 2022-07-18; creation and updates have been blocked since
+      2022-08-29. Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/python2.7
+    kind: runtime
+    require_context: true
+    match: { literals: ["python2.7"] }
+    status: retired
+    retires_on: 2022-05-30
+    severity: warning
+    replacement: python3.13
+    note: >-
+      Deprecated 2021-07-15; creation and updates have long been blocked.
+      Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/ruby3.2
+    kind: runtime
+    require_context: true
+    match: { literals: ["ruby3.2"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: ruby3.4
+    note: >-
+      Deprecated 2026-03-31. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/ruby2.7
+    kind: runtime
+    require_context: true
+    match: { literals: ["ruby2.7"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: ruby3.4
+    note: >-
+      Deprecated 2023-12-07; creation has been blocked since 2024-01-09.
+      Code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/ruby2.5
+    kind: runtime
+    require_context: true
+    match: { literals: ["ruby2.5"] }
+    status: retired
+    retires_on: 2022-03-31
+    severity: warning
+    replacement: ruby3.4
+    note: >-
+      Deprecated 2021-07-30; creation and updates have long been blocked.
+      Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/go1.x
+    kind: runtime
+    require_context: true
+    match: { literals: ["go1.x"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: provided.al2023
+    note: >-
+      Deprecated 2024-01-08; creation has been blocked since 2024-02-08. Go
+      functions run on the provided.al2023 OS-only runtime now. Code/config
+      updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/java8
+    kind: runtime
+    require_context: true
+    match: { literals: ["java8"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: java21
+    note: >-
+      Deprecated 2024-01-08; creation has been blocked since 2024-02-08.
+      Code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/provided.al2
+    kind: runtime
+    require_context: true
+    match: { literals: ["provided.al2"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: provided.al2023
+    note: >-
+      Deprecated 2026-07-31, alongside Amazon Linux 2's scheduled end of life
+      on 2026-06-30. Function creation blocks 2027-02-01 and code/config
+      updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/dotnet6
+    kind: runtime
+    require_context: true
+    match: { literals: ["dotnet6"] }
+    status: deprecated
+    retires_on: 2027-03-03
+    severity: warning
+    replacement: dotnet8
+    note: >-
+      Deprecated 2024-12-20. Function creation blocks 2027-02-01 and
+      code/config updates block 2027-03-03; invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/dotnetcore3.1
+    kind: runtime
+    require_context: true
+    match: { literals: ["dotnetcore3.1"] }
+    status: retired
+    retires_on: 2023-05-03
+    severity: warning
+    replacement: dotnet8
+    note: >-
+      Deprecated 2023-04-03; creation and updates have been blocked since
+      2023-05-03. Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+  - id: aws/runtime/dotnetcore2.1
+    kind: runtime
+    require_context: true
+    match: { literals: ["dotnetcore2.1"] }
+    status: retired
+    retires_on: 2022-04-13
+    severity: warning
+    replacement: dotnet8
+    note: >-
+      Deprecated 2022-01-05; creation and updates have long been blocked.
+      Invocations continue.
+    evidence: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html

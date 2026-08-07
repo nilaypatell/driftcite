@@ -1,0 +1,159 @@
+provider: gcp
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://docs.cloud.google.com/functions/docs/runtime-support
+
+# Cloud Functions runtime ids have no dot and no .x — nodejs18, python39,
+# go121 — which keeps every literal here distinct from the Lambda manifest's.
+# The semantics, quoted from the runtime-support page: while deprecated "you
+# can generally continue to create new workloads and update existing
+# workloads"; once decommissioned "you can no longer create new workloads or
+# update existing workloads using the runtime." retires_on is the
+# decommission date, because that is the day deploys fail.
+#
+# Only runtimes already past their deprecation date are carried. dotnet6 is
+# left out deliberately: Lambda's manifest owns that literal, and one literal
+# carrying two providers' dates is the exact bug the build refuses. No
+# replacement is named because the page names none per-runtime; the current
+# supported list is on the same page.
+context:
+  file_markers:
+    - gcloud
+    - cloudfunctions
+    - cloud-functions
+
+artifacts:
+  - id: gcp/runtime/nodejs20
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs20"] }
+    status: deprecated
+    retires_on: 2026-10-30
+    severity: warning
+    note: >-
+      Deprecated 2026-04-30; decommissions 2026-10-30, after which deploys and
+      updates of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/nodejs18
+    kind: runtime
+    require_context: true
+    match: { literals: ["nodejs18"] }
+    status: retired
+    retires_on: 2025-10-30
+    severity: warning
+    note: >-
+      Deprecated 2025-04-30 and decommissioned 2025-10-30; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/python39
+    kind: runtime
+    require_context: true
+    match: { literals: ["python39"] }
+    status: retired
+    retires_on: 2026-04-05
+    severity: warning
+    note: >-
+      Deprecated 2025-10-05 and decommissioned 2026-04-05; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/go122
+    kind: runtime
+    require_context: true
+    match: { literals: ["go122"] }
+    status: retired
+    retires_on: 2026-07-28
+    severity: warning
+    note: >-
+      Deprecated 2026-01-28 and decommissioned 2026-07-28; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/go121
+    kind: runtime
+    require_context: true
+    match: { literals: ["go121"] }
+    status: retired
+    retires_on: 2026-03-03
+    severity: warning
+    note: >-
+      Deprecated 2025-09-03 and decommissioned 2026-03-03; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/go120
+    kind: runtime
+    require_context: true
+    match: { literals: ["go120"] }
+    status: retired
+    retires_on: 2025-05-01
+    severity: warning
+    note: >-
+      Deprecated 2024-05-01 and decommissioned 2025-05-01; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/java11
+    kind: runtime
+    require_context: true
+    match: { literals: ["java11"] }
+    status: retired
+    retires_on: 2025-10-31
+    severity: warning
+    note: >-
+      Deprecated 2024-10-31 and decommissioned 2025-10-31; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/ruby32
+    kind: runtime
+    require_context: true
+    match: { literals: ["ruby32"] }
+    status: deprecated
+    retires_on: 2026-09-30
+    severity: warning
+    note: >-
+      Deprecated 2026-03-31; decommissions 2026-09-30, after which deploys and
+      updates of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/ruby30
+    kind: runtime
+    require_context: true
+    match: { literals: ["ruby30"] }
+    status: retired
+    retires_on: 2025-03-31
+    severity: warning
+    note: >-
+      Deprecated 2024-03-31 and decommissioned 2025-03-31; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/php81
+    kind: runtime
+    require_context: true
+    match: { literals: ["php81"] }
+    status: retired
+    retires_on: 2026-06-30
+    severity: warning
+    note: >-
+      Deprecated 2025-12-31 and decommissioned 2026-06-30; deploys and updates
+      of functions on this runtime fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support
+
+  - id: gcp/runtime/decommissioned-2025-01-30
+    kind: runtime
+    require_context: true
+    match:
+      literals: ["nodejs16", "nodejs14", "nodejs12", "nodejs10", "python38", "python37", "go119", "go118", "go116", "go113", "ruby27", "ruby26", "php74", "dotnet3"]
+    status: retired
+    retires_on: 2025-01-30
+    severity: warning
+    note: >-
+      This generation was deprecated 2024-01-30 (go119 on 2024-04-30) and
+      decommissioned 2025-01-30; deploys and updates of functions on these
+      runtimes fail.
+    evidence: https://docs.cloud.google.com/functions/docs/runtime-support

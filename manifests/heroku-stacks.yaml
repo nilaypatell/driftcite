@@ -1,0 +1,43 @@
+provider: heroku
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://devcenter.heroku.com/changelog-items/3230
+  - https://devcenter.heroku.com/changelog-items/3705
+
+# Heroku retires whole stacks. At end of life "apps ... will continue to run,
+# but will no longer receive security updates, and no new builds (code
+# deployments) can be performed" — so retires_on is the day builds stop, which
+# is the day a push fails.
+context:
+  file_markers:
+    - heroku
+
+artifacts:
+  - id: heroku/runtime/heroku-20
+    kind: runtime
+    require_context: true
+    match: { literals: ["heroku-20"] }
+    status: retired
+    retires_on: 2025-05-01
+    replacement: heroku-24
+    severity: warning
+    note: >-
+      Deprecated 2024-06-24 and end-of-life effective 2025-05-01: apps keep
+      running without security updates and no new builds can be performed
+      until the app moves to a newer stack.
+    evidence: https://devcenter.heroku.com/changelog-items/3230
+
+  - id: heroku/runtime/heroku-22
+    kind: runtime
+    require_context: true
+    match: { literals: ["heroku-22"] }
+    status: deprecated
+    retires_on: 2027-04-30
+    replacement: heroku-24
+    severity: warning
+    note: >-
+      Deprecation effective 2026-05-20; reaches end of life 2027-04-30 and
+      "Starting May 1st 2027, builds will no longer be allowed for Heroku-22
+      apps." heroku-24 is supported through April 2029.
+    evidence: https://devcenter.heroku.com/changelog-items/3705

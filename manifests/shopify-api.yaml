@@ -1,0 +1,52 @@
+provider: shopify
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://shopify.dev/docs/api/usage/versioning
+  - https://shopify.dev/docs/apps/build/graphql/migrate
+
+# Shopify cuts a dated API version every quarter and supports each for twelve
+# months. Retirement is a fall-forward, not an error: "If your app targets an
+# inaccessible version, Shopify falls forward and responds using the oldest
+# accessible stable version." So no artifact here carries retires_on — the
+# calls keep succeeding, silently against a newer API whose fields may have
+# moved. That silence is the finding.
+#
+# The version-bearing path is the literal, because a bare "2024-01" would
+# match every date in every codebase. The REST Admin API's legacy status
+# ("a legacy API as of October 1, 2024") is not carried as an artifact for the
+# same reason: its distinguishing literal is any *.json path under /admin/api,
+# which is not distinctive enough to be a finding.
+context:
+  file_markers:
+    - shopify
+    - myshopify.com
+    - SHOPIFY_API_KEY
+    - X-Shopify-Access-Token
+
+artifacts:
+  - id: shopify/endpoint/admin-api-2025-07
+    kind: endpoint
+    match:
+      literals: ["/admin/api/2025-07"]
+    status: retired
+    severity: warning
+    note: >-
+      Version 2025-07 became inaccessible on 2026-07-16 (15:00 UTC). Requests
+      fall forward to the oldest accessible version instead of failing, so
+      responses now come from a different API version than the code targets.
+      The oldest supported version is 2025-10.
+    evidence: https://shopify.dev/docs/api/usage/versioning
+
+  - id: shopify/endpoint/admin-api-2024-2025-early
+    kind: endpoint
+    match:
+      literals: ["/admin/api/2025-04", "/admin/api/2025-01", "/admin/api/2024-10", "/admin/api/2024-07", "/admin/api/2024-04", "/admin/api/2024-01"]
+    status: retired
+    severity: warning
+    note: >-
+      These versions are absent from Shopify's supported-versions table; each
+      was supported for twelve months from release. Requests fall forward to
+      the oldest accessible version instead of failing, so responses come from
+      a different API version than the code targets.
+    evidence: https://shopify.dev/docs/api/usage/versioning

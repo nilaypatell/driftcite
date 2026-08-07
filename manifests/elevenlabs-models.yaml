@@ -1,0 +1,81 @@
+provider: elevenlabs
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://elevenlabs.io/docs/overview/models
+  - https://elevenlabs.io/docs/changelog/2026/6/8
+
+# ElevenLabs announced on 2026-06-08 that the v1 speech models would be
+# removed on 2026-07-09, and they were: "The eleven_monolingual_v1 and
+# eleven_multilingual_v1 models are deprecated and will be removed on July 9,
+# 2026." scribe_v1 was removed the same day. The turbo v2 line is deprecated
+# on the models page with no removal date, so it carries none.
+context:
+  file_markers:
+    - elevenlabs
+    - ELEVENLABS_API_KEY
+    - ELEVEN_API_KEY
+    - api.elevenlabs.io
+    - xi-api-key
+
+artifacts:
+  - id: elevenlabs/model_id/eleven_monolingual_v1
+    kind: model_id
+    match:
+      literals: ["eleven_monolingual_v1"]
+    status: retired
+    retires_on: 2026-07-09
+    announced_on: 2026-06-08
+    replacement: eleven_multilingual_v2
+    severity: warning
+    note: Removed 2026-07-09, announced 2026-06-08.
+    evidence: https://elevenlabs.io/docs/changelog/2026/6/8
+
+  - id: elevenlabs/model_id/eleven_multilingual_v1
+    kind: model_id
+    match:
+      literals: ["eleven_multilingual_v1"]
+    status: retired
+    retires_on: 2026-07-09
+    announced_on: 2026-06-08
+    replacement: eleven_multilingual_v2
+    severity: warning
+    note: Removed 2026-07-09, announced 2026-06-08.
+    evidence: https://elevenlabs.io/docs/changelog/2026/6/8
+
+  - id: elevenlabs/model_id/scribe_v1
+    kind: model_id
+    match:
+      literals: ["scribe_v1"]
+    status: retired
+    retires_on: 2026-07-09
+    announced_on: 2026-06-08
+    replacement: scribe_v2
+    severity: warning
+    note: >-
+      Removed 2026-07-09, announced 2026-06-08. scribe_v2_realtime is the
+      streaming variant.
+    evidence: https://elevenlabs.io/docs/changelog/2026/6/8
+
+  - id: elevenlabs/model_id/eleven_turbo_v2
+    kind: model_id
+    match:
+      literals: ["eleven_turbo_v2"]
+    status: deprecated
+    replacement: eleven_flash_v2
+    severity: warning
+    note: >-
+      Listed as deprecated on the models page ("First generation low-latency
+      model") with no removal date announced.
+    evidence: https://elevenlabs.io/docs/overview/models
+
+  - id: elevenlabs/model_id/eleven_turbo_v2_5
+    kind: model_id
+    match:
+      literals: ["eleven_turbo_v2_5"]
+    status: deprecated
+    replacement: eleven_flash_v2_5
+    severity: warning
+    note: >-
+      Listed as deprecated on the models page with no removal date announced.
+    evidence: https://elevenlabs.io/docs/overview/models

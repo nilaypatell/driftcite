@@ -1,0 +1,33 @@
+provider: aws
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-javascript-v2/
+
+# AWS SDK for JavaScript v2. Maintenance mode 2024-09-08, end of support
+# 2025-09-08: "The SDK will no longer receive updates or releases." Installed
+# copies keep working, so no retires_on. The kind is package — quoted-only —
+# because the word shape would match "aws-sdk" inside "@aws-sdk/client-s3"
+# and flag every repo that already finished the v3 migration.
+context:
+  file_markers:
+    - aws
+
+artifacts:
+  - id: aws/package/aws-sdk
+    kind: package
+    match:
+      literals: ["aws-sdk"]
+    status: deprecated
+    severity: warning
+    note: >-
+      End of support since 2025-09-08 (maintenance mode began 2024-09-08); no
+      updates or releases of any kind, including security fixes. AWS's named
+      successor is the modular AWS SDK for JavaScript v3 (@aws-sdk/*
+      packages). The npm registry marks the package deprecated, so the
+      dependency check flags lockfiles too; this artifact covers the require
+      and import sites.
+    evidence: https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-javascript-v2/
+
+  # The v3 replacement is many packages, one per client, so no single
+  # replacement token exists for a drop-in swap; the finding stays a report.

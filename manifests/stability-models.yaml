@@ -1,0 +1,110 @@
+provider: stability
+spec_version: 1
+updated: 2026-08-07
+sources:
+  - https://platform.stability.ai/docs/release-notes
+
+# Stability's release notes carry the retirements. The 2024-10-11 batch is a
+# hard removal ("we have deprecated a number of our older models and API's");
+# the SD3 batch is a redirect ("automatically upgrading to Stable Diffusion
+# 3.5 APIs at no extra cost"), so those carry no retires_on — the calls still
+# succeed, on a different model.
+#
+# The 2025-07-24 notice retires the Stable Diffusion 1.6 and Stable Video
+# Diffusion APIs by product name without stating engine ids, so no literal is
+# carried for them; a guessed slug is worse than a gap.
+context:
+  file_markers:
+    - stability
+    - STABILITY_API_KEY
+    - STABILITY_KEY
+    - api.stability.ai
+    - grpc.stability.ai
+
+artifacts:
+  - id: stability/model_id/stable-diffusion-512-v2-1
+    kind: model_id
+    match:
+      literals: ["stable-diffusion-512-v2-1"]
+    status: retired
+    retires_on: 2024-10-11
+    announced_on: 2024-10-11
+    severity: warning
+    note: >-
+      Removed 2024-10-11 with the older v1 engines. Stability's current line
+      is Stable Image Core/Ultra and the SD3.5 family.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/stable-diffusion-xl-beta-v2-2-2
+    kind: model_id
+    match:
+      literals: ["stable-diffusion-xl-beta-v2-2-2"]
+    status: retired
+    retires_on: 2024-10-11
+    announced_on: 2024-10-11
+    severity: warning
+    note: Removed 2024-10-11 with the older v1 engines.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/stable-diffusion-xl-1024-v0-9
+    kind: model_id
+    match:
+      literals: ["stable-diffusion-xl-1024-v0-9"]
+    status: retired
+    retires_on: 2024-10-11
+    announced_on: 2024-10-11
+    severity: warning
+    note: Removed 2024-10-11 with the older v1 engines.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/esrgan-v1-x2plus
+    kind: model_id
+    match:
+      literals: ["esrgan-v1-x2plus"]
+    status: retired
+    retires_on: 2024-10-11
+    announced_on: 2024-10-11
+    severity: warning
+    note: >-
+      Removed 2024-10-11. The v2beta conservative and creative upscale
+      endpoints are the current upscalers.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/sd3-large
+    kind: model_id
+    match:
+      literals: ["sd3-large"]
+    status: retired
+    announced_on: 2025-04-17
+    replacement: sd3.5-large
+    severity: warning
+    note: >-
+      Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5
+      APIs at no extra cost, so no deadline is carried.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/sd3-large-turbo
+    kind: model_id
+    match:
+      literals: ["sd3-large-turbo"]
+    status: retired
+    announced_on: 2025-04-17
+    replacement: sd3.5-large-turbo
+    severity: warning
+    note: >-
+      Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5
+      APIs at no extra cost, so no deadline is carried.
+    evidence: https://platform.stability.ai/docs/release-notes
+
+  - id: stability/model_id/sd3-medium
+    kind: model_id
+    match:
+      literals: ["sd3-medium"]
+    status: retired
+    announced_on: 2025-04-17
+    replacement: sd3.5-medium
+    severity: warning
+    note: >-
+      Deprecated 2025-04-17; requests are automatically upgraded to the SD3.5
+      APIs at no extra cost, so no deadline is carried.
+    evidence: https://platform.stability.ai/docs/release-notes
