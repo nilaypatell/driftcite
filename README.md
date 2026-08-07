@@ -45,7 +45,7 @@ feed: live | 0 dependencies resolved
     models.py:7  CHAT_MODEL = "gpt-4-turbo"
 
 [BREAKING] stripe/endpoint//v1/invoices/upcoming -- removed
-  GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.dahlia.
+  GET /v1/invoices/upcoming existed in 2024-06-20 and is gone in 2026-06-24.
   evidence: https://github.com/stripe/openapi/compare/v1200...v2345
     billing.js:4  return stripe.request("GET", "/v1/invoices/upcoming", { customer });
 ```
