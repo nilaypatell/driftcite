@@ -23,8 +23,9 @@ function C({ children }: { children: ReactNode }) {
 
 type Release = {
   /** The version in package.json when this work landed. Written without a
-   *  leading `v` because the repository carries no tags — there is nothing
-   *  named `v0.2.0` to link to, and writing one would imply there were. */
+   *  leading `v` for consistency across entries; v0.2.0 and v0.2.1 both exist
+   *  as tags, and v0.2.0 was tagged after the fact against the commit whose
+   *  bin/ is byte-identical to the tarball npm serves. */
   version: string;
   /** ISO date. Used verbatim as the `datetime`, written out for readers. */
   date: string;
@@ -39,24 +40,23 @@ type Release = {
   notes: ReactNode[];
 };
 
-/* Two entries, because driftcite has been published once. Every date below
-   is either the npm publish record (`npm view driftcite time --json`) or the
-   commit that carries the work; `git tag -l` is empty, so nothing here is
-   dated from a tag. An earlier version of this page listed seven releases
-   going back to April 2026, none of which existed. */
+/* Two entries, because driftcite has been published twice. Every date
+   below is the npm publish record (`npm view driftcite time --json`), never
+   a tag date. An earlier version of this page listed seven releases going
+   back to April 2026, none of which existed. */
 const RELEASES: readonly Release[] = [
   {
     version: "0.2.1",
-    date: "2026-08-06",
-    provenance: "on main, dated by its commits",
-    tag: "Unreleased",
-    tone: "neutral",
+    date: "2026-08-07",
+    provenance: "published to npm",
+    tag: "Latest on npm",
+    tone: "accent",
     title: "The resellers, the registries, and a feed that watches itself",
     notes: [
       <>
-        The work below has been landing on <C>main</C> since July 27, 2026;
-        the date beside it is the commit that bumped the version, and the tag
-        above flips the day npm serves it.
+        Published to npm on August 7, 2026. The work below had been landing
+        on <C>main</C> since July 27; the date beside it is now the publish
+        record, not a commit.
       </>,
       <>
         An unknown flag is now a hard error that names the flag and exits 2.
@@ -80,7 +80,7 @@ const RELEASES: readonly Release[] = [
       <>
         Mistral, Cohere, Plaid, Square, Datadog, Adyen and Asana joined the
         watch, each accruing history from the day it landed.{" "}
-        {TOTAL_ARTIFACTS} artifacts across eighteen providers in the published
+        {TOTAL_ARTIFACTS} artifacts across nineteen providers in the published
         feed.
       </>,
       <>
@@ -133,13 +133,14 @@ const RELEASES: readonly Release[] = [
     version: "0.2.0",
     date: "2026-07-27",
     provenance: "published to npm",
-    tag: "Latest on npm",
-    tone: "accent",
+    tag: "npm",
+    tone: "neutral",
     title: "The only published release",
     notes: [
       <>
         npm recorded the publish at 06:01 UTC on {formatDate("2026-07-27")}.
-        This is still what <C>npx driftcite</C> installs.
+        It was what <C>npx driftcite</C> installed for eleven days, until
+        0.2.1.
       </>,
       <>
         A single-file scanner, <C>bin/driftcite.mjs</C>, with zero runtime
@@ -243,7 +244,7 @@ export default function Changelog() {
           }}
         >
           Releases of the tool itself. One version has been published to npm;
-          work that has landed since is listed as unreleased and says so. The
+          work that has landed since is listed as published and dated. The
           drift manifests are a separate record — they regenerate daily by a
           scheduled workflow, and their history is the{" "}
           <a
@@ -350,9 +351,9 @@ export default function Changelog() {
           margin: 0,
         }}
       >
-        The repository carries no git tags, so nothing here is dated from one.
-        0.2.0 is dated from the npm publish record; 0.2.1 from the commit that
-        raised the version. Version 0.1.0 sat in the tree for two hours on{" "}
+        Both entries are dated from the npm publish record, not from git
+        tags — v0.2.1 is the repository&#8217;s first tag and marks the tree
+        the tarball was cut from. Version 0.1.0 sat in the tree for two hours on{" "}
         {formatDate("2026-07-26")} and was never published, which is why it has
         no entry.
       </p>

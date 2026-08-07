@@ -26,7 +26,8 @@ sources:
 #     variable name, which is the same reason enum values under four
 #     characters are dropped.
 #
-# claude-opus-4-1 and o1-pro are deliberately absent: Anthropic's and
+# claude-opus-4-1, o1-pro and gpt-image-1 are deliberately absent: Anthropic's
+# and
 # OpenAI's own manifests already carry them, and one finding per dead model is
 # enough. Two artifacts sharing a literal put two different death dates on the
 # same line, and the Azure SDK is imported from the `openai` package, so an
@@ -359,9 +360,12 @@ artifacts:
       literals: ["o3-mini"]
     status: deprecated
     retires_on: 2026-10-01
-    replacement: o4-mini
+    replacement: null
     severity: breaking
-    note: Azure lifecycle Deprecated. Retires 2026-10-01.
+    note: Azure lifecycle Deprecated. Retires 2026-10-01. Azure names o4-mini
+      as the replacement and then retires that too on 2026-10-16, naming
+      nothing after it, so this deliberately carries no replacement rather
+      than sending anyone fifteen days down a dead end.
     require_context: true
     evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
 
@@ -533,14 +537,3 @@ artifacts:
     require_context: true
     evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule
 
-  - id: azure/model_id/gpt-image-1
-    kind: model_id
-    match:
-      literals: ["gpt-image-1"]
-    status: deprecated
-    retires_on: 2026-10-23
-    replacement: null
-    severity: breaking
-    note: Azure lifecycle Preview. Retires 2026-10-23.
-    require_context: true
-    evidence: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule

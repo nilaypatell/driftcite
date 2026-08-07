@@ -9,7 +9,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-dark.svg">
-  <img alt="Apache 2.0 · 15 providers · 331 artifacts · zero dependencies · 199 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
+  <img alt="Apache 2.0 · 19 providers · 411 artifacts · zero dependencies · 199 tests passing · Node 18+" src="https://raw.githubusercontent.com/nilaypatell/driftcite/main/.github/badges-light.svg" width="931">
 </picture>
 
 <br><br>
@@ -296,6 +296,7 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 |:--|:--|--:|
 | **OpenAI** | `openai/openai-openapi`, deprecations page and Responses migration guide | 117 |
 | **Mistral** | model docs and SDK migration guide, curated | 45 |
+| **Azure** | Foundry model retirement schedule, curated | 41 |
 | **Square** | `square/connect-api-specification` | 41 |
 | **Cloudflare** | `cloudflare/api-schemas` | 33 |
 | **GitHub** | `github/rest-api-description` | 26 |
@@ -309,15 +310,14 @@ A tool that is wrong three times out of four gets muted, then deleted. Coverage 
 | Twilio · Asana · Box | tracked, currently no drift | 0 |
 | **npm · PyPI · crates.io · RubyGems** | every package, no per-provider work | live |
 
-Fifteen providers in the published feed, 370 artifacts, every one carrying the
+Sixteen providers in the published feed, 411 artifacts, every one carrying the
 provider's own evidence URL. Nineteen are tracked in total: Twilio, Asana and
 Box are polled and have produced nothing yet, and Azure is held back below.
 
-Azure is curated (42 artifacts) and **withheld from the published feed** until
-a release carrying `require_context` is the version on npm. The published
-client predates that field, and without it Azure's retirement dates would be
-reported to people calling OpenAI and Anthropic directly. Data must not arrive
-ahead of the gate that makes it safe.
+Azure's rows are in the feed again. They were withheld while the published
+client predated `require_context`, because a reseller's retirement date
+reported to somebody calling the vendor directly is a wrong answer with a
+citation attached. 0.2.1 reads the gate, so the data can follow it.
 
 Two of them resell other people's models on their own clock. Azure retires
 `gpt-4o` and `claude-sonnet-4-5` on dates their original vendors do not

@@ -92,7 +92,7 @@ export default function SectionComparison() {
                 <td style={none}>&#8212;</td>
                 <td style={none}>&#8212;</td>
                 <td style={ours}>
-                  <Tick /> {TOTAL_ARTIFACTS} artifacts, eighteen providers
+                  <Tick /> {TOTAL_ARTIFACTS} artifacts, nineteen providers
                 </td>
               </tr>
               <tr>

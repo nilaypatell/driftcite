@@ -1,6 +1,6 @@
 {
  "feed_version": 1,
- "generated_on": "2026-08-06",
+ "generated_on": "2026-08-07",
  "providers": [
   {
    "provider": "adyen",
@@ -28,6 +28,19 @@
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md"
    ],
    "artifact_count": 21
+  },
+  {
+   "provider": "azure",
+   "manifests": [
+    "azure-models.yaml"
+   ],
+   "source_license": null,
+   "source_notice": null,
+   "sources": [
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements"
+   ],
+   "artifact_count": 41
   },
   {
    "provider": "bedrock",
@@ -660,6 +673,990 @@
     "anthropic",
     "claude-",
     "ANTHROPIC_API_KEY"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.1-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.1-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.2-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.2-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-5.3-chat",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-5.3-chat"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-29",
+   "replacement": "gpt-chat-latest",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-R1-0528",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-R1-0528"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Pro",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-V3-0324",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-V3-0324"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Flash",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-V3.1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-V3.1"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-13",
+   "replacement": "DeepSeek-V4-Flash",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-3",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-3"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-3-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-3-mini"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-4-fast-non-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-non-reasoning"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-non-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/grok-4-fast-reasoning",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "grok-4-fast-reasoning"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-01",
+   "replacement": "grok-4-1-fast-reasoning",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-r-08-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-r-08-2024"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-r-plus-08-2024",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-r-plus-08-2024"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-12",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-rerank-v3.5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-rerank-v3.5"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-05-14",
+   "replacement": "Cohere-rerank-v4.0-pro",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Llama-3.2-11B-Vision-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Llama-3.2-11B-Vision-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Llama-3.2-90B-Vision-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Llama-3.2-90B-Vision-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-405B-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-405B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-8B",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-8B"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Meta-Llama-3.1-8B-Instruct",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Meta-Llama-3.1-8B-Instruct"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-06-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/mistral-document-ai-2505",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "mistral-document-ai-2505"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-20",
+   "replacement": "mistral-document-ai-2512",
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Diffusion-3.5-Large",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Diffusion-3.5-Large"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Image-Core",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Image-Core"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Stable-Image-Ultra",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Stable-Image-Ultra"
+    ]
+   },
+   "status": "retired",
+   "retires_on": "2026-07-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Retired on Azure. Inference returns 410 Gone.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/DeepSeek-R1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "DeepSeek-R1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-13",
+   "replacement": "DeepSeek-V4-Pro",
+   "severity": "breaking",
+   "note": "Azure lifecycle Legacy. Retires 2026-08-13.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/TimeGEN-1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "TimeGEN-1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": "TimeGPT-1",
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/tsuzumi-7b",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "tsuzumi-7b"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": "tsuzumi2",
+   "severity": "breaking",
+   "note": "Azure lifecycle Legacy. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/o3-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o3-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-01",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-01. Azure names o4-mini as the replacement and then retires that too on 2026-10-16, naming nothing after it, so this deliberately carries no replacement rather than sending anyone fifteen days down a dead end.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1-nano",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1-nano"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/o4-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "o4-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-16",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-10-16.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/codex-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "codex-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-11-15",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2026-11-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4.1-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4.1-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-4o-mini",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-4o-mini"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2027-04-14",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Deprecated. Retires 2027-04-14.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/MAI-Image-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "MAI-Image-2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-15",
+   "replacement": "MAI-Image-2.5",
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/MAI-Image-2e",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "MAI-Image-2e"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-15",
+   "replacement": "MAI-Image-2.5-Flash",
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-15.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/gpt-realtime-2",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "gpt-realtime-2"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-08-31",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-08-31.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Kimi-K2.7-Code",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Kimi-K2.7-Code"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-03",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-03.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/Cohere-command-a-plus-05-2026",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "Cohere-command-a-plus-05-2026"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-13",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-13.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-haiku-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-haiku-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-opus-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-opus-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
+   ]
+  },
+  {
+   "id": "azure/model_id/claude-sonnet-4-5",
+   "kind": "model_id",
+   "match": {
+    "literals": [
+     "claude-sonnet-4-5"
+    ]
+   },
+   "status": "deprecated",
+   "retires_on": "2026-10-19",
+   "replacement": null,
+   "severity": "breaking",
+   "note": "Azure lifecycle Preview. Retires 2026-10-19.",
+   "require_context": true,
+   "evidence": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+   "provider": "azure",
+   "file_markers": [
+    "azure",
+    "AZURE_OPENAI",
+    "openai.azure.com",
+    "azure-ai",
+    "AZURE_AI"
    ]
   },
   {

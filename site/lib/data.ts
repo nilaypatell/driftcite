@@ -4,7 +4,7 @@
    All of it is read out of the repository, not invented:
      corpus/report.json     the scan of 449 public repositories, July 2026
      providers.yaml         the seven spec-tracked providers
-     feed/feed.json         what users receive, 370 artifacts
+     feed/feed.json         what users receive, 411 artifacts
 
    If a figure is not in this file it does not belong on the page.
    ═══════════════════════════════════════════════════════════════════════ */
@@ -38,12 +38,11 @@ export const STATS = [
   { value: CORPUS.worstRepo, label: "worst single repository" },
 ] as const;
 
-/** 370 artifacts across eighteen providers, counted from feed/feed.json —
- *  what a user actually receives, not what the repository holds. The
- *  manifests carry 297: Azure's 42 are curated and withheld from the
- *  published feed until a release carrying `require_context` is the version
- *  on npm, because the published client predates that field and would report
- *  Azure's retirement dates to people calling OpenAI directly.
+/** 411 artifacts across 19 providers, counted from feed/feed.json —
+ *  what a user actually receives. Azure's rows are back in the feed now that
+ *  the published client reads `require_context`; they were withheld while it
+ *  did not, because a reseller's retirement date reported to somebody calling
+ *  the vendor directly is a wrong answer with a citation attached.
  *
  *  `watched` means the spec is tracked but nothing has been retired from it
  *  yet. Providers that landed after the July 2026 corpus scan carry no
@@ -52,6 +51,7 @@ export const STATS = [
 export const PROVIDERS = [
   { name: "OpenAI", artifacts: 117, findings: 123 },
   { name: "Mistral", artifacts: 45 },
+  { name: "Azure", artifacts: 41 },
   { name: "Square", artifacts: 41 },
   { name: "Cloudflare", artifacts: 33, findings: 78 },
   { name: "GitHub", artifacts: 26, findings: 1 },
@@ -70,8 +70,8 @@ export const PROVIDERS = [
   { name: "Box", watched: "by commit" },
 ] as const;
 
-export const TOTAL_ARTIFACTS = 370;
-export const TOTAL_PROVIDERS = 18;
+export const TOTAL_ARTIFACTS = 411;
+export const TOTAL_PROVIDERS = 19;
 
 export const DEAD_IDENTIFIERS = [
   { prefix: "google/model_id/", id: "gemini-2.0-flash", repos: 81 },
@@ -129,7 +129,7 @@ export const CHAPTERS = [
   { label: "The blind spot", end: "why nothing catches it" },
   { label: "The scan", end: "one command" },
   { label: "The corpus", end: "measured, july 2026" },
-  { label: "What it watches", end: "eighteen providers" },
+  { label: "What it watches", end: "nineteen providers" },
   { label: "Three ways to run it", end: "same engine" },
   { label: "Receipts", end: "pr #1, unattended" },
   { label: "Why it stays quiet", end: "precision first" },

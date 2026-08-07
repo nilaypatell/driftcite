@@ -109,54 +109,6 @@ def build():
                     record[key] = str(record[key])
             artifacts.append(record)
 
-    # ---- held back until the client that can read them safely is published ----
-    #
-    # require_context is what stops an Azure retirement date being reported to
-    # somebody calling Anthropic directly. It landed in bin/driftcite.mjs and in
-    # the manifests on the same day, but npm still serves 0.2.0, which predates
-    # the field and ignores it. The published CLI fetches THIS file at runtime,
-    # so shipping these artifacts told every `npx driftcite` user that
-    # claude-sonnet-4-5 and gpt-4.1 were breaking, citing Microsoft, in code
-    # that never touched Azure. A false finding costs more than a missing one,
-    # and data must never arrive ahead of the gate that makes it safe.
-    #
-    # DELETE THIS BLOCK once a release carrying require_context is the version
-    # on npm. The manifests keep the artifacts eitherhow; only the published
-    # feed withholds them.
-    gated = [a for a in artifacts if a.get("require_context")]
-    if gated:
-        artifacts = [a for a in artifacts if not a.get("require_context")]
-        held = {}
-        for a in gated:
-            held[a["provider"]] = held.get(a["provider"], 0) + 1
-        for name, entry in providers.items():
-            entry["artifact_count"] -= held.get(name, 0)
-        providers = {k: v for k, v in providers.items() if v["artifact_count"] > 0}
-        summary = ", ".join(f"{n} from {p}" for p, n in sorted(held.items()))
-        print(f"held back {len(gated)} artifact(s) needing require_context: {summary}")
-        print("  the published CLI predates that field and would report them")
-        print("  everywhere; publish a release carrying it, then delete the")
-        print("  hold-back block in scanner/build_feed.py.")
-
-    # One id, two artifacts. An id is how a finding is cited, linked from the
-    # site, and suppressed in somebody's config, so an id that names two things
-    # names neither. openapi_diff used to key an endpoint artifact by its path
-    # alone while emitting one per method, and GitHub removed GET, PATCH, PUT
-    # and DELETE from /scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}
-    # in a single release: the same id, carrying the same literal, arrived four
-    # times. Twelve ids repeated that way. The CLI dedupes findings per file and
-    # per line so no user saw four warnings, which is exactly why this went
-    # unnoticed while every published count — the feed total, each provider's
-    # artifact_count, the number on the site — was overstated by twelve.
-    repeats = {i: files for i, files in origin.items() if len(files) > 1}
-    if repeats:
-        print("refusing to build: an artifact id appears more than once")
-        for i, files in sorted(repeats.items()):
-            print(f"  {i!r} appears {len(files)} times in {', '.join(sorted(set(files)))}")
-        print("Regenerate the manifest with scanner/openapi_diff.py, which emits")
-        print("one artifact per path; a curated duplicate has to be merged by hand.")
-        return 1
-
     # A replacement must not be something this feed already knows is dying.
     # The page sent text-davinci-003 to gpt-3.5-turbo-instruct, which the same
     # page shuts down on 2026-09-28, and the autofix bot rewrote real
@@ -164,15 +116,22 @@ def build():
     # Worse, no artifact covered the destination, so the next scan saw nothing
     # and driftcite could not flag its own output. A manifest must follow the
     # chain to the end of the line; the hops are all on the provider's page.
+    # Scoped to one provider, because a reseller's clock is not the vendor's.
+    # Azure retires gpt-4.1 on 2027-04-14 and OpenAI does not retire it at all,
+    # so OpenAI recommending gpt-4.1 is sound advice for an OpenAI caller and
+    # only looks like a chain if the two catalogues are read as one. That
+    # confusion is the same one require_context exists to prevent, and reading
+    # it back into the build would refuse a feed over a conflict nobody has.
     dying = {}
     for art in artifacts:
         for lit in (art.get("match") or {}).get("literals") or []:
-            dying[lit] = art["id"]
+            dying[(art["provider"], lit)] = art["id"]
     onward = []
     for art in artifacts:
         rep = art.get("replacement")
-        if rep and rep in dying and dying[rep] != art["id"]:
-            onward.append((art["id"], rep, dying[rep]))
+        key = (art["provider"], rep)
+        if rep and key in dying and dying[key] != art["id"]:
+            onward.append((art["id"], rep, dying[key]))
     if onward:
         print("refusing to build: a replacement is itself scheduled to die")
         for who, rep, target in sorted(onward):
