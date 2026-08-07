@@ -1153,6 +1153,22 @@ Your source code is never sent anywhere.`);
     return 0;
   }
 
+  // An unrecognised flag is a hard error, not a silent no-op. The failure
+  // this prevents: a newer README (or a pasted setup prompt) names a flag
+  // this installed version does not have, the flag is ignored, and the run
+  // "succeeds" while doing something other than what was asked. Confident
+  // false success is the one failure mode a scanner must not have.
+  const KNOWN_FLAGS = new Set([
+    "--offline", "--json", "--no-deps", "--fix", "--write",
+    "--list-deps", "--write-baseline",
+  ]);
+  const unknown = argv.filter((a) => a.startsWith("-") && !KNOWN_FLAGS.has(a));
+  if (unknown.length) {
+    console.error(`unknown flag: ${unknown.join(", ")}`);
+    console.error(`run \`npx driftcite --help\` for the flags this version has`);
+    return 2;
+  }
+
   const root = path.resolve(argv.find((a) => !a.startsWith("-")) || ".");
   const offline = argv.includes("--offline");
   const asJson = argv.includes("--json");

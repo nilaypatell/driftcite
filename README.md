@@ -208,7 +208,7 @@ dropped. A tool that hides things is worse than one that annoys.
 ## In CI
 
 ```yaml
-- uses: nilaypatell/driftcite@main
+- uses: nilaypatell/driftcite@v0.2.1
 ```
 
 Fails the build on breaking drift and writes the findings, with evidence links, into the job summary. Inputs: `path`, `fail-on-breaking`, `check-dependencies`, `offline`.

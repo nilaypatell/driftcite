@@ -527,6 +527,36 @@ function runList(files) {
 }
 
 {
+  // A flag this version does not know must be a loud error, not a scan that
+  // quietly ignores it. 0.2.0 accepted --write-baseline, printed "No drift
+  // found." and exited 0 — confident false success, the exact failure the
+  // scanner exists to catch in other people's tooling.
+  let code = 0, err = "";
+  try {
+    execFileSync("node", [CLI, ".", "--wrote-baseline"], { encoding: "utf8" });
+  } catch (e) {
+    code = e.status ?? 0;
+    err = e.stderr || "";
+  }
+  check("an unknown flag is a hard error", code === 2, `got exit ${code}`);
+  check("the unknown flag is named", err.includes("unknown flag: --wrote-baseline"), err);
+}
+
+{
+  // Every flag --help advertises must be a flag this build accepts, and the
+  // README must not name a flag --help does not. The published-identifier-
+  // versus-artifact mismatch is driftcite's own thesis applied to itself.
+  const help = execFileSync("node", [CLI, "--help"], { encoding: "utf8" });
+  const readme = readFileSync(path.join(HERE, "..", "README.md"), "utf8");
+  const helpFlags = new Set(help.match(/--[a-z][a-z-]*/g) || []);
+  const missing = [...new Set(readme.match(/--[a-z][a-z-]*/g) || [])]
+    .filter((f) => !["--fix-", "--parent", "--match", "--provider", "--from", "--to"].some((p) => f.startsWith(p)))
+    .filter((f) => !helpFlags.has(f));
+  check("every flag the README names exists in --help", missing.length === 0,
+    `README names flags --help lacks: ${missing.join(", ")}`);
+}
+
+{
   // Piped stdout is asynchronous, and process.exit() abandons whatever has
   // not flushed. In a terminal nobody notices; in CI or under the watch the
   // JSON arrives cut off at a pipe-buffer boundary. Found by the first real
