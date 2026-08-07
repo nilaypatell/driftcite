@@ -1,0 +1,60 @@
+# Publish to npm with provenance, from a tag.
+#
+# Pushing a tag like v0.2.2 runs the test suites and publishes the package
+# with an attestation linking the tarball to this exact commit and workflow —
+# npm's provenance badge, verifiable by anyone with `npm audit signatures`.
+# For a scanner that runs on strangers' machines, "built from this public
+# commit by this public workflow" is not a nicety.
+#
+# One-time setup this file cannot do for you:
+#   npmjs.com -> driftcite package -> Settings -> Trusted publisher:
+#   GitHub Actions, repository nilaypatell/driftcite, workflow publish.yml.
+# With that in place there is no token to store, rotate, or leak — the
+# workflow's OIDC identity IS the credential. Until it is configured, this
+# workflow fails at the publish step with a clear registry error and
+# publishes nothing.
+#
+# The version pin gate: the tag must match package.json, and the site's
+# setup prompt must match both — the same rule the site's postbuild
+# enforces, applied at the moment of release.
+
+name: publish
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # the OIDC identity npm's trusted publishing verifies
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: The tag, the package, and the prompt must agree
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "tag v$tag does not match package.json $pkg"; exit 1
+          fi
+          if ! grep -q "driftcite@$pkg" site/lib/agent-setup.ts; then
+            echo "site/lib/agent-setup.ts does not pin driftcite@$pkg — the"
+            echo "published setup prompt would teach a version npm cannot serve"
+            exit 1
+          fi
+
+      - name: Tests
+        run: |
+          node test/run.mjs
+          node test/watch.mjs
+
+      - name: Publish with provenance
+        run: npm publish --provenance --access public
