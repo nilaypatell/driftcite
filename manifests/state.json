@@ -18,12 +18,12 @@
     "cloudflare": {
       "first_seen": "2026-07-26",
       "last_change": "2026-08-07",
-      "ref": "175725ee6882"
+      "ref": "f0422271d15f"
     },
     "datadog": {
       "first_seen": "2026-08-06",
-      "last_change": "2026-08-06",
-      "ref": "2.57.0"
+      "last_change": "2026-08-07",
+      "ref": "2.58.0"
     },
     "digitalocean": {
       "first_seen": "2026-07-26",

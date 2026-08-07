@@ -25,8 +25,30 @@ observations:
     count: 1
     examples:
     - '''sort'' at GET /api/v2/security_monitoring/signals'
+- repo: DataDog/datadog-api-client-python
+  from: 2.57.0
+  to: 2.58.0
+  from_api_version: '1.0'
+  to_api_version: '1.0'
+  observed_on: '2026-08-07'
+  withheld:
+  - reason: parameter name is not distinctive enough to match safely
+    count: 2
+    examples:
+    - '''orgUuid'' at GET /api/v2/governance/insights'
+    - '''withValues'' at GET /api/v2/governance/insights'
+  - reason: path still served by another method, so the literal is still live
+    count: 2
+    examples:
+    - /api/unstable/fleet/schedules at GET removed
+    - /api/unstable/fleet/schedules/{id} at GET removed
+  - reason: enum value is an ordinary word and would match unrelated code
+    count: 1
+    examples:
+    - '''tracked'''
 sources:
 - https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 context:
   file_markers:
   - datadog
@@ -34,6 +56,86 @@ context:
   - DATADOG_API_KEY
   - datadoghq.com
 artifacts:
+- id: datadog/endpoint//api/unstable/fleet/agent_versions
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/agent_versions
+  status: removed
+  severity: breaking
+  note: GET /api/unstable/fleet/agent_versions existed in 2.57.0 and is gone in 2.58.0.
+    Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/agents
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/agents
+  status: removed
+  severity: breaking
+  note: GET /api/unstable/fleet/agents existed in 2.57.0 and is gone in 2.58.0. Observed
+    2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/agents/{agent_key}
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/agents/{agent_key}
+  status: removed
+  severity: breaking
+  note: GET /api/unstable/fleet/agents/{agent_key} existed in 2.57.0 and is gone in
+    2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/deployments
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/deployments
+  status: removed
+  severity: breaking
+  note: GET /api/unstable/fleet/deployments existed in 2.57.0 and is gone in 2.58.0.
+    Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/deployments/configure
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/deployments/configure
+  status: removed
+  severity: breaking
+  note: POST /api/unstable/fleet/deployments/configure existed in 2.57.0 and is gone
+    in 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/deployments/upgrade
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/deployments/upgrade
+  status: removed
+  severity: breaking
+  note: POST /api/unstable/fleet/deployments/upgrade existed in 2.57.0 and is gone
+    in 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/deployments/{deployment_id}
+  status: removed
+  severity: breaking
+  note: GET /api/unstable/fleet/deployments/{deployment_id} existed in 2.57.0 and
+    is gone in 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/unstable/fleet/deployments/{deployment_id}/cancel
+  kind: endpoint
+  match:
+    literals:
+    - /api/unstable/fleet/deployments/{deployment_id}/cancel
+  status: removed
+  severity: breaking
+  note: POST /api/unstable/fleet/deployments/{deployment_id}/cancel existed in 2.57.0
+    and is gone in 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/endpoint//api/v2/dora/incident
   kind: endpoint
   match:
@@ -54,6 +156,17 @@ artifacts:
   note: DELETE, POST /api/v2/metrics/config/bulk-tags was marked deprecated between
     2.33.0 and 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/on-call/schedules/{schedule_id}/on-call
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/on-call/schedules/{schedule_id}/on-call
+  status: deprecated
+  severity: warning
+  note: GET /api/v2/on-call/schedules/{schedule_id}/on-call was marked deprecated
+    between 2.57.0 and 2.58.0. Observed 2026-08-07; the spec's own version stayed
+    1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/endpoint//api/v2/scorecard/outcomes/batch
   kind: endpoint
   match:
@@ -104,6 +217,66 @@ artifacts:
   note: DELETE, GET, PATCH /api/v2/services/{service_id} existed in 2.33.0 and is
     gone in 2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/endpoint//api/v2/slo/report
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/slo/report
+  status: deprecated
+  severity: warning
+  note: POST /api/v2/slo/report was marked deprecated between 2.57.0 and 2.58.0. Observed
+    2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/v2/slo/report/{report_id}/download
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/slo/report/{report_id}/download
+  status: deprecated
+  severity: warning
+  note: GET /api/v2/slo/report/{report_id}/download was marked deprecated between
+    2.57.0 and 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/v2/slo/report/{report_id}/status
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/slo/report/{report_id}/status
+  status: deprecated
+  severity: warning
+  note: GET /api/v2/slo/report/{report_id}/status was marked deprecated between 2.57.0
+    and 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/v2/tag-policies
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/tag-policies
+  status: removed
+  severity: breaking
+  note: GET, POST /api/v2/tag-policies existed in 2.57.0 and is gone in 2.58.0. Observed
+    2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/v2/tag-policies/{policy_id}
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/tag-policies/{policy_id}
+  status: removed
+  severity: breaking
+  note: DELETE, GET, PATCH /api/v2/tag-policies/{policy_id} existed in 2.57.0 and
+    is gone in 2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/endpoint//api/v2/tag-policies/{policy_id}/score
+  kind: endpoint
+  match:
+    literals:
+    - /api/v2/tag-policies/{policy_id}/score
+  status: removed
+  severity: breaking
+  note: GET /api/v2/tag-policies/{policy_id}/score existed in 2.57.0 and is gone in
+    2.58.0. Observed 2026-08-07; the spec's own version stayed 1.0.
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/endpoint//api/v2/teams
   kind: endpoint
   match:
@@ -124,6 +297,72 @@ artifacts:
   note: DELETE, GET, PATCH /api/v2/teams/{team_id} existed in 2.33.0 and is gone in
     2.57.0. Observed 2026-08-06; the spec's own version stayed 1.0.
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/enum_value/assign_agent
+  kind: enum_value
+  match:
+    literals:
+    - assign_agent
+  status: removed
+  severity: breaking
+  note: 'Enum value ''assign_agent'' was valid in 2.57.0 and is gone in 2.58.0. Seen
+    at: components.schemas.AutomationRuleActionType. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/attribute_value_changed
+  kind: enum_value
+  match:
+    literals:
+    - attribute_value_changed
+  status: removed
+  severity: breaking
+  note: 'Enum value ''attribute_value_changed'' was valid in 2.57.0 and is gone in
+    2.58.0. Seen at: components.schemas.AutomationRuleTriggerType. Observed 2026-08-07;
+    the spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/case_created
+  kind: enum_value
+  match:
+    literals:
+    - case_created
+  status: removed
+  severity: breaking
+  note: 'Enum value ''case_created'' was valid in 2.57.0 and is gone in 2.58.0. Seen
+    at: components.schemas.AutomationRuleTriggerType. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/case_review_approved
+  kind: enum_value
+  match:
+    literals:
+    - case_review_approved
+  status: removed
+  severity: breaking
+  note: 'Enum value ''case_review_approved'' was valid in 2.57.0 and is gone in 2.58.0.
+    Seen at: components.schemas.AutomationRuleTriggerType. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/comment_added
+  kind: enum_value
+  match:
+    literals:
+    - comment_added
+  status: removed
+  severity: breaking
+  note: 'Enum value ''comment_added'' was valid in 2.57.0 and is gone in 2.58.0. Seen
+    at: components.schemas.AutomationRuleTriggerType. Observed 2026-08-07; the spec''s
+    own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/datadog_agent_key
+  kind: enum_value
+  match:
+    literals:
+    - datadog_agent_key
+  status: removed
+  severity: breaking
+  note: 'Enum value ''datadog_agent_key'' was valid in 2.57.0 and is gone in 2.58.0.
+    Seen at: components.schemas.FleetAgentInfoResourceType. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/enum_value/dora_incident
   kind: enum_value
   match:
@@ -135,6 +374,28 @@ artifacts:
     at: components.schemas.DORAIncidentType. Observed 2026-08-06; the spec''s own
     version stayed 1.0.'
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/enum_value/event_correlation_signal_correlated
+  kind: enum_value
+  match:
+    literals:
+    - event_correlation_signal_correlated
+  status: removed
+  severity: breaking
+  note: 'Enum value ''event_correlation_signal_correlated'' was valid in 2.57.0 and
+    is gone in 2.58.0. Seen at: components.schemas.AutomationRuleTriggerType. Observed
+    2026-08-07; the spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
+- id: datadog/enum_value/execute_workflow
+  kind: enum_value
+  match:
+    literals:
+    - execute_workflow
+  status: removed
+  severity: breaking
+  note: 'Enum value ''execute_workflow'' was valid in 2.57.0 and is gone in 2.58.0.
+    Seen at: components.schemas.AutomationRuleActionType. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/enum_value/security_responses
   kind: enum_value
   match:
@@ -146,6 +407,17 @@ artifacts:
     Seen at: components.schemas.ApplicationSecurityWafCustomRuleTagsCategory. Observed
     2026-08-06; the spec''s own version stayed 1.0.'
   evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.33.0...2.57.0
+- id: datadog/enum_value/status_transitioned
+  kind: enum_value
+  match:
+    literals:
+    - status_transitioned
+  status: removed
+  severity: breaking
+  note: 'Enum value ''status_transitioned'' was valid in 2.57.0 and is gone in 2.58.0.
+    Seen at: components.schemas.AutomationRuleTriggerType. Observed 2026-08-07; the
+    spec''s own version stayed 1.0.'
+  evidence: https://github.com/DataDog/datadog-api-client-python/compare/2.57.0...2.58.0
 - id: datadog/request_param//api/v2/security/vulnerabilities#filter[advisory_id]
   kind: request_param
   match:
