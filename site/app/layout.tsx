@@ -81,7 +81,13 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-  alternates: { canonical: "/" },
+  /* The text/markdown alternate is the one agent-discovery affordance a
+     static export can offer — no content negotiation, no Vary header, just
+     a hint in <head> that a machine-readable setup file exists. */
+  alternates: {
+    canonical: "/",
+    types: { "text/markdown": "/setup.md" },
+  },
   openGraph: {
     type: "website",
     siteName: "driftcite",

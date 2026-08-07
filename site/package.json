@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
+    "postbuild": "node scripts/verify-agent-artifacts.mjs",
     "start": "next start",
     "lint": "next lint"
   },

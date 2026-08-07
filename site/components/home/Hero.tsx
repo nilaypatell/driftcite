@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CopyCommand from "@/components/CopyCommand";
+import SetupForAgents from "@/components/SetupForAgents";
 import { LINKS } from "@/lib/data";
 import { ArrowRight } from "@/components/icons";
 
@@ -143,6 +144,11 @@ export default function Hero() {
           marginTop: 33,
         }}
       >
+        {/* Two funnels, not two designs for one. The App install needs a
+            signed-in browser and a repository picker — an agent cannot do
+            it — and the agent prompt cannot be clicked through by a human
+            in a hurry. Every shipped precedent (Firecrawl, Clerk, Convex)
+            keeps both; removing either closes a door. */}
         <a
           target="_blank"
           rel="noopener"
@@ -152,6 +158,7 @@ export default function Hero() {
         >
           Start for free
         </a>
+        <SetupForAgents />
         <CopyCommand />
         <span
           style={{
@@ -163,6 +170,24 @@ export default function Hero() {
           }}
         >
           Runs on your machine · nothing uploaded · no account · Apache-2.0
+        </span>
+        <span
+          style={{
+            flexBasis: "100%",
+            textAlign: "center",
+            fontSize: 13,
+            color: "color-mix(in srgb, var(--color-ink) 55%, transparent)",
+          }}
+        >
+          Setup prompt works with Claude Code, Cursor, Codex and Copilot ·{" "}
+          <a
+            target="_blank"
+            rel="noopener"
+            href="/setup.md"
+            style={{ color: "var(--color-accent-700)" }}
+          >
+            see what gets copied
+          </a>
         </span>
       </div>
     </section>

@@ -54,9 +54,17 @@ const RELEASES: readonly Release[] = [
     title: "The resellers, the registries, and a feed that watches itself",
     notes: [
       <>
-        None of this is installable yet. <C>npx driftcite</C> still fetches
-        0.2.0; the work below has been landing on <C>main</C> since July 27,
-        2026, and the date beside it is the commit that bumped the version.
+        The work below has been landing on <C>main</C> since July 27, 2026;
+        the date beside it is the commit that bumped the version, and the tag
+        above flips the day npm serves it.
+      </>,
+      <>
+        An unknown flag is now a hard error that names the flag and exits 2.
+        0.2.0 accepted <C>--write-baseline</C> before the flag existed,
+        printed <C>No drift found.</C> and exited 0 — confident false
+        success, the one failure a scanner must not have. Found while
+        writing the agent setup prompt, whose instructions would have hit
+        exactly that.
       </>,
       <>
         Azure and Bedrock: the two places enterprises actually call these

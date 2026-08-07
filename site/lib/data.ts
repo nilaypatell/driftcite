@@ -91,8 +91,14 @@ export const PRECISION = { before: 86, after: 5 } as const;
 export const SHOW_PRICING: boolean = false;
 
 /** The command, in one place. The hero button copies it, the social card
- *  draws it, and the docs print it — three places that must not disagree. */
-export const COMMAND = "npx driftcite ." as const;
+ *  draws it, and the docs print it — three places that must not disagree.
+ *
+ *  The -y matters more than it looks: on a cold cache npx asks
+ *  "Ok to proceed?" before downloading, but only when a pty is attached.
+ *  A human in a terminal answers it; a coding agent running the command
+ *  through a pty hangs on it forever, and an agent running without a pty
+ *  never sees it — the worst kind of works-when-tested. */
+export const COMMAND = "npx -y driftcite ." as const;
 
 export const LINKS = {
   repo: "https://github.com/nilaypatell/driftcite",
