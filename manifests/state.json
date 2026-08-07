@@ -17,8 +17,8 @@
     },
     "cloudflare": {
       "first_seen": "2026-07-26",
-      "last_change": "2026-08-06",
-      "ref": "214f396fb489"
+      "last_change": "2026-08-07",
+      "ref": "175725ee6882"
     },
     "datadog": {
       "first_seen": "2026-08-06",
@@ -52,8 +52,8 @@
     },
     "stripe": {
       "first_seen": "2026-07-26",
-      "last_change": "2026-08-06",
-      "ref": "v2376"
+      "last_change": "2026-08-07",
+      "ref": "v2384"
     },
     "twilio": {
       "first_seen": "2026-07-26",
@@ -61,5 +61,5 @@
       "ref": "2.6.9"
     }
   },
-  "updated": "2026-08-06"
+  "updated": "2026-08-07"
 }

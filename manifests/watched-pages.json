@@ -3,8 +3,9 @@
     "https://ai.google.dev/gemini-api/docs/changelog": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
+        "google-api.yaml",
         "google-models.yaml"
       ],
       "sha256": "5a44fde1df25c995a8725107374d87a240b9f7b3e4223294a7fbf453e125b609"
@@ -12,61 +13,184 @@
     "https://ai.google.dev/gemini-api/docs/deprecations": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "google-models.yaml"
       ],
       "sha256": "2de65b9a66e1a198e2527bd9432ffeb7652b1a0789aeee22b7437112466a2334"
     },
+    "https://ai.google.dev/gemini-api/docs/libraries": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "google-api.yaml"
+      ],
+      "sha256": "1d6e2d471b27c171bc5fd03c73ec0e88749d71aca3694ccd43f81c9138bc75ca"
+    },
+    "https://ai.google.dev/gemini-api/docs/migrate": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "google-api.yaml"
+      ],
+      "sha256": "1f00c32cb49ed42179e39f37cf4245581ee542fc04110d28ad07aeea3966ed5e"
+    },
     "https://console.groq.com/docs/deprecations": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "groq-models.yaml"
       ],
       "sha256": "c7fa23bc5111d43a6a40f5a433ce7c454419348dee6915af43d01949d48b6c07"
     },
+    "https://developers.openai.com/api/docs/assistants/deep-dive": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "d498de6967ad9a920a9a50e0d64475fe760d121856eb9e710daafcc18df16027"
+    },
+    "https://developers.openai.com/api/docs/assistants/migration": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "327a217016a841345199ff28fff9f20a8d541378cb5a4d0f14656bf60214265d"
+    },
+    "https://developers.openai.com/api/docs/assistants/tools/function-calling": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "2638aeef3e0554d882d3688e76ca1f0d9b2590483d1f6eca8978ccf271dbea3d"
+    },
     "https://developers.openai.com/api/docs/deprecations": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
+        "openai-api.yaml",
         "openai-models.yaml"
       ],
       "sha256": "bf457baeb74075c0ffaf5d0a1e83e85415867c4bb3e5ba3e4d12a840a8dedabb"
     },
+    "https://developers.openai.com/api/docs/guides/evals": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "3f5887d69ebc916a1303478e22f329aa29a75a600160a227a2970997ce32f177"
+    },
+    "https://developers.openai.com/api/docs/guides/migrate-to-responses": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "ed82ec1bbba03703617f6e468bf23b1296ceea191384fd8e84d963d10151d750"
+    },
+    "https://developers.openai.com/api/docs/guides/realtime": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "daef5f5af0454c30ac88e8d20ff70e4d04b3f89e6db2b3bf9db9875754b30707"
+    },
+    "https://developers.openai.com/api/reference/resources/chat.md": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "45ea4a5487bd7009fe98a087f3c051a1489ac1cd6d1482e6ae62a44642cadb20"
+    },
+    "https://developers.openai.com/api/reference/resources/responses.md": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "openai-api.yaml"
+      ],
+      "sha256": "e87d5ac1372e0426daeb76ad07b27815419b06ff423614a707c6bed67687d15a"
+    },
     "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "bedrock-models.yaml"
       ],
       "sha256": "ff7ca4408d6f90b1b53cdaf162d764decb6b4640c5cdcf6983d25df77b7dc57e"
     },
     "https://docs.cohere.com/docs/deprecations": {
+      "changes": [
+        {
+          "on": "2026-08-07"
+        }
+      ],
       "first_seen": "2026-08-06",
-      "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
       "manifests": [
         "cohere-models.yaml"
       ],
-      "sha256": "d7dcd083b9ac4847318c8efd4035c66d7d87e1bd13889308e7774cd52e2d3e2e"
+      "sha256": "928b76168e7a0f9b45376516e61eda454eca6f2d47ff789ff24643da0cdf84d6"
+    },
+    "https://docs.cohere.com/docs/migrating-v1-to-v2": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "cohere-api.yaml"
+      ],
+      "sha256": "e95dd442032a7bcf50708a1db943cc20672799108e182ea8acd4917568a6af3a"
+    },
+    "https://docs.mistral.ai/getting-started/clients.md": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "mistral-api.yaml"
+      ],
+      "sha256": "26c6e04d99ee93033b0dd8daae4820da81a65bb2e8cf6d7105ea090737afa03a"
     },
     "https://docs.mistral.ai/getting-started/models/models_overview/": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "mistral-models.yaml"
       ],
       "sha256": "d4b69e81f405dc0f54c9e4af74732001ee815e2b63c739f56ad34830f5efd5b0"
     },
+    "https://github.com/mistralai/client-python/blob/main/MIGRATION.md": {
+      "first_seen": "2026-08-07",
+      "last_changed": "2026-08-07",
+      "last_checked": "2026-08-07",
+      "manifests": [
+        "mistral-api.yaml"
+      ],
+      "sha256": "0235a6a7631bb54615d42668da5b99e69a64c0a9a7fdd4acee238a193b23be22"
+    },
     "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "azure-models.yaml"
       ],
@@ -75,7 +199,7 @@
     "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "azure-models.yaml"
       ],
@@ -84,7 +208,7 @@
     "https://platform.claude.com/docs/en/about-claude/model-deprecations": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "anthropic.yaml"
       ],
@@ -93,7 +217,7 @@
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "anthropic.yaml"
       ],
@@ -102,12 +226,12 @@
     "https://platform.claude.com/docs/en/about-claude/models/overview.md": {
       "first_seen": "2026-08-06",
       "last_changed": "2026-08-06",
-      "last_checked": "2026-08-06",
+      "last_checked": "2026-08-07",
       "manifests": [
         "anthropic.yaml"
       ],
       "sha256": "9b0d15561a2fdea7fb73f76632e85a108c3396c433fe03d5f6c8238fcedbf683"
     }
   },
-  "updated": "2026-08-06"
+  "updated": "2026-08-07"
 }
