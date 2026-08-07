@@ -56,12 +56,22 @@ That single decision means:
   the moat, so the moat is append-only and public.
 - **Deployment** is nothing. No servers, no database, no ops.
 - **Cost** is zero. Scheduled Actions are free on public repositories.
-- **Trust** is automatic. Every fact in the feed traces to a commit produced by
-  a public CI run whose logs anyone can read. For a product whose entire pitch
-  is "we cite the provider instead of guessing," having the pipeline itself be
-  auditable is the argument, not a nice-to-have.
-- **The clock starts today**, with a dated commit, not after the architecture
-  is perfect.
+- **Trust** is meant to be automatic: a fact in the feed should trace to a
+  commit produced by a public CI run whose logs anyone can read. For a product
+  whose entire pitch is "we cite the provider instead of guessing," an
+  auditable pipeline is the argument rather than a nice-to-have.
+
+  > **This is not true yet, and the gap is the point.** As of 2026-08-06 the
+  > scheduled workflow has never completed a run: Actions is unbilled on this
+  > account, and the local fallback cannot read the repository's directory.
+  > The manifests were produced by hand-run sweeps. Every artifact still
+  > carries the provider's own `evidence` URL, so the *facts* are checkable —
+  > but the *pipeline* is not yet the witness this section claims. Until a
+  > scheduled run has committed on its own, treat this bullet as a design
+  > intention, not a description.
+
+- **The clock starts when the schedule first runs**, not when this document
+  was written. See above: it has not started.
 
 The feed is then just files served from the repo or fronted by a CDN.
 

@@ -24,7 +24,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { appJwt, makeApi, installationToken, listInstallations, listRepos } from "./github.mjs";
-import { loadState, saveState, carryPrs, markFailed } from "./state.mjs";
+import { loadState, saveState, carryPrs, markFailed, openPrs, recordOutcome } from "./state.mjs";
 import { feedSnapshot, feedDelta, planRepo } from "./plan.mjs";
 import { sweepRepo } from "./sweep.mjs";
 
@@ -97,6 +97,30 @@ export async function runSweep({
       // repository to mark here — the list of them is exactly what failed.
       failed(`installation ${inst.id}`, err);
       continue;
+    }
+
+    // Before scanning anything, find out what happened to what we already
+    // proposed. This is cheap — one GET per pull request still recorded as
+    // open — and it is the only fact in the whole sweep that nobody else
+    // publishes and that cannot be recovered later: a maintainer's answer,
+    // attributed to the artifacts we asked about. A merge says the swap was
+    // right; a close says a removal we called breaking broke nobody.
+    for (const [name, branch, url] of openPrs(state)) {
+      const number = /\/pull\/(\d+)$/.exec(url || "")?.[1];
+      if (!number || !visible.some((r) => r.full_name === name)) continue;
+      try {
+        const pr = await api(token, "GET", `/repos/${name}/pulls/${number}`);
+        if (!pr || pr.state === "open") continue;
+        const outcome = pr.merged_at ? "merged" : "closed";
+        if (recordOutcome(state, name, branch, outcome, today)) {
+          tally(outcome);
+          line(outcome, name, `#${number}`);
+        }
+      } catch (err) {
+        // A deleted or transferred repository is not a sweep failure, and a
+        // pull request we can no longer read simply stays open in the record.
+        line("outcome?", name, because(err));
+      }
     }
 
     for (const repo of visible) {

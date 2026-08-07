@@ -96,7 +96,17 @@ export async function sweepRepo({ repo, api, token, cliPath, today, live }) {
       base: repo.defaultBranch,
       body,
     });
-    entry.prs[branch] = { opened_on: today, url: pr.html_url };
+    // The artifacts go in beside the URL so a later outcome attaches to what
+    // was actually proposed. Nobody else records whether a human accepted a
+    // given swap, and unlike every other fact here it cannot be recovered
+    // later from anyone's git history or documentation page.
+    entry.prs[branch] = {
+      opened_on: today,
+      url: pr.html_url,
+      artifacts: [...new Set(breaking.map((f) => f.artifact))].sort(),
+      outcome: "open",
+      outcome_on: null,
+    };
     return { action: "opened-pr", entry, refused, files: allowed, url: pr.html_url };
   } finally {
     await rm(dir, { recursive: true, force: true });

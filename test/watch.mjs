@@ -648,5 +648,76 @@ const repoRecord = (name) => ({
     state.repos["octo/ok"]?.last_scan === "2026-08-06");
 }
 
+console.log("\nthe fix-acceptance record");
+
+// The one fact in this system nobody else publishes: what a human did with a
+// swap we proposed. It cannot be backfilled, so the shape has to be right
+// before there is anything to put in it.
+{
+  const { openPrs, recordOutcome, saveState, loadState } =
+    await import(path.join(HERE, "..", "ee", "watch", "state.mjs"));
+
+  const state = {
+    state_version: 1, last_sweep: "2026-08-06", feed_snapshot: {},
+    repos: {
+      "octo/a": { providers: ["openai"], artifacts: ["openai/model_id/x"],
+        head: "abc", last_scan: "2026-08-06",
+        prs: { "driftcite/2026-08-01": { opened_on: "2026-08-01",
+          url: "https://github.com/octo/a/pull/7",
+          artifacts: ["openai/model_id/x"], outcome: "open", outcome_on: null } } },
+      "octo/b": { providers: [], artifacts: [], head: "def", last_scan: "2026-08-06",
+        prs: { "driftcite/2026-07-01": { opened_on: "2026-07-01",
+          url: "https://github.com/octo/b/pull/2",
+          artifacts: [], outcome: "merged", outcome_on: "2026-07-09" } } },
+    },
+  };
+
+  check("only pull requests still open are asked about",
+    JSON.stringify(openPrs(state)) ===
+      JSON.stringify([["octo/a", "driftcite/2026-08-01", "https://github.com/octo/a/pull/7"]]));
+
+  check("an outcome is recorded against the branch it belongs to",
+    recordOutcome(state, "octo/a", "driftcite/2026-08-01", "merged", "2026-08-06") &&
+    state.repos["octo/a"].prs["driftcite/2026-08-01"].outcome === "merged" &&
+    state.repos["octo/a"].prs["driftcite/2026-08-01"].outcome_on === "2026-08-06");
+
+  check("an answer already given is not overwritten by a later sweep",
+    recordOutcome(state, "octo/b", "driftcite/2026-07-01", "closed", "2026-08-06") === false &&
+    state.repos["octo/b"].prs["driftcite/2026-07-01"].outcome === "merged");
+
+  const dir = mkdtempSync(path.join(tmpdir(), "driftcite-outcome-"));
+  const file = path.join(dir, "state.json");
+  await saveState(file, state);
+  const back = await loadState(file);
+  check("the record survives a save and reload",
+    back.repos["octo/a"].prs["driftcite/2026-08-01"].outcome === "merged" &&
+    back.repos["octo/a"].prs["driftcite/2026-08-01"].artifacts[0] === "openai/model_id/x");
+
+  // The whole point of the allowlist is that widening it did not open a door.
+  let refused = false;
+  try {
+    await saveState(path.join(dir, "bad.json"), {
+      ...state,
+      repos: { "octo/a": { ...state.repos["octo/a"],
+        prs: { "driftcite/2026-08-01": { opened_on: "2026-08-01", url: "u",
+          artifacts: ["src/app.js"], outcome: "open", outcome_on: null } } } },
+    });
+  } catch { refused = true; }
+  check("a file path smuggled in as a proposed artifact still refuses", refused);
+
+  let badOutcome = false;
+  try {
+    await saveState(path.join(dir, "bad2.json"), {
+      ...state,
+      repos: { "octo/a": { ...state.repos["octo/a"],
+        prs: { "driftcite/2026-08-01": { opened_on: "2026-08-01", url: "u",
+          outcome: "const secret = process.env.KEY", outcome_on: null } } } },
+    });
+  } catch { badOutcome = true; }
+  check("an outcome outside the four known words refuses", badOutcome);
+
+  rmSync(dir, { recursive: true, force: true });
+}
+
 console.log(`\n${passed} passed, ${failed} failed\n`);
 process.exit(failed ? 1 : 0);

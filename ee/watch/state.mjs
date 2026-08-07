@@ -29,6 +29,23 @@ const strArray = (v) => Array.isArray(v) && v.every(str);
 // like the feed. This is a tripwire, not cryptography.
 const artifactId = (v) => str(v) && /^[^/\s]+\/[^/\s]+\/.+$/.test(v);
 
+/**
+ * What a human did with a pull request we opened.
+ *
+ * This is the one thing here that nobody else publishes. A provider's page
+ * says a model died; git says when a spec changed; both can be recovered by
+ * anyone at any time. Whether a maintainer *accepted* the swap we proposed
+ * for a given artifact exists nowhere but here, and it cannot be backfilled —
+ * a record not kept today is a record gone for good. It is also the only
+ * input that could ever justify suppressing a removal that turns out never to
+ * break anyone, which is the difference between a check people leave on and
+ * one they mute.
+ *
+ * It stays inside the privacy promise: an outcome is one of four words and a
+ * date, attributed to artifact ids the file is already allowed to hold.
+ */
+const OUTCOMES = new Set(["open", "merged", "closed", "superseded"]);
+
 function refuse(where) {
   throw new Error(`state refuses to persist: ${where}`);
 }
@@ -56,9 +73,22 @@ export function assertPrivate(state) {
       refuse(`repos[${name}].failed_on`);
     }
     for (const [branch, pr] of Object.entries(entry.prs ?? {})) {
-      const PR = new Set(["opened_on", "url"]);
+      const PR = new Set(["opened_on", "url", "artifacts", "outcome", "outcome_on"]);
       for (const k of Object.keys(pr)) if (!PR.has(k)) refuse(`repos[${name}].prs[${branch}].${k}`);
       if (!str(pr.opened_on) || !str(pr.url)) refuse(`repos[${name}].prs[${branch}]`);
+      // Which artifacts this pull request actually proposed a swap for, so a
+      // later outcome can be attributed to them rather than to the sweep.
+      if (pr.artifacts !== undefined) {
+        if (!Array.isArray(pr.artifacts) || !pr.artifacts.every(artifactId)) {
+          refuse(`repos[${name}].prs[${branch}].artifacts`);
+        }
+      }
+      if (pr.outcome !== undefined && !OUTCOMES.has(pr.outcome)) {
+        refuse(`repos[${name}].prs[${branch}].outcome`);
+      }
+      if (pr.outcome_on !== undefined && !strOrNull(pr.outcome_on)) {
+        refuse(`repos[${name}].prs[${branch}].outcome_on`);
+      }
     }
   }
   return state;
@@ -75,6 +105,33 @@ export const carryPrs = (prev, entry) => ({
   ...entry,
   prs: { ...(prev?.prs || {}), ...entry.prs },
 });
+
+/** Every pull request still recorded as open, as [repo, branch, url]. */
+export function openPrs(state) {
+  const out = [];
+  for (const [name, entry] of Object.entries(state.repos ?? {})) {
+    for (const [branch, pr] of Object.entries(entry.prs ?? {})) {
+      if ((pr.outcome ?? "open") === "open") out.push([name, branch, pr.url]);
+    }
+  }
+  return out;
+}
+
+/**
+ * Write down what happened to a pull request. Mutates in place because the
+ * caller owns the state object for the duration of a sweep.
+ *
+ * `merged` is the only outcome that says the swap was accepted. A closed pull
+ * request is a rejection and is worth as much: it is the only signal that a
+ * removal we called breaking did not, in the end, break anybody.
+ */
+export function recordOutcome(state, repo, branch, outcome, day) {
+  const pr = state.repos?.[repo]?.prs?.[branch];
+  if (!pr || (pr.outcome ?? "open") !== "open") return false;
+  pr.outcome = outcome;
+  pr.outcome_on = day;
+  return true;
+}
 
 /**
  * The entry for a repository whose sweep threw: everything the last good

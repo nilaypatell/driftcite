@@ -33,14 +33,37 @@ You may, free of charge:
 3. **Modify them**, including adding your own artifacts.
 4. **Use them for research**, including academic publication, with attribution.
 
-## The one restriction
+## Model lifecycle rows are CC BY 4.0, with no restriction at all
 
-You may **not** use these manifests, in whole or in substantial part, to
+Every `model_id` artifact — the model identifier, its status, its
+`announced_on` and `retires_on` dates, its provider-named replacement, and its
+`evidence` URL — is released under
+[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+Take them, embed them, ship them, sell around them. The only ask is
+attribution.
+
+This carve-out is deliberate and it is not generosity. A model retirement date
+is worth something only where a developer already is, which means inside the
+catalogs and SDKs they already depend on, not inside a feed they have to hear
+about first. A licence that forbids embedding protects a compilation that
+anyone can rebuild from the same public pages in an afternoon, while
+foreclosing the only position that compounds: being the row everyone else's
+file points at. caniuse is not canonical because its data was locked up.
+
+If you maintain a model catalog, an SDK, or a pricing table, you are welcome to
+copy these rows wholesale. We would rather send you a pull request than a
+cease and desist, and there is a standing offer to keep your copy current.
+
+## The one restriction, on everything else
+
+For the rest of the collection — the generated spec diffs, the endpoint,
+parameter and enum artifacts, the observation history and the severity data —
+you may **not** use these manifests, in whole or in substantial part, to
 create, train, or operate a product or service whose primary purpose is to
 provide API drift, deprecation, or breaking change data to third parties.
 
-In plain terms: build anything you like on top of this data. Do not repackage
-the data itself as a competing feed.
+In plain terms: build anything you like on top of that data. Do not repackage
+it as a competing feed.
 
 ## Attribution
 
